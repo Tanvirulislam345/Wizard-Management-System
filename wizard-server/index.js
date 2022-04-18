@@ -28,7 +28,6 @@ connection.connect((err) => {
 //all routes for project 
 app.post("/addproject", (req, res) => {
   const data = req.body;
-
   const keys = Object.keys(data);
 
   const sqlquery = `INSERT INTO all_projects (${keys.map(
@@ -49,21 +48,26 @@ app.post("/addproject", (req, res) => {
   });
 });
 
-app.get("/allproject", (req, res) => {
-  connection.query("SELECT * FROM all_projects WHERE 1", (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(result);
+app.get("/allproject/:projectcategori", (req, res) => {
+  const status = req.params.projectcategori;
+  connection.query(
+    `SELECT * FROM all_projects WHERE ProjectStatus = "${status}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result);
+      }
     }
-  });
+  );
+  // console.log(query);
+  // res.json(true);
 });
 
-app.get("/allproject/:projectId", (req, res) => {
+app.get("/project/:projectId", (req, res) => {
   const id = req.params.projectId;
-
   connection.query(
-    `SELECT * FROM all_projects WHERE id=${id}`,
+    `SELECT * FROM all_projects WHERE id = ${id}`,
     (err, result) => {
       if (err) {
         console.log(err);
@@ -99,6 +103,7 @@ app.put("/updateproject/:projectId", (req, res) => {
     if (err) {
       console.log(err);
     } else {
+      // console.log(result);
       res.json(result);
     }
   });
@@ -300,6 +305,39 @@ app.delete("/client/delete/:clientId", (req, res) => {
 
 });
 
+
+app.post("/addpayment", (req, res) => {
+  const data = req.body;
+  const keys = Object.keys(data);
+
+  const sqlquery = `INSERT INTO all_payment (${keys.map(
+    (key) => key
+  )}) VALUES (${keys.map((key) => "?")})`;
+
+  const value = keys.map((key) => {
+    return data[key];
+  });
+
+  connection.query(sqlquery, value, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(result);
+      res.json(result);
+    }
+  });
+});
+
+
+app.get("/allpayment", (req, res) => {
+  connection.query("SELECT * FROM all_payment WHERE 1", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
 
 app.get("/", (req, res) => {
   res.send("This is wizard software admin project");

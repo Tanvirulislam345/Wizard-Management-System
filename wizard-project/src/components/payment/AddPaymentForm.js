@@ -1,7 +1,6 @@
 import { Grid, Stack } from "@mui/material";
 import React from "react";
 import { ButtonMake, TextFieldMake } from "../../styles/MetarialStyles";
-import FileBase64 from "react-file-base64";
 
 const states = [
   {
@@ -11,6 +10,16 @@ const states = [
   {
     value: "card",
     label: "Card",
+  },
+];
+const states2 = [
+  {
+    value: "Clear",
+    label: "Clear",
+  },
+  {
+    value: "Panding",
+    label: "Panding",
   },
 ];
 
@@ -49,8 +58,8 @@ const AddPaymentForm = ({ data, setData, handleSubmit }) => {
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Employee Name"
-          name="EmployeeName"
+          label="Project Manager"
+          name="ProjectManager"
           onChange={(event) =>
             setData({
               ...data,
@@ -58,30 +67,6 @@ const AddPaymentForm = ({ data, setData, handleSubmit }) => {
             })
           }
         />
-      </Grid>
-
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          label="Payment Method"
-          name="PaymentMethod"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-          required
-          select
-          SelectProps={{ native: true }}
-        >
-          {states.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextFieldMake>
       </Grid>
 
       <Grid item xs={12} md={6}>
@@ -147,7 +132,7 @@ const AddPaymentForm = ({ data, setData, handleSubmit }) => {
           fullWidth
           variant="outlined"
           label="Total Amount"
-          name="Total Amount"
+          name="TotalAmount"
           onChange={(event) =>
             setData({
               ...data,
@@ -157,7 +142,54 @@ const AddPaymentForm = ({ data, setData, handleSubmit }) => {
         />
       </Grid>
 
-      <Grid item xs={12} md={6} sx={{ height: "100%", my: "auto" }}>
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
+          label="Payment Method"
+          name="PaymentMethod"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+          required
+          select
+          SelectProps={{ native: true }}
+        >
+          {states.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextFieldMake>
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
+          label="Payment Status"
+          name="PaymentStatus"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+          required
+          select
+          SelectProps={{ native: true }}
+        >
+          {states2.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextFieldMake>
+      </Grid>
+
+      <Grid item xs={12} sx={{ height: "100%", my: "auto" }}>
         <Stack spacing={3} direction="row">
           <ButtonMake size="medium" type="submit" onClick={handleSubmit}>
             Send

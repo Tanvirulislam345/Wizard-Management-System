@@ -27,7 +27,6 @@ export const theme = createTheme({
       800: "#1F2937",
       900: "#111827",
     },
-
     divider: "#E6E8F0",
     primary: {
       main: "#FFFFFF",

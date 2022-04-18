@@ -1,5 +1,5 @@
 import { makeStyles } from "@mui/styles";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { AppBar, Box, Button, MenuItem, TextField } from "@mui/material";
 
 export const LayoutRoot = styled(Box)(({ theme }) => ({
@@ -22,7 +22,7 @@ export const LayoutContiner = styled(Box)(({ theme }) => ({
   backgroundColor: theme.background.secondary,
   margin: "30px",
   padding: "0px 30px 30px",
-  borderRadius: "15px"
+  borderRadius: "15px",
 }));
 
 export const NavbarRoot = styled(AppBar)(({ theme }) => ({
@@ -43,7 +43,6 @@ export const SubNabBar = styled(Box)(({ theme }) => ({
   alignItems: "center",
   padding: "30px 0px",
 }));
-
 
 export const BoxContainer = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -66,6 +65,11 @@ export const BigButtonMake = styled(Button)(({ theme }) => ({
   padding: "8px 12px",
   color: "white",
   background: "#7480FF",
+  fontSize: "12px",
+  fontWeight: 700,
+  lineHeight: "14.63px",
+  letterSpacing: "0.3 px",
+  textTransform: "none",
   ":hover": {
     color: "black",
     background: "#7480FF",
@@ -77,10 +81,9 @@ export const ButtonMake = styled(Button)(({ theme }) => ({
   background: theme.background.primary,
 }));
 
-
 export const MenuItemMake = styled(MenuItem)(({ theme }) => ({
   color: "#A4A6B3",
-}))
+}));
 
 export const TextFieldMake = styled(TextField)(({ theme }) => ({
   "& label": {

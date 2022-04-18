@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@mui/material';
+import { ThemeProvider } from "@mui/material";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Layout } from "./components/layout/Layout";
@@ -16,6 +16,7 @@ import EditProject from "./pages/EditProject";
 import EmployeeProfile from "./pages/EmployeeProfile";
 import Employees from "./pages/Employees";
 import PaymentView from "./pages/PaymentView";
+import ProjectDetails from "./pages/ProjectDetails";
 import Projects from "./pages/Projects";
 import { theme } from "./theme";
 
@@ -27,6 +28,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Projects />} />
             <Route path="/project" element={<Projects />} />
+            <Route
+              path="/project/view/:projectDetailsId"
+              element={<ProjectDetails />}
+            />
             <Route path="/addproject" element={<AddProject />} />
             <Route path="/editproject/:projectId" element={<EditProject />} />
             <Route path="/employee" element={<Employees />} />

@@ -16,90 +16,7 @@ import RemoveRedEyeRoundedIcon from "@mui/icons-material/RemoveRedEyeRounded";
 import PaymentListMenu from "./PaymentListMenu";
 import { useNavigate } from "react-router-dom";
 
-const rows = [
-  {
-    name: "tanvir",
-    calories: 300,
-    fat: 30,
-  },
-  {
-    name: "tanvir",
-    calories: 300,
-    fat: 30,
-  },
-  {
-    name: "tanvir",
-    calories: 300,
-    fat: 30,
-  },
-  {
-    name: "tanvir",
-    calories: 300,
-    fat: 30,
-  },
-  {
-    name: "tanvir",
-    calories: 300,
-    fat: 30,
-  },
-  {
-    name: "tanvir",
-    calories: 300,
-    fat: 30,
-  },
-  {
-    name: "tanvir",
-    calories: 300,
-    fat: 30,
-  },
-  {
-    name: "tanvir",
-    calories: 300,
-    fat: 30,
-  },
-  {
-    name: "tanvir",
-    calories: 300,
-    fat: 30,
-  },
-  {
-    name: "tanvir",
-    calories: 300,
-    fat: 30,
-  },
-  {
-    name: "tanvir",
-    calories: 300,
-    fat: 30,
-  },
-  {
-    name: "tanvir",
-    calories: 300,
-    fat: 30,
-  },
-  {
-    name: "tanvir",
-    calories: 300,
-    fat: 30,
-  },
-  {
-    name: "tanvir",
-    calories: 300,
-    fat: 30,
-  },
-  {
-    name: "tanvir",
-    calories: 300,
-    fat: 30,
-  },
-  {
-    name: "tanvir",
-    calories: 300,
-    fat: 30,
-  },
-];
-
-export default function PaymentList() {
+export default function PaymentList({ rows }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const navigate = useNavigate();
@@ -143,9 +60,9 @@ export default function PaymentList() {
         <TableHead>
           <TableRow>
             <StyledTableCell align="center">Client Name</StyledTableCell>
-            <StyledTableCell align="center">Employee Name</StyledTableCell>
-            <StyledTableCell align="center">Charges</StyledTableCell>
+            <StyledTableCell align="center">Project Manager</StyledTableCell>
             <StyledTableCell align="center">Date</StyledTableCell>
+            <StyledTableCell align="center">Charges</StyledTableCell>
             <StyledTableCell align="center">Tax</StyledTableCell>
             <StyledTableCell align="center">Discount</StyledTableCell>
             <StyledTableCell align="center">Total</StyledTableCell>
@@ -159,20 +76,26 @@ export default function PaymentList() {
         </TableHead>
         <TableBody>
           {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            ? rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row, index) => (
             <TableRow key={index}>
-              <StyledTableCell align="center">{row.name}</StyledTableCell>
-              <StyledTableCell align="center">{row.calories}</StyledTableCell>
-              <StyledTableCell align="center">{row.fat}</StyledTableCell>
-              <StyledTableCell align="center">{row.name}</StyledTableCell>
-              <StyledTableCell align="center">{row.calories}</StyledTableCell>
-              <StyledTableCell align="center">{row.fat}</StyledTableCell>
-              <StyledTableCell align="center">{row.calories}</StyledTableCell>
-              <StyledTableCell align="center">{row.fat}</StyledTableCell>
+              <StyledTableCell align="center">{row.ClientName}</StyledTableCell>
               <StyledTableCell align="center">
-                <Chip label={row.name} color="error" />
+                {row.ProjectManager}
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                {row.ProjectDate}
+              </StyledTableCell>
+              <StyledTableCell align="center">{row.Charges}</StyledTableCell>
+              <StyledTableCell align="center">{row.Tax}</StyledTableCell>
+              <StyledTableCell align="center">{row.Discount}</StyledTableCell>
+              <StyledTableCell align="center">{row.Total}</StyledTableCell>
+              <StyledTableCell align="center">
+                {row.PaymentMethod}
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                <Chip label={row.PaymentStatus} color="error" />
               </StyledTableCell>
               <StyledTableCell align="center" onClick={() => handleView(index)}>
                 <RemoveRedEyeRoundedIcon />
