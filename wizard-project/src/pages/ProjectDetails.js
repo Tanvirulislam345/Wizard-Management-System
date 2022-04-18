@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material";
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ClientDetails from "../components/projects/ClientDetails";
 import ProjectInfo from "../components/projects/ProjectInfo";
@@ -10,41 +11,42 @@ import { LayoutContiner } from "../styles/MetarialStyles";
 
 const ProjectDetails = () => {
   const { projectDetailsId } = useParams();
-  console.log(projectDetailsId);
+  const [clientDetails, setClientDetails] = useState(null);
 
-  const clientDetails = {
-    name: "Client",
-    date: "Jan 21, 2022",
-    ContactPerson: "low",
-  };
-  const keys = Object.keys(clientDetails);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:9000/project/${projectDetailsId}`)
+      .then((res) => setClientDetails(res.data[0]));
+  }, [projectDetailsId]);
 
   const files = useState([1, 2, 3]);
 
   return (
     <LayoutContiner>
       <SubNav2 project="Project Details" />
-      <Grid spacing={2} container>
-        <Grid item xs={12} sm={5} md={5}>
-          <Grid spacing={2} container>
-            <Grid item xs={12}>
-              <HeadingFormat title="Client Details">
-                <ClientDetails keys={keys} clientDetails={clientDetails} />
-              </HeadingFormat>
-            </Grid>
-            <Grid item xs={12}>
-              <HeadingFormat title="Files">
-                <Files files={files} />
-              </HeadingFormat>
+      {clientDetails !== null && (
+        <Grid spacing={2} container>
+          <Grid item xs={12} sm={7} md={7}>
+            <HeadingFormat title="Details">
+              <ProjectInfo clientDetails={clientDetails} />
+            </HeadingFormat>
+          </Grid>
+          <Grid item xs={12} sm={5} md={5}>
+            <Grid spacing={2} container>
+              <Grid item xs={12}>
+                <HeadingFormat title="Files">
+                  <Files files={files} />
+                </HeadingFormat>
+              </Grid>
+              <Grid item xs={12}>
+                <HeadingFormat title="Client Details">
+                  <ClientDetails clientDetails={clientDetails} />
+                </HeadingFormat>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={12} sm={7} md={7}>
-          <HeadingFormat title="Details">
-            <ProjectInfo keys={keys} clientDetails={clientDetails} />
-          </HeadingFormat>
-        </Grid>
-      </Grid>
+      )}
     </LayoutContiner>
   );
 };

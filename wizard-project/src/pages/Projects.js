@@ -1,14 +1,11 @@
 import { Box, Grid } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CategoriProject from "../components/projects/CategoriProject";
 import ListProject from "../components/projects/ListProject";
 import SubNav from "../components/subNav/SubNav";
 import { LayoutContiner } from "../styles/MetarialStyles";
-// import ProjectList from '../../components/ProjectList/ProjectList';
-// import ProjectStatus from '../../components/ProjectStatus/ProjectStatus';
-// import Header from '../../components/Header/Header';
-// import Axios from "axios";
 
 const Projects = () => {
   const projectCategori = [
@@ -32,21 +29,36 @@ const Projects = () => {
 
   const [projects, setProjects] = useState([]);
   const [isCategori, setCategori] = useState(projectCategori[0].name);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:9000/allproject")
+    fetch(`http://localhost:9000/allproject/${isCategori}`)
       .then((res) => res.json())
       .then((data) => setProjects(data));
-  }, []);
+  }, [isCategori]);
 
-  const deleteProject = (id) => {
-    axios
-      .delete(`http://localhost:9000/allproject/delete/${id}`)
-      .then((res) => {
-        if (res.status === 200) {
-          setProjects(projects.filter((project) => project.id !== id));
-        }
-      });
+  const handleProject = (id, status) => {
+    const values = {
+      ProjectStatus: status,
+    };
+
+    if (status === "delete") {
+      axios
+        .delete(`http://localhost:9000/allproject/delete/${id}`)
+        .then((res) => {
+          if (res.status === 200) {
+            setProjects(projects.filter((project) => project.id !== id));
+          }
+        });
+    } else {
+      axios
+        .put(`http://localhost:9000/updateproject/${id}`, values)
+        .then((res) => {
+          if (res.status === 200) {
+            setProjects(projects.filter((project) => project.id !== id));
+          }
+        });
+    }
   };
 
   return (
@@ -67,7 +79,8 @@ const Projects = () => {
           <ListProject
             key={index}
             project={project}
-            deleteProject={deleteProject}
+            projectCategori={projectCategori}
+            handleProject={handleProject}
           ></ListProject>
         ))}
       </Grid>

@@ -113,6 +113,13 @@ export const TextFieldMake = styled(TextField)(({ theme }) => ({
   },
   marginTop: "10px",
 }));
+export const FileContainerField = styled(Box)(({ theme }) => ({
+  marginTop: "10px",
+  padding: "16.5px 14px",
+  border: "2px solid #A4A6B3",
+  color: "#A4A6B3",
+  borderRadius: "4px",
+}));
 export const TextFieldMake2 = styled(TextField)(({ theme }) => ({
   "& label": {
     color: "#A4A6B3",

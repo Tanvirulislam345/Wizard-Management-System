@@ -11,7 +11,12 @@ const AddProject = () => {
 
   const handleSubmit = () => {
     if (data !== null) {
-      axios.post("http://localhost:9000/addproject", data).then((res) => {
+      const values = {
+        ...data,
+        ProjectStatus: "New Project",
+      };
+      // console.log(values);
+      axios.post("http://localhost:9000/addproject", values).then((res) => {
         if (res.status === 200) {
           navigate("/project");
         }

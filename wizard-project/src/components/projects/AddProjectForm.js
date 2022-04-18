@@ -1,7 +1,11 @@
 
-import { Grid, Stack } from "@mui/material";
+import { Box, Grid, Stack } from "@mui/material";
 import React from "react";
-import { ButtonMake, TextFieldMake } from "../../styles/MetarialStyles";
+import {
+  ButtonMake,
+  FileContainerField,
+  TextFieldMake,
+} from "../../styles/MetarialStyles";
 import FileBase64 from "react-file-base64";
 
 const states = [
@@ -223,7 +227,34 @@ const AddProjectForm = ({ data, setData, handleSubmit }) => {
           }
         />
       </Grid>
+      <Grid item xs={12} md={6} /* sx={{ height: "100%", my: "auto" }} */>
+        <FileContainerField>
+          <FileBase64
+            onDone={(base64) =>
+              // onDone={({ base64 }) =>
+              setData({
+                ...data,
+                File: base64,
+              })
+            }
+          />
+        </FileContainerField>
 
+        {/* <TextFieldMake
+          fullWidth
+          type="file"
+          focused
+          variant="outlined"
+          label="File"
+          name="File"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.files[0],
+            })
+          }
+        /> */}
+      </Grid>
       <Grid item xs={12}>
         <TextFieldMake
           fullWidth
@@ -240,26 +271,7 @@ const AddProjectForm = ({ data, setData, handleSubmit }) => {
           }
         />
       </Grid>
-      <Grid item xs={12}>
-        <TextFieldMake
-          fullWidth
-          type="file"
-          focused
-          variant="outlined"
-          label="File"
-          name="File"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.files[0],
-            })
-          }
-        />
-        {/* <FileBase64
-          onDone={(base64) => console.log(base64)}
-          style={{ border: "2px solid red", padding: "20px" }}
-        /> */}
-      </Grid>
+
       <Grid item xs={12}>
         <Stack spacing={3} direction="row">
           <ButtonMake size="medium" type="submit" onClick={handleSubmit}>

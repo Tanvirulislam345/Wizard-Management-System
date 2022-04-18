@@ -12,6 +12,7 @@ const states = [
     label: "Female",
   },
 ];
+
 const states2 = [
   {
     value: "React",
@@ -44,12 +45,13 @@ const AddEmployeeForm = ({ data, setData, handleSubmit }) => {
           }
         />
       </Grid>
+
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Designation"
-          name="Designation"
+          name="FullName"
+          label="Full  Name"
           onChange={(event) =>
             setData({
               ...data,
@@ -58,34 +60,7 @@ const AddEmployeeForm = ({ data, setData, handleSubmit }) => {
           }
         />
       </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          name="FirstName"
-          label="First Name"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-        />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          label="Last Name"
-          name="LastName"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-        />
-      </Grid>
+
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
@@ -113,11 +88,9 @@ const AddEmployeeForm = ({ data, setData, handleSubmit }) => {
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
-          focused
           variant="outlined"
-          type="date"
-          label="Join Date"
-          name="JoinDate"
+          label="Contact"
+          name="Contact"
           onChange={(event) =>
             setData({
               ...data,
@@ -141,6 +114,7 @@ const AddEmployeeForm = ({ data, setData, handleSubmit }) => {
           }
         />
       </Grid>
+
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
@@ -155,6 +129,57 @@ const AddEmployeeForm = ({ data, setData, handleSubmit }) => {
           }
         />
       </Grid>
+
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          focused
+          variant="outlined"
+          type="date"
+          label="Date Of Birth"
+          name="BirthDate"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
+          label="Education"
+          name="Education"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+          required
+        />
+      </Grid>
+
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          focused
+          variant="outlined"
+          type="date"
+          label="Join Date"
+          name="JoinDate"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
@@ -178,13 +203,13 @@ const AddEmployeeForm = ({ data, setData, handleSubmit }) => {
           ))}
         </TextFieldMake>
       </Grid>
+
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
-          type="Password"
           variant="outlined"
-          label="Password"
-          name="Password"
+          label="Skill"
+          name="Skill"
           onChange={(event) =>
             setData({
               ...data,
@@ -192,16 +217,23 @@ const AddEmployeeForm = ({ data, setData, handleSubmit }) => {
             })
           }
           required
-        />
+          select
+          SelectProps={{ native: true }}
+        >
+          {states2.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextFieldMake>
       </Grid>
-      <Grid item xs={12}>
+
+      <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
-          multiline
-          rows={8}
           variant="outlined"
-          label="Description"
-          name="Description"
+          label="Designation"
+          name="Designation"
           onChange={(event) =>
             setData({
               ...data,
@@ -210,6 +242,58 @@ const AddEmployeeForm = ({ data, setData, handleSubmit }) => {
           }
         />
       </Grid>
+
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          multiline
+          rows={8}
+          variant="outlined"
+          label="About Me"
+          name="AboutMe"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          multiline
+          rows={8}
+          variant="outlined"
+          label="Career Summary"
+          name="CareerSummary"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+
+      <Grid item xs={12}>
+        <TextFieldMake
+          fullWidth
+          multiline
+          rows={8}
+          variant="outlined"
+          label="Achivement"
+          name="Achivement"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+
       <Grid item xs={12}>
         <TextFieldMake
           fullWidth
@@ -226,6 +310,7 @@ const AddEmployeeForm = ({ data, setData, handleSubmit }) => {
           }
         />
       </Grid>
+
       <Grid item xs={12}>
         <TextFieldMake
           fullWidth
@@ -242,6 +327,7 @@ const AddEmployeeForm = ({ data, setData, handleSubmit }) => {
           }
         />
       </Grid>
+
       <Grid item xs={12}>
         <Stack spacing={3} direction="row">
           <ButtonMake size="medium" type="submit" onClick={handleSubmit}>

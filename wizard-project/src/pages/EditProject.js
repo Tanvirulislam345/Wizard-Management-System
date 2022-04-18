@@ -13,7 +13,7 @@ const EditProject = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/allproject/${projectId}`)
+      .get(`http://localhost:9000/project/${projectId}`)
       .then((res) => setValues(res.data[0]));
   }, [projectId]);
 

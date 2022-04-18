@@ -2,7 +2,10 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import { BoxContainer } from "../../styles/MetarialStyles";
 
-const ClientDetails = ({ keys, clientDetails }) => {
+const ClientDetails = ({ clientDetails }) => {
+  let keys = Object.keys(clientDetails);
+  keys.shift(); //shift used for remove 1st element
+  const value = keys.splice(11, 1); //splice used for which index number and how many index
   return (
     <Box>
       {keys?.map((key, index) => (

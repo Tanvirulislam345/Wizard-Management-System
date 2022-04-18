@@ -4,8 +4,9 @@ import Menu from "@mui/material/Menu";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Link } from "react-router-dom";
 import { MenuItemMake } from "../../styles/MetarialStyles";
+import { Category } from "@mui/icons-material";
 
-export default function ListMenu({ id, deleteProject }) {
+export default function ListMenu({ id, projectCategori, handleProject }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -44,12 +45,20 @@ export default function ListMenu({ id, deleteProject }) {
         <Link to={`/editproject/${id}`} style={{ textDecoration: "none" }}>
           <MenuItemMake onClick={handleClose}>Edit</MenuItemMake>
         </Link>
-        <MenuItemMake onClick={() => deleteProject(id) && handleClose}>
+        <MenuItemMake
+          onClick={() => handleProject(id, "delete") && handleClose}
+        >
           Delete
         </MenuItemMake>
-        <MenuItemMake onClick={handleClose}>Running</MenuItemMake>
-        <MenuItemMake onClick={handleClose}>On Hold</MenuItemMake>
-        <MenuItemMake onClick={handleClose}>Finished</MenuItemMake>
+
+        {projectCategori?.map((category, index) => (
+          <MenuItemMake
+            key={index}
+            onClick={() => handleProject(id, category.name) && handleClose}
+          >
+            {category.name}
+          </MenuItemMake>
+        ))}
       </Menu>
     </div>
   );

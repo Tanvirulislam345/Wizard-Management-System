@@ -40,7 +40,7 @@ const EmployeeList = ({ employee, handleRemove }) => {
           <Grid xs={12} md={8} item>
             <BoxContainer>
               <Typography variant="h5" sx={{ color: "secondary.main" }}>
-                {employee.FirstName}
+                {employee.FullName}
               </Typography>
               <ListMenuEmployee
                 id={employee.id}

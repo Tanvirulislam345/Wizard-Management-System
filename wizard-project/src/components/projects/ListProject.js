@@ -16,7 +16,7 @@ import {
 import ListMenu from "./ListMenu";
 // import ProgressBar from "@ramonak/react-progress-bar";
 
-const ListProject = ({ project, deleteProject }) => {
+const ListProject = ({ project, projectCategori, handleProject }) => {
   return (
     <Grid xs={12} md={6} item>
       <HeadingFormatContainer>
@@ -24,7 +24,11 @@ const ListProject = ({ project, deleteProject }) => {
           <HeadingFormatTitle sx={{ p: 0 }}>
             {project.ProjectTitle}
           </HeadingFormatTitle>
-          <ListMenu id={project.id} deleteProject={deleteProject}></ListMenu>
+          <ListMenu
+            id={project.id}
+            handleProject={handleProject}
+            projectCategori={projectCategori}
+          />
         </BoxContainer>
         <HeadingFormatSubTitle>12 open tasks</HeadingFormatSubTitle>
         <Typography variant="body1" sx={{ my: 2 }}>

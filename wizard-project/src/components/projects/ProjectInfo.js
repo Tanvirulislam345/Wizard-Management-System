@@ -4,19 +4,27 @@ import React from "react";
 import { BoxContainer } from "../../styles/MetarialStyles";
 import { HeadingFormatTitle } from "../shared/HeadingFormat/HeadingFormatStyle";
 
-const ProjectInfo = ({ keys, clientDetails }) => {
+const ProjectInfo = ({ clientDetails }) => {
+  let keys = Object.keys(clientDetails);
+  keys.shift(); //shift used for remove 1st element
+  const value = keys.splice(11, 1); //splice used for which index number and how many index
+
   return (
     <Box>
       {keys?.map((key, index) => (
-        <BoxContainer key={index} style={{ marginBottom: "5px" }}>
-          <Typography style={{ width: "150px" }}>{key}</Typography>
+        <BoxContainer
+          key={index}
+          style={{ marginBottom: "10px", justifyContent: "start" }}
+        >
+          <Typography style={{ width: "250px" }}>{key}</Typography>
           <Typography>{clientDetails[key]}</Typography>
         </BoxContainer>
       ))}
       <HeadingFormatTitle sx={{ mt: 2, mb: 1, p: 0 }}>
-        Description
+        {value}
       </HeadingFormatTitle>
       <Typography variant="body1" sx={{ textAlign: "justify" }}>
+        {/* {clientDetails[value]} */}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Rhoncus
         interdum ornare lectus lobortis curabitur felis, condimentum arcu dis.
         Porttitor aliquam tellus ut pulvinar quis. Vitae arcu volutpat id est

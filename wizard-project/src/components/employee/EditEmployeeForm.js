@@ -45,13 +45,14 @@ const EditEmployeeForm = ({ data, setData, values, handleSubmit }) => {
           }
         />
       </Grid>
+
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Designation"
-          name="Designation"
-          defaultValue={values.Designation}
+          name="FullName"
+          label="Full  Name"
+          defaultValue={values.FullName}
           onChange={(event) =>
             setData({
               ...data,
@@ -60,36 +61,7 @@ const EditEmployeeForm = ({ data, setData, values, handleSubmit }) => {
           }
         />
       </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          name="FirstName"
-          label="First Name"
-          defaultValue={values.FirstName}
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-        />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          label="Last Name"
-          name="LastName"
-          defaultValue={values.LastName}
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-        />
-      </Grid>
+
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
@@ -118,12 +90,10 @@ const EditEmployeeForm = ({ data, setData, values, handleSubmit }) => {
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
-          focused
           variant="outlined"
-          type="date"
-          label="Join Date"
-          name="JoinDate"
-          defaultValue={values.JoinDate}
+          label="Contact"
+          name="Contact"
+          defaultValue={values.Contact}
           onChange={(event) =>
             setData({
               ...data,
@@ -148,6 +118,7 @@ const EditEmployeeForm = ({ data, setData, values, handleSubmit }) => {
           }
         />
       </Grid>
+
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
@@ -163,6 +134,60 @@ const EditEmployeeForm = ({ data, setData, values, handleSubmit }) => {
           }
         />
       </Grid>
+
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          focused
+          variant="outlined"
+          type="date"
+          label="Date Of Birth"
+          name="BirthDate"
+          defaultValue={values.BirthDate}
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
+          label="Education"
+          name="Education"
+          defaultValue={values.Education}
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+          required
+        />
+      </Grid>
+
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          focused
+          variant="outlined"
+          type="date"
+          label="Join Date"
+          name="JoinDate"
+          defaultValue={values.JoinDate}
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
@@ -187,14 +212,14 @@ const EditEmployeeForm = ({ data, setData, values, handleSubmit }) => {
           ))}
         </TextFieldMake>
       </Grid>
+
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
-          type="Password"
           variant="outlined"
-          label="Password"
-          name="Password"
-          defaultValue={values.Password}
+          label="Skill"
+          name="Skill"
+          defaultValue={values.Skill}
           onChange={(event) =>
             setData({
               ...data,
@@ -202,17 +227,78 @@ const EditEmployeeForm = ({ data, setData, values, handleSubmit }) => {
             })
           }
           required
+          select
+          SelectProps={{ native: true }}
+        >
+          {states2.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextFieldMake>
+      </Grid>
+
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
+          label="Designation"
+          name="Designation"
+          defaultValue={values.Designation}
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
         />
       </Grid>
+
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          multiline
+          rows={8}
+          variant="outlined"
+          label="About Me"
+          name="AboutMe"
+          defaultValue={values.AboutMe}
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          multiline
+          rows={8}
+          variant="outlined"
+          label="Career Summary"
+          name="CareerSummary"
+          defaultValue={values.CareerSummary}
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+
       <Grid item xs={12}>
         <TextFieldMake
           fullWidth
           multiline
           rows={8}
           variant="outlined"
-          label="Description"
-          name="Description"
-          defaultValue={values.Description}
+          label="Achivement"
+          name="Achivement"
+          defaultValue={values.Achivement}
           onChange={(event) =>
             setData({
               ...data,
@@ -235,5 +321,4 @@ const EditEmployeeForm = ({ data, setData, values, handleSubmit }) => {
     </Grid>
   );
 };
-
 export default EditEmployeeForm;

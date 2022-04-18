@@ -13,7 +13,7 @@ const AddEmployee = () => {
     if (data !== null) {
       axios.post("http://localhost:9000/addemployee", data).then((res) => {
         if (res.status === 200) {
-          navigate("/client");
+          navigate("/employee");
         }
       });
     } else {
