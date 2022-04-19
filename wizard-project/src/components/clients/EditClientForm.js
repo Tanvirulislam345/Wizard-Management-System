@@ -175,9 +175,9 @@ const EditClientForm = ({ data, setData, values, handleSubmit }) => {
           fullWidth
           type="tel"
           variant="outlined"
-          label="Contract"
-          name="Contract"
-          defaultValue={values.Contract}
+          label="Contact"
+          name="Contact"
+          defaultValue={values.Contact}
           onChange={(event) =>
             setData({
               ...data,

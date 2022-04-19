@@ -78,8 +78,8 @@ const AddProjectForm = ({ data, setData, handleSubmit }) => {
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Client"
-          name="Client"
+          label="ClientId"
+          name="ClientId"
           onChange={(event) =>
             setData({
               ...data,

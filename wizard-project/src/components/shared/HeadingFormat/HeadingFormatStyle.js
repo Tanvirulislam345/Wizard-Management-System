@@ -5,11 +5,13 @@ export const HeadingFormatContainer = styled(Box)(({ theme }) => ({
   padding: "30px",
   borderRadius: "15px",
   color: theme.palette.secondary.main,
+  overflow: "auto",
 }));
 export const HeadingFormatTitle = styled(Typography)(({ theme }) => ({
   fontSize: "24px",
   fontWeight: 700,
   paddingBottom: "15px",
+  color: theme.palette.secondary.main,
 }));
 export const HeadingFormatSubTitle = styled(Typography)(({ theme }) => ({
   fontSize: "12px",
@@ -22,5 +24,10 @@ export const PlainText = styled(Typography)(({ theme }) => ({
   fontWeight: 300,
   lineHeight: "14.63px",
   letterSpacing: "0.3 px",
-  marginTop: "10px",
+  marginBottom: "10px",
+  width: "200px",
+}));
+
+export const PlainTextContainer = styled(Box)(({ theme }) => ({
+  display: "flex",
 }));

@@ -167,8 +167,8 @@ const AddClientForm = ({ data, setData, handleSubmit }) => {
           fullWidth
           type="tel"
           variant="outlined"
-          label="Contract"
-          name="Contract"
+          label="Contact"
+          name="Contact"
           onChange={(event) =>
             setData({
               ...data,

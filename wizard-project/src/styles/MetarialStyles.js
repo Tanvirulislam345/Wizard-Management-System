@@ -1,6 +1,6 @@
 import { makeStyles } from "@mui/styles";
 import { styled } from "@mui/material/styles";
-import { AppBar, Box, Button, MenuItem, TextField } from "@mui/material";
+import { AppBar, Box, Button, Grid, MenuItem, TextField } from "@mui/material";
 
 export const LayoutRoot = styled(Box)(({ theme }) => ({
   //   display: "flex",
@@ -63,6 +63,7 @@ export const InVoiceContainer = styled(Box)(({ theme }) => ({
 
 export const BigButtonMake = styled(Button)(({ theme }) => ({
   padding: "8px 12px",
+  marginTop: "10px",
   color: "white",
   background: "#7480FF",
   fontSize: "12px",
@@ -135,6 +136,7 @@ export const TextFieldMake2 = styled(TextField)(({ theme }) => ({
   borderRadius: "5px",
   borderBottom: "2px solid #A4A6B3",
 }));
+
 
 export const useStyle = makeStyles((theme) => {
   return {

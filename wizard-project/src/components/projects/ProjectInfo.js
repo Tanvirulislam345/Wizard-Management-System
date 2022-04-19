@@ -1,8 +1,12 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import { Line } from "rc-progress";
 import React from "react";
-import { BoxContainer } from "../../styles/MetarialStyles";
-import { HeadingFormatTitle } from "../shared/HeadingFormat/HeadingFormatStyle";
+import {
+  HeadingFormatTitle,
+  PlainText,
+  PlainTextContainer,
+} from "../shared/HeadingFormat/HeadingFormatStyle";
 
 const ProjectInfo = ({ clientDetails }) => {
   let keys = Object.keys(clientDetails);
@@ -12,17 +16,23 @@ const ProjectInfo = ({ clientDetails }) => {
   return (
     <Box>
       {keys?.map((key, index) => (
-        <BoxContainer
-          key={index}
-          style={{ marginBottom: "10px", justifyContent: "start" }}
-        >
-          <Typography style={{ width: "250px" }}>{key}</Typography>
-          <Typography>{clientDetails[key]}</Typography>
-        </BoxContainer>
+        <Box key={index}>
+          <PlainTextContainer>
+            <PlainText>{key}</PlainText>
+            <PlainText>{clientDetails[key]}</PlainText>
+          </PlainTextContainer>
+        </Box>
       ))}
+      <HeadingFormatTitle sx={{ mt: 2, mb: 1, p: 0 }}>
+        progress
+      </HeadingFormatTitle>
+      <Box sx={{ width: { lg: "60%", md: "70%", xs: "100%" }, my: 2 }}>
+        <Line percent="70" strokeColor="#3F51B5" />
+      </Box>
       <HeadingFormatTitle sx={{ mt: 2, mb: 1, p: 0 }}>
         {value}
       </HeadingFormatTitle>
+
       <Typography variant="body1" sx={{ textAlign: "justify" }}>
         {/* {clientDetails[value]} */}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Rhoncus

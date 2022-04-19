@@ -26,12 +26,12 @@ const ProjectDetails = () => {
       <SubNav2 project="Project Details" />
       {clientDetails !== null && (
         <Grid spacing={2} container>
-          <Grid item xs={12} sm={7} md={7}>
+          <Grid item xs={12} md={7}>
             <HeadingFormat title="Details">
               <ProjectInfo clientDetails={clientDetails} />
             </HeadingFormat>
           </Grid>
-          <Grid item xs={12} sm={5} md={5}>
+          <Grid item xs={12} md={5}>
             <Grid spacing={2} container>
               <Grid item xs={12}>
                 <HeadingFormat title="Files">

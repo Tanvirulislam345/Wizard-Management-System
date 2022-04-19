@@ -48,6 +48,17 @@ app.post("/addproject", (req, res) => {
   });
 });
 
+app.get("/allproject", (req, res) => {
+  connection.query(`SELECT * FROM all_projects WHERE 1`, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+  // console.log(query);
+  // res.json(true);
+});
 app.get("/allproject/:projectcategori", (req, res) => {
   const status = req.params.projectcategori;
   connection.query(
