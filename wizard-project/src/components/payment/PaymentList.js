@@ -1,8 +1,6 @@
 import * as React from "react";
-import { useTheme } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
@@ -16,7 +14,7 @@ import RemoveRedEyeRoundedIcon from "@mui/icons-material/RemoveRedEyeRounded";
 import PaymentListMenu from "./PaymentListMenu";
 import { useNavigate } from "react-router-dom";
 
-export default function PaymentList({ rows }) {
+export default function PaymentList({ rows, handleChange }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const navigate = useNavigate();
@@ -27,14 +25,14 @@ export default function PaymentList({ rows }) {
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "gray",
-      color: theme.palette.common.white,
+      backgroundColor: "#262E41",
+      color: theme.palette.primary.main,
       border: "none",
     },
     [`&.${tableCellClasses.body}`]: {
       fontSize: 14,
       border: "none",
-      color: "gray",
+      color: "#A4A6B3",
     },
   }));
 
@@ -52,14 +50,14 @@ export default function PaymentList({ rows }) {
       <Table
         sx={{
           minWidth: 500,
-          background: "#262E41",
+          background: "#1A202E",
           color: "white",
         }}
         aria-label="custom pagination table"
       >
         <TableHead>
           <TableRow>
-            <StyledTableCell align="center">Client Name</StyledTableCell>
+            <StyledTableCell align="center">Client Id</StyledTableCell>
             <StyledTableCell align="center">Project Manager</StyledTableCell>
             <StyledTableCell align="center">Date</StyledTableCell>
             <StyledTableCell align="center">Charges</StyledTableCell>
@@ -80,7 +78,7 @@ export default function PaymentList({ rows }) {
             : rows
           ).map((row, index) => (
             <TableRow key={index}>
-              <StyledTableCell align="center">{row.ClientName}</StyledTableCell>
+              <StyledTableCell align="center">{row.ClientId}</StyledTableCell>
               <StyledTableCell align="center">
                 {row.ProjectManager}
               </StyledTableCell>
@@ -90,18 +88,27 @@ export default function PaymentList({ rows }) {
               <StyledTableCell align="center">{row.Charges}</StyledTableCell>
               <StyledTableCell align="center">{row.Tax}</StyledTableCell>
               <StyledTableCell align="center">{row.Discount}</StyledTableCell>
-              <StyledTableCell align="center">{row.Total}</StyledTableCell>
+              <StyledTableCell align="center">
+                {row.TotalAmount}
+              </StyledTableCell>
               <StyledTableCell align="center">
                 {row.PaymentMethod}
               </StyledTableCell>
               <StyledTableCell align="center">
-                <Chip label={row.PaymentStatus} color="error" />
+                <Chip
+                  label={row.PaymentStatus}
+                  sx={{
+                    background:
+                      (row.PaymentStatus === "Pending" && "#E25822") ||
+                      (row.PaymentStatus === "Clear" && "#8CC341"),
+                  }}
+                />
               </StyledTableCell>
               <StyledTableCell align="center" onClick={() => handleView(index)}>
                 <RemoveRedEyeRoundedIcon />
               </StyledTableCell>
               <StyledTableCell align="center">
-                <PaymentListMenu id="id" deletePayment="deletePayment" />
+                <PaymentListMenu id={row.id} handleChange={handleChange} />
               </StyledTableCell>
             </TableRow>
           ))}
@@ -109,7 +116,12 @@ export default function PaymentList({ rows }) {
         <TableFooter>
           <TableRow>
             <TablePagination
-              sx={{ border: "none", background: "gray", fontSize: "16px" }}
+              sx={{
+                border: "none",
+                background: "#262E41",
+                color: "#A4A6B3",
+                fontSize: "16px",
+              }}
               rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
               colSpan={12}
               count={rows.length}

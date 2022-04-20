@@ -23,15 +23,15 @@ const states2 = [
   },
 ];
 
-const AddPaymentForm = ({ data, setData, handleSubmit }) => {
+const AddExpenseForm = ({ data, setData, handleSubmit }) => {
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           variant="outlined"
-          name="BillNo"
-          label="Bill No"
+          name="ExpenseId"
+          label="Expense Id"
           onChange={(event) =>
             setData({
               ...data,
@@ -44,8 +44,8 @@ const AddPaymentForm = ({ data, setData, handleSubmit }) => {
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Client Id"
-          name="ClientId"
+          name="Item"
+          label="Item"
           onChange={(event) =>
             setData({
               ...data,
@@ -58,8 +58,8 @@ const AddPaymentForm = ({ data, setData, handleSubmit }) => {
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Project Manager"
-          name="ProjectManager"
+          name="OrderBy"
+          label="Order By"
           onChange={(event) =>
             setData({
               ...data,
@@ -68,15 +68,28 @@ const AddPaymentForm = ({ data, setData, handleSubmit }) => {
           }
         />
       </Grid>
-
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
+          variant="outlined"
+          name="OrderFrom"
+          label="Order From"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          type="date"
           focused
           variant="outlined"
-          type="date"
-          label="Project Date"
-          name="ProjectDate"
+          name="OrderDate"
+          label="Order Date"
           onChange={(event) =>
             setData({
               ...data,
@@ -88,51 +101,10 @@ const AddPaymentForm = ({ data, setData, handleSubmit }) => {
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
+          type="number"
           variant="outlined"
-          label="Charges"
-          name="Charges"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-        />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          label="Tax"
-          name="Tax"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-        />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          label="Discount"
-          name="Discount"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-        />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          label="Total Amount"
           name="TotalAmount"
+          label="Total Amount"
           onChange={(event) =>
             setData({
               ...data,
@@ -141,7 +113,6 @@ const AddPaymentForm = ({ data, setData, handleSubmit }) => {
           }
         />
       </Grid>
-
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
@@ -188,7 +159,22 @@ const AddPaymentForm = ({ data, setData, handleSubmit }) => {
           ))}
         </TextFieldMake>
       </Grid>
-
+      <Grid item xs={12}>
+        <TextFieldMake
+          fullWidth
+          multiline
+          rows={4}
+          variant="outlined"
+          name="Description"
+          label="Driscription"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
       <Grid item xs={12} sx={{ height: "100%", my: "auto" }}>
         <Stack spacing={3} direction="row">
           <ButtonMake size="medium" type="submit" onClick={handleSubmit}>
@@ -203,4 +189,4 @@ const AddPaymentForm = ({ data, setData, handleSubmit }) => {
   );
 };
 
-export default AddPaymentForm;
+export default AddExpenseForm;

@@ -5,7 +5,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Link } from "react-router-dom";
 import { MenuItemMake } from "../../styles/MetarialStyles";
 
-export default function PaymentListMenu({ id, deletePayment }) {
+export default function PaymentListMenu({ id, handleChange }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -44,9 +44,7 @@ export default function PaymentListMenu({ id, deletePayment }) {
         <Link to="#" style={{ textDecoration: "none" }}>
           <MenuItemMake onClick={handleClose}>Edit</MenuItemMake>
         </Link>
-        <MenuItemMake onClick={() => deletePayment(id) && handleClose}>
-          Delete
-        </MenuItemMake>
+        <MenuItemMake onClick={() => handleChange(id)}>Delete</MenuItemMake>
       </Menu>
     </div>
   );

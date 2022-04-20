@@ -21,9 +21,7 @@ const ClientProfile = () => {
   const [values, setValues] = useState(null);
   console.log(values);
   const [data, setData] = useState("About Me");
-  const [data2, setData2] = useState("About");
   const navValue = ["About Me", "security"];
-  const navValue2 = ["About", "Skill"];
 
   const [projects, setProjects] = useState([]);
   const [projectCategori, setProjectCategori] = useState(null);
@@ -73,13 +71,9 @@ const ClientProfile = () => {
                 </Grid>
 
                 <Grid xs={12} item>
-                  <HeadingFormatContainer>
-                    <ProfileNav
-                      navValue={navValue2}
-                      data={data2}
-                      setData={setData2}
-                    />
-                  </HeadingFormatContainer>
+                  <HeadingFormat title="About">
+                    lorem.............lorem.. spsum
+                  </HeadingFormat>
                 </Grid>
               </Grid>
             </Grid>
