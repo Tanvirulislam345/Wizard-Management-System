@@ -1,6 +1,8 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
+const multer = require("multer");
+const path = require("path");
 
 const app = express();
 
@@ -9,6 +11,33 @@ app.use(cors());
 app.use(express.json());
 
 const port = process.env.PORT || 9000;
+
+// const UPLOADS_FOLDER = "./uploads/";
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/images");
+    // cb(null, UPLOADS_FOLDER);
+  },
+  filename: (req, file, cb) => {
+    const fileExt = path.extname(file.originalname);
+    const fileName =
+      file.originalname
+        .replace(fileExt, "")
+        .toLowerCase()
+        .split(" ")
+        .join("-") +
+      "-" +
+      Date.now();
+
+    cb(null, fileName + fileExt);
+  },
+});
+
+const upload = multer({
+  storage: storage,
+});
+
+app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -25,9 +54,15 @@ connection.connect((err) => {
   }
 });
 
-//all routes for project 
-app.post("/addproject", (req, res) => {
-  const data = req.body;
+//all routes for project
+app.post("/addproject", upload.single("File"), (req, res) => {
+  const newData = req.body;
+  const File = `http://localhost:9000/images/${req.file.filename}`;
+  const data = {
+    ...newData,
+    File,
+  };
+
   const keys = Object.keys(data);
 
   const sqlquery = `INSERT INTO all_projects (${keys.map(
@@ -46,6 +81,7 @@ app.post("/addproject", (req, res) => {
       res.json(result);
     }
   });
+  // res.json(true);
 });
 
 app.get("/allproject", (req, res) => {
@@ -135,7 +171,6 @@ app.delete("/allproject/delete/:projectId", (req, res) => {
   // res.json(true);
 });
 
-
 //all routes for employee
 
 app.post("/addemployee", (req, res) => {
@@ -158,9 +193,7 @@ app.post("/addemployee", (req, res) => {
       res.json(result);
     }
   });
-
 });
-
 
 app.get("/employee", (req, res) => {
   connection.query("SELECT * FROM all_employee WHERE 1", (err, result) => {
@@ -201,7 +234,6 @@ app.put("/employee/:employeeId", (req, res) => {
     return data[key];
   });
 
-
   connection.query(sqlquery, value, (err, result) => {
     if (err) {
       console.log(err);
@@ -209,12 +241,10 @@ app.put("/employee/:employeeId", (req, res) => {
       res.json(result);
     }
   });
-
 });
 
 app.delete("/employee/delete/:projectId", (req, res) => {
   const id = req.params.projectId;
-
 
   connection.query(`DELETE FROM all_employee WHERE id=${id}`, (err, result) => {
     if (err) {
@@ -223,9 +253,7 @@ app.delete("/employee/delete/:projectId", (req, res) => {
       res.json(result);
     }
   });
-
 });
-
 
 //all routes for client
 
@@ -249,7 +277,6 @@ app.post("/addclient", (req, res) => {
       res.json(result);
     }
   });
-
 });
 
 app.get("/client", (req, res) => {
@@ -265,16 +292,13 @@ app.get("/client", (req, res) => {
 app.get("/client/:clientId", (req, res) => {
   const id = req.params.clientId;
 
-  connection.query(
-    `SELECT * FROM all_client WHERE id=${id}`,
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.json(result);
-      }
+  connection.query(`SELECT * FROM all_client WHERE id=${id}`, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
     }
-  );
+  });
 });
 
 app.put("/client/:clientId", (req, res) => {
@@ -291,7 +315,6 @@ app.put("/client/:clientId", (req, res) => {
     return data[key];
   });
 
-
   connection.query(sqlquery, value, (err, result) => {
     if (err) {
       console.log(err);
@@ -299,12 +322,10 @@ app.put("/client/:clientId", (req, res) => {
       res.json(result);
     }
   });
-
 });
 
 app.delete("/client/delete/:clientId", (req, res) => {
   const id = req.params.clientId;
-
 
   connection.query(`DELETE FROM all_client WHERE id=${id}`, (err, result) => {
     if (err) {
@@ -313,9 +334,7 @@ app.delete("/client/delete/:clientId", (req, res) => {
       res.json(result);
     }
   });
-
 });
-
 
 app.post("/addpayment", (req, res) => {
   const data = req.body;
@@ -339,7 +358,6 @@ app.post("/addpayment", (req, res) => {
   });
 });
 
-
 app.get("/allpayment", (req, res) => {
   connection.query("SELECT * FROM all_payment WHERE 1", (err, result) => {
     if (err) {
@@ -348,6 +366,64 @@ app.get("/allpayment", (req, res) => {
       res.json(result);
     }
   });
+});
+
+app.delete("/allpayment/:paymentId", (req, res) => {
+  const id = req.params.paymentId;
+
+  connection.query(`DELETE FROM all_payment WHERE id=${id}`, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+  // res.json(true);
+});
+
+app.post("/addexpense", (req, res) => {
+  const data = req.body;
+  const keys = Object.keys(data);
+
+  const sqlquery = `INSERT INTO all_expense (${keys.map(
+    (key) => key
+  )}) VALUES (${keys.map((key) => "?")})`;
+
+  const value = keys.map((key) => {
+    return data[key];
+  });
+
+  connection.query(sqlquery, value, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(result);
+      res.json(result);
+    }
+  });
+});
+
+app.get("/allexpense", (req, res) => {
+  connection.query("SELECT * FROM all_expense WHERE 1", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+app.delete("/allexpense/:expenseId", (req, res) => {
+  const id = req.params.expenseId;
+
+  connection.query(`DELETE FROM all_expense WHERE id=${id}`, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+  // res.json(true);
 });
 
 app.get("/", (req, res) => {

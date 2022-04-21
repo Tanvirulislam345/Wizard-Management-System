@@ -11,8 +11,10 @@ import {
 const ProjectInfo = ({ clientDetails }) => {
   let keys = Object.keys(clientDetails);
   keys.shift(); //shift used for remove 1st element
-  const value = keys.splice(11, 1); //splice used for which index number and how many index
+  const description = keys.splice(11, 1); //splice used for which index number and how many index
+  const key = keys.pop();
 
+  console.log(key);
   return (
     <Box>
       {keys?.map((key, index) => (
@@ -30,11 +32,11 @@ const ProjectInfo = ({ clientDetails }) => {
         <Line percent="70" strokeColor="#3F51B5" />
       </Box>
       <HeadingFormatTitle sx={{ mt: 2, mb: 1, p: 0 }}>
-        {value}
+        {description}
       </HeadingFormatTitle>
 
       <Typography variant="body1" sx={{ textAlign: "justify" }}>
-        {/* {clientDetails[value]} */}
+        {/* {clientDetails[description]} */}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Rhoncus
         interdum ornare lectus lobortis curabitur felis, condimentum arcu dis.
         Porttitor aliquam tellus ut pulvinar quis. Vitae arcu volutpat id est

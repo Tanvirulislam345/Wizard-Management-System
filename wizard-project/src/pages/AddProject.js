@@ -10,13 +10,20 @@ const AddProject = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    if (data !== null) {
-      const values = {
-        ...data,
-        ProjectStatus: "New Project",
-      };
-      // console.log(values);
-      axios.post("http://localhost:9000/addproject", values).then((res) => {
+
+    // const file = data.File;
+    // delete data.File;
+
+    const formData = new FormData();
+    for (const key in data) {
+      formData.append(key, data[key]);
+    }
+    formData.append("ProjectStatus", "New Project");
+    // formData.append("File",file);
+
+    if (data !== null && data.File !== undefined) {
+
+      axios.post("http://localhost:9000/addproject", formData).then((res) => {
         if (res.status === 200) {
           navigate("/project");
         }
@@ -37,6 +44,6 @@ const AddProject = () => {
       />
     </LayoutContiner>
   );
-};
+};;
 
 export default AddProject;

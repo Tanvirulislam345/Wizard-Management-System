@@ -18,8 +18,7 @@ const ProjectDetails = () => {
       .get(`http://localhost:9000/project/${projectDetailsId}`)
       .then((res) => setClientDetails(res.data[0]));
   }, [projectDetailsId]);
-
-  const files = useState([1, 2, 3]);
+  const files = [1, 3, 4];
 
   return (
     <LayoutContiner>

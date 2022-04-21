@@ -1,5 +1,5 @@
 
-import { Box, Grid, Stack } from "@mui/material";
+import { Grid, Stack } from "@mui/material";
 import React from "react";
 import {
   ButtonMake,
@@ -228,7 +228,7 @@ const AddProjectForm = ({ data, setData, handleSubmit }) => {
         />
       </Grid>
       <Grid item xs={12} md={6} /* sx={{ height: "100%", my: "auto" }} */>
-        <FileContainerField>
+        {/* <FileContainerField>
           <FileBase64
             onDone={(base64) =>
               // onDone={({ base64 }) =>
@@ -238,9 +238,9 @@ const AddProjectForm = ({ data, setData, handleSubmit }) => {
               })
             }
           />
-        </FileContainerField>
+        </FileContainerField> */}
 
-        {/* <TextFieldMake
+        <TextFieldMake
           fullWidth
           type="file"
           focused
@@ -253,7 +253,7 @@ const AddProjectForm = ({ data, setData, handleSubmit }) => {
               [event.target.name]: event.target.files[0],
             })
           }
-        /> */}
+        />
       </Grid>
       <Grid item xs={12}>
         <TextFieldMake
