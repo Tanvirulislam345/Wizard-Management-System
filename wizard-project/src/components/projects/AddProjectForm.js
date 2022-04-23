@@ -4,22 +4,24 @@ import React from "react";
 import {
   ButtonMake,
   FileContainerField,
+  StyleMultiSelector,
   TextFieldMake,
 } from "../../styles/MetarialStyles";
-import FileBase64 from "react-file-base64";
+import Multiselect from "multiselect-react-dropdown";
 
-const states = [
-  {
-    value: "cash",
-    label: "Cash",
-  },
-  {
-    value: "card",
-    label: "Card",
-  },
-];
-
-const AddProjectForm = ({ data, setData, handleSubmit }) => {
+const AddProjectForm = ({
+  Categoris,
+  ClientId,
+  ProjectTools,
+  tools,
+  setTools,
+  team,
+  teamMember,
+  setTeamMember,
+  data,
+  setData,
+  handleSubmit,
+}) => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} md={6}>
@@ -54,8 +56,8 @@ const AddProjectForm = ({ data, setData, handleSubmit }) => {
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Department"
-          name="Department"
+          label="Project Categori"
+          name="ProjectCategori"
           onChange={(event) =>
             setData({
               ...data,
@@ -66,9 +68,9 @@ const AddProjectForm = ({ data, setData, handleSubmit }) => {
           select
           SelectProps={{ native: true }}
         >
-          {states.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
+          {Categoris.map((option, index) => (
+            <option key={index} value={option.name}>
+              {option.name}
             </option>
           ))}
         </TextFieldMake>
@@ -86,14 +88,24 @@ const AddProjectForm = ({ data, setData, handleSubmit }) => {
               [event.target.name]: event.target.value,
             })
           }
-        />
+          required
+          select
+          SelectProps={{ native: true }}
+        >
+          {ClientId.map((client, index) => (
+            <option key={index} value={client.ClientId}>
+              {client.ClientId}
+            </option>
+          ))}
+        </TextFieldMake>
       </Grid>
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Price"
-          name="Price"
+          type="number"
+          label="Budget"
+          name="Budget"
           onChange={(event) =>
             setData({
               ...data,
@@ -102,6 +114,19 @@ const AddProjectForm = ({ data, setData, handleSubmit }) => {
           }
         />
       </Grid>
+
+      <Grid item xs={12} md={6}>
+        <Multiselect
+          options={ProjectTools} // Options to display in the dropdown
+          selectedValues={tools} // Preselected value to persist in dropdown
+          onSelect={(selectedList) => setTools(selectedList)} // Function will trigger on select event
+          onRemove={(selectedList) => setTools(selectedList)} // Function will trigger on remove event
+          displayValue="name" // Property name to display in the dropdown options
+          placeholder="Project Tools"
+          style={StyleMultiSelector}
+        />
+      </Grid>
+
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
@@ -118,64 +143,32 @@ const AddProjectForm = ({ data, setData, handleSubmit }) => {
           select
           SelectProps={{ native: true }}
         >
-          {states.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
+          {team.map((option, index) => (
+            <option key={index} value={option.name}>
+              {option.name}
             </option>
           ))}
         </TextFieldMake>
       </Grid>
+
       <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          label="Team Member"
-          name="TeamMember"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-          required
-          select
-          SelectProps={{ native: true }}
-        >
-          {states.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextFieldMake>
+        <Multiselect
+          options={team} // Options to display in the dropdown
+          selectedValues={teamMember} // Preselected value to persist in dropdown
+          onSelect={(selectedList) => setTeamMember(selectedList)} // Function will trigger on select event
+          onRemove={(selectedList) => setTeamMember(selectedList)} // Function will trigger on remove event
+          displayValue="name" // Property name to display in the dropdown options
+          placeholder="Team Member"
+          style={StyleMultiSelector}
+        />
       </Grid>
+
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Category"
-          name="Category"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-          required
-          select
-          SelectProps={{ native: true }}
-        >
-          {states.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextFieldMake>
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          label="Phases"
+          type="number"
+          label="Enter Phases Number"
           name="Phases"
           onChange={(event) =>
             setData({
@@ -184,15 +177,7 @@ const AddProjectForm = ({ data, setData, handleSubmit }) => {
             })
           }
           required
-          select
-          SelectProps={{ native: true }}
-        >
-          {states.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextFieldMake>
+        />
       </Grid>
 
       <Grid item xs={12} md={6}>
@@ -227,19 +212,7 @@ const AddProjectForm = ({ data, setData, handleSubmit }) => {
           }
         />
       </Grid>
-      <Grid item xs={12} md={6} /* sx={{ height: "100%", my: "auto" }} */>
-        {/* <FileContainerField>
-          <FileBase64
-            onDone={(base64) =>
-              // onDone={({ base64 }) =>
-              setData({
-                ...data,
-                File: base64,
-              })
-            }
-          />
-        </FileContainerField> */}
-
+      <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           type="file"
@@ -247,6 +220,7 @@ const AddProjectForm = ({ data, setData, handleSubmit }) => {
           variant="outlined"
           label="File"
           name="File"
+          multiple
           onChange={(event) =>
             setData({
               ...data,

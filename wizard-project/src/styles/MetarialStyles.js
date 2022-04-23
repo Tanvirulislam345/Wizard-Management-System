@@ -112,6 +112,9 @@ export const TextFieldMake = styled(TextField)(({ theme }) => ({
   "& .MuiOutlinedInput-input": {
     color: "#A4A6B3",
   },
+  "& .MuiSvgIcon-root": {
+    color: "#A4A6B3",
+  },
   marginTop: "10px",
 }));
 export const FileContainerField = styled(Box)(({ theme }) => ({
@@ -131,12 +134,14 @@ export const TextFieldMake2 = styled(TextField)(({ theme }) => ({
   "& .MuiFilledInput-input": {
     color: "#A4A6B3",
   },
+  "& .MuiSvgIcon-root": {
+    color: "#A4A6B3",
+  },
 
   marginTop: "10px",
   borderRadius: "5px",
   borderBottom: "2px solid #A4A6B3",
 }));
-
 
 export const useStyle = makeStyles((theme) => {
   return {
@@ -149,3 +154,14 @@ export const useStyle = makeStyles((theme) => {
     },
   };
 });
+
+export const StyleMultiSelector = {
+  searchBox: {
+    marginTop: "10px",
+    padding: "10.5px 14px",
+    fonstSize: "1rem",
+    border: "2px solid #A4A6B3",
+    color: "#A4A6B3",
+    borderRadius: "4px",
+  },
+};

@@ -3,6 +3,7 @@ const mysql = require("mysql");
 const cors = require("cors");
 const multer = require("multer");
 const path = require("path");
+const { KeyObject } = require("crypto");
 
 const app = express();
 
@@ -58,6 +59,7 @@ connection.connect((err) => {
 app.post("/addproject", upload.single("File"), (req, res) => {
   const newData = req.body;
   const File = `http://localhost:9000/images/${req.file.filename}`;
+
   const data = {
     ...newData,
     File,
@@ -81,7 +83,6 @@ app.post("/addproject", upload.single("File"), (req, res) => {
       res.json(result);
     }
   });
-  // res.json(true);
 });
 
 app.get("/allproject", (req, res) => {
@@ -175,6 +176,7 @@ app.delete("/allproject/delete/:projectId", (req, res) => {
 
 app.post("/addemployee", (req, res) => {
   const data = req.body;
+  // console.log(data);
 
   const keys = Object.keys(data);
 
@@ -186,6 +188,8 @@ app.post("/addemployee", (req, res) => {
     return data[key];
   });
 
+  // console.log(sqlquery, value);
+
   connection.query(sqlquery, value, (err, result) => {
     if (err) {
       console.log(err);
@@ -193,6 +197,7 @@ app.post("/addemployee", (req, res) => {
       res.json(result);
     }
   });
+  // res.json(true);
 });
 
 app.get("/employee", (req, res) => {
