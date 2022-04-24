@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AddProjectForm from "../components/projects/AddProjectForm";
 import SubNav2 from "../components/subNav/SubNav2";
@@ -7,18 +7,13 @@ import { LayoutContiner } from "../styles/MetarialStyles";
 
 
 const AddProject = () => {
+
   const Categoris = [
     { name: "Software Development" },
     { name: "Web Development" },
     { name: "App Development" },
   ];
-  const ClientId = [
-    { ClientId: 1 },
-    { ClientId: 3 },
-    { ClientId: 4 },
-    { ClientId: 5 },
-  ];
-
+  
   const ProjectTools = [
     { name: "Node js" },
     { name: "React js" },
@@ -35,9 +30,12 @@ const AddProject = () => {
     { name: "Tanvir", id: 5 },
   ];
 
+  const [clientId, setClientId] = useState(null);
+
   const [data, setData] = useState(null);
   const [teamMember, setTeamMember] = useState([team[0]]);
   const [tools, setTools] = useState([ProjectTools[0]]);
+  
   const navigate = useNavigate();
 
   const handleSubmit = () => {
@@ -64,12 +62,16 @@ const AddProject = () => {
     }
   };
 
+  useEffect(()=>{
+    axios.get("http://localhost:9000/client").then(res => setClientId(res.data))
+  }, [])
+
   return (
     <LayoutContiner>
       <SubNav2 project="Add Project" />
-      <AddProjectForm
+      {clientId !== null && <AddProjectForm
         Categoris={Categoris}
-        ClientId={ClientId}
+        ClientId={clientId}
         ProjectTools={ProjectTools}
         setTools={setTools}
         tools={tools}
@@ -79,9 +81,9 @@ const AddProject = () => {
         data={data}
         setData={setData}
         handleSubmit={handleSubmit}
-      />
+      />}
     </LayoutContiner>
   );
-};;
+};;;
 
 export default AddProject;

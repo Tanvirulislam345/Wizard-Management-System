@@ -2,28 +2,9 @@ import { Grid, Stack } from "@mui/material";
 import React, { useState } from "react";
 import { ButtonMake, TextFieldMake } from "../../styles/MetarialStyles";
 
-const states = [
-  {
-    value: "Male",
-    label: "Male",
-  },
-  {
-    value: "Female",
-    label: "Female",
-  },
-];
-const states2 = [
-  {
-    value: "Cash",
-    label: "Cash",
-  },
-  {
-    value: "Card",
-    label: "Card",
-  },
-];
 
-const AddClientForm = ({ data, setData, handleSubmit }) => {
+
+const AddClientForm = ({ gender, payment, data, setData, handleSubmit }) => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} md={6}>
@@ -85,9 +66,9 @@ const AddClientForm = ({ data, setData, handleSubmit }) => {
           select
           SelectProps={{ native: true }}
         >
-          {states.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
+          {gender.map((option, index) => (
+            <option key={index} value={option.gender}>
+              {option.gender}
             </option>
           ))}
         </TextFieldMake>
@@ -99,7 +80,7 @@ const AddClientForm = ({ data, setData, handleSubmit }) => {
           focused
           variant="outlined"
           type="date"
-          label="Date "
+          label="Date"
           name="Date"
           onChange={(event) =>
             setData({
@@ -126,9 +107,9 @@ const AddClientForm = ({ data, setData, handleSubmit }) => {
           select
           SelectProps={{ native: true }}
         >
-          {states2.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
+          {payment.map((option, index) => (
+            <option key={index} value={option.method}>
+              {option.method}
             </option>
           ))}
         </TextFieldMake>
@@ -228,7 +209,7 @@ const AddClientForm = ({ data, setData, handleSubmit }) => {
       <Grid item xs={12}>
         <Stack spacing={3} direction="row">
           <ButtonMake size="medium" type="submit" onClick={handleSubmit}>
-            Send
+            Upload
           </ButtonMake>
           <ButtonMake size="medium" type="reset">
             Cancel

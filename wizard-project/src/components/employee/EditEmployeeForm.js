@@ -1,33 +1,24 @@
 import { Grid, Stack } from "@mui/material";
-import React, { useState } from "react";
-import { ButtonMake, TextFieldMake } from "../../styles/MetarialStyles";
+import React from "react";
+import {
+  ButtonMake,
+  StyleMultiSelector,
+  TextFieldMake,
+} from "../../styles/MetarialStyles";
+import Multiselect from "multiselect-react-dropdown";
 
-const states = [
-  {
-    value: "Male",
-    label: "Male",
-  },
-  {
-    value: "Female",
-    label: "Female",
-  },
-];
-const states2 = [
-  {
-    value: "React",
-    label: "React",
-  },
-  {
-    value: "Laravel",
-    label: "Laravel",
-  },
-  {
-    value: "Android",
-    label: "Android",
-  },
-];
-
-const EditEmployeeForm = ({ data, setData, values, handleSubmit }) => {
+const EditEmployeeForm = ({
+  gender,
+  bloodGroup,
+  Categoris,
+  ProjectTools,
+  tools,
+  setTools,
+  data,
+  setData,
+  values,
+  handleSubmit,
+}) => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} md={6}>
@@ -51,7 +42,7 @@ const EditEmployeeForm = ({ data, setData, values, handleSubmit }) => {
           fullWidth
           variant="outlined"
           name="FullName"
-          label="Full  Name"
+          label="Full Name"
           defaultValue={values.FullName}
           onChange={(event) =>
             setData({
@@ -79,12 +70,83 @@ const EditEmployeeForm = ({ data, setData, values, handleSubmit }) => {
           select
           SelectProps={{ native: true }}
         >
-          {states.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
+          {gender.map((option, index) => (
+            <option key={index} value={option.gender}>
+              {option.gender}
             </option>
           ))}
         </TextFieldMake>
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
+          label="Blood Group"
+          name="BloodGroup"
+          defaultValue={values.BloodGroup}
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+          required
+          select
+          SelectProps={{ native: true }}
+        >
+          {bloodGroup.map((option, index) => (
+            <option key={index} value={option.group}>
+              {option.group}
+            </option>
+          ))}
+        </TextFieldMake>
+      </Grid>
+
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
+          label="Present Address"
+          name="PresentAddress"
+          defaultValue={values.PresentAddress}
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
+          label="Permanent Address"
+          name="PermanentAddress"
+          defaultValue={values.PermanentAddress}
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
+          label="Email"
+          name="Email"
+          defaultValue={values.Email}
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
       </Grid>
 
       <Grid item xs={12} md={6}>
@@ -102,30 +164,13 @@ const EditEmployeeForm = ({ data, setData, values, handleSubmit }) => {
           }
         />
       </Grid>
-
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Address"
-          name="Address"
-          defaultValue={values.Address}
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-        />
-      </Grid>
-
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          label="Email"
-          name="Email"
-          defaultValue={values.Email}
+          label="NID/Pasport Number"
+          name="NidNumber"
+          defaultValue={values.NidNumber}
           onChange={(event) =>
             setData({
               ...data,
@@ -205,39 +250,13 @@ const EditEmployeeForm = ({ data, setData, values, handleSubmit }) => {
           select
           SelectProps={{ native: true }}
         >
-          {states2.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
+          {Categoris.map((option, index) => (
+            <option key={index} value={option.name}>
+              {option.name}
             </option>
           ))}
         </TextFieldMake>
       </Grid>
-
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          label="Skill"
-          name="Skill"
-          defaultValue={values.Skill}
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-          required
-          select
-          SelectProps={{ native: true }}
-        >
-          {states2.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextFieldMake>
-      </Grid>
-
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
@@ -251,6 +270,18 @@ const EditEmployeeForm = ({ data, setData, values, handleSubmit }) => {
               [event.target.name]: event.target.value,
             })
           }
+        />
+      </Grid>
+
+      <Grid item xs={12}>
+        <Multiselect
+          options={ProjectTools} // Options to display in the dropdown
+          selectedValues={tools} // Preselected value to persist in dropdown
+          onSelect={(selectedList) => setTools(selectedList)} // Function will trigger on select event
+          onRemove={(selectedList) => setTools(selectedList)} // Function will trigger on remove event
+          displayValue="name" // Property name to display in the dropdown options
+          placeholder="Skill"
+          style={StyleMultiSelector}
         />
       </Grid>
 

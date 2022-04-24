@@ -6,8 +6,8 @@ import SubNav2 from "../components/subNav/SubNav2";
 import { LayoutContiner } from "../styles/MetarialStyles";
 
 const AddEmployee = () => {
-
   const gender = [{ gender: "Male" }, { gender: "Female" }];
+
   const Allskill = [
     { name: "Node js" },
     { name: "React js" },

@@ -1,7 +1,12 @@
 
 import { Grid, Stack } from "@mui/material";
 import React from "react";
-import { ButtonMake, TextFieldMake } from "../../styles/MetarialStyles";
+import {
+  ButtonMake,
+  StyleMultiSelector,
+  TextFieldMake,
+} from "../../styles/MetarialStyles";
+import Multiselect from "multiselect-react-dropdown";
 
 const states = [
   {
@@ -14,7 +19,20 @@ const states = [
   },
 ];
 
-const EditProjectForm = ({ data, setData, values, handleSubmit }) => {
+const EditProjectForm = ({
+  Categoris,
+  ClientId,
+  ProjectTools,
+  tools,
+  setTools,
+  team,
+  teamMember,
+  setTeamMember,
+  data,
+  setData,
+  values,
+  handleSubmit,
+}) => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} md={6}>
@@ -23,7 +41,7 @@ const EditProjectForm = ({ data, setData, values, handleSubmit }) => {
           variant="outlined"
           name="ProjectId"
           label="Project ID"
-          defaultValue={values?.ProjectId}
+          defaultValue={values.ProjectId}
           onChange={(event) =>
             setData({
               ...data,
@@ -38,7 +56,7 @@ const EditProjectForm = ({ data, setData, values, handleSubmit }) => {
           variant="outlined"
           label="Project Title"
           name="ProjectTitle"
-          defaultValue={values?.ProjectTitle}
+          defaultValue={values.ProjectTitle}
           onChange={(event) =>
             setData({
               ...data,
@@ -51,9 +69,9 @@ const EditProjectForm = ({ data, setData, values, handleSubmit }) => {
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Department"
-          name="Department"
-          defaultValue={values?.Department}
+          label="Project Categori"
+          name="ProjectCategori"
+          defaultValue={values.ProjectCategori}
           onChange={(event) =>
             setData({
               ...data,
@@ -64,9 +82,9 @@ const EditProjectForm = ({ data, setData, values, handleSubmit }) => {
           select
           SelectProps={{ native: true }}
         >
-          {states.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
+          {Categoris.map((option, index) => (
+            <option key={index} value={option.name}>
+              {option.name}
             </option>
           ))}
         </TextFieldMake>
@@ -76,24 +94,34 @@ const EditProjectForm = ({ data, setData, values, handleSubmit }) => {
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Client"
-          name="Client"
-          defaultValue={values?.Client}
+          label="ClientId"
+          name="ClientId"
+          defaultValue={values.ClientId}
           onChange={(event) =>
             setData({
               ...data,
               [event.target.name]: event.target.value,
             })
           }
-        />
+          required
+          select
+          SelectProps={{ native: true }}
+        >
+          {ClientId.map((client, index) => (
+            <option key={index} value={client.ClientId}>
+              {client.ClientId}
+            </option>
+          ))}
+        </TextFieldMake>
       </Grid>
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Price"
-          name="Price"
-          defaultValue={values?.Price}
+          type="number"
+          label="Budget"
+          name="Budget"
+          defaultValue={values.Budget}
           onChange={(event) =>
             setData({
               ...data,
@@ -102,13 +130,26 @@ const EditProjectForm = ({ data, setData, values, handleSubmit }) => {
           }
         />
       </Grid>
+
+      <Grid item xs={12} md={6}>
+        <Multiselect
+          options={ProjectTools} // Options to display in the dropdown
+          selectedValues={tools} // Preselected value to persist in dropdown
+          onSelect={(selectedList) => setTools(selectedList)} // Function will trigger on select event
+          onRemove={(selectedList) => setTools(selectedList)} // Function will trigger on remove event
+          displayValue="name" // Property name to display in the dropdown options
+          placeholder="Project Tools"
+          style={StyleMultiSelector}
+        />
+      </Grid>
+
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           variant="outlined"
           label="Team Leader"
           name="TeamLeader"
-          defaultValue={values?.TeamLeader}
+          defaultValue={values.TeamLeader}
           onChange={(event) =>
             setData({
               ...data,
@@ -119,68 +160,34 @@ const EditProjectForm = ({ data, setData, values, handleSubmit }) => {
           select
           SelectProps={{ native: true }}
         >
-          {states.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
+          {team.map((option, index) => (
+            <option key={index} value={option.name}>
+              {option.name}
             </option>
           ))}
         </TextFieldMake>
       </Grid>
+
       <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          label="Team Member"
-          name="TeamMember"
-          defaultValue={values?.TeamMember}
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-          required
-          select
-          SelectProps={{ native: true }}
-        >
-          {states.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextFieldMake>
+        <Multiselect
+          options={team} // Options to display in the dropdown
+          selectedValues={teamMember} // Preselected value to persist in dropdown
+          onSelect={(selectedList) => setTeamMember(selectedList)} // Function will trigger on select event
+          onRemove={(selectedList) => setTeamMember(selectedList)} // Function will trigger on remove event
+          displayValue="name" // Property name to display in the dropdown options
+          placeholder="Team Member"
+          style={StyleMultiSelector}
+        />
       </Grid>
+
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Category"
-          name="Category"
-          defaultValue={values?.Category}
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-          required
-          select
-          SelectProps={{ native: true }}
-        >
-          {states.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextFieldMake>
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          label="Phases"
+          type="number"
+          label="Enter Phases Number"
           name="Phases"
-          defaultValue={values?.Phases}
+          defaultValue={values.Phases}
           onChange={(event) =>
             setData({
               ...data,
@@ -188,15 +195,7 @@ const EditProjectForm = ({ data, setData, values, handleSubmit }) => {
             })
           }
           required
-          select
-          SelectProps={{ native: true }}
-        >
-          {states.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextFieldMake>
+        />
       </Grid>
 
       <Grid item xs={12} md={6}>
@@ -205,9 +204,9 @@ const EditProjectForm = ({ data, setData, values, handleSubmit }) => {
           focused
           variant="outlined"
           type="date"
-          defaultValue={values?.ProjectStart}
           label="Project Start Date"
           name="ProjectStart"
+          defaultValue={values.ProjectStart}
           onChange={(event) =>
             setData({
               ...data,
@@ -223,8 +222,8 @@ const EditProjectForm = ({ data, setData, values, handleSubmit }) => {
           variant="outlined"
           type="date"
           label="Project End Date"
-          defaultValue={values?.ProjectEnd}
           name="ProjectEnd"
+          defaultValue={values.ProjectEnd}
           onChange={(event) =>
             setData({
               ...data,
@@ -242,7 +241,7 @@ const EditProjectForm = ({ data, setData, values, handleSubmit }) => {
           variant="outlined"
           label="Description"
           name="Description"
-          defaultValue={values?.Description}
+          defaultValue={values.Description}
           onChange={(event) =>
             setData({
               ...data,

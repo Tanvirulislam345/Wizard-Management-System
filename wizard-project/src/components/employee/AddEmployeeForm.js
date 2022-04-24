@@ -7,20 +7,6 @@ import {
 } from "../../styles/MetarialStyles";
 import Multiselect from "multiselect-react-dropdown";
 
-const states2 = [
-  {
-    value: "React",
-    label: "React",
-  },
-  {
-    value: "Laravel",
-    label: "Laravel",
-  },
-  {
-    value: "Android",
-    label: "Android",
-  },
-];
 
 const AddEmployeeForm = ({
   gender,
@@ -251,8 +237,8 @@ const AddEmployeeForm = ({
           select
           SelectProps={{ native: true }}
         >
-          {Categoris.map((option) => (
-            <option key={option.value} value={option.name}>
+          {Categoris.map((option, index) => (
+            <option key={index} value={option.name}>
               {option.name}
             </option>
           ))}

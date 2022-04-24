@@ -6,12 +6,21 @@ import SubNav2 from "../components/subNav/SubNav2";
 import { LayoutContiner } from "../styles/MetarialStyles";
 
 const AddClients = () => {
+
+  const gender = [{ gender: "Male" }, { gender: "Female" }];
+  const payment = [{ method: "Cash" }, { method: "Card" }];
+
   const [data, setData] = useState(null);
   const navigate = useNavigate();
 
   const handleSubmit = () => {
+    const Password = Math.random().toString(30).slice(-8);
+    const newData = {
+      ...data,
+      Password,
+    };
     if (data !== null) {
-      axios.post("http://localhost:9000/addclient", data).then((res) => {
+      axios.post("http://localhost:9000/addclient", newData).then((res) => {
         if (res.status === 200) {
           navigate("/client");
         }
@@ -24,6 +33,8 @@ const AddClients = () => {
     <LayoutContiner>
       <SubNav2 project="Add Client" />
       <AddClientForm
+        gender={gender}
+        payment={payment}
         data={data}
         setData={setData}
         handleSubmit={handleSubmit}
