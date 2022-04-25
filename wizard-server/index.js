@@ -60,6 +60,7 @@ app.post("/addproject", upload.single("File"), (req, res) => {
   const newData = req.body;
   const File = `http://localhost:9000/images/${req.file.filename}`;
 
+  console.log(newData);
   const data = {
     ...newData,
     File,
