@@ -17,6 +17,7 @@ import EditProject from "./pages/EditProject";
 import EmployeeProfile from "./pages/EmployeeProfile";
 import Employees from "./pages/Employees";
 import Invoice from "./pages/Invoice";
+import LeaveType from "./pages/Leave/LeaveType";
 import PaymentView from "./pages/PaymentView";
 import ProjectDetails from "./pages/ProjectDetails";
 import Projects from "./pages/Projects";
@@ -58,6 +59,7 @@ function App() {
             <Route path="/addpayment" element={<AddPayment />} />
             <Route path="/expense" element={<AllExpense />} />
             <Route path="/addexpense" element={<AddExpense />} />
+            <Route path="/leave" element={<LeaveType />} />
           </Routes>
         </Layout>
       </Router>

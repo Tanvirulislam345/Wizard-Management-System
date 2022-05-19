@@ -7,13 +7,12 @@ import { LayoutContiner } from "../styles/MetarialStyles";
 
 
 const AddProject = () => {
-
   const Categoris = [
     { name: "Software Development" },
     { name: "Web Development" },
     { name: "App Development" },
   ];
-  
+
   const ProjectTools = [
     { name: "Node js" },
     { name: "React js" },
@@ -35,16 +34,17 @@ const AddProject = () => {
   const [data, setData] = useState(null);
   const [teamMember, setTeamMember] = useState([team[0]]);
   const [tools, setTools] = useState([ProjectTools[0]]);
-  
+
   const navigate = useNavigate();
 
   const handleSubmit = () => {
+
     const newData = {
       ...data,
       TeamMember: teamMember,
       ProjectTools: tools,
       ProjectStatus: "New Project",
-    };
+    }
 
     const formData = new FormData();
     for (const key in newData) {
@@ -62,28 +62,32 @@ const AddProject = () => {
     }
   };
 
-  useEffect(()=>{
-    axios.get("http://localhost:9000/client").then(res => setClientId(res.data))
-  }, [])
+  useEffect(() => {
+    axios
+      .get("http://localhost:9000/client")
+      .then((res) => setClientId(res.data));
+  }, []);
 
   return (
     <LayoutContiner>
       <SubNav2 project="Add Project" />
-      {clientId !== null && <AddProjectForm
-        Categoris={Categoris}
-        ClientId={clientId}
-        ProjectTools={ProjectTools}
-        setTools={setTools}
-        tools={tools}
-        team={team}
-        teamMember={teamMember}
-        setTeamMember={setTeamMember}
-        data={data}
-        setData={setData}
-        handleSubmit={handleSubmit}
-      />}
+      {clientId !== null && (
+        <AddProjectForm
+          Categoris={Categoris}
+          ClientId={clientId}
+          ProjectTools={ProjectTools}
+          setTools={setTools}
+          tools={tools}
+          team={team}
+          teamMember={teamMember}
+          setTeamMember={setTeamMember}
+          data={data}
+          setData={setData}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </LayoutContiner>
   );
-};;;
+};;;;
 
 export default AddProject;

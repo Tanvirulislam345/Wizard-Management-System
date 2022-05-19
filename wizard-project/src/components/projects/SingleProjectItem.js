@@ -13,6 +13,7 @@ import ListMenu from "./ListMenu";
 import { Line } from "rc-progress";
 
 const SingleProjectItem = ({ project, projectCategori, handleProject }) => {
+
   return (
     <HeadingFormatContainer>
       <BoxContainer>

@@ -9,12 +9,13 @@ import {
 } from "../shared/HeadingFormat/HeadingFormatStyle";
 
 const ProjectInfo = ({ clientDetails }) => {
+  console.log(clientDetails);
   let keys = Object.keys(clientDetails);
   keys.shift(); //shift used for remove 1st element
-  const description = keys.splice(11, 1); //splice used for which index number and how many index
-  const key = keys.pop();
+  const description = keys.splice(10, 1); //splice used for which index number and how many index
+  const file = keys.splice(11, 1); //splice used for which index number and how many index
 
-  console.log(key);
+
   return (
     <Box>
       {keys?.map((key, index) => (
@@ -56,6 +57,6 @@ const ProjectInfo = ({ clientDetails }) => {
       </Typography>
     </Box>
   );
-};
+};;
 
 export default ProjectInfo;
