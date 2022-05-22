@@ -2,42 +2,88 @@ import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { Line } from "rc-progress";
 import React from "react";
+import { BigButtonMake } from "../../styles/MetarialStyles";
 import {
   HeadingFormatTitle,
   PlainText,
   PlainTextContainer,
+  PlainTextContainer2,
 } from "../shared/HeadingFormat/HeadingFormatStyle";
+import { SinglePlainText2 } from "../shared/ProfileSingleInfo/SingleInfoStyle";
+import PhasesListMenu from "./PhasesListMenu";
 
-const ProjectInfo = ({ clientDetails }) => {
-  console.log(clientDetails);
-  let keys = Object.keys(clientDetails);
-  keys.shift(); //shift used for remove 1st element
-  const description = keys.splice(10, 1); //splice used for which index number and how many index
-  const file = keys.splice(11, 1); //splice used for which index number and how many index
-
+const ProjectInfo = ({ clientDetails, handleUpdate }) => {
+  const {
+    ProjectStart,
+    ProjectEnd,
+    TeamLeader,
+    TeamMember,
+    Description,
+    Phases,
+  } = clientDetails;
+  const allmember = JSON.parse(TeamMember).map((data) => data.name);
+  const phases = JSON.parse(Phases);
 
   return (
     <Box>
-      {keys?.map((key, index) => (
-        <Box key={index}>
-          <PlainTextContainer>
-            <PlainText>{key}</PlainText>
-            <PlainText>{clientDetails[key]}</PlainText>
-          </PlainTextContainer>
-        </Box>
-      ))}
+      <PlainTextContainer>
+        <PlainText>ProjectStart</PlainText>
+        <PlainText>{ProjectStart}</PlainText>
+      </PlainTextContainer>
+      <PlainTextContainer>
+        <PlainText>ProjectEnd</PlainText>
+        <PlainText>{ProjectEnd}</PlainText>
+      </PlainTextContainer>
+      <PlainTextContainer>
+        <PlainText>TeamLeader</PlainText>
+        <PlainText>{TeamLeader}</PlainText>
+      </PlainTextContainer>
+      <PlainTextContainer>
+        <PlainText>TeamMember</PlainText>
+        <PlainText>{allmember.join()}</PlainText>
+      </PlainTextContainer>
       <HeadingFormatTitle sx={{ mt: 2, mb: 1, p: 0 }}>
-        progress
+        Phases
       </HeadingFormatTitle>
-      <Box sx={{ width: { lg: "60%", md: "70%", xs: "100%" }, my: 2 }}>
-        <Line percent="70" strokeColor="#3F51B5" />
+      {phases.map((data, index) => (
+        <PlainTextContainer2 key={data.id}>
+          <SinglePlainText2>{data.phaseStart}</SinglePlainText2>
+          <SinglePlainText2>{data.phaseEnd}</SinglePlainText2>
+          <SinglePlainText2>{data.workPersent}%</SinglePlainText2>
+          <PhasesListMenu data={data} handleUpdate={handleUpdate} />
+        </PlainTextContainer2>
+      ))}
+
+      <HeadingFormatTitle sx={{ mt: 2, mb: 1, p: 0 }}>
+        Progress
+      </HeadingFormatTitle>
+      <Box
+        sx={{
+          my: 2,
+          display: "flex",
+          justifyContent: "start",
+          alignItems: "center",
+        }}
+      >
+        <Box sx={{ width: { xs: "80%", md: "70%", lg: "60%" }, mr: 2 }}>
+          <Line
+            percent="70"
+            strokeColor="#3F51B5"
+            strokeWidth={3}
+            trailWidth={4}
+            style={{
+              borderRadius: "7px",
+            }}
+          />
+        </Box>
+        <Typography variant="h5">{60} %</Typography>
       </Box>
       <HeadingFormatTitle sx={{ mt: 2, mb: 1, p: 0 }}>
-        {description}
+        Description
       </HeadingFormatTitle>
 
       <Typography variant="body1" sx={{ textAlign: "justify" }}>
-        {/* {clientDetails[description]} */}
+        {Description}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Rhoncus
         interdum ornare lectus lobortis curabitur felis, condimentum arcu dis.
         Porttitor aliquam tellus ut pulvinar quis. Vitae arcu volutpat id est
@@ -57,6 +103,6 @@ const ProjectInfo = ({ clientDetails }) => {
       </Typography>
     </Box>
   );
-};;
+};
 
 export default ProjectInfo;

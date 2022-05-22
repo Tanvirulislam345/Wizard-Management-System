@@ -5,7 +5,6 @@ import AddProjectForm from "../components/projects/AddProjectForm";
 import SubNav2 from "../components/subNav/SubNav2";
 import { LayoutContiner } from "../styles/MetarialStyles";
 
-
 const AddProject = () => {
   const Categoris = [
     { name: "Software Development" },
@@ -30,6 +29,15 @@ const AddProject = () => {
   ];
 
   const [clientId, setClientId] = useState(null);
+  const [inputList, setInputList] = useState([
+    {
+      id: "",
+      status: "",
+      phaseStart: "",
+      phaseEnd: "",
+      workPersent: "",
+    },
+  ]);
 
   const [data, setData] = useState(null);
   const [teamMember, setTeamMember] = useState([team[0]]);
@@ -38,13 +46,14 @@ const AddProject = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-
     const newData = {
       ...data,
-      TeamMember: teamMember,
-      ProjectTools: tools,
+      TeamMember: JSON.stringify(teamMember),
+      ProjectTools: JSON.stringify(tools),
+      Phases: JSON.stringify(inputList),
       ProjectStatus: "New Project",
-    }
+    };
+    console.log(newData);
 
     const formData = new FormData();
     for (const key in newData) {
@@ -83,11 +92,13 @@ const AddProject = () => {
           setTeamMember={setTeamMember}
           data={data}
           setData={setData}
+          inputList={inputList}
+          setInputList={setInputList}
           handleSubmit={handleSubmit}
         />
       )}
     </LayoutContiner>
   );
-};;;;
+};
 
 export default AddProject;

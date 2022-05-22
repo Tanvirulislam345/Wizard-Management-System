@@ -31,3 +31,9 @@ export const PlainText = styled(Typography)(({ theme }) => ({
 export const PlainTextContainer = styled(Box)(({ theme }) => ({
   display: "flex",
 }));
+export const PlainTextContainer2 = styled(Box)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "space-evenly",
+  alignItems: "center",
+  marginBottom: "20px",
+}));

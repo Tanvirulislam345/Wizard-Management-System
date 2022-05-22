@@ -4,6 +4,7 @@ const cors = require("cors");
 const multer = require("multer");
 const path = require("path");
 const { KeyObject } = require("crypto");
+const { json } = require("express/lib/response");
 
 const app = express();
 
@@ -60,11 +61,12 @@ app.post("/addproject", upload.single("File"), (req, res) => {
   const newData = req.body;
   const File = `http://localhost:9000/images/${req.file.filename}`;
 
-  console.log(newData);
   const data = {
     ...newData,
     File,
   };
+  // console.log(newData);
+  console.log(data);
 
   const keys = Object.keys(data);
 
@@ -84,6 +86,7 @@ app.post("/addproject", upload.single("File"), (req, res) => {
       res.json(result);
     }
   });
+  // res.json(true);
 });
 
 app.get("/allproject", (req, res) => {
@@ -121,7 +124,8 @@ app.get("/project/:projectId", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        res.json(result);
+        // console.log(result[0]);
+        res.json(result[0]);
       }
     }
   );

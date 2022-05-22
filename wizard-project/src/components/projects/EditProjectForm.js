@@ -1,12 +1,12 @@
-
 import { Grid, Stack } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import {
   ButtonMake,
   StyleMultiSelector,
   TextFieldMake,
 } from "../../styles/MetarialStyles";
 import Multiselect from "multiselect-react-dropdown";
+import DynamicAddInput from "./DynamicAddInput";
 
 const states = [
   {
@@ -31,8 +31,13 @@ const EditProjectForm = ({
   data,
   setData,
   values,
+  setPhases,
   handleSubmit,
 }) => {
+  const isdata = JSON.parse(values.TeamMember);
+  const isPhases = JSON.parse(values.Phases);
+  const [inputList, setInputList] = useState(isPhases);
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} md={6}>
@@ -171,30 +176,12 @@ const EditProjectForm = ({
       <Grid item xs={12} md={6}>
         <Multiselect
           options={team} // Options to display in the dropdown
-          selectedValues={teamMember} // Preselected value to persist in dropdown
+          selectedValues={isdata} // Preselected value to persist in dropdown
           onSelect={(selectedList) => setTeamMember(selectedList)} // Function will trigger on select event
           onRemove={(selectedList) => setTeamMember(selectedList)} // Function will trigger on remove event
           displayValue="name" // Property name to display in the dropdown options
           placeholder="Team Member"
           style={StyleMultiSelector}
-        />
-      </Grid>
-
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          type="number"
-          label="Enter Phases Number"
-          name="Phases"
-          defaultValue={values.Phases}
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-          required
         />
       </Grid>
 
@@ -250,6 +237,7 @@ const EditProjectForm = ({
           }
         />
       </Grid>
+      <DynamicAddInput inputList={inputList} setInputList={setInputList} />
 
       <Grid item xs={12}>
         <Stack spacing={3} direction="row">

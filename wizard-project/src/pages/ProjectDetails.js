@@ -16,8 +16,13 @@ const ProjectDetails = () => {
   useEffect(() => {
     axios
       .get(`http://localhost:9000/project/${projectDetailsId}`)
-      .then((res) => setClientDetails(res.data[0]));
+      .then((res) => setClientDetails(res.data));
   }, [projectDetailsId]);
+
+  const handleUpdate = (id, status) => {
+    console.log(id, status);
+  };
+
   const files = [1, 3, 4];
 
   return (

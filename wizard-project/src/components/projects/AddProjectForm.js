@@ -1,12 +1,12 @@
-
 import { Grid, Stack } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import {
   ButtonMake,
   StyleMultiSelector,
   TextFieldMake,
 } from "../../styles/MetarialStyles";
 import Multiselect from "multiselect-react-dropdown";
+import DynamicAddInput from "./DynamicAddInput";
 
 const AddProjectForm = ({
   Categoris,
@@ -20,19 +20,23 @@ const AddProjectForm = ({
   data,
   setData,
   handleSubmit,
+  inputList,
+  setInputList,
 }) => {
+  const [id, setId] = useState(`Wiz22-${Math.random().toString(36).slice(7)}`);
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           variant="outlined"
+          value={id}
           name="ProjectId"
           label="Project ID"
           onChange={(event) =>
             setData({
               ...data,
-              [event.target.name]: event.target.value,
+              [event.target.name]: id,
             })
           }
         />
@@ -165,23 +169,6 @@ const AddProjectForm = ({
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
-          variant="outlined"
-          type="number"
-          label="Enter Phases Number"
-          name="Phases"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-          required
-        />
-      </Grid>
-
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
           focused
           variant="outlined"
           type="date"
@@ -244,6 +231,8 @@ const AddProjectForm = ({
           }
         />
       </Grid>
+
+      <DynamicAddInput inputList={inputList} setInputList={setInputList} />
 
       <Grid item xs={12}>
         <Stack spacing={3} direction="row">

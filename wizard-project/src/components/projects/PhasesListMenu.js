@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Link } from "react-router-dom";
-import { MenuItemMake } from "../../styles/MetarialStyles";
 
-export default function ListMenu({ id, projectCategori, handleProject }) {
+import { BigButtonMake, MenuItemMake } from "../../styles/MetarialStyles";
+
+export default function PhasesListMenu({ data, handleUpdate }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -15,9 +13,16 @@ export default function ListMenu({ id, projectCategori, handleProject }) {
     setAnchorEl(null);
   };
 
+  const projectCategori = [
+    { status: "Running" },
+    { status: "Done" },
+    { status: "Late" },
+  ];
+
   return (
     <div>
-      <IconButton
+      <BigButtonMake onClick={handleClick}>{data.status}</BigButtonMake>
+      {/* <IconButton
         aria-label="more"
         id="long-button"
         aria-controls={open ? "long-menu" : undefined}
@@ -26,7 +31,7 @@ export default function ListMenu({ id, projectCategori, handleProject }) {
         onClick={handleClick}
       >
         <MoreVertIcon sx={{ color: "white" }} />
-      </IconButton>
+      </IconButton> */}
       <Menu
         id="long-menu"
         MenuListProps={{
@@ -35,27 +40,15 @@ export default function ListMenu({ id, projectCategori, handleProject }) {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        // PaperProps={{
-        //   style: {
-        //     backgroundColor: "#1A202E",
-        //   },
-        // }}
       >
-        <Link to={`/editproject/${id}`} style={{ textDecoration: "none" }}>
-          <MenuItemMake onClick={handleClose}>Edit</MenuItemMake>
-        </Link>
-        <MenuItemMake
-          onClick={() => handleProject(id, "delete") && handleClose}
-        >
-          Delete
-        </MenuItemMake>
-
         {projectCategori?.map((category, index) => (
           <MenuItemMake
             key={index}
-            onClick={() => handleProject(id, category.name) && handleClose}
+            onClick={() =>
+              handleUpdate(data.id, category.status) && handleClose
+            }
           >
-            {category.name}
+            {category.status}
           </MenuItemMake>
         ))}
       </Menu>

@@ -11,6 +11,16 @@ export const SinglePlainText = styled(Typography)({
   font: "Metropolis",
   fontSize: "14px",
 });
+export const SinglePlainText2 = styled(Typography)(({ theme }) => ({
+  font: "Metropolis",
+  fontSize: "14px",
+  padding: "5px",
+  border: "1px solid white",
+  borderRadius: "5px",
+  [theme.breakpoints.down("sm")]: {
+    marginTop: "10px",
+  },
+}));
 export const SingleBoldText = styled(Typography)({
   font: "Metropolis",
   fontWeight: "bold",

@@ -37,7 +37,12 @@ const EditProject = () => {
   const navigate = useNavigate();
   const [values, setValues] = useState(null);
 
-  const [teamMember, setTeamMember] = useState([]);
+  const [phases, setPhases] = useState(null);
+  const [inputList, setInputList] = useState([
+    { phaseStart: "", phaseEnd: "", workPersent: "" },
+  ]);
+
+  const [teamMember, setTeamMember] = useState(null);
   const [tools, setTools] = useState([]);
   const [data, setData] = useState([]);
   const { projectId } = useParams();
@@ -45,7 +50,7 @@ const EditProject = () => {
   useEffect(() => {
     axios
       .get(`http://localhost:9000/project/${projectId}`)
-      .then((res) => setValues(res.data[0]));
+      .then((res) => setValues(res.data));
   }, [projectId]);
 
   const handleSubmit = () => {
@@ -55,7 +60,6 @@ const EditProject = () => {
       // ProjectTools: tools,
     };
 
-    console.log(newData);
     axios
       .put(`http://localhost:9000/updateproject/${projectId}`, newData)
       .then((res) => {
@@ -81,6 +85,7 @@ const EditProject = () => {
           data={data}
           setData={setData}
           values={values}
+          setPhases={setPhases}
           handleSubmit={handleSubmit}
         />
       )}

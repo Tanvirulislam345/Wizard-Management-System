@@ -36,7 +36,7 @@ const Projects = () => {
     `http://localhost:9000/allproject/${isCategori}`
   );
 
-  console.log(projects);
+  // console.log(projects);
   const handleProject = (id, status) => {
     const values = {
       ProjectStatus: status,

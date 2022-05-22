@@ -13,7 +13,8 @@ import ListMenu from "./ListMenu";
 import { Line } from "rc-progress";
 
 const SingleProjectItem = ({ project, projectCategori, handleProject }) => {
-
+  const data = JSON.parse(project?.TeamMember);
+  const value = data?.map((value) => value.name);
   return (
     <HeadingFormatContainer>
       <BoxContainer>
@@ -43,6 +44,10 @@ const SingleProjectItem = ({ project, projectCategori, handleProject }) => {
           <PlainText>Created </PlainText>
           <PlainText>{project.ProjectStart}</PlainText>
         </PlainTextContainer>
+        <PlainTextContainer>
+          <PlainText>End Date </PlainText>
+          <PlainText>{project.ProjectEnd}</PlainText>
+        </PlainTextContainer>
 
         <PlainTextContainer>
           <PlainText>Team Leader</PlainText>
@@ -50,13 +55,31 @@ const SingleProjectItem = ({ project, projectCategori, handleProject }) => {
         </PlainTextContainer>
 
         <PlainTextContainer>
-          <PlainText>Team</PlainText>
-          <PlainText>{project.TeamMember}</PlainText>
+          <PlainText>Team Member</PlainText>
+          <PlainText>{value.join()}</PlainText>
         </PlainTextContainer>
 
         <HeadingFormatTitle sx={{ mt: 2, p: 0 }}>progress</HeadingFormatTitle>
-        <Box sx={{ width: { xs: "100%", md: "70%", lg: "60%" }, my: 2 }}>
-          <Line percent="70" strokeColor="#3F51B5" />
+        <Box
+          sx={{
+            my: 2,
+            display: "flex",
+            justifyContent: "start",
+            alignItems: "center",
+          }}
+        >
+          <Box sx={{ width: { xs: "80%", md: "70%", lg: "60%" }, mr: 2 }}>
+            <Line
+              percent="70"
+              strokeColor="#3F51B5"
+              strokeWidth={3}
+              trailWidth={4}
+              style={{
+                borderRadius: "7px",
+              }}
+            />
+          </Box>
+          <Typography variant="h5">{60} %</Typography>
         </Box>
       </Box>
       <BoxContainer>
