@@ -131,6 +131,21 @@ app.get("/project/:projectId", (req, res) => {
   );
 });
 
+app.get("/clientproject/:projectId", (req, res) => {
+  const id = req.params.projectId;
+  connection.query(
+    `SELECT * FROM all_projects WHERE ClientId = '${id}'`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // console.log(result);
+        res.json(result);
+      }
+    }
+  );
+});
+
 app.put("/updateproject/:projectId", (req, res) => {
   const id = req.params.projectId;
   const data = req.body;
@@ -302,13 +317,32 @@ app.get("/client", (req, res) => {
 app.get("/client/:clientId", (req, res) => {
   const id = req.params.clientId;
 
-  connection.query(`SELECT * FROM all_client WHERE id=${id}`, (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(result);
+  connection.query(
+    `SELECT * FROM all_client WHERE ClientId = '${id}'`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result);
+      }
     }
-  });
+  );
+});
+app.get("/projectclient/:clientId", (req, res) => {
+  const id = req.params.clientId;
+
+  // console.log(`SELECT * FROM all_client WHERE ClientId='${id}'`);
+  connection.query(
+    `SELECT * FROM all_client WHERE ClientId='${id}'`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result);
+      }
+    }
+  );
+  // res.json(true);
 });
 
 app.put("/client/:clientId", (req, res) => {

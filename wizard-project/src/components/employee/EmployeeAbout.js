@@ -20,7 +20,7 @@ const EmployeeAbout = ({ values }) => {
       >
         <ProfileSingleInfo title="Full Name" value={values.FullName} />
         <ProfileSingleInfo title="Email" value={values.Email} />
-        <ProfileSingleInfo title="Location" value={values.Address} />
+        <ProfileSingleInfo title="Location" value={values.PermanentAddress} />
       </Grid>
 
       <Grid container spacing={3}>

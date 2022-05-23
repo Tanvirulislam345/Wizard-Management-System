@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import EmployeeAbout from "../components/employee/EmployeeAbout";
+import Skill from "../components/employee/Skill";
 import Files from "../components/shared/Files/Files";
 import HeadingFormat from "../components/shared/HeadingFormat/HeadingFormat";
 import { HeadingFormatContainer } from "../components/shared/HeadingFormat/HeadingFormatStyle";
@@ -16,9 +17,7 @@ const EmployeeProfile = () => {
   const { profileId } = useParams();
   const [values, setValues] = useState(null);
   const [data, setData] = useState("About Me");
-  const [data2, setData2] = useState("About");
   const navValue = ["About Me", "security"];
-  const navValue2 = ["About", "Skill"];
 
   useEffect(() => {
     axios
@@ -47,19 +46,15 @@ const EmployeeProfile = () => {
               </Grid>
 
               <Grid xs={12} item>
-                <HeadingFormat title="Files">
-                  <Files files={files} />
+                <HeadingFormat title="Skills">
+                  <Skill skills={values.Skills} />
                 </HeadingFormat>
               </Grid>
 
               <Grid xs={12} item>
-                <HeadingFormatContainer>
-                  <ProfileNav
-                    navValue={navValue2}
-                    data={data2}
-                    setData={setData2}
-                  />
-                </HeadingFormatContainer>
+                <HeadingFormat title="Files">
+                  <Files files={files} />
+                </HeadingFormat>
               </Grid>
             </Grid>
           </Grid>

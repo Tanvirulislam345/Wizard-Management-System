@@ -6,7 +6,6 @@ import SubNav2 from "../components/subNav/SubNav2";
 import { LayoutContiner } from "../styles/MetarialStyles";
 
 const AddClients = () => {
-
   const gender = [{ gender: "Male" }, { gender: "Female" }];
   const payment = [{ method: "Cash" }, { method: "Card" }];
 
@@ -15,10 +14,14 @@ const AddClients = () => {
 
   const handleSubmit = () => {
     const Password = Math.random().toString(30).slice(-8);
+    const ClientId = `Wiz22${Math.random().toString(36).slice(7)}`;
+
     const newData = {
       ...data,
+      ClientId,
       Password,
     };
+    // console.log(newData);
     if (data !== null) {
       axios.post("http://localhost:9000/addclient", newData).then((res) => {
         if (res.status === 200) {

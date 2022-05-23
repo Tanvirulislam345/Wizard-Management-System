@@ -2,12 +2,13 @@ import { Grid } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ClientDetails from "../components/projects/ClientDetails";
+import FinalUpdate from "../components/projects/FinalUpdate";
 import ProjectInfo from "../components/projects/ProjectInfo";
 import Files from "../components/shared/Files/Files";
 import HeadingFormat from "../components/shared/HeadingFormat/HeadingFormat";
 import SubNav2 from "../components/subNav/SubNav2";
-import { LayoutContiner } from "../styles/MetarialStyles";
+import { BigButtonMake, LayoutContiner } from "../styles/MetarialStyles";
+import ClientDetailsPage from "./ClientDetailsPage";
 
 const ProjectDetails = () => {
   const { projectDetailsId } = useParams();
@@ -38,13 +39,23 @@ const ProjectDetails = () => {
           <Grid item xs={12} md={5}>
             <Grid spacing={2} container>
               <Grid item xs={12}>
+                {clientDetails?.ClientId && (
+                  <ClientDetailsPage clientId={clientDetails?.ClientId} />
+                )}
+              </Grid>
+              <Grid item xs={12}>
                 <HeadingFormat title="Files">
                   <Files files={files} />
                 </HeadingFormat>
               </Grid>
+              {/* <Grid item xs={12}>
+                <BigButtonMake>
+                  <a href={clientDetails.File}>download</a>
+                </BigButtonMake>
+              </Grid> */}
               <Grid item xs={12}>
-                <HeadingFormat title="Client Details">
-                  <ClientDetails clientDetails={clientDetails} />
+                <HeadingFormat title="Final Update">
+                  <FinalUpdate />
                 </HeadingFormat>
               </Grid>
             </Grid>

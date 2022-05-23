@@ -1,19 +1,29 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import { BoxContainer } from "../../styles/MetarialStyles";
+import {
+  PlainText,
+  PlainTextContainer,
+} from "../shared/HeadingFormat/HeadingFormatStyle";
 
 const ClientDetails = ({ clientDetails }) => {
-  let keys = Object.keys(clientDetails);
-  keys.shift(); //shift used for remove 1st element
-  const value = keys.splice(11, 1); //splice used for which index number and how many index
   return (
     <Box>
-      {keys?.map((key, index) => (
-        <BoxContainer key={index} style={{ marginBottom: "5px" }}>
-          <Typography style={{ width: "150px" }}>{key}</Typography>
-          <Typography>{clientDetails[key]}</Typography>
-        </BoxContainer>
-      ))}
+      <PlainTextContainer>
+        <PlainText>Client Id</PlainText>
+        <PlainText>{clientDetails.ClientId}</PlainText>
+      </PlainTextContainer>
+      <PlainTextContainer>
+        <PlainText>Full Name</PlainText>
+        <PlainText>{clientDetails.FullName}</PlainText>
+      </PlainTextContainer>
+      <PlainTextContainer>
+        <PlainText>Company Name</PlainText>
+        <PlainText>{clientDetails.CompanyName}</PlainText>
+      </PlainTextContainer>
+      <PlainTextContainer>
+        <PlainText>Date</PlainText>
+        <PlainText>{clientDetails.Date}</PlainText>
+      </PlainTextContainer>
     </Box>
   );
 };

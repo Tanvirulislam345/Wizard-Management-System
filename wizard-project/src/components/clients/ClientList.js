@@ -45,7 +45,7 @@ const ClientList = ({ client, handleRemove }) => {
               {client.Description}
             </Typography>
             <Link
-              to={`/client/profile/${client.id}`}
+              to={`/client/profile/${client.ClientId}`}
               style={{ textDecoration: "none" }}
             >
               <BigButtonMake>Profile</BigButtonMake>

@@ -2,25 +2,9 @@ import { Grid, Stack } from "@mui/material";
 import React, { useState } from "react";
 import { ButtonMake, TextFieldMake } from "../../styles/MetarialStyles";
 
-
-
 const AddClientForm = ({ gender, payment, data, setData, handleSubmit }) => {
   return (
     <Grid container spacing={3}>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          name="ClientId"
-          label="Client Id"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-        />
-      </Grid>
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth

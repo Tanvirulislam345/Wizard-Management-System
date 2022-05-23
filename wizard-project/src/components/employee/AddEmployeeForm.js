@@ -7,7 +7,6 @@ import {
 } from "../../styles/MetarialStyles";
 import Multiselect from "multiselect-react-dropdown";
 
-
 const AddEmployeeForm = ({
   gender,
   bloodGroup,
@@ -21,21 +20,6 @@ const AddEmployeeForm = ({
 }) => {
   return (
     <Grid container spacing={3}>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          name="EmployeeId"
-          label="Employee Id"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-        />
-      </Grid>
-
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth

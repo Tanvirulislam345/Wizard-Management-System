@@ -48,6 +48,7 @@ const AddProject = () => {
   const handleSubmit = () => {
     const newData = {
       ...data,
+      ProjectId: `WizP22${Math.random().toString(36).slice(7)}`,
       TeamMember: JSON.stringify(teamMember),
       ProjectTools: JSON.stringify(tools),
       Phases: JSON.stringify(inputList),

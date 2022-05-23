@@ -23,24 +23,8 @@ const AddProjectForm = ({
   inputList,
   setInputList,
 }) => {
-  const [id, setId] = useState(`Wiz22-${Math.random().toString(36).slice(7)}`);
   return (
     <Grid container spacing={3}>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          value={id}
-          name="ProjectId"
-          label="Project ID"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: id,
-            })
-          }
-        />
-      </Grid>
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth

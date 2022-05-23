@@ -43,8 +43,9 @@ const AddEmployee = () => {
     const Password = Math.random().toString(30).slice(-8);
     const newData = {
       ...data,
+      EmployeeId: `WizEm22${Math.random().toString(36).slice(7)}`,
       Password: Password,
-      Skills: skills,
+      Skills: JSON.stringify(skills),
     };
 
     if (data !== null) {

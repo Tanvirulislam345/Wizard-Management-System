@@ -1,7 +1,6 @@
-import { Typography } from "@mui/material";
 import React from "react";
-import { BoxContainer } from "../../../styles/MetarialStyles";
-import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import { BigButtonMake, BoxContainer } from "../../../styles/MetarialStyles";
+import PictureAsPdfTwoToneIcon from "@mui/icons-material/PictureAsPdfTwoTone";
 
 const Files = ({ files }) => {
   return (
@@ -11,8 +10,9 @@ const Files = ({ files }) => {
           key={index}
           style={{ marginBottom: "5px", justifyContent: "start" }}
         >
-          <PictureAsPdfIcon sx={{ mr: 3 }} />
-          <Typography>This is pdf</Typography>
+          <BigButtonMake startIcon={<PictureAsPdfTwoToneIcon sx={{ mr: 1 }} />}>
+            This is pdf
+          </BigButtonMake>
         </BoxContainer>
       ))}
     </>

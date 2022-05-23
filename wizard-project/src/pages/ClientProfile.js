@@ -19,7 +19,6 @@ import Files from "../components/shared/Files/Files";
 const ClientProfile = () => {
   const { clientId } = useParams();
   const [values, setValues] = useState(null);
-  console.log(values);
   const [data, setData] = useState("About Me");
   const navValue = ["About Me", "security"];
 
@@ -31,18 +30,12 @@ const ClientProfile = () => {
       .get(`http://localhost:9000/client/${clientId}`)
       .then((res) => setValues(res.data[0]));
 
-    fetch(`http://localhost:9000/allproject`)
+    fetch(`http://localhost:9000/clientproject/${clientId}`)
       .then((res) => res.json())
       .then((data) => setProjects(data));
   }, [clientId]);
 
   const files = useState([1, 2, 3]);
-
-  // useEffect(() => {
-  //   fetch(`http://localhost:9000/allproject`)
-  //     .then((res) => res.json())
-  //     .then((data) => setProjects(data));
-  // }, []);
 
   const handleProject = () => {};
 
@@ -67,12 +60,6 @@ const ClientProfile = () => {
                 <Grid xs={12} item>
                   <HeadingFormat title="Files">
                     <Files files={files} />
-                  </HeadingFormat>
-                </Grid>
-
-                <Grid xs={12} item>
-                  <HeadingFormat title="About">
-                    lorem.............lorem.. spsum
                   </HeadingFormat>
                 </Grid>
               </Grid>
