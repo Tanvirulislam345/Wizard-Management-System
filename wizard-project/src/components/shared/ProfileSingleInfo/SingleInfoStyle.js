@@ -10,6 +10,7 @@ export const SingleInWrapper = styled(Stack)({
 export const SinglePlainText = styled(Typography)({
   font: "Metropolis",
   fontSize: "14px",
+  color: "#A4A6B3",
 });
 export const SinglePlainText2 = styled(Typography)(({ theme }) => ({
   font: "Metropolis",

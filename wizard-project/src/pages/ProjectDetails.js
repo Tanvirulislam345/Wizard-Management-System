@@ -24,8 +24,6 @@ const ProjectDetails = () => {
     console.log(id, status);
   };
 
-  const files = [1, 3, 4];
-
   return (
     <LayoutContiner>
       <SubNav2 project="Project Details" />
@@ -43,11 +41,13 @@ const ProjectDetails = () => {
                   <ClientDetailsPage clientId={clientDetails?.ClientId} />
                 )}
               </Grid>
+
               <Grid item xs={12}>
                 <HeadingFormat title="Files">
-                  <Files files={files} />
+                  <Files files={clientDetails?.File} />
                 </HeadingFormat>
               </Grid>
+
               {/* <Grid item xs={12}>
                 <BigButtonMake>
                   <a href={clientDetails.File}>download</a>

@@ -3,15 +3,18 @@ import { BigButtonMake, BoxContainer } from "../../../styles/MetarialStyles";
 import PictureAsPdfTwoToneIcon from "@mui/icons-material/PictureAsPdfTwoTone";
 
 const Files = ({ files }) => {
+  const data = [files];
   return (
     <>
-      {files?.map((file, index) => (
+      {data?.map((file, index) => (
         <BoxContainer
           key={index}
           style={{ marginBottom: "5px", justifyContent: "start" }}
         >
           <BigButtonMake startIcon={<PictureAsPdfTwoToneIcon sx={{ mr: 1 }} />}>
-            This is pdf
+            <a href={file} style={{ textDecoration: "none", color: "white" }}>
+              Document files {index + 1}
+            </a>
           </BigButtonMake>
         </BoxContainer>
       ))}

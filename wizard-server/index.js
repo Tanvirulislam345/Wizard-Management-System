@@ -66,7 +66,7 @@ app.post("/addproject", upload.single("File"), (req, res) => {
     File,
   };
   // console.log(newData);
-  console.log(data);
+  // console.log(data);
 
   const keys = Object.keys(data);
 
@@ -82,7 +82,6 @@ app.post("/addproject", upload.single("File"), (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      // console.log(result);
       res.json(result);
     }
   });
@@ -468,6 +467,37 @@ app.delete("/allexpense/:expenseId", (req, res) => {
     }
   });
   // res.json(true);
+});
+
+app.post("/addattendence", (req, res) => {
+  const data = req.body;
+  const keys = Object.keys(data);
+
+  const sqlquery = `INSERT INTO all_attendence (${keys.map(
+    (key) => key
+  )}) VALUES (${keys.map((key) => "?")})`;
+
+  const value = keys.map((key) => {
+    return data[key];
+  });
+
+  connection.query(sqlquery, value, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+app.get("/allattendence", (req, res) => {
+  connection.query("SELECT * FROM all_attendence WHERE 1", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
 });
 
 app.get("/", (req, res) => {

@@ -5,8 +5,8 @@ const Skill = ({ skills }) => {
   const data = JSON.parse(skills);
   return (
     <Box sx={{ px: 3 }}>
-      {data.map((value) => (
-        <h5>{value.name}</h5>
+      {data.map((value, index) => (
+        <h5 key={index}>{value.name}</h5>
       ))}
     </Box>
   );

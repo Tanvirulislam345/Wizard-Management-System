@@ -46,6 +46,11 @@ const items = [
     icon: <FaDonate fontSize="small" />,
     title: "Leave",
   },
+  {
+    href: "/attendence",
+    icon: <FaDonate fontSize="small" />,
+    title: "Attendence",
+  },
 ];
 
 export default function SideBar({ open, onClose }) {
