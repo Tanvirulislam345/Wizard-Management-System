@@ -9,19 +9,10 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Chip, TableHead } from "@mui/material";
-import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
-import RemoveRedEyeRoundedIcon from "@mui/icons-material/RemoveRedEyeRounded";
-import ExpenseListMenu from "./ExpenseListMenu";
-import { useNavigate } from "react-router-dom";
 
-export default function ExpenseList({ rows, handleChange }) {
+export default function AllLeave({ rows, handleChange }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const navigate = useNavigate();
-
-  const handleView = (id) => {
-    navigate(`/payment/invoice/${id}`);
-  };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -57,19 +48,13 @@ export default function ExpenseList({ rows, handleChange }) {
       >
         <TableHead>
           <TableRow>
-            <StyledTableCell align="center">Expense ID</StyledTableCell>
-            <StyledTableCell align="center">Item</StyledTableCell>
-            <StyledTableCell align="center">Ordered By</StyledTableCell>
-            <StyledTableCell align="center">Date</StyledTableCell>
-            <StyledTableCell align="center">Ordered From</StyledTableCell>
-            <StyledTableCell align="center">Description</StyledTableCell>
-            <StyledTableCell align="center">Total Amount</StyledTableCell>
-            <StyledTableCell align="center">Payment Method</StyledTableCell>
+            <StyledTableCell align="center">Name</StyledTableCell>
+            <StyledTableCell align="center">Leave Type</StyledTableCell>
+            <StyledTableCell align="center">Leave From</StyledTableCell>
+            <StyledTableCell align="center">OFF Days </StyledTableCell>
             <StyledTableCell align="center">Status</StyledTableCell>
-            <StyledTableCell align="center">View</StyledTableCell>
-            <StyledTableCell align="center">
-              <MoreVertOutlinedIcon />
-            </StyledTableCell>
+            <StyledTableCell align="center">Reason</StyledTableCell>
+            <StyledTableCell align="center">Action</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -78,39 +63,13 @@ export default function ExpenseList({ rows, handleChange }) {
             : rows
           ).map((row, index) => (
             <TableRow key={index}>
-              <StyledTableCell align="center">{row.ExpenseId}</StyledTableCell>
-              <StyledTableCell align="center">{row.Item}</StyledTableCell>
-              <StyledTableCell align="center">{row.OrderBy}</StyledTableCell>
-              <StyledTableCell align="center">{row.OrderDate}</StyledTableCell>
-              <StyledTableCell align="center">{row.OrderFrom}</StyledTableCell>
-              <StyledTableCell align="center">
-                {row.Description}
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                {row.TotalAmount}
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                {row.PaymentMethod}
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                <Chip
-                  label={row.PaymentStatus}
-                  sx={{
-                    background:
-                      (row.PaymentStatus === "Clear" && "#8CC341") ||
-                      (row.PaymentStatus === "Pending" && "#E25822"),
-                  }}
-                />
-              </StyledTableCell>
-              <StyledTableCell
-                align="center"
-                onClick={() => handleView(row.id)}
-              >
-                <RemoveRedEyeRoundedIcon />
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                <ExpenseListMenu id={row.id} handleChange={handleChange} />
-              </StyledTableCell>
+              <StyledTableCell align="center">Name</StyledTableCell>
+              <StyledTableCell align="center">Leave Type</StyledTableCell>
+              <StyledTableCell align="center">Leave From</StyledTableCell>
+              <StyledTableCell align="center">OFF Days </StyledTableCell>
+              <StyledTableCell align="center">Status</StyledTableCell>
+              <StyledTableCell align="center">Reason</StyledTableCell>
+              <StyledTableCell align="center">Action</StyledTableCell>
             </TableRow>
           ))}
         </TableBody>

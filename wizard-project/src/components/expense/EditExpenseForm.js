@@ -18,75 +18,69 @@ const states2 = [
     label: "Clear",
   },
   {
-    value: "Due",
-    label: "Due",
+    value: "Pending",
+    label: "Pending",
   },
 ];
 
-const AddPaymentForm = ({
-  data,
-  setData,
-  handleSubmit,
-  ProjectId,
-  ClientId,
-}) => {
+const EditExpenseForm = ({ data, setData, handleSubmit, values }) => {
+  console.log(values);
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Project Id"
-          name="ProjectId"
+          name="Item"
+          label="Item"
+          defaultValue={values.Item}
           onChange={(event) =>
             setData({
               ...data,
               [event.target.name]: event.target.value,
             })
           }
-          required
-          select
-          SelectProps={{ native: true }}
-        >
-          {ProjectId.map((project) => (
-            <option key={project.ProjectId} value={project.ProjectId}>
-              {project.ProjectId}
-            </option>
-          ))}
-        </TextFieldMake>
+        />
       </Grid>
-
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Client Id"
-          name="ClientId"
+          name="OrderBy"
+          label="Order By"
+          defaultValue={values.OrderBy}
           onChange={(event) =>
             setData({
               ...data,
               [event.target.name]: event.target.value,
             })
           }
-          required
-          select
-          SelectProps={{ native: true }}
-        >
-          {ClientId.map((client) => (
-            <option key={client.ClientId} value={client.ClientId}>
-              {client.ClientId}
-            </option>
-          ))}
-        </TextFieldMake>
+        />
       </Grid>
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
+          variant="outlined"
+          name="OrderFrom"
+          label="Order From"
+          defaultValue={values.OrderFrom}
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          type="date"
           focused
           variant="outlined"
-          type="date"
-          label="Date"
-          name="Date"
+          name="OrderDate"
+          label="Order Date"
+          defaultValue={values.OrderDate}
           onChange={(event) =>
             setData({
               ...data,
@@ -98,10 +92,11 @@ const AddPaymentForm = ({
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
+          type="number"
           variant="outlined"
-          label="Total Amount"
           name="TotalAmount"
-          type="number"
+          label="Total Amount"
+          defaultValue={values.TotalAmount}
           onChange={(event) =>
             setData({
               ...data,
@@ -110,43 +105,13 @@ const AddPaymentForm = ({
           }
         />
       </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          label="Tax"
-          name="Tax"
-          type="number"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-        />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          label="Discount"
-          name="Discount"
-          type="number"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-        />
-      </Grid>
-
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           variant="outlined"
           label="Payment Method"
           name="PaymentMethod"
+          defaultValue={values.PaymentMethod}
           onChange={(event) =>
             setData({
               ...data,
@@ -170,6 +135,7 @@ const AddPaymentForm = ({
           variant="outlined"
           label="Payment Status"
           name="PaymentStatus"
+          defaultValue={values.PaymentStatus}
           onChange={(event) =>
             setData({
               ...data,
@@ -187,7 +153,23 @@ const AddPaymentForm = ({
           ))}
         </TextFieldMake>
       </Grid>
-
+      <Grid item xs={12}>
+        <TextFieldMake
+          fullWidth
+          multiline
+          rows={4}
+          variant="outlined"
+          name="Description"
+          label="Driscription"
+          defaultValue={values.Driscription}
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
       <Grid item xs={12} sx={{ height: "100%", my: "auto" }}>
         <Stack spacing={3} direction="row">
           <ButtonMake size="medium" type="submit" onClick={handleSubmit}>
@@ -202,4 +184,4 @@ const AddPaymentForm = ({
   );
 };
 
-export default AddPaymentForm;
+export default EditExpenseForm;

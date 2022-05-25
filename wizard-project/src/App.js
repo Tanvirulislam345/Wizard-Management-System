@@ -15,11 +15,15 @@ import ClientProfile from "./pages/ClientProfile";
 import Clients from "./pages/Clients";
 import EditClients from "./pages/EditClients";
 import EditEmployee from "./pages/EditEmployee";
+import EditExpense from "./pages/EditExpense";
+import EditPayment from "./pages/EditPayment";
 import EditProject from "./pages/EditProject";
 import EmployeeProfile from "./pages/EmployeeProfile";
 import Employees from "./pages/Employees";
 import Invoice from "./pages/Invoice";
-import LeaveType from "./pages/Leave/LeaveType";
+import AddLeave from "./pages/Leave/AddLeave";
+import AddLeaveType from "./pages/Leave/AddLeaveType";
+import Leave from "./pages/Leave/Leave";
 import PaymentView from "./pages/PaymentView";
 import ProjectDetails from "./pages/ProjectDetails";
 import Projects from "./pages/Projects";
@@ -63,11 +67,23 @@ function App() {
             <Route path="/addclient" element={<AddClients />} />
             <Route path="/editclient/:clientId" element={<EditClients />} />
             <Route path="/payment" element={<AllPayment />} />
-            <Route path="/payment/view/:paymentId" element={<Invoice />} />
+            <Route
+              path="/payment/update/:paymentId"
+              element={<EditPayment />}
+            />
+            <Route path="/payment/invoice/:invoiceId" element={<Invoice />} />
             <Route path="/addpayment" element={<AddPayment />} />
+
             <Route path="/expense" element={<AllExpense />} />
             <Route path="/addexpense" element={<AddExpense />} />
-            <Route path="/leave" element={<LeaveType />} />
+            <Route
+              path="/expense/update/:expenseId"
+              element={<EditExpense />}
+            />
+
+            <Route path="/leave" element={<Leave />} />
+            <Route path="/addleavetype" element={<AddLeaveType />} />
+            <Route path="/addleave" element={<AddLeave />} />
           </Routes>
         </Layout>
       </Router>

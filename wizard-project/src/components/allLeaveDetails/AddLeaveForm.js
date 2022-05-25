@@ -4,89 +4,54 @@ import { ButtonMake, TextFieldMake } from "../../styles/MetarialStyles";
 
 const states = [
   {
-    value: "cash",
-    label: "Cash",
+    value: "Active",
+    label: "Active",
   },
   {
-    value: "card",
-    label: "Card",
-  },
-];
-const states2 = [
-  {
-    value: "Clear",
-    label: "Clear",
-  },
-  {
-    value: "Due",
-    label: "Due",
+    value: "InActive",
+    label: "InActive",
   },
 ];
 
-const AddPaymentForm = ({
-  data,
-  setData,
-  handleSubmit,
-  ProjectId,
-  ClientId,
-}) => {
+const AddLeaveForm = ({ data, setData, handleSubmit }) => {
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Project Id"
-          name="ProjectId"
+          name="Name"
+          label="Name"
           onChange={(event) =>
             setData({
               ...data,
               [event.target.name]: event.target.value,
             })
           }
-          required
-          select
-          SelectProps={{ native: true }}
-        >
-          {ProjectId.map((project) => (
-            <option key={project.ProjectId} value={project.ProjectId}>
-              {project.ProjectId}
-            </option>
-          ))}
-        </TextFieldMake>
+        />
       </Grid>
-
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Client Id"
-          name="ClientId"
+          name="LeaveType"
+          label="Leave Type"
           onChange={(event) =>
             setData({
               ...data,
               [event.target.name]: event.target.value,
             })
           }
-          required
-          select
-          SelectProps={{ native: true }}
-        >
-          {ClientId.map((client) => (
-            <option key={client.ClientId} value={client.ClientId}>
-              {client.ClientId}
-            </option>
-          ))}
-        </TextFieldMake>
+        />
       </Grid>
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           focused
           variant="outlined"
+          name="LeaveFrom"
+          label="Leave From"
           type="date"
-          label="Date"
-          name="Date"
           onChange={(event) =>
             setData({
               ...data,
@@ -98,40 +63,11 @@ const AddPaymentForm = ({
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
+          focused
           variant="outlined"
-          label="Total Amount"
-          name="TotalAmount"
-          type="number"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-        />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          label="Tax"
-          name="Tax"
-          type="number"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-        />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          label="Discount"
-          name="Discount"
-          type="number"
+          name="LeaveTo"
+          label="Leave To"
+          type="date"
           onChange={(event) =>
             setData({
               ...data,
@@ -145,8 +81,8 @@ const AddPaymentForm = ({
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Payment Method"
-          name="PaymentMethod"
+          label="Status"
+          name="Status"
           onChange={(event) =>
             setData({
               ...data,
@@ -164,34 +100,27 @@ const AddPaymentForm = ({
           ))}
         </TextFieldMake>
       </Grid>
-      <Grid item xs={12} md={6}>
+
+      <Grid item xs={12}>
         <TextFieldMake
           fullWidth
+          multiline
+          rows={4}
           variant="outlined"
-          label="Payment Status"
-          name="PaymentStatus"
+          name="Description"
+          label="Driscription"
           onChange={(event) =>
             setData({
               ...data,
               [event.target.name]: event.target.value,
             })
           }
-          required
-          select
-          SelectProps={{ native: true }}
-        >
-          {states2.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextFieldMake>
+        />
       </Grid>
-
       <Grid item xs={12} sx={{ height: "100%", my: "auto" }}>
         <Stack spacing={3} direction="row">
           <ButtonMake size="medium" type="submit" onClick={handleSubmit}>
-            Send
+            Submit
           </ButtonMake>
           <ButtonMake size="medium" type="reset">
             Cancel
@@ -202,4 +131,4 @@ const AddPaymentForm = ({
   );
 };
 
-export default AddPaymentForm;
+export default AddLeaveForm;

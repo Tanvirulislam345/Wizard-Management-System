@@ -7544,6 +7544,11 @@
   "resolved" "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.10.tgz"
   "version" "6.0.10"
 
+"react-export-table-to-excel@^1.0.3":
+  "integrity" "sha512-bI1en/qb3dlaWbpElNj30fzipbOPqctIaXiIHIrO9J8bAEGAH11ngBu+EvTrwL+olFHiHroXYgwjlvpKfeo6lQ=="
+  "resolved" "https://registry.npmjs.org/react-export-table-to-excel/-/react-export-table-to-excel-1.0.3.tgz"
+  "version" "1.0.3"
+
 "react-file-base64@^1.0.3":
   "integrity" "sha1-QXTvp5RFsTmQLswnMPxBfv55y4g="
   "resolved" "https://registry.npmjs.org/react-file-base64/-/react-file-base64-1.0.3.tgz"

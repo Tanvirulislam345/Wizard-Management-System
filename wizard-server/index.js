@@ -330,7 +330,6 @@ app.get("/client/:clientId", (req, res) => {
 app.get("/projectclient/:clientId", (req, res) => {
   const id = req.params.clientId;
 
-  // console.log(`SELECT * FROM all_client WHERE ClientId='${id}'`);
   connection.query(
     `SELECT * FROM all_client WHERE ClientId='${id}'`,
     (err, result) => {
@@ -411,6 +410,44 @@ app.get("/allpayment", (req, res) => {
   });
 });
 
+app.get("/allpayment/:paymentId", (req, res) => {
+  const id = req.params.paymentId;
+
+  connection.query(
+    `SELECT * FROM all_payment WHERE id=${id}`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result[0]);
+      }
+    }
+  );
+  // res.json(true);
+});
+app.put("/allpayment/:paymentId", (req, res) => {
+  const id = req.params.paymentId;
+  const data = req.body;
+
+  const keys = Object.keys(data);
+
+  const sqlquery = `UPDATE all_payment SET ${keys.map(
+    (key) => key + " = ?"
+  )} WHERE id = ${id}`;
+
+  const value = keys.map((key) => {
+    return data[key];
+  });
+
+  connection.query(sqlquery, value, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
 app.delete("/allpayment/:paymentId", (req, res) => {
   const id = req.params.paymentId;
 
@@ -456,6 +493,45 @@ app.get("/allexpense", (req, res) => {
   });
 });
 
+app.get("/allexpense/:expenseId", (req, res) => {
+  const id = req.params.expenseId;
+
+  connection.query(
+    `SELECT * FROM all_expense WHERE id=${id}`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result[0]);
+      }
+    }
+  );
+  // res.json(true);
+});
+
+app.put("/allexpense/:expenseId", (req, res) => {
+  const id = req.params.expenseId;
+  const data = req.body;
+
+  const keys = Object.keys(data);
+
+  const sqlquery = `UPDATE all_expense SET ${keys.map(
+    (key) => key + " = ?"
+  )} WHERE id = ${id}`;
+
+  const value = keys.map((key) => {
+    return data[key];
+  });
+
+  connection.query(sqlquery, value, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
 app.delete("/allexpense/:expenseId", (req, res) => {
   const id = req.params.expenseId;
 
@@ -470,23 +546,27 @@ app.delete("/allexpense/:expenseId", (req, res) => {
 });
 
 app.post("/addattendence", (req, res) => {
-  const data = req.body;
-  const keys = Object.keys(data);
+  const datas = req.body;
+  const keys = Object.keys(datas[0]);
 
   const sqlquery = `INSERT INTO all_attendence (${keys.map(
     (key) => key
   )}) VALUES (${keys.map((key) => "?")})`;
 
-  const value = keys.map((key) => {
-    return data[key];
-  });
-
-  connection.query(sqlquery, value, (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(result);
-    }
+  datas.map((data, index) => {
+    const value = keys.map((key) => {
+      return data[key];
+    });
+    // console.log(value);
+    connection.query(sqlquery, value, (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        if (datas.length - 1 === index) {
+          res.json(result);
+        }
+      }
+    });
   });
 });
 

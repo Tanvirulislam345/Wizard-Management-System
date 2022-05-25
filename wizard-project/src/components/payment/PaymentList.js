@@ -20,7 +20,7 @@ export default function PaymentList({ rows, handleChange }) {
   const navigate = useNavigate();
 
   const handleView = (id) => {
-    navigate(`/payment/view/${id}`);
+    navigate(`/payment/invoice/${id}`);
   };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -57,13 +57,14 @@ export default function PaymentList({ rows, handleChange }) {
       >
         <TableHead>
           <TableRow>
+            <StyledTableCell align="center">Bill No</StyledTableCell>
             <StyledTableCell align="center">Client Id</StyledTableCell>
-            <StyledTableCell align="center">Project Manager</StyledTableCell>
+            <StyledTableCell align="center">Project Id</StyledTableCell>
             <StyledTableCell align="center">Date</StyledTableCell>
-            <StyledTableCell align="center">Charges</StyledTableCell>
+            <StyledTableCell align="center">Total Amount</StyledTableCell>
             <StyledTableCell align="center">Tax</StyledTableCell>
             <StyledTableCell align="center">Discount</StyledTableCell>
-            <StyledTableCell align="center">Total</StyledTableCell>
+
             <StyledTableCell align="center">Method</StyledTableCell>
             <StyledTableCell align="center"> Payment Status</StyledTableCell>
             <StyledTableCell align="center"> View</StyledTableCell>
@@ -78,19 +79,15 @@ export default function PaymentList({ rows, handleChange }) {
             : rows
           ).map((row, index) => (
             <TableRow key={index}>
+              <StyledTableCell align="center">{row.BillNo}</StyledTableCell>
               <StyledTableCell align="center">{row.ClientId}</StyledTableCell>
-              <StyledTableCell align="center">
-                {row.ProjectManager}
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                {row.ProjectDate}
-              </StyledTableCell>
-              <StyledTableCell align="center">{row.Charges}</StyledTableCell>
-              <StyledTableCell align="center">{row.Tax}</StyledTableCell>
-              <StyledTableCell align="center">{row.Discount}</StyledTableCell>
+              <StyledTableCell align="center">{row.ProjectId}</StyledTableCell>
+              <StyledTableCell align="center">{row.Date}</StyledTableCell>
               <StyledTableCell align="center">
                 {row.TotalAmount}
               </StyledTableCell>
+              <StyledTableCell align="center">{row.Tax}</StyledTableCell>
+              <StyledTableCell align="center">{row.Discount}</StyledTableCell>
               <StyledTableCell align="center">
                 {row.PaymentMethod}
               </StyledTableCell>
@@ -104,7 +101,10 @@ export default function PaymentList({ rows, handleChange }) {
                   }}
                 />
               </StyledTableCell>
-              <StyledTableCell align="center" onClick={() => handleView(index)}>
+              <StyledTableCell
+                align="center"
+                onClick={() => handleView(row.id)}
+              >
                 <RemoveRedEyeRoundedIcon />
               </StyledTableCell>
               <StyledTableCell align="center">

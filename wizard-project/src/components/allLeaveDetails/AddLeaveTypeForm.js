@@ -4,34 +4,24 @@ import { ButtonMake, TextFieldMake } from "../../styles/MetarialStyles";
 
 const states = [
   {
-    value: "cash",
-    label: "Cash",
+    value: "Active",
+    label: "Active",
   },
   {
-    value: "card",
-    label: "Card",
-  },
-];
-const states2 = [
-  {
-    value: "Clear",
-    label: "Clear",
-  },
-  {
-    value: "Pending",
-    label: "Pending",
+    value: "InActive",
+    label: "InActive",
   },
 ];
 
-const AddExpenseForm = ({ data, setData, handleSubmit }) => {
+const AddLeaveTypeForm = ({ data, setData, handleSubmit }) => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           variant="outlined"
-          name="Item"
-          label="Item"
+          name="LeaveName"
+          label="Leave Name"
           onChange={(event) =>
             setData({
               ...data,
@@ -44,8 +34,8 @@ const AddExpenseForm = ({ data, setData, handleSubmit }) => {
         <TextFieldMake
           fullWidth
           variant="outlined"
-          name="OrderBy"
-          label="Order By"
+          name="LeaveType"
+          label="Leave Type"
           onChange={(event) =>
             setData({
               ...data,
@@ -58,39 +48,9 @@ const AddExpenseForm = ({ data, setData, handleSubmit }) => {
         <TextFieldMake
           fullWidth
           variant="outlined"
-          name="OrderFrom"
-          label="Order From"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-        />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          type="date"
-          focused
-          variant="outlined"
-          name="OrderDate"
-          label="Order Date"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-        />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
+          name="LeaveTime"
+          label="Leave Time"
           type="number"
-          variant="outlined"
-          name="TotalAmount"
-          label="Total Amount"
           onChange={(event) =>
             setData({
               ...data,
@@ -99,12 +59,13 @@ const AddExpenseForm = ({ data, setData, handleSubmit }) => {
           }
         />
       </Grid>
+
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Payment Method"
-          name="PaymentMethod"
+          label="Status"
+          name="Status"
           onChange={(event) =>
             setData({
               ...data,
@@ -122,29 +83,7 @@ const AddExpenseForm = ({ data, setData, handleSubmit }) => {
           ))}
         </TextFieldMake>
       </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          variant="outlined"
-          label="Payment Status"
-          name="PaymentStatus"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-          required
-          select
-          SelectProps={{ native: true }}
-        >
-          {states2.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextFieldMake>
-      </Grid>
+
       <Grid item xs={12}>
         <TextFieldMake
           fullWidth
@@ -164,7 +103,7 @@ const AddExpenseForm = ({ data, setData, handleSubmit }) => {
       <Grid item xs={12} sx={{ height: "100%", my: "auto" }}>
         <Stack spacing={3} direction="row">
           <ButtonMake size="medium" type="submit" onClick={handleSubmit}>
-            Send
+            Submit
           </ButtonMake>
           <ButtonMake size="medium" type="reset">
             Cancel
@@ -175,4 +114,4 @@ const AddExpenseForm = ({ data, setData, handleSubmit }) => {
   );
 };
 
-export default AddExpenseForm;
+export default AddLeaveTypeForm;

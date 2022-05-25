@@ -5,7 +5,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Link } from "react-router-dom";
 import { MenuItemMake } from "../../styles/MetarialStyles";
 
-export default function PaymentListMenu({ id, handleChange }) {
+export default function ExpenseListMenu({ id, handleChange }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {

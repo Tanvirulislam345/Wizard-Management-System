@@ -175,11 +175,11 @@ const EditProjectForm = ({
 
       <Grid item xs={12} md={6}>
         <Multiselect
-          options={team} // Options to display in the dropdown
-          selectedValues={isdata} // Preselected value to persist in dropdown
-          onSelect={(selectedList) => setTeamMember(selectedList)} // Function will trigger on select event
-          onRemove={(selectedList) => setTeamMember(selectedList)} // Function will trigger on remove event
-          displayValue="name" // Property name to display in the dropdown options
+          options={team}
+          selectedValues={isdata}
+          onSelect={(selectedList) => setTeamMember(selectedList)}
+          onRemove={(selectedList) => setTeamMember(selectedList)}
+          displayValue="name"
           placeholder="Team Member"
           style={StyleMultiSelector}
         />

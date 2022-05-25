@@ -6,8 +6,10 @@ import * as XLSX from "xlsx";
 import AttendenceUploadList from "../components/attendence/AttendenceUploadList";
 import { Box, Stack } from "@mui/material";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddAttendence = () => {
+  const navigate = useNavigate();
   // on change states
   const [excelFile, setExcelFile] = useState(null);
   const [excelFileError, setExcelFileError] = useState(null);
@@ -39,9 +41,6 @@ const AddAttendence = () => {
   };
 
   const handleSubmit = () => {
-    // const date = new Date();
-    // console.log(new Intl.DateTimeFormat(["ban"]).format(date));
-
     if (excelFile !== null) {
       const workbook = XLSX.read(excelFile, { type: "buffer" });
       const worksheetName = workbook.SheetNames[0];
@@ -67,7 +66,7 @@ const AddAttendence = () => {
     if (value !== undefined) {
       axios.post("http://localhost:9000/addattendence", value).then((res) => {
         if (res.status === 200) {
-          //   navigate("/client");
+          navigate("/attendence");
         }
       });
     }

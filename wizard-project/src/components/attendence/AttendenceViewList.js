@@ -11,7 +11,6 @@ import Paper from "@mui/material/Paper";
 import { TableHead } from "@mui/material";
 
 export default function AttendenceViewList({ rows }) {
-  console.log(rows);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -52,10 +51,9 @@ export default function AttendenceViewList({ rows }) {
           <TableRow>
             <StyledTableCell align="center">Employee Id</StyledTableCell>
             <StyledTableCell align="center">Date</StyledTableCell>
-            <StyledTableCell align="center">Date</StyledTableCell>
             <StyledTableCell align="center">Name</StyledTableCell>
-            <StyledTableCell align="center">In Time</StyledTableCell>
-            <StyledTableCell align="center">Out Time</StyledTableCell>
+            <StyledTableCell align="center">In Time (AM)</StyledTableCell>
+            <StyledTableCell align="center">Out Time (PM)</StyledTableCell>
             <StyledTableCell align="center">Status</StyledTableCell>
           </TableRow>
         </TableHead>
@@ -68,8 +66,8 @@ export default function AttendenceViewList({ rows }) {
               <StyledTableCell align="center">{row.EmployeeId}</StyledTableCell>
               <StyledTableCell align="center">{row.Date}</StyledTableCell>
               <StyledTableCell align="center">{row.Name}</StyledTableCell>
-              <StyledTableCell align="center">{row.InTime}</StyledTableCell>
-              <StyledTableCell align="center">{row.OutTime}</StyledTableCell>
+              <StyledTableCell align="center">{row.InTime} AM</StyledTableCell>
+              <StyledTableCell align="center">{row.OutTime} PM</StyledTableCell>
               <StyledTableCell align="center">{row.Status}</StyledTableCell>
             </TableRow>
           ))}

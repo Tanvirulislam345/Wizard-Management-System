@@ -1,34 +1,35 @@
 import React, { useEffect, useState } from "react";
 import SubNav2 from "../components/subNav/SubNav2";
 import { LayoutContiner } from "../styles/MetarialStyles";
-import AddPaymentForm from "../components/payment/AddPaymentForm";
+import EditPaymentForm from "../components/payment/EditPaymentForm";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const AddPayment = () => {
+const EditPayment = () => {
+  const [values, setValues] = useState(null);
   const [data, setData] = useState(null);
   const [clientId, setClientId] = useState(null);
   const [projectId, setProjectId] = useState(null);
 
+  const { paymentId } = useParams();
   const navigate = useNavigate();
+
   const handleSubmit = () => {
-    const newData = {
-      ...data,
-      BillNo: `WizBill22${Math.random().toString(36).slice(7)}`,
-    };
-    if (data !== null) {
-      axios.post(`http://localhost:9000/addpayment`, newData).then((res) => {
+    axios
+      .put(`http://localhost:9000/allpayment/${paymentId}`, data)
+      .then((res) => {
         if (res.status === 200) {
           navigate("/payment");
         }
       });
-      console.log(newData);
-    } else {
-      alert("please fillup all input");
-    }
+    console.log(data);
   };
 
   useEffect(() => {
+    axios
+      .get(`http://localhost:9000/allpayment/${paymentId}`)
+      .then((res) => setValues(res.data));
+
     axios
       .get("http://localhost:9000/client")
       .then((res) => setClientId(res.data));
@@ -36,22 +37,23 @@ const AddPayment = () => {
     axios
       .get("http://localhost:9000/allproject")
       .then((res) => setProjectId(res.data));
-  }, []);
+  }, [paymentId]);
 
   return (
     <LayoutContiner>
       <SubNav2 project="Add Payment" />
-      {clientId !== null && projectId !== null && (
-        <AddPaymentForm
+      {values !== null && clientId !== null && projectId !== null && (
+        <EditPaymentForm
           data={data}
           setData={setData}
           handleSubmit={handleSubmit}
           ProjectId={projectId}
           ClientId={clientId}
+          values={values}
         />
       )}
     </LayoutContiner>
   );
 };
 
-export default AddPayment;
+export default EditPayment;
