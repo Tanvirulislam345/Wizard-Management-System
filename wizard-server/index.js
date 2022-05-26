@@ -65,8 +65,6 @@ app.post("/addproject", upload.single("File"), (req, res) => {
     ...newData,
     File,
   };
-  // console.log(newData);
-  // console.log(data);
 
   const keys = Object.keys(data);
 
@@ -85,7 +83,6 @@ app.post("/addproject", upload.single("File"), (req, res) => {
       res.json(result);
     }
   });
-  // res.json(true);
 });
 
 app.get("/allproject", (req, res) => {
@@ -96,8 +93,6 @@ app.get("/allproject", (req, res) => {
       res.json(result);
     }
   });
-  // console.log(query);
-  // res.json(true);
 });
 app.get("/allproject/:projectcategori", (req, res) => {
   const status = req.params.projectcategori;
@@ -159,22 +154,27 @@ app.put("/updateproject/:projectId", (req, res) => {
     return data[key];
   });
 
-  // for (const key in data) {
-  //   console.log(key, "=", data[key]);
-  // }
-  // console.log(keys);
-  // console.log(sqlquery);
-  // console.log(value);
-
   connection.query(sqlquery, value, (err, result) => {
     if (err) {
       console.log(err);
     } else {
-      // console.log(result);
       res.json(result);
     }
   });
-  // res.json(true);
+});
+app.put("/updateprojectstatus/:projectId", (req, res) => {
+  const id = req.params.projectId;
+  const data = req.body;
+  console.log(id);
+  console.log(data);
+  const sqlquery = `UPDATE all_projects SET  "Phases" = ${data} WHERE id = ${id}`;
+  connection.query(sqlquery, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
 });
 
 app.delete("/allproject/delete/:projectId", (req, res) => {
@@ -572,6 +572,168 @@ app.post("/addattendence", (req, res) => {
 
 app.get("/allattendence", (req, res) => {
   connection.query("SELECT * FROM all_attendence WHERE 1", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+app.post("/addleavetype", (req, res) => {
+  const data = req.body;
+  const keys = Object.keys(data);
+
+  const sqlquery = `INSERT INTO all_leavetype (${keys.map(
+    (key) => key
+  )}) VALUES (${keys.map((key) => "?")})`;
+
+  const value = keys.map((key) => {
+    return data[key];
+  });
+
+  connection.query(sqlquery, value, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(result);
+      res.json(result);
+    }
+  });
+});
+
+app.get("/leavetype", (req, res) => {
+  connection.query("SELECT * FROM all_leavetype WHERE 1", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+app.get("/leavetype/:leavetypeId", (req, res) => {
+  const id = req.params.leavetypeId;
+  connection.query(
+    `SELECT * FROM all_leavetype WHERE id=${id}`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result[0]);
+      }
+    }
+  );
+});
+
+app.put("/leavetype/:leavetypeId", (req, res) => {
+  const id = req.params.leavetypeId;
+  const data = req.body;
+
+  const keys = Object.keys(data);
+
+  const sqlquery = `UPDATE all_leavetype SET ${keys.map(
+    (key) => key + " = ?"
+  )} WHERE id = ${id}`;
+
+  const value = keys.map((key) => {
+    return data[key];
+  });
+
+  connection.query(sqlquery, value, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+app.delete("/leavetype/:leavetypeId", (req, res) => {
+  const id = req.params.leavetypeId;
+
+  connection.query(
+    `DELETE FROM all_leavetype WHERE id=${id}`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result);
+      }
+    }
+  );
+});
+
+app.post("/addleave", (req, res) => {
+  const data = req.body;
+  const keys = Object.keys(data);
+
+  const sqlquery = `INSERT INTO all_leave (${keys.map(
+    (key) => key
+  )}) VALUES (${keys.map((key) => "?")})`;
+
+  const value = keys.map((key) => {
+    return data[key];
+  });
+
+  connection.query(sqlquery, value, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(result);
+      res.json(result);
+    }
+  });
+});
+
+app.get("/leave", (req, res) => {
+  connection.query("SELECT * FROM all_leave WHERE 1", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+app.get("/leave/:leaveId", (req, res) => {
+  const id = req.params.leaveId;
+  connection.query(`SELECT * FROM all_leave WHERE id=${id}`, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result[0]);
+    }
+  });
+});
+
+app.put("/leave/:leaveId", (req, res) => {
+  const id = req.params.leaveId;
+  const data = req.body;
+
+  const keys = Object.keys(data);
+
+  const sqlquery = `UPDATE all_leave SET ${keys.map(
+    (key) => key + " = ?"
+  )} WHERE id = ${id}`;
+
+  const value = keys.map((key) => {
+    return data[key];
+  });
+
+  connection.query(sqlquery, value, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+app.delete("/leave/:leaveId", (req, res) => {
+  const id = req.params.leaveId;
+
+  connection.query(`DELETE FROM all_leave WHERE id=${id}`, (err, result) => {
     if (err) {
       console.log(err);
     } else {

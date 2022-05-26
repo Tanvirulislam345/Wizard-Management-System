@@ -56,7 +56,7 @@ const AddAttendence = () => {
     const value = excelData?.map((value) => {
       if (value.InTime === 0) {
         return { ...value, Status: "absent" };
-      } else if (value.InTime > 10.3) {
+      } else if (value.InTime > 10.15) {
         return { ...value, Status: "late" };
       } else {
         return { ...value, Status: "present" };

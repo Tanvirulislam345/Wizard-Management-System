@@ -8,6 +8,9 @@ import {
   FaUserSecret,
   FaUsers,
   FaDollyFlatbed,
+  FaBuffer,
+  FaCaretSquareLeft,
+  FaMoneyCheck,
 } from "react-icons/fa";
 
 const items = [
@@ -38,17 +41,17 @@ const items = [
   },
   {
     href: "/expense",
-    icon: <FaDonate fontSize="small" />,
+    icon: <FaMoneyCheck fontSize="small" />,
     title: "Expense",
   },
   {
     href: "/leave",
-    icon: <FaDonate fontSize="small" />,
+    icon: <FaCaretSquareLeft fontSize="small" />,
     title: "Leave",
   },
   {
     href: "/attendence",
-    icon: <FaDonate fontSize="small" />,
+    icon: <FaBuffer fontSize="small" />,
     title: "Attendence",
   },
 ];

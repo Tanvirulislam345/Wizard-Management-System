@@ -20,6 +20,7 @@ const ProjectInfo = ({ clientDetails, handleUpdate }) => {
     TeamMember,
     Description,
     Phases,
+    id,
   } = clientDetails;
   const allmember = JSON.parse(TeamMember).map((data) => data.name);
   const phases = JSON.parse(Phases);
@@ -50,7 +51,11 @@ const ProjectInfo = ({ clientDetails, handleUpdate }) => {
           <SinglePlainText2>{data.phaseStart}</SinglePlainText2>
           <SinglePlainText2>{data.phaseEnd}</SinglePlainText2>
           <SinglePlainText2>{data.workPersent}%</SinglePlainText2>
-          <PhasesListMenu data={data} handleUpdate={handleUpdate} />
+          <PhasesListMenu
+            data={data}
+            value={index}
+            handleUpdate={handleUpdate}
+          />
         </PlainTextContainer2>
       ))}
 

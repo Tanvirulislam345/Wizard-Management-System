@@ -23,6 +23,8 @@ import Employees from "./pages/Employees";
 import Invoice from "./pages/Invoice";
 import AddLeave from "./pages/Leave/AddLeave";
 import AddLeaveType from "./pages/Leave/AddLeaveType";
+import EditLeave from "./pages/Leave/EditLeave";
+import EditLeaveType from "./pages/Leave/EditLeaveType";
 import Leave from "./pages/Leave/Leave";
 import PaymentView from "./pages/PaymentView";
 import ProjectDetails from "./pages/ProjectDetails";
@@ -84,6 +86,11 @@ function App() {
             <Route path="/leave" element={<Leave />} />
             <Route path="/addleavetype" element={<AddLeaveType />} />
             <Route path="/addleave" element={<AddLeave />} />
+            <Route path="/leave/update/:leaveId" element={<EditLeave />} />
+            <Route
+              path="/leavetype/update/:leavetypeId"
+              element={<EditLeaveType />}
+            />
           </Routes>
         </Layout>
       </Router>

@@ -11,7 +11,6 @@ const DynamicAddInput = ({ inputList, setInputList }) => {
     list[index]["id"] = index + 1;
     list[index]["status"] = "Pendding";
     setInputList(list);
-    console.log(inputList);
   };
 
   // handle click event of the Remove button
@@ -23,7 +22,10 @@ const DynamicAddInput = ({ inputList, setInputList }) => {
 
   // handle click event of the Add button
   const handleAddClick = () => {
-    setInputList([...inputList, { phaseStart: "", phaseEnd: "" }]);
+    setInputList([
+      ...inputList,
+      { phaseStart: "", phaseEnd: "", workPersent: "" },
+    ]);
   };
   return (
     <Grid item xs={12}>

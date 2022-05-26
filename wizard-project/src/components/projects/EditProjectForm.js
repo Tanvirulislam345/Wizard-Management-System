@@ -7,36 +7,67 @@ import {
 } from "../../styles/MetarialStyles";
 import Multiselect from "multiselect-react-dropdown";
 import DynamicAddInput from "./DynamicAddInput";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const states = [
-  {
-    value: "cash",
-    label: "Cash",
-  },
-  {
-    value: "card",
-    label: "Card",
-  },
+const Categoris = [
+  { name: "Software Development" },
+  { name: "Web Development" },
+  { name: "App Development" },
+];
+const ClientId = [
+  { ClientId: 1 },
+  { ClientId: 3 },
+  { ClientId: 4 },
+  { ClientId: 5 },
 ];
 
-const EditProjectForm = ({
-  Categoris,
-  ClientId,
-  ProjectTools,
-  tools,
-  setTools,
-  team,
-  teamMember,
-  setTeamMember,
-  data,
-  setData,
-  values,
-  setPhases,
-  handleSubmit,
-}) => {
+const ProjectTools = [
+  { name: "Node js" },
+  { name: "React js" },
+  { name: "Next js" },
+  { name: "Laravel" },
+  { name: "Php" },
+  { name: "Mysql" },
+  { name: "Mongodb" },
+];
+const team = [
+  { name: "Himel", id: 1 },
+  { name: "Mahedi", id: 3 },
+  { name: "Tanim", id: 4 },
+  { name: "Tanvir", id: 5 },
+];
+
+const EditProjectForm = ({ values, projectId }) => {
+  const navigation = useNavigate();
+  const [data, setData] = useState(null);
+  const [teamMember, setTeamMember] = useState(null);
+  const [tools, setTools] = useState(null);
+  const istools = JSON.parse(values.ProjectTools);
   const isdata = JSON.parse(values.TeamMember);
   const isPhases = JSON.parse(values.Phases);
   const [inputList, setInputList] = useState(isPhases);
+
+  const handleSubmit = () => {
+    const newData = {
+      ...data,
+      TeamMember:
+        teamMember === null
+          ? JSON.stringify(isdata)
+          : JSON.stringify(teamMember),
+      ProjectTools:
+        tools === null ? JSON.stringify(istools) : JSON.stringify(tools),
+      Phases: JSON.stringify(inputList),
+    };
+
+    axios
+      .put(`http://localhost:9000/updateproject/${projectId}`, newData)
+      .then((res) => {
+        if (res.status === 200) {
+          navigation("/project");
+        }
+      });
+  };
 
   return (
     <Grid container spacing={3}>
@@ -108,16 +139,7 @@ const EditProjectForm = ({
               [event.target.name]: event.target.value,
             })
           }
-          required
-          select
-          SelectProps={{ native: true }}
-        >
-          {ClientId.map((client, index) => (
-            <option key={index} value={client.ClientId}>
-              {client.ClientId}
-            </option>
-          ))}
-        </TextFieldMake>
+        />
       </Grid>
       <Grid item xs={12} md={6}>
         <TextFieldMake
@@ -139,7 +161,7 @@ const EditProjectForm = ({
       <Grid item xs={12} md={6}>
         <Multiselect
           options={ProjectTools} // Options to display in the dropdown
-          selectedValues={tools} // Preselected value to persist in dropdown
+          selectedValues={istools} // Preselected value to persist in dropdown
           onSelect={(selectedList) => setTools(selectedList)} // Function will trigger on select event
           onRemove={(selectedList) => setTools(selectedList)} // Function will trigger on remove event
           displayValue="name" // Property name to display in the dropdown options

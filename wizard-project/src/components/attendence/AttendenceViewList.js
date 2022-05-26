@@ -8,7 +8,7 @@ import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { TableHead } from "@mui/material";
+import { Chip, TableHead } from "@mui/material";
 
 export default function AttendenceViewList({ rows }) {
   const [page, setPage] = React.useState(0);
@@ -68,7 +68,19 @@ export default function AttendenceViewList({ rows }) {
               <StyledTableCell align="center">{row.Name}</StyledTableCell>
               <StyledTableCell align="center">{row.InTime} AM</StyledTableCell>
               <StyledTableCell align="center">{row.OutTime} PM</StyledTableCell>
-              <StyledTableCell align="center">{row.Status}</StyledTableCell>
+              <StyledTableCell align="center">
+                <Chip
+                  label={row.Status}
+                  sx={{
+                    background:
+                      (row.Status === "present" && "#55D32A") ||
+                      (row.Status === "late" && "#C70039") ||
+                      (row.Status === "absent" && "#FF5733"),
+                    color: "white",
+                    width: "100px",
+                  }}
+                />
+              </StyledTableCell>
             </TableRow>
           ))}
         </TableBody>

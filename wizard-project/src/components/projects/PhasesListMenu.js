@@ -3,7 +3,7 @@ import Menu from "@mui/material/Menu";
 
 import { BigButtonMake, MenuItemMake } from "../../styles/MetarialStyles";
 
-export default function PhasesListMenu({ data, handleUpdate }) {
+export default function PhasesListMenu({ data, value, handleUpdate }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -14,7 +14,7 @@ export default function PhasesListMenu({ data, handleUpdate }) {
   };
 
   const projectCategori = [
-    { status: "Running" },
+    { status: "Stop" },
     { status: "Done" },
     { status: "Late" },
   ];
@@ -22,16 +22,6 @@ export default function PhasesListMenu({ data, handleUpdate }) {
   return (
     <div>
       <BigButtonMake onClick={handleClick}>{data.status}</BigButtonMake>
-      {/* <IconButton
-        aria-label="more"
-        id="long-button"
-        aria-controls={open ? "long-menu" : undefined}
-        aria-expanded={open ? "true" : undefined}
-        aria-haspopup="true"
-        onClick={handleClick}
-      >
-        <MoreVertIcon sx={{ color: "white" }} />
-      </IconButton> */}
       <Menu
         id="long-menu"
         MenuListProps={{
@@ -44,9 +34,7 @@ export default function PhasesListMenu({ data, handleUpdate }) {
         {projectCategori?.map((category, index) => (
           <MenuItemMake
             key={index}
-            onClick={() =>
-              handleUpdate(data.id, category.status) && handleClose
-            }
+            onClick={() => handleUpdate(value, category?.status)}
           >
             {category.status}
           </MenuItemMake>

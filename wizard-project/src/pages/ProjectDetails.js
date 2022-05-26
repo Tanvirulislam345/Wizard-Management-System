@@ -7,21 +7,33 @@ import ProjectInfo from "../components/projects/ProjectInfo";
 import Files from "../components/shared/Files/Files";
 import HeadingFormat from "../components/shared/HeadingFormat/HeadingFormat";
 import SubNav2 from "../components/subNav/SubNav2";
-import { BigButtonMake, LayoutContiner } from "../styles/MetarialStyles";
+import { LayoutContiner } from "../styles/MetarialStyles";
 import ClientDetailsPage from "./ClientDetailsPage";
 
 const ProjectDetails = () => {
   const { projectDetailsId } = useParams();
   const [clientDetails, setClientDetails] = useState(null);
+  const [status, setStatus] = useState(false);
 
   useEffect(() => {
     axios
       .get(`http://localhost:9000/project/${projectDetailsId}`)
       .then((res) => setClientDetails(res.data));
-  }, [projectDetailsId]);
+  }, [projectDetailsId, status]);
 
-  const handleUpdate = (id, status) => {
-    console.log(id, status);
+  const handleUpdate = (id, value) => {
+    const data = JSON.parse(clientDetails?.Phases);
+    data[id].status = value;
+    const newData = JSON.stringify(data);
+    console.log(newData);
+    axios
+      .put(
+        `http://localhost:9000/updateprojectstatus/${projectDetailsId}`,
+        newData
+      )
+      .then((res) => {
+        console.log(res);
+      });
   };
 
   return (
@@ -31,7 +43,10 @@ const ProjectDetails = () => {
         <Grid spacing={2} container>
           <Grid item xs={12} md={7}>
             <HeadingFormat title="Details">
-              <ProjectInfo clientDetails={clientDetails} />
+              <ProjectInfo
+                clientDetails={clientDetails}
+                handleUpdate={handleUpdate}
+              />
             </HeadingFormat>
           </Grid>
           <Grid item xs={12} md={5}>

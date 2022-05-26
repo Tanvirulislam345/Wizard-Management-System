@@ -1,0 +1,4 @@
+const allToopingNames = tooping.reduce(
+			(previous, current) => previous + current?.ToopingName + ",",
+			""
+		);

@@ -9,6 +9,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Chip, TableHead } from "@mui/material";
+import LeaveMenuList from "./LeaveMenuList";
 
 export default function AllLeave({ rows, handleChange }) {
   const [page, setPage] = React.useState(0);
@@ -48,12 +49,12 @@ export default function AllLeave({ rows, handleChange }) {
       >
         <TableHead>
           <TableRow>
-            <StyledTableCell align="center">Name</StyledTableCell>
+            <StyledTableCell align="center">Emloyee Id</StyledTableCell>
             <StyledTableCell align="center">Leave Type</StyledTableCell>
             <StyledTableCell align="center">Leave From</StyledTableCell>
-            <StyledTableCell align="center">OFF Days </StyledTableCell>
-            <StyledTableCell align="center">Status</StyledTableCell>
+            <StyledTableCell align="center">Leave To</StyledTableCell>
             <StyledTableCell align="center">Reason</StyledTableCell>
+            <StyledTableCell align="center">Status</StyledTableCell>
             <StyledTableCell align="center">Action</StyledTableCell>
           </TableRow>
         </TableHead>
@@ -63,13 +64,29 @@ export default function AllLeave({ rows, handleChange }) {
             : rows
           ).map((row, index) => (
             <TableRow key={index}>
-              <StyledTableCell align="center">Name</StyledTableCell>
-              <StyledTableCell align="center">Leave Type</StyledTableCell>
-              <StyledTableCell align="center">Leave From</StyledTableCell>
-              <StyledTableCell align="center">OFF Days </StyledTableCell>
-              <StyledTableCell align="center">Status</StyledTableCell>
-              <StyledTableCell align="center">Reason</StyledTableCell>
-              <StyledTableCell align="center">Action</StyledTableCell>
+              <StyledTableCell align="center">{row.EmployeeId}</StyledTableCell>
+              <StyledTableCell align="center">{row.LeaveType}</StyledTableCell>
+              <StyledTableCell align="center">{row.LeaveFrom}</StyledTableCell>
+              <StyledTableCell align="center">{row.LeaveTo}</StyledTableCell>
+              <StyledTableCell align="center">
+                {row.Description}
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                <Chip
+                  label={row.Status}
+                  sx={{
+                    background:
+                      (row.Status === "Pendding" && "#FFC300") ||
+                      (row.Status === "Approved" && "#55D32A") ||
+                      (row.Status === "Rejected" && "#FF5733"),
+                    color: "white",
+                    width: "100px",
+                  }}
+                />
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                <LeaveMenuList id={row.id} handleChange={handleChange} />
+              </StyledTableCell>
             </TableRow>
           ))}
         </TableBody>

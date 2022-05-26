@@ -98,6 +98,7 @@ export default function PaymentList({ rows, handleChange }) {
                     background:
                       (row.PaymentStatus === "Pending" && "#E25822") ||
                       (row.PaymentStatus === "Clear" && "#8CC341"),
+                    width: "100px",
                   }}
                 />
               </StyledTableCell>

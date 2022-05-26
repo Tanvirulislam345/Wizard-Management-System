@@ -9,6 +9,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Chip, TableHead } from "@mui/material";
+import LeaveTypeMenuList from "./LeaveTypeMenuList";
 
 export default function LeaveTypeList({ rows, handleChange }) {
   const [page, setPage] = React.useState(0);
@@ -62,12 +63,27 @@ export default function LeaveTypeList({ rows, handleChange }) {
             : rows
           ).map((row, index) => (
             <TableRow key={index}>
-              <StyledTableCell align="center">Leave Name</StyledTableCell>
-              <StyledTableCell align="center">Leave Type</StyledTableCell>
-              <StyledTableCell align="center">Leave Time</StyledTableCell>
-              <StyledTableCell align="center">Status</StyledTableCell>
-              <StyledTableCell align="center">Note</StyledTableCell>
-              <StyledTableCell align="center">Action</StyledTableCell>
+              <StyledTableCell align="center">{row.LeaveName}</StyledTableCell>
+              <StyledTableCell align="center">{row.LeaveType}</StyledTableCell>
+              <StyledTableCell align="center">{row.LeaveTime}</StyledTableCell>
+              <StyledTableCell align="center">
+                <Chip
+                  label={row.Status}
+                  sx={{
+                    background:
+                      (row.Status === "Active" && "#55D32A") ||
+                      (row.Status === "InActive" && "#FF5733"),
+                    color: "white",
+                    width: "90px",
+                  }}
+                />
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                {row.Description}
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                <LeaveTypeMenuList id={row.id} handleChange={handleChange} />
+              </StyledTableCell>
             </TableRow>
           ))}
         </TableBody>

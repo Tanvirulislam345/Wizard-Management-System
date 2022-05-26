@@ -99,6 +99,7 @@ export default function ExpenseList({ rows, handleChange }) {
                     background:
                       (row.PaymentStatus === "Clear" && "#8CC341") ||
                       (row.PaymentStatus === "Pending" && "#E25822"),
+                    width: "100px",
                   }}
                 />
               </StyledTableCell>
