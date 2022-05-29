@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import CategoriProject from "../components/projects/CategoriProject";
 import ListProject from "../components/projects/ListProject";
 import SubNav from "../components/subNav/SubNav";
-import { useFatch } from "../customHooks/useFatch";
+import { useFatch, useFatchData } from "../customHooks/useFatch";
 import { LayoutContiner } from "../styles/MetarialStyles";
 
 const Projects = () => {
@@ -29,6 +29,7 @@ const Projects = () => {
   ];
 
   const [isCategori, setCategori] = useState(projectCategori[0].name);
+  const [changeState, setChnge] = useState(false);
   const navigate = useNavigate();
 
   //using custom hooks
@@ -36,7 +37,6 @@ const Projects = () => {
     `http://localhost:9000/allproject/${isCategori}`
   );
 
-  // console.log(projects);
   const handleProject = (id, status) => {
     const values = {
       ProjectStatus: status,

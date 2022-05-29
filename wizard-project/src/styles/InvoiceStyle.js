@@ -84,7 +84,7 @@ export const InvoiceButtonStyle = styled(Box)({
   hight: "32px",
   borderRadius: "3px",
   backgroundColor: "#3F51B5",
-
+  fontFamily: "Heebo",
   marginLeft: "20px",
 });
 export const InvoiceTitle = styled(Typography)({
@@ -92,30 +92,25 @@ export const InvoiceTitle = styled(Typography)({
   textAlign: "left",
   letterSpacing: "0.0016px",
   textTransform: " uppercase",
+  fontFamily: "Josefin Sans",
   fontSize: "14px",
 });
 export const Recpient = styled(Typography)({
   fontWeight: "500",
-  fontSize: "12px",
+  fontSize: "10px",
   fontWeight: "bold",
   textAlign: "left",
-  letterSpacing: "-0.0002px",
+  fontFamily: "Josefin Sans",
   color: "#1F2229",
 });
-export const Mockup = styled(Typography)(({ theme }) => ({
-  fontWeight: "500",
-  fontSize: "12px",
-  fontWeight: "bold",
-  textAlign: "Right",
-  letterSpacing: "-0.0002px",
-  color: "#1F2229",
-}));
 
 export const NoteStyle = styled(Typography)({
   fontStyle: "normal",
-  fontWeight: "600",
-  fontSize: "14px",
+  fontWeight: "500",
+  fontSize: "12px",
   color: "#545E60",
+  fontFamily: "Heebo",
+  textAlign: "justify",
 });
 export const TableTitle = styled(Typography)({
   fontSize: "12px",

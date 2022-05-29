@@ -24,7 +24,13 @@ const DynamicAddInput = ({ inputList, setInputList }) => {
   const handleAddClick = () => {
     setInputList([
       ...inputList,
-      { phaseStart: "", phaseEnd: "", workPersent: "" },
+      {
+        id: "",
+        status: "",
+        phaseStart: "",
+        phaseEnd: "",
+        workPersent: "",
+      },
     ]);
   };
   return (

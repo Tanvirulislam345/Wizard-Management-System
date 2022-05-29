@@ -11,6 +11,7 @@ import {
 } from "../shared/HeadingFormat/HeadingFormatStyle";
 import { SinglePlainText2 } from "../shared/ProfileSingleInfo/SingleInfoStyle";
 import PhasesListMenu from "./PhasesListMenu";
+import ProgressBar from "./ProgressBar";
 
 const ProjectInfo = ({ clientDetails, handleUpdate }) => {
   const {
@@ -20,10 +21,20 @@ const ProjectInfo = ({ clientDetails, handleUpdate }) => {
     TeamMember,
     Description,
     Phases,
-    id,
   } = clientDetails;
+
   const allmember = JSON.parse(TeamMember).map((data) => data.name);
+
   const phases = JSON.parse(Phases);
+  const allphases = phases.filter((data) => {
+    if (data.status === "Done" || data.status === "Late") {
+      return data;
+    }
+  });
+  const initial = 0;
+
+  const PhasesInt = allphases.map((data) => parseInt(data.workPersent));
+  const updateWork = PhasesInt.reduce((pre, now) => pre + now, initial);
 
   return (
     <Box>
@@ -50,7 +61,9 @@ const ProjectInfo = ({ clientDetails, handleUpdate }) => {
         <PlainTextContainer2 key={data.id}>
           <SinglePlainText2>{data.phaseStart}</SinglePlainText2>
           <SinglePlainText2>{data.phaseEnd}</SinglePlainText2>
-          <SinglePlainText2>{data.workPersent}%</SinglePlainText2>
+          <SinglePlainText2 style={{ width: "50px", textAlign: "center" }}>
+            {data.workPersent}%
+          </SinglePlainText2>
           <PhasesListMenu
             data={data}
             value={index}
@@ -62,31 +75,11 @@ const ProjectInfo = ({ clientDetails, handleUpdate }) => {
       <HeadingFormatTitle sx={{ mt: 2, mb: 1, p: 0 }}>
         Progress
       </HeadingFormatTitle>
-      <Box
-        sx={{
-          my: 2,
-          display: "flex",
-          justifyContent: "start",
-          alignItems: "center",
-        }}
-      >
-        <Box sx={{ width: { xs: "80%", md: "70%", lg: "60%" }, mr: 2 }}>
-          <Line
-            percent="70"
-            strokeColor="#3F51B5"
-            strokeWidth={3}
-            trailWidth={4}
-            style={{
-              borderRadius: "7px",
-            }}
-          />
-        </Box>
-        <Typography variant="h5">{60} %</Typography>
-      </Box>
+
       <HeadingFormatTitle sx={{ mt: 2, mb: 1, p: 0 }}>
         Description
       </HeadingFormatTitle>
-
+      <ProgressBar updateWork={updateWork} />
       <Typography variant="body1" sx={{ textAlign: "justify" }}>
         {Description}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Rhoncus

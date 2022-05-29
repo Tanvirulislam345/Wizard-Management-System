@@ -1,6 +1,5 @@
 import { ThemeProvider } from "@mui/material";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./App.css";
 import { Layout } from "./components/layout/Layout";
 import AddAttendence from "./pages/AddAttendence";
 import AddClients from "./pages/AddClients";
@@ -30,6 +29,7 @@ import PaymentView from "./pages/PaymentView";
 import ProjectDetails from "./pages/ProjectDetails";
 import Projects from "./pages/Projects";
 import { theme } from "./theme";
+import "./App.css";
 
 function App() {
   return (

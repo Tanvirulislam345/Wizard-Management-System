@@ -54,7 +54,6 @@ const AddProject = () => {
       Phases: JSON.stringify(inputList),
       ProjectStatus: "New Project",
     };
-    console.log(newData);
 
     const formData = new FormData();
     for (const key in newData) {

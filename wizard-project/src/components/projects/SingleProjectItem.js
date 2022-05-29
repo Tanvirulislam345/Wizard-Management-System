@@ -11,10 +11,22 @@ import {
 } from "../shared/HeadingFormat/HeadingFormatStyle";
 import ListMenu from "./ListMenu";
 import { Line } from "rc-progress";
+import ProgressBar from "./ProgressBar";
 
 const SingleProjectItem = ({ project, projectCategori, handleProject }) => {
   const data = JSON.parse(project?.TeamMember);
   const value = data?.map((value) => value.name);
+
+  const phases = JSON.parse(project?.Phases);
+  const allphases = phases.filter((data) => {
+    if (data.status === "Done" || data.status === "Late") {
+      return data;
+    }
+  });
+  const initial = 0;
+
+  const PhasesInt = allphases.map((data) => parseInt(data.workPersent));
+  const updateWork = PhasesInt.reduce((pre, now) => pre + now, initial);
   return (
     <HeadingFormatContainer>
       <BoxContainer>
@@ -59,28 +71,7 @@ const SingleProjectItem = ({ project, projectCategori, handleProject }) => {
           <PlainText>{value.join()}</PlainText>
         </PlainTextContainer>
 
-        <HeadingFormatTitle sx={{ mt: 2, p: 0 }}>progress</HeadingFormatTitle>
-        <Box
-          sx={{
-            my: 2,
-            display: "flex",
-            justifyContent: "start",
-            alignItems: "center",
-          }}
-        >
-          <Box sx={{ width: { xs: "80%", md: "70%", lg: "60%" }, mr: 2 }}>
-            <Line
-              percent="70"
-              strokeColor="#3F51B5"
-              strokeWidth={3}
-              trailWidth={4}
-              style={{
-                borderRadius: "7px",
-              }}
-            />
-          </Box>
-          <Typography variant="h5">{60} %</Typography>
-        </Box>
+        <ProgressBar updateWork={updateWork} />
       </Box>
       <BoxContainer>
         <Box></Box>

@@ -14,7 +14,7 @@ const AddPayment = () => {
   const handleSubmit = () => {
     const newData = {
       ...data,
-      BillNo: `WizBill22${Math.random().toString(36).slice(7)}`,
+      BillNo: `WizB22${Math.random().toString(36).slice(7)}`,
     };
     if (data !== null) {
       axios.post(`http://localhost:9000/addpayment`, newData).then((res) => {

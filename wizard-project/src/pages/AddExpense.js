@@ -20,7 +20,6 @@ const AddExpense = () => {
           navigate("/expense");
         }
       });
-      // console.log(newData);
     } else {
       alert("please fillup all input");
     }

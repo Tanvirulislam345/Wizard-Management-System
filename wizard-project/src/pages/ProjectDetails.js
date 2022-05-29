@@ -24,15 +24,13 @@ const ProjectDetails = () => {
   const handleUpdate = (id, value) => {
     const data = JSON.parse(clientDetails?.Phases);
     data[id].status = value;
-    const newData = JSON.stringify(data);
-    console.log(newData);
     axios
       .put(
         `http://localhost:9000/updateprojectstatus/${projectDetailsId}`,
-        newData
+        data
       )
       .then((res) => {
-        console.log(res);
+        setStatus(!status);
       });
   };
 
@@ -63,11 +61,6 @@ const ProjectDetails = () => {
                 </HeadingFormat>
               </Grid>
 
-              {/* <Grid item xs={12}>
-                <BigButtonMake>
-                  <a href={clientDetails.File}>download</a>
-                </BigButtonMake>
-              </Grid> */}
               <Grid item xs={12}>
                 <HeadingFormat title="Final Update">
                   <FinalUpdate />

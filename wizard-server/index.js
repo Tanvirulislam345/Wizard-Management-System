@@ -164,11 +164,9 @@ app.put("/updateproject/:projectId", (req, res) => {
 });
 app.put("/updateprojectstatus/:projectId", (req, res) => {
   const id = req.params.projectId;
-  const data = req.body;
-  console.log(id);
-  console.log(data);
-  const sqlquery = `UPDATE all_projects SET  "Phases" = ${data} WHERE id = ${id}`;
-  connection.query(sqlquery, (err, result) => {
+  const data = JSON.stringify(req.body);
+  const sqlquery = `UPDATE all_projects SET  Phases = ? WHERE id = ${id}`;
+  connection.query(sqlquery, data, (err, result) => {
     if (err) {
       console.log(err);
     } else {
