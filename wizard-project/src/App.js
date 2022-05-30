@@ -67,7 +67,7 @@ function App() {
             />
 
             <Route path="/addclient" element={<AddClients />} />
-            <Route path="/editclient/:clientId" element={<EditClients />} />
+            <Route path="/editclient/:editclientId" element={<EditClients />} />
             <Route path="/payment" element={<AllPayment />} />
             <Route
               path="/payment/update/:paymentId"

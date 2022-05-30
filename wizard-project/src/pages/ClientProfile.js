@@ -28,7 +28,7 @@ const ClientProfile = () => {
   useEffect(() => {
     axios
       .get(`http://localhost:9000/client/${clientId}`)
-      .then((res) => setValues(res.data[0]));
+      .then((res) => setValues(res.data));
 
     fetch(`http://localhost:9000/clientproject/${clientId}`)
       .then((res) => res.json())

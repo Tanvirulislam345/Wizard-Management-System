@@ -9,18 +9,18 @@ const EditClients = () => {
   const navigate = useNavigate();
   const [values, setValues] = useState(null);
   const [data, setData] = useState(null);
-  const { clientId } = useParams();
+  const { editclientId } = useParams();
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/client/${clientId}`)
-      .then((res) => setValues(res.data[0]));
-  }, [clientId]);
+      .get(`http://localhost:9000/client/${editclientId}`)
+      .then((res) => setValues(res.data));
+  }, [editclientId]);
 
   const handleSubmit = () => {
     if (data !== null) {
       axios
-        .put(`http://localhost:9000/client/${clientId}`, data)
+        .put(`http://localhost:9000/client/${editclientId}`, data)
         .then((res) => {
           if (res.status === 200) {
             navigate("/client");

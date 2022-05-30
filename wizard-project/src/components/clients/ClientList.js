@@ -33,7 +33,7 @@ const ClientList = ({ client, handleRemove }) => {
                 {client.FullName}
               </HeadingFormatTitle>
               <ListMenuClient
-                id={client.id}
+                id={client.ClientId}
                 handleRemove={handleRemove}
               ></ListMenuClient>
             </BoxContainer>

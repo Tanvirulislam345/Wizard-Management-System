@@ -19,7 +19,7 @@ const Invoice = () => {
     if (invoiceData !== null) {
       axios
         .get(`http://localhost:9000/client/${invoiceData?.ClientId}`)
-        .then((res) => setClientData(res.data[0]));
+        .then((res) => setClientData(res.data));
     }
   }, [invoiceId, invoiceData?.ClientId]);
   return (
