@@ -7,7 +7,6 @@ import { LayoutContiner } from "../styles/MetarialStyles";
 
 const Invoice = () => {
   const { invoiceId } = useParams();
-  console.log(invoiceId);
 
   const [invoiceData, setInvoiceData] = useState(null);
   const [clientData, setClientData] = useState(null);

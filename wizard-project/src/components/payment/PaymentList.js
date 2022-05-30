@@ -61,10 +61,15 @@ export default function PaymentList({ rows, handleChange }) {
             <StyledTableCell align="center">Client Id</StyledTableCell>
             <StyledTableCell align="center">Project Id</StyledTableCell>
             <StyledTableCell align="center">Date</StyledTableCell>
-            <StyledTableCell align="center">Total Amount</StyledTableCell>
+            <StyledTableCell align="center">Budget</StyledTableCell>
             <StyledTableCell align="center">Tax</StyledTableCell>
             <StyledTableCell align="center">Discount</StyledTableCell>
+            <StyledTableCell align="center">Last Total Payment</StyledTableCell>
 
+            <StyledTableCell align="center">New Payment</StyledTableCell>
+            <StyledTableCell align="center">Total Payable</StyledTableCell>
+            <StyledTableCell align="center">Total Payment</StyledTableCell>
+            <StyledTableCell align="center">Total Due</StyledTableCell>
             <StyledTableCell align="center">Method</StyledTableCell>
             <StyledTableCell align="center"> Payment Status</StyledTableCell>
             <StyledTableCell align="center"> View</StyledTableCell>
@@ -83,11 +88,22 @@ export default function PaymentList({ rows, handleChange }) {
               <StyledTableCell align="center">{row.ClientId}</StyledTableCell>
               <StyledTableCell align="center">{row.ProjectId}</StyledTableCell>
               <StyledTableCell align="center">{row.Date}</StyledTableCell>
-              <StyledTableCell align="center">
-                {row.TotalAmount}
-              </StyledTableCell>
+              <StyledTableCell align="center">{row.Budget}</StyledTableCell>
               <StyledTableCell align="center">{row.Tax}</StyledTableCell>
               <StyledTableCell align="center">{row.Discount}</StyledTableCell>
+              <StyledTableCell align="center">
+                {row.LastPayment}
+              </StyledTableCell>
+
+              <StyledTableCell align="center">{row.NewPayment}</StyledTableCell>
+
+              <StyledTableCell align="center">
+                {row.TotalPayable}
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                {row.TotalPayment}
+              </StyledTableCell>
+              <StyledTableCell align="center">{row.Due}</StyledTableCell>
               <StyledTableCell align="center">
                 {row.PaymentMethod}
               </StyledTableCell>
@@ -96,7 +112,7 @@ export default function PaymentList({ rows, handleChange }) {
                   label={row.PaymentStatus}
                   sx={{
                     background:
-                      (row.PaymentStatus === "Pending" && "#E25822") ||
+                      (row.PaymentStatus === "Due" && "#E25822") ||
                       (row.PaymentStatus === "Clear" && "#8CC341"),
                     width: "100px",
                   }}
@@ -124,7 +140,7 @@ export default function PaymentList({ rows, handleChange }) {
                 fontSize: "16px",
               }}
               rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-              colSpan={12}
+              colSpan={16}
               count={rows.length}
               rowsPerPage={rowsPerPage}
               page={page}

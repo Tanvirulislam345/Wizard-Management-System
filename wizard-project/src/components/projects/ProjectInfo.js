@@ -1,8 +1,6 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { Line } from "rc-progress";
 import React from "react";
-import { BigButtonMake } from "../../styles/MetarialStyles";
 import {
   HeadingFormatTitle,
   PlainText,
@@ -21,6 +19,12 @@ const ProjectInfo = ({ clientDetails, handleUpdate }) => {
     TeamMember,
     Description,
     Phases,
+    Budget,
+    TotalPayable,
+    TotalPayment,
+    Due,
+    Tax,
+    Discount,
   } = clientDetails;
 
   const allmember = JSON.parse(TeamMember).map((data) => data.name);
@@ -54,6 +58,30 @@ const ProjectInfo = ({ clientDetails, handleUpdate }) => {
         <PlainText>TeamMember</PlainText>
         <PlainText>{allmember.join()}</PlainText>
       </PlainTextContainer>
+      <PlainTextContainer>
+        <PlainText>Budget</PlainText>
+        <PlainText>{Budget}</PlainText>
+      </PlainTextContainer>
+      <PlainTextContainer>
+        <PlainText>Total Payable</PlainText>
+        <PlainText>{TotalPayable}</PlainText>
+      </PlainTextContainer>
+      <PlainTextContainer>
+        <PlainText>Total Payment</PlainText>
+        <PlainText>{TotalPayment}</PlainText>
+      </PlainTextContainer>
+      <PlainTextContainer>
+        <PlainText>Due</PlainText>
+        <PlainText>{Due}</PlainText>
+      </PlainTextContainer>
+      <PlainTextContainer>
+        <PlainText>Tax</PlainText>
+        <PlainText>{Tax} %</PlainText>
+      </PlainTextContainer>
+      <PlainTextContainer>
+        <PlainText>Discount</PlainText>
+        <PlainText>{Discount} %</PlainText>
+      </PlainTextContainer>
       <HeadingFormatTitle sx={{ mt: 2, mb: 1, p: 0 }}>
         Phases
       </HeadingFormatTitle>
@@ -75,11 +103,11 @@ const ProjectInfo = ({ clientDetails, handleUpdate }) => {
       <HeadingFormatTitle sx={{ mt: 2, mb: 1, p: 0 }}>
         Progress
       </HeadingFormatTitle>
-
+      <ProgressBar updateWork={updateWork} />
       <HeadingFormatTitle sx={{ mt: 2, mb: 1, p: 0 }}>
         Description
       </HeadingFormatTitle>
-      <ProgressBar updateWork={updateWork} />
+
       <Typography variant="body1" sx={{ textAlign: "justify" }}>
         {Description}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Rhoncus

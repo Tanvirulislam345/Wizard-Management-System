@@ -3,15 +3,13 @@ import logo from "../../../assets/logo.png";
 import invoice from "../../../assets/Invoice.png";
 import footer from "../../../assets/footer.png";
 import sidebar from "../../../assets/sidebar.png";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { InvoiceTitle, NoteStyle } from "../../../styles/InvoiceStyle";
 import InvoiceDicsription from "./InvoiceDescription";
 import AccoutInvoiceDetails from "./AccoutInvoiceDetails";
-import axios from "axios";
 import ClientDetailsInvoice from "./ClientDetailsInvoice";
 
 const InvoiceBody = ({ invoiceData, clientData }) => {
-  const { Discount, Tax, TotalAmount, BillNo, ProjectId } = invoiceData;
   const date = new Date();
   const todaysDate = new Intl.DateTimeFormat(["ban", "id"]).format(date);
 
@@ -44,15 +42,15 @@ const InvoiceBody = ({ invoiceData, clientData }) => {
               alignItems: "center",
             }}
           >
-            <img src={logo} width="120px" alt="" srcset="" />
-            <img src={invoice} width="100px" alt="" srcset="" />
+            <img src={logo} alt="" width="120px" />
+            <img src={invoice} alt="" width="100px" />
           </Box>
           <Box sx={{ display: "flex", gap: "21px" }}>
             <Box>
               <InvoiceTitle sx={{ fontWeight: "bold" }}>
                 invoice no.
               </InvoiceTitle>
-              <InvoiceTitle>{BillNo}</InvoiceTitle>
+              <InvoiceTitle>{invoiceData.BillNo}</InvoiceTitle>
             </Box>
             <Box>
               <InvoiceTitle sx={{ fontWeight: "bold" }}>
@@ -66,12 +64,8 @@ const InvoiceBody = ({ invoiceData, clientData }) => {
         {clientData !== null && (
           <ClientDetailsInvoice clientData={clientData} />
         )}
-        <InvoiceDicsription
-          projectId={ProjectId}
-          amount={TotalAmount}
-          tax={Tax}
-          discount={Discount}
-        />
+
+        <InvoiceDicsription invoiceData={invoiceData} />
         <AccoutInvoiceDetails />
 
         <Box sx={{ my: 5 }}>

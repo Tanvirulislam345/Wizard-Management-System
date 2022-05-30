@@ -46,15 +46,22 @@ const AddProject = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
+    const TotalPayable =
+      data.Budget -
+      (data.Budget * data.Discount) / 100 +
+      (data.Budget * data.Tax) / 100;
+
     const newData = {
       ...data,
       ProjectId: `WizP22${Math.random().toString(36).slice(7)}`,
       TeamMember: JSON.stringify(teamMember),
       ProjectTools: JSON.stringify(tools),
       Phases: JSON.stringify(inputList),
+      TotalPayable,
+      Due: TotalPayable - data.TotalPayment,
       ProjectStatus: "New Project",
     };
-
+    console.log(newData);
     const formData = new FormData();
     for (const key in newData) {
       formData.append(key, newData[key]);
@@ -82,8 +89,8 @@ const AddProject = () => {
       <SubNav2 project="Add Project" />
       {clientId !== null && (
         <AddProjectForm
-          Categoris={Categoris}
           ClientId={clientId}
+          Categoris={Categoris}
           ProjectTools={ProjectTools}
           setTools={setTools}
           tools={tools}

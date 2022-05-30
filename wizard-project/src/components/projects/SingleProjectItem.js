@@ -10,7 +10,6 @@ import {
   PlainTextContainer,
 } from "../shared/HeadingFormat/HeadingFormatStyle";
 import ListMenu from "./ListMenu";
-import { Line } from "rc-progress";
 import ProgressBar from "./ProgressBar";
 
 const SingleProjectItem = ({ project, projectCategori, handleProject }) => {
@@ -35,7 +34,7 @@ const SingleProjectItem = ({ project, projectCategori, handleProject }) => {
         </HeadingFormatTitle>
         {projectCategori !== null && (
           <ListMenu
-            id={project.id}
+            id={project.ProjectId}
             handleProject={handleProject}
             projectCategori={projectCategori}
           />
@@ -47,6 +46,10 @@ const SingleProjectItem = ({ project, projectCategori, handleProject }) => {
       </Typography>
 
       <Box>
+        <PlainTextContainer>
+          <PlainText>Project Id</PlainText>
+          <PlainText>{project.ProjectId}</PlainText>
+        </PlainTextContainer>
         <PlainTextContainer>
           <PlainText>Client Id</PlainText>
           <PlainText>{project.ClientId}</PlainText>
@@ -76,7 +79,7 @@ const SingleProjectItem = ({ project, projectCategori, handleProject }) => {
       <BoxContainer>
         <Box></Box>
         <Link
-          to={`/project/view/${project.id}`}
+          to={`/project/view/${project.ProjectId}`}
           style={{
             textDecoration: "none",
           }}
