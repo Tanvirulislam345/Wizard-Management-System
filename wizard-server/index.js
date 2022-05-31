@@ -177,13 +177,16 @@ app.delete("/allproject/delete/:projectId", (req, res) => {
   const id = req.params.projectId;
   // console.log(id);
 
-  connection.query(`DELETE FROM all_projects WHERE id=${id}`, (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(result);
+  connection.query(
+    `DELETE FROM all_projects WHERE ProjectId="${id}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result);
+      }
     }
-  });
+  );
   // res.json(true);
 });
 
@@ -234,6 +237,35 @@ app.get("/employee/:employeeId", (req, res) => {
       if (err) {
         console.log(err);
       } else {
+        res.json(result);
+      }
+    }
+  );
+});
+
+app.get("/employeematch/:email", (req, res) => {
+  const email = req.params.email;
+  connection.query(
+    `SELECT Email, Password, Role FROM all_employee WHERE Email = '${email}'`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.json(result);
+      }
+    }
+  );
+});
+app.get("/adminmatch/:email", (req, res) => {
+  const email = req.params.email;
+  connection.query(
+    `SELECT Email, Password, Role FROM all_admin WHERE Email = '${email}'`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
         res.json(result);
       }
     }
@@ -322,6 +354,21 @@ app.get("/client/:clientId", (req, res) => {
     }
   );
 });
+app.get("/clientmatch/:email", (req, res) => {
+  const email = req.params.email;
+  connection.query(
+    `SELECT Email, Role Password FROM all_client WHERE Email = '${email}'`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result);
+      }
+    }
+  );
+  // res.json(true);
+});
+
 app.get("/projectclient/:clientId", (req, res) => {
   const id = req.params.clientId;
 
@@ -364,13 +411,16 @@ app.put("/client/:clientId", (req, res) => {
 app.delete("/client/delete/:clientId", (req, res) => {
   const id = req.params.clientId;
 
-  connection.query(`DELETE FROM all_client WHERE id=${id}`, (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(result);
+  connection.query(
+    `DELETE FROM all_client WHERE ClientId="${id}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result);
+      }
     }
-  });
+  );
 });
 
 app.post("/addpayment", (req, res) => {

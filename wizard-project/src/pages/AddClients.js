@@ -18,6 +18,7 @@ const AddClients = () => {
 
     const newData = {
       ...data,
+      Role: "client",
       ClientId,
       Password,
     };

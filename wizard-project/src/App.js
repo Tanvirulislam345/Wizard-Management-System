@@ -30,70 +30,86 @@ import ProjectDetails from "./pages/ProjectDetails";
 import Projects from "./pages/Projects";
 import { theme } from "./theme";
 import "./App.css";
+import Login from "./pages/Login";
+import ContextProvieder from "./Context/ContextProvieder";
+import PrivateRoute from "./components/login/PrivateRoute";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Projects />} />
-            <Route path="/project" element={<Projects />} />
-            <Route
-              path="/project/view/:projectDetailsId"
-              element={<ProjectDetails />}
-            />
-            <Route path="/addproject" element={<AddProject />} />
-            <Route path="/editproject/:projectId" element={<EditProject />} />
-            <Route path="/employee" element={<Employees />} />
-            <Route
-              path="/employee/profile/:profileId"
-              element={<EmployeeProfile />}
-            />
-            <Route path="/addemployee" element={<AddEmployee />} />
-            <Route
-              path="/editemployee/:employeetId"
-              element={<EditEmployee />}
-            />
+      <ContextProvieder>
+        <Router>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Projects />} />
+              <Route path="/project" element={<Projects />} />
+              <Route
+                path="/project/view/:projectDetailsId"
+                element={<ProjectDetails />}
+              />
+              <Route path="/addproject" element={<AddProject />} />
+              <Route path="/editproject/:projectId" element={<EditProject />} />
+              <Route
+                path="/employee"
+                element={
+                  <PrivateRoute>
+                    <Employees />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/employee/profile/:profileId"
+                element={<EmployeeProfile />}
+              />
+              <Route path="/addemployee" element={<AddEmployee />} />
+              <Route
+                path="/editemployee/:employeetId"
+                element={<EditEmployee />}
+              />
 
-            <Route path="/client" element={<Clients />} />
+              <Route path="/client" element={<Clients />} />
 
-            <Route path="/attendence" element={<Attendence />} />
-            <Route path="/addattendence" element={<AddAttendence />} />
+              <Route path="/attendence" element={<Attendence />} />
+              <Route path="/addattendence" element={<AddAttendence />} />
 
-            <Route
-              path="/client/profile/:clientId"
-              element={<ClientProfile />}
-            />
+              <Route
+                path="/client/profile/:clientId"
+                element={<ClientProfile />}
+              />
 
-            <Route path="/addclient" element={<AddClients />} />
-            <Route path="/editclient/:editclientId" element={<EditClients />} />
-            <Route path="/payment" element={<AllPayment />} />
-            <Route
-              path="/payment/update/:paymentId"
-              element={<EditPayment />}
-            />
-            <Route path="/payment/invoice/:invoiceId" element={<Invoice />} />
-            <Route path="/addpayment" element={<AddPayment />} />
+              <Route path="/addclient" element={<AddClients />} />
+              <Route
+                path="/editclient/:editclientId"
+                element={<EditClients />}
+              />
+              <Route path="/payment" element={<AllPayment />} />
+              <Route
+                path="/payment/update/:paymentId"
+                element={<EditPayment />}
+              />
+              <Route path="/payment/invoice/:invoiceId" element={<Invoice />} />
+              <Route path="/addpayment" element={<AddPayment />} />
 
-            <Route path="/expense" element={<AllExpense />} />
-            <Route path="/addexpense" element={<AddExpense />} />
-            <Route
-              path="/expense/update/:expenseId"
-              element={<EditExpense />}
-            />
+              <Route path="/expense" element={<AllExpense />} />
+              <Route path="/addexpense" element={<AddExpense />} />
+              <Route
+                path="/expense/update/:expenseId"
+                element={<EditExpense />}
+              />
 
-            <Route path="/leave" element={<Leave />} />
-            <Route path="/addleavetype" element={<AddLeaveType />} />
-            <Route path="/addleave" element={<AddLeave />} />
-            <Route path="/leave/update/:leaveId" element={<EditLeave />} />
-            <Route
-              path="/leavetype/update/:leavetypeId"
-              element={<EditLeaveType />}
-            />
-          </Routes>
-        </Layout>
-      </Router>
+              <Route path="/leave" element={<Leave />} />
+              <Route path="/addleavetype" element={<AddLeaveType />} />
+              <Route path="/addleave" element={<AddLeave />} />
+              <Route path="/leave/update/:leaveId" element={<EditLeave />} />
+              <Route
+                path="/leavetype/update/:leavetypeId"
+                element={<EditLeaveType />}
+              />
+              <Route path="/login" element={<Login />} />
+            </Routes>
+          </Layout>
+        </Router>
+      </ContextProvieder>
     </ThemeProvider>
   );
 }

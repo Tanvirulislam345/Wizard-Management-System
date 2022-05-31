@@ -47,7 +47,7 @@ const Projects = () => {
         .delete(`http://localhost:9000/allproject/delete/${id}`)
         .then((res) => {
           if (res.status === 200) {
-            setProjects(projects.filter((project) => project.id !== id));
+            setProjects(projects.filter((project) => project.ProjectId !== id));
           }
         });
     } else {

@@ -4,7 +4,6 @@ import { useStyle } from "../../styles/MetarialStyles";
 import {
   FaHome,
   FaProjectDiagram,
-  FaDonate,
   FaUserSecret,
   FaUsers,
   FaDollyFlatbed,
@@ -12,8 +11,9 @@ import {
   FaCaretSquareLeft,
   FaMoneyCheck,
 } from "react-icons/fa";
+import { useState } from "react";
 
-const items = [
+const item = [
   {
     href: "/",
     icon: <FaHome fontSize="small" />,
@@ -54,9 +54,16 @@ const items = [
     icon: <FaBuffer fontSize="small" />,
     title: "Attendence",
   },
+  {
+    href: "/login",
+    icon: <FaBuffer fontSize="small" />,
+    title: "Login",
+  },
 ];
 
 export default function SideBar({ open, onClose }) {
+  const [items, setItem] = useState(item);
+
   const style = useStyle();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"), {
     defaultMatches: true,
@@ -71,17 +78,17 @@ export default function SideBar({ open, onClose }) {
             flexGrow: 1,
           }}
         >
-          {items.map((item) => (
-            <NavItem
-              key={item.title}
-              icon={item.icon}
-              href={item.href}
-              title={item.title}
-              onClose={onClose}
-            />
-          ))}
+          {items &&
+            items?.map((item) => (
+              <NavItem
+                key={item.title}
+                icon={item.icon}
+                href={item.href}
+                title={item.title}
+                onClose={onClose}
+              />
+            ))}
         </Box>
-        {/* <Divider sx={{ borderColor: '#2D3748' }} /> */}
       </Box>
     </>
   );

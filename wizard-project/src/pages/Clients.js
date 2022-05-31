@@ -16,7 +16,7 @@ const Clients = () => {
   const handleRemove = (id) => {
     axios.delete(`http://localhost:9000/client/delete/${id}`).then((res) => {
       if (res.status === 200) {
-        setClient(clients?.filter((client) => client.id !== id));
+        setClient(clients?.filter((client) => client.ClientId !== id));
       }
     });
   };

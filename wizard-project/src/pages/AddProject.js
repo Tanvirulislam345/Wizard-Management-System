@@ -61,7 +61,7 @@ const AddProject = () => {
       Due: TotalPayable - data.TotalPayment,
       ProjectStatus: "New Project",
     };
-    console.log(newData);
+
     const formData = new FormData();
     for (const key in newData) {
       formData.append(key, newData[key]);
