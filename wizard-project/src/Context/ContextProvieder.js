@@ -1,5 +1,4 @@
-import React, { createContext, useContext } from "react";
-import useUser from "../hooks/useUser";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 export const authContext = createContext();
 
@@ -8,9 +7,22 @@ export const useAuth = () => {
 };
 
 const ContextProvieder = ({ children }) => {
-  const allContext = useUser();
+  const [user, setUser] = useState();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    if (user) {
+      setUser(user);
+    }
+    setLoading(false);
+  }, []);
+
   return (
-    <authContext.Provider value={allContext}>{children}</authContext.Provider>
+    <authContext.Provider value={{ user, loading }}>
+      {children}
+    </authContext.Provider>
   );
 };
 

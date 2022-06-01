@@ -2,7 +2,6 @@ import { Box, Drawer, useMediaQuery } from "@mui/material";
 import { NavItem } from "./NavItem";
 import { useStyle } from "../../styles/MetarialStyles";
 import {
-  FaHome,
   FaProjectDiagram,
   FaUserSecret,
   FaUsers,
@@ -11,14 +10,15 @@ import {
   FaCaretSquareLeft,
   FaMoneyCheck,
 } from "react-icons/fa";
-import { useState } from "react";
 
-const item = [
-  {
-    href: "/",
-    icon: <FaHome fontSize="small" />,
-    title: "Home",
-  },
+import { useAuth } from "../../Context/ContextProvieder";
+
+const items = [
+  // {
+  //   href: "/",
+  //   icon: <FaHome fontSize="small" />,
+  //   title: "Home",
+  // },
   {
     href: "/project",
     icon: <FaProjectDiagram fontSize="small" />,
@@ -62,7 +62,7 @@ const item = [
 ];
 
 export default function SideBar({ open, onClose }) {
-  const [items, setItem] = useState(item);
+  const { user } = useAuth();
 
   const style = useStyle();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"), {
@@ -78,7 +78,7 @@ export default function SideBar({ open, onClose }) {
             flexGrow: 1,
           }}
         >
-          {items &&
+          {user?.Role === "admin" &&
             items?.map((item) => (
               <NavItem
                 key={item.title}

@@ -12,12 +12,14 @@ import ProfileNav from "../components/shared/ProfileNav/ProfileNav";
 import ProfileSetting from "../components/shared/ProfileSetting/ProfileSetting";
 import SubNav2 from "../components/subNav/SubNav2";
 import { LayoutContiner } from "../styles/MetarialStyles";
+import Leave from "./Leave/Leave";
+import Attendence from "./Attendence";
 
 const EmployeeProfile = () => {
   const { profileId } = useParams();
   const [values, setValues] = useState(null);
   const [data, setData] = useState("About Me");
-  const navValue = ["About Me", "security"];
+  const navValue = ["About Me", "Attendence", "Leave", "security"];
 
   useEffect(() => {
     axios
@@ -63,6 +65,8 @@ const EmployeeProfile = () => {
             <HeadingFormatContainer>
               <ProfileNav navValue={navValue} data={data} setData={setData} />
               {data === "About Me" && <EmployeeAbout values={values} />}
+              {data === "Leave" && <Leave />}
+              {data === "Attendence" && <Attendence />}
               {data === "security" && <ProfileSetting />}
             </HeadingFormatContainer>
           </Grid>

@@ -5,8 +5,10 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 import HomeIcon from "@mui/icons-material/Home";
 import { BoxContainer, SubNabBar } from "../../styles/MetarialStyles";
 import { HeadingFormatTitle } from "../shared/HeadingFormat/HeadingFormatStyle";
+import { useAuth } from "../../Context/ContextProvieder";
 
 const SubNav = ({ project, addproject }) => {
+  const { user } = useAuth();
   return (
     <SubNabBar sx={{ pb: 0 }}>
       <HeadingFormatTitle>{project}</HeadingFormatTitle>
@@ -17,11 +19,13 @@ const SubNav = ({ project, addproject }) => {
           </HeadingFormatTitle>
         </Link>
 
-        <Link to={`/${addproject}`}>
-          <HeadingFormatTitle>
-            <AddBoxIcon color="secondary" sx={{ ml: 2 }} />
-          </HeadingFormatTitle>
-        </Link>
+        {user?.Role === "admin" && (
+          <Link to={`/${addproject}`}>
+            <HeadingFormatTitle>
+              <AddBoxIcon color="secondary" sx={{ ml: 2 }} />
+            </HeadingFormatTitle>
+          </Link>
+        )}
       </BoxContainer>
     </SubNabBar>
   );

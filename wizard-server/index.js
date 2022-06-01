@@ -246,7 +246,7 @@ app.get("/employee/:employeeId", (req, res) => {
 app.get("/employeematch/:email", (req, res) => {
   const email = req.params.email;
   connection.query(
-    `SELECT Email, Password, Role FROM all_employee WHERE Email = '${email}'`,
+    `SELECT * FROM all_employee WHERE Email = '${email}'`,
     (err, result) => {
       if (err) {
         console.log(err);
@@ -260,7 +260,7 @@ app.get("/employeematch/:email", (req, res) => {
 app.get("/adminmatch/:email", (req, res) => {
   const email = req.params.email;
   connection.query(
-    `SELECT Email, Password, Role FROM all_admin WHERE Email = '${email}'`,
+    `SELECT * FROM all_admin WHERE Email = '${email}'`,
     (err, result) => {
       if (err) {
         console.log(err);
@@ -357,11 +357,12 @@ app.get("/client/:clientId", (req, res) => {
 app.get("/clientmatch/:email", (req, res) => {
   const email = req.params.email;
   connection.query(
-    `SELECT Email, Role Password FROM all_client WHERE Email = '${email}'`,
+    `SELECT * FROM all_client WHERE Email = '${email}'`,
     (err, result) => {
       if (err) {
         console.log(err);
       } else {
+        console.log(result);
         res.json(result);
       }
     }

@@ -10,8 +10,10 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Chip, TableHead } from "@mui/material";
 import LeaveTypeMenuList from "./LeaveTypeMenuList";
+import { useAuth } from "../../Context/ContextProvieder";
 
 export default function LeaveTypeList({ rows, handleChange }) {
+  const { user } = useAuth();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -54,7 +56,9 @@ export default function LeaveTypeList({ rows, handleChange }) {
             <StyledTableCell align="center">Leave Time</StyledTableCell>
             <StyledTableCell align="center">Status</StyledTableCell>
             <StyledTableCell align="center">Note</StyledTableCell>
-            <StyledTableCell align="center">Action</StyledTableCell>
+            {user?.Role === "admin" && (
+              <StyledTableCell align="center">Action</StyledTableCell>
+            )}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -81,9 +85,11 @@ export default function LeaveTypeList({ rows, handleChange }) {
               <StyledTableCell align="center">
                 {row.Description}
               </StyledTableCell>
-              <StyledTableCell align="center">
-                <LeaveTypeMenuList id={row.id} handleChange={handleChange} />
-              </StyledTableCell>
+              {user?.Role === "admin" && (
+                <StyledTableCell align="center">
+                  <LeaveTypeMenuList id={row.id} handleChange={handleChange} />
+                </StyledTableCell>
+              )}
             </TableRow>
           ))}
         </TableBody>

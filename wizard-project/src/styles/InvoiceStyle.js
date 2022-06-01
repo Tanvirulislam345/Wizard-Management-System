@@ -132,3 +132,22 @@ export const AcountInfo = styled(Typography)({
   textAlign: "left",
   margin: "2px 0",
 });
+
+export const NavButton = styled(Button)(({ theme }) => ({
+  background: "info",
+  borderRadius: "5px",
+  color: theme.palette.secondary.main,
+  fontWeight: "fontWeightBold",
+  justifyContent: "flex-start",
+  padding: "5px 20px",
+  textAlign: "left",
+  textTransform: "none",
+  width: "100%",
+  "& .MuiButton-startIcon": {
+    color: theme.palette.neutral,
+  },
+  "&:hover": {
+    background: "#262E41",
+    color: theme.palette.primary.main,
+  },
+}));

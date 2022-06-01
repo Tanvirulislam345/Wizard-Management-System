@@ -41,7 +41,7 @@ function App() {
         <Router>
           <Layout>
             <Routes>
-              <Route path="/" element={<Projects />} />
+              <Route path="/" element={<Login />} />
               <Route path="/project" element={<Projects />} />
               <Route
                 path="/project/view/:projectDetailsId"
@@ -49,14 +49,7 @@ function App() {
               />
               <Route path="/addproject" element={<AddProject />} />
               <Route path="/editproject/:projectId" element={<EditProject />} />
-              <Route
-                path="/employee"
-                element={
-                  <PrivateRoute>
-                    <Employees />
-                  </PrivateRoute>
-                }
-              />
+              <Route path="/employee" element={<Employees />} />
               <Route
                 path="/employee/profile/:profileId"
                 element={<EmployeeProfile />}

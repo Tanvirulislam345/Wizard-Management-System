@@ -10,8 +10,10 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Chip, TableHead } from "@mui/material";
 import LeaveMenuList from "./LeaveMenuList";
+import { useAuth } from "../../Context/ContextProvieder";
 
 export default function AllLeave({ rows, handleChange }) {
+  const { user } = useAuth();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -55,7 +57,9 @@ export default function AllLeave({ rows, handleChange }) {
             <StyledTableCell align="center">Leave To</StyledTableCell>
             <StyledTableCell align="center">Reason</StyledTableCell>
             <StyledTableCell align="center">Status</StyledTableCell>
-            <StyledTableCell align="center">Action</StyledTableCell>
+            {user?.Role === "admin" && (
+              <StyledTableCell align="center">Action</StyledTableCell>
+            )}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -84,9 +88,11 @@ export default function AllLeave({ rows, handleChange }) {
                   }}
                 />
               </StyledTableCell>
-              <StyledTableCell align="center">
-                <LeaveMenuList id={row.id} handleChange={handleChange} />
-              </StyledTableCell>
+              {user?.Role === "admin" && (
+                <StyledTableCell align="center">
+                  <LeaveMenuList id={row.id} handleChange={handleChange} />
+                </StyledTableCell>
+              )}
             </TableRow>
           ))}
         </TableBody>

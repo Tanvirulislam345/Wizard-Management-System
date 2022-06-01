@@ -3,12 +3,13 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
-import { Avatar } from "@mui/material";
+import { Avatar, Box, CircularProgress } from "@mui/material";
 import { useAuth } from "../../Context/ContextProvieder";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileIcon() {
-  const { user, setUser } = useAuth();
-  console.log(user);
+  const { user, loading } = useAuth();
+  const navigation = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -18,32 +19,26 @@ export default function ProfileIcon() {
     setAnchorEl(null);
   };
 
-  // React.useEffect(() => {
-  //   const data = localStorage.user;
-  //   if (data) {
-  //     setUser(JSON.parse(data));
-  //     console.log(data);
-  //   }
-  // }, []);
-
   const handleLogout = () => {
-    localStorage.clear();
+    sessionStorage.clear();
+    navigation("/login");
     window.location.reload();
   };
 
+  if (loading) {
+    return (
+      <Box sx={{ display: "flex" }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+
   return (
     <div>
-      {!user ? (
-        <Avatar
-          alt="Travis Howard"
-          src="/static/images/avatar/2.jpg"
-          sx={{ mx: 3 }}
-          onClick={handleClick}
-        />
-      ) : (
+      {user && (
         <>
           <div style={{ display: "flex" }}>
-            {user && <Button>{user.Email}</Button>}
+            <Button>{user?.Email}</Button>
             <Avatar
               alt="Travis Howard"
               src="/static/images/avatar/2.jpg"
@@ -63,8 +58,6 @@ export default function ProfileIcon() {
             onClose={handleClose}
             TransitionComponent={Fade}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
             <MenuItem onClick={() => handleLogout() & handleClose()}>
               Logout
             </MenuItem>

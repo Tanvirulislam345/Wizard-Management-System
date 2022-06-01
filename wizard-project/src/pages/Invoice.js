@@ -26,7 +26,8 @@ const Invoice = () => {
     <LayoutContiner>
       <SubNav2 project="Invoice" />
       {invoiceData !== null && clientData !== null && (
-        <InvoiceBody invoiceData={invoiceData} clientData={clientData} />
+        <InvoiceBody clientData={clientData} />
+        // <InvoiceBody invoiceData={invoiceData} clientData={clientData} />
       )}
     </LayoutContiner>
   );

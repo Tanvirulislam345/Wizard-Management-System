@@ -49,3 +49,13 @@ export const NavItem = ({ href, icon, title, onClose }) => {
     </ListItem>
   );
 };
+
+// {items?.map((item) => (
+//   <NavItem
+//     key={item.title}
+//     icon={item.icon}
+//     href={item.href}
+//     title={item.title}
+//     onClose={onClose}
+//   />
+// ))}
