@@ -8,7 +8,7 @@ import { useAuth } from "../../Context/ContextProvieder";
 import { useNavigate } from "react-router-dom";
 
 export default function ProfileIcon() {
-  const { user, loading } = useAuth();
+  const { user, setUser, loading } = useAuth();
   const navigation = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -21,8 +21,8 @@ export default function ProfileIcon() {
 
   const handleLogout = () => {
     sessionStorage.clear();
+    setUser(null);
     navigation("/login");
-    window.location.reload();
   };
 
   if (loading) {

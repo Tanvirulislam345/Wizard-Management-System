@@ -7,7 +7,7 @@ export const useAuth = () => {
 };
 
 const ContextProvieder = ({ children }) => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const ContextProvieder = ({ children }) => {
   }, []);
 
   return (
-    <authContext.Provider value={{ user, loading }}>
+    <authContext.Provider value={{ user, setUser, loading }}>
       {children}
     </authContext.Provider>
   );
