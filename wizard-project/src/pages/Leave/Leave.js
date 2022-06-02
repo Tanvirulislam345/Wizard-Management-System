@@ -1,12 +1,20 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
-import LeaveLayout from "../../components/allLeaveDetails/LeaveLayout";
-
+import { LayoutContiner } from "../../styles/MetarialStyles";
+import { HeadingFormatContainer } from "../../components/shared/HeadingFormat/HeadingFormatStyle";
+import ProfileNav from "../../components/shared/ProfileNav/ProfileNav";
+import SubNav from "../../components/subNav/SubNav";
+import AllLeave from "../../components/allLeaveDetails/AllLeave";
+import LeaveTypeList from "../../components/allLeaveDetails/LeaveTypeList";
+import { useAuth } from "../../Context/ContextProvieder";
 const Leave = () => {
+  const [data, setData] = useState("All Leave");
+  const navValue = ["Leave Type", "All Leave"];
   const [leaveType, setLeaveType] = useState(null);
   const [leave, setLeave] = useState(null);
   const [update, setUpdate] = useState(false);
+  const { user } = useAuth();
+  console.log(user);
 
   const handleChange = (id, type, method) => {
     if (method === "delete") {
@@ -40,16 +48,34 @@ const Leave = () => {
     });
 
     axios.get("http://localhost:9000/leave").then((res) => {
-      setLeave(res.data);
+      if (user.Role === "employee") {
+        const data = res.data;
+        const value = data.filter((da) => da.EmployeeId === user.EmployeeId);
+        setLeave(value);
+      } else {
+        setLeave(res.data);
+      }
     });
   }, [update]);
 
   return (
-    <LeaveLayout
-      leave={leave}
-      leaveType={leaveType}
-      handleChange={handleChange}
-    />
+    <LayoutContiner style={{ paddingTop: "30px" }}>
+      <HeadingFormatContainer>
+        <ProfileNav navValue={navValue} data={data} setData={setData} />
+      </HeadingFormatContainer>
+      {leaveType !== null && data === "Leave Type" && (
+        <>
+          <SubNav project="Leave Type" addproject="addleavetype" />
+          <LeaveTypeList rows={leaveType} handleChange={handleChange} />
+        </>
+      )}
+      {data === "All Leave" && leave !== null && (
+        <>
+          <SubNav project="Leave" addproject="addleave" />
+          <AllLeave rows={leave} handleChange={handleChange} />
+        </>
+      )}
+    </LayoutContiner>
   );
 };
 

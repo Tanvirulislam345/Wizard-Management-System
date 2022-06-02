@@ -5,23 +5,20 @@ import InvoicePage from "../components/shared/Invoice/InvoicePage";
 import SubNav2 from "../components/subNav/SubNav2";
 import { LayoutContiner } from "../styles/MetarialStyles";
 
-const Invoice = () => {
-  const { invoiceId } = useParams();
-
-  const [invoiceData, setInvoiceData] = useState(null);
+const ClientInvoice = () => {
+  const { projectId } = useParams();
+  const [invoiceData, setClientDetails] = useState(null);
   const [clientData, setClientData] = useState(null);
-
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/allpayment/${invoiceId}`)
-      .then((res) => setInvoiceData(res.data));
-
+      .get(`http://localhost:9000/project/${projectId}`)
+      .then((res) => setClientDetails(res.data));
     if (invoiceData !== null) {
       axios
         .get(`http://localhost:9000/client/${invoiceData?.ClientId}`)
         .then((res) => setClientData(res.data));
     }
-  }, [invoiceId, invoiceData?.ClientId]);
+  }, [projectId, invoiceData?.ClientId]);
   return (
     <LayoutContiner>
       <SubNav2 project="Invoice" />
@@ -32,4 +29,4 @@ const Invoice = () => {
   );
 };
 
-export default Invoice;
+export default ClientInvoice;

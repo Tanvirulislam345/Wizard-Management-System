@@ -15,8 +15,7 @@ import PaymentListMenu from "./PaymentListMenu";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/ContextProvieder";
 
-export default function PaymentList({ rows, handleChange }) {
-  const { user } = useAuth();
+export default function ProjectPaymentList({ rows, handleChange }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const navigate = useNavigate();
@@ -62,24 +61,9 @@ export default function PaymentList({ rows, handleChange }) {
             <StyledTableCell align="center">Bill No</StyledTableCell>
             <StyledTableCell align="center">Client Id</StyledTableCell>
             <StyledTableCell align="center">Project Id</StyledTableCell>
-            <StyledTableCell align="center">Date</StyledTableCell>
-            <StyledTableCell align="center">Budget</StyledTableCell>
-            <StyledTableCell align="center">Tax</StyledTableCell>
-            <StyledTableCell align="center">Discount</StyledTableCell>
-            <StyledTableCell align="center">Last Total Payment</StyledTableCell>
-
             <StyledTableCell align="center">New Payment</StyledTableCell>
-            <StyledTableCell align="center">Total Payable</StyledTableCell>
-            <StyledTableCell align="center">Total Payment</StyledTableCell>
-            <StyledTableCell align="center">Total Due</StyledTableCell>
-            <StyledTableCell align="center">Method</StyledTableCell>
-            <StyledTableCell align="center"> Payment Status</StyledTableCell>
+            <StyledTableCell align="center">Status</StyledTableCell>
             <StyledTableCell align="center"> View</StyledTableCell>
-            {user?.Role === "admin" && (
-              <StyledTableCell align="center">
-                <MoreVertOutlinedIcon />
-              </StyledTableCell>
-            )}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -91,26 +75,7 @@ export default function PaymentList({ rows, handleChange }) {
               <StyledTableCell align="center">{row.BillNo}</StyledTableCell>
               <StyledTableCell align="center">{row.ClientId}</StyledTableCell>
               <StyledTableCell align="center">{row.ProjectId}</StyledTableCell>
-              <StyledTableCell align="center">{row.Date}</StyledTableCell>
-              <StyledTableCell align="center">{row.Budget}</StyledTableCell>
-              <StyledTableCell align="center">{row.Tax}</StyledTableCell>
-              <StyledTableCell align="center">{row.Discount}</StyledTableCell>
-              <StyledTableCell align="center">
-                {row.LastPayment}
-              </StyledTableCell>
-
               <StyledTableCell align="center">{row.NewPayment}</StyledTableCell>
-
-              <StyledTableCell align="center">
-                {row.TotalPayable}
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                {row.TotalPayment}
-              </StyledTableCell>
-              <StyledTableCell align="center">{row.Due}</StyledTableCell>
-              <StyledTableCell align="center">
-                {row.PaymentMethod}
-              </StyledTableCell>
               <StyledTableCell align="center">
                 <Chip
                   label={row.PaymentStatus}
@@ -128,11 +93,6 @@ export default function PaymentList({ rows, handleChange }) {
               >
                 <RemoveRedEyeRoundedIcon />
               </StyledTableCell>
-              {user?.Role === "admin" && (
-                <StyledTableCell align="center">
-                  <PaymentListMenu id={row.id} handleChange={handleChange} />
-                </StyledTableCell>
-              )}
             </TableRow>
           ))}
         </TableBody>

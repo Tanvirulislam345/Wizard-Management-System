@@ -3,25 +3,32 @@ import { styled } from "@mui/material/styles";
 import { AppBar, Box, Button, Grid, MenuItem, TextField } from "@mui/material";
 
 export const LayoutRoot = styled(Box)(({ theme }) => ({
-  //   display: "flex",
-  //   flex: "1 1 auto",
-  //   maxWidth: "100%",
   width: {
     lg: "calc(100% - 280px)",
   },
-  height: "calc(100vh - 64px)",
-  overflow: "auto",
+  minHeight: "calc(100vh - 64px)",
+  height: "100%",
   paddingTop: "64px",
   background: theme.background.primary,
   [theme.breakpoints.up("lg")]: {
     paddingLeft: 280,
   },
 }));
+export const LayoutRoot2 = styled(Box)(({ theme }) => ({
+  width: "100%",
+  minHeight: "calc(100vh - 64px)",
+  height: "100%",
+  paddingTop: "64px",
+  background: theme.background.primary,
+}));
 
 export const LayoutContiner = styled(Box)(({ theme }) => ({
   backgroundColor: theme.background.secondary,
+  maxHeight: "83vh",
+  height: "100%",
+  overflow: "auto",
   margin: "30px",
-  padding: "0px 30px 30px",
+  padding: "0px 30px 30px 30px",
   borderRadius: "15px",
 }));
 

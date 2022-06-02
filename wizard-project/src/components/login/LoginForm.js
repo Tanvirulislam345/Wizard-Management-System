@@ -31,7 +31,7 @@ const LoginForm = ({ data, setData, handleSubmit }) => {
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
       >
         <Typography
-          sx={{ fontSize: "44px", fontWeight: "500", color: "white" }}
+          sx={{ fontSize: "44px", fontWeight: "500", color: "white", py: 3 }}
         >
           Wizard Software & Technology Bangladesh Ltd
         </Typography>

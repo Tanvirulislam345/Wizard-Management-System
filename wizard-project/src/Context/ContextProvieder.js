@@ -11,10 +11,11 @@ const ContextProvieder = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const data = JSON.parse(sessionStorage.getItem("user"));
     setLoading(true);
-    const user = JSON.parse(sessionStorage.getItem("user"));
-    if (user) {
-      setUser(user);
+    if (data) {
+      setUser(data);
+      console.log(data);
     }
     setLoading(false);
   }, []);

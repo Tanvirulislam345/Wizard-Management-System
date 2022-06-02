@@ -25,82 +25,267 @@ import AddLeaveType from "./pages/Leave/AddLeaveType";
 import EditLeave from "./pages/Leave/EditLeave";
 import EditLeaveType from "./pages/Leave/EditLeaveType";
 import Leave from "./pages/Leave/Leave";
-import PaymentView from "./pages/PaymentView";
+
 import ProjectDetails from "./pages/ProjectDetails";
 import Projects from "./pages/Projects";
 import { theme } from "./theme";
 import "./App.css";
 import Login from "./pages/Login";
 import ContextProvieder from "./Context/ContextProvieder";
-import PrivateRoute from "./components/login/PrivateRoute";
+import LayoutChild from "./components/layout/LayoutChild";
+import ClientInvoice from "./pages/ClientInvoice";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <ContextProvieder>
         <Router>
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Login />} />
-              <Route path="/project" element={<Projects />} />
-              <Route
-                path="/project/view/:projectDetailsId"
-                element={<ProjectDetails />}
-              />
-              <Route path="/addproject" element={<AddProject />} />
-              <Route path="/editproject/:projectId" element={<EditProject />} />
-              <Route path="/employee" element={<Employees />} />
-              <Route
-                path="/employee/profile/:profileId"
-                element={<EmployeeProfile />}
-              />
-              <Route path="/addemployee" element={<AddEmployee />} />
-              <Route
-                path="/editemployee/:employeetId"
-                element={<EditEmployee />}
-              />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <LayoutChild>
+                  <Login />
+                </LayoutChild>
+              }
+            />
+          </Routes>
 
-              <Route path="/client" element={<Clients />} />
+          <Routes>
+            <Route
+              path="/project"
+              element={
+                <Layout>
+                  <Projects />
+                </Layout>
+              }
+            />
+            <Route
+              path="/project/view/:projectDetailsId"
+              element={
+                <LayoutChild>
+                  <ProjectDetails />
+                </LayoutChild>
+              }
+            />
+            <Route
+              path="/projectinvoice/:projectId"
+              element={
+                <LayoutChild>
+                  <ClientInvoice />
+                </LayoutChild>
+              }
+            />
+            <Route
+              path="/addproject"
+              element={
+                <Layout>
+                  <AddProject />
+                </Layout>
+              }
+            />
+            <Route
+              path="/editproject/:projectId"
+              element={
+                <Layout>
+                  <EditProject />
+                </Layout>
+              }
+            />
+            <Route
+              path="/employee"
+              element={
+                <Layout>
+                  <Employees />
+                </Layout>
+              }
+            />
 
-              <Route path="/attendence" element={<Attendence />} />
-              <Route path="/addattendence" element={<AddAttendence />} />
+            <Route
+              path="/employee/profile/:profileId"
+              element={
+                <LayoutChild>
+                  <EmployeeProfile />
+                </LayoutChild>
+              }
+            />
+            <Route
+              path="/addemployee"
+              element={
+                <Layout>
+                  <AddEmployee />
+                </Layout>
+              }
+            />
+            <Route
+              path="/editemployee/:employeetId"
+              element={
+                <Layout>
+                  <EditEmployee />
+                </Layout>
+              }
+            />
 
-              <Route
-                path="/client/profile/:clientId"
-                element={<ClientProfile />}
-              />
+            <Route
+              path="/client"
+              element={
+                <Layout>
+                  <Clients />
+                </Layout>
+              }
+            />
 
-              <Route path="/addclient" element={<AddClients />} />
-              <Route
-                path="/editclient/:editclientId"
-                element={<EditClients />}
-              />
-              <Route path="/payment" element={<AllPayment />} />
-              <Route
-                path="/payment/update/:paymentId"
-                element={<EditPayment />}
-              />
-              <Route path="/payment/invoice/:invoiceId" element={<Invoice />} />
-              <Route path="/addpayment" element={<AddPayment />} />
+            <Route
+              path="/attendence"
+              element={
+                <Layout>
+                  <Attendence />
+                </Layout>
+              }
+            />
+            <Route
+              path="/addattendence"
+              element={
+                <Layout>
+                  <AddAttendence />
+                </Layout>
+              }
+            />
 
-              <Route path="/expense" element={<AllExpense />} />
-              <Route path="/addexpense" element={<AddExpense />} />
-              <Route
-                path="/expense/update/:expenseId"
-                element={<EditExpense />}
-              />
+            <Route
+              path="/client/profile/:clientId"
+              element={
+                <LayoutChild>
+                  <ClientProfile />
+                </LayoutChild>
+              }
+            />
 
-              <Route path="/leave" element={<Leave />} />
-              <Route path="/addleavetype" element={<AddLeaveType />} />
-              <Route path="/addleave" element={<AddLeave />} />
-              <Route path="/leave/update/:leaveId" element={<EditLeave />} />
-              <Route
-                path="/leavetype/update/:leavetypeId"
-                element={<EditLeaveType />}
-              />
-              <Route path="/login" element={<Login />} />
-            </Routes>
-          </Layout>
+            <Route
+              path="/addclient"
+              element={
+                <Layout>
+                  <AddClients />
+                </Layout>
+              }
+            />
+            <Route
+              path="/editclient/:editclientId"
+              element={
+                <Layout>
+                  <EditClients />
+                </Layout>
+              }
+            />
+            <Route
+              path="/payment"
+              element={
+                <Layout>
+                  <AllPayment />
+                </Layout>
+              }
+            />
+            <Route
+              path="/payment/update/:paymentId"
+              element={
+                <Layout>
+                  <EditPayment />
+                </Layout>
+              }
+            />
+            <Route
+              path="/payment/invoice/:invoiceId"
+              element={
+                <Layout>
+                  <Invoice />
+                </Layout>
+              }
+            />
+            <Route
+              path="/addpayment"
+              element={
+                <Layout>
+                  <AddPayment />
+                </Layout>
+              }
+            />
+
+            <Route
+              path="/expense"
+              element={
+                <Layout>
+                  <AllExpense />
+                </Layout>
+              }
+            />
+            <Route
+              path="/addexpense"
+              element={
+                <Layout>
+                  <AddExpense />
+                </Layout>
+              }
+            />
+            <Route
+              path="/expense/update/:expenseId"
+              element={
+                <Layout>
+                  <EditExpense />
+                </Layout>
+              }
+            />
+
+            <Route
+              path="/leave"
+              element={
+                <Layout>
+                  <Leave />
+                </Layout>
+              }
+            />
+            <Route
+              path="/addleavetype"
+              element={
+                <Layout>
+                  <AddLeaveType />
+                </Layout>
+              }
+            />
+
+            <Route
+              path="/addleave"
+              element={
+                <LayoutChild>
+                  <AddLeave />
+                </LayoutChild>
+              }
+            />
+
+            <Route
+              path="/leave/update/:leaveId"
+              element={
+                <Layout>
+                  <EditLeave />
+                </Layout>
+              }
+            />
+            <Route
+              path="/leavetype/update/:leavetypeId"
+              element={
+                <Layout>
+                  <EditLeaveType />
+                </Layout>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <LayoutChild>
+                  <Login />
+                </LayoutChild>
+              }
+            />
+          </Routes>
         </Router>
       </ContextProvieder>
     </ThemeProvider>

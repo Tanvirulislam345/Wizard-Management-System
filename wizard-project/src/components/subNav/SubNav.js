@@ -13,13 +13,21 @@ const SubNav = ({ project, addproject }) => {
     <SubNabBar sx={{ pb: 0 }}>
       <HeadingFormatTitle>{project}</HeadingFormatTitle>
       <BoxContainer>
-        <Link to="/">
-          <HeadingFormatTitle>
-            <HomeIcon color="secondary" />
-          </HeadingFormatTitle>
-        </Link>
-
         {user?.Role === "admin" && (
+          <>
+            <Link to="/project">
+              <HeadingFormatTitle>
+                <HomeIcon color="secondary" />
+              </HeadingFormatTitle>
+            </Link>
+            <Link to={`/${addproject}`}>
+              <HeadingFormatTitle>
+                <AddBoxIcon color="secondary" sx={{ ml: 2 }} />
+              </HeadingFormatTitle>
+            </Link>
+          </>
+        )}
+        {user?.Role === "employee" && addproject === "addleave" && (
           <Link to={`/${addproject}`}>
             <HeadingFormatTitle>
               <AddBoxIcon color="secondary" sx={{ ml: 2 }} />

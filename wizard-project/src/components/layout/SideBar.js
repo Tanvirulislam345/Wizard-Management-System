@@ -14,11 +14,6 @@ import {
 import { useAuth } from "../../Context/ContextProvieder";
 
 const items = [
-  // {
-  //   href: "/",
-  //   icon: <FaHome fontSize="small" />,
-  //   title: "Home",
-  // },
   {
     href: "/project",
     icon: <FaProjectDiagram fontSize="small" />,
@@ -54,15 +49,10 @@ const items = [
     icon: <FaBuffer fontSize="small" />,
     title: "Attendence",
   },
-  {
-    href: "/login",
-    icon: <FaBuffer fontSize="small" />,
-    title: "Login",
-  },
 ];
 
-export default function SideBar({ open, onClose }) {
-  const { user } = useAuth();
+export default function SideBar({ open, onClose, user }) {
+  // const { user } = useAuth();
 
   const style = useStyle();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"), {

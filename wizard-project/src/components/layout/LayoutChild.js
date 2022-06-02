@@ -1,11 +1,10 @@
-import { useState } from "react";
 import { Box, CircularProgress } from "@mui/material";
-import { NavBar } from "./NavBar";
-import SideBar from "./SideBar";
-import { LayoutRoot } from "../../styles/MetarialStyles";
+import React, { useState } from "react";
 import { useAuth } from "../../Context/ContextProvieder";
+import { LayoutRoot2 } from "../../styles/MetarialStyles";
+import { NavBar } from "./NavBar";
 
-export const Layout = ({ children }) => {
+const LayoutChild = ({ children }) => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const { user, loading } = useAuth();
   if (loading && !user) {
@@ -18,13 +17,10 @@ export const Layout = ({ children }) => {
     return (
       <>
         <NavBar sidebartoggle={() => setSidebarOpen(!isSidebarOpen)} />
-        <SideBar
-          onClose={() => setSidebarOpen(!isSidebarOpen)}
-          open={isSidebarOpen}
-          user={user}
-        />
-        <LayoutRoot>{children}</LayoutRoot>
+        <LayoutRoot2>{children}</LayoutRoot2>
       </>
     );
   }
 };
+
+export default LayoutChild;

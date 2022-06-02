@@ -21,7 +21,6 @@ const Login = () => {
     const email = data.Email;
     axios.get(`http://localhost:9000/${role}match/${email}`).then((res) => {
       const user = res.data[0];
-      console.log(user);
       if (user) {
         saveUser(user);
         setError("");
@@ -42,7 +41,6 @@ const Login = () => {
   return (
     <LayoutContiner
       style={{
-        height: "80vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

@@ -27,6 +27,7 @@ const AddLeaveForm = ({
           select
           SelectProps={{ native: true }}
         >
+          <option>Employee Id</option>
           {employee.map((option) => (
             <option key={option.id} value={option.EmployeeId}>
               {option.EmployeeId}
@@ -51,6 +52,8 @@ const AddLeaveForm = ({
           select
           SelectProps={{ native: true }}
         >
+          {" "}
+          <option>Leave Name</option>
           {leaveTypes.map((option) => (
             <option key={option.id} value={option.LeaveName}>
               {option.LeaveName}

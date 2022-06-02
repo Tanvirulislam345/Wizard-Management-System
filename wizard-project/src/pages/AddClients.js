@@ -22,7 +22,7 @@ const AddClients = () => {
       ClientId,
       Password,
     };
-    // console.log(newData);
+
     if (data !== null) {
       axios.post("http://localhost:9000/addclient", newData).then((res) => {
         if (res.status === 200) {

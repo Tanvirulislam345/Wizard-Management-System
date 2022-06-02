@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
+import { useAuth } from "../../Context/ContextProvieder";
 import {
   HeadingFormatTitle,
   PlainText,
@@ -26,6 +27,7 @@ const ProjectInfo = ({ clientDetails, handleUpdate }) => {
     Tax,
     Discount,
   } = clientDetails;
+  const { user } = useAuth();
 
   const allmember = JSON.parse(TeamMember).map((data) => data.name);
 
@@ -92,11 +94,13 @@ const ProjectInfo = ({ clientDetails, handleUpdate }) => {
           <SinglePlainText2 style={{ width: "50px", textAlign: "center" }}>
             {data.workPersent}%
           </SinglePlainText2>
-          <PhasesListMenu
-            data={data}
-            value={index}
-            handleUpdate={handleUpdate}
-          />
+          {user?.Role === "admin" && (
+            <PhasesListMenu
+              data={data}
+              value={index}
+              handleUpdate={handleUpdate}
+            />
+          )}
         </PlainTextContainer2>
       ))}
 
