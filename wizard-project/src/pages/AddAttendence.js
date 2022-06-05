@@ -23,7 +23,6 @@ const AddAttendence = () => {
   const handleFile = (e) => {
     let selectedFile = e.target.files[0];
     if (selectedFile) {
-      // console.log(selectedFile.type);
       if (selectedFile && fileType.includes(selectedFile.type)) {
         let reader = new FileReader();
         reader.readAsArrayBuffer(selectedFile);

@@ -15,7 +15,6 @@ const ContextProvieder = ({ children }) => {
     setLoading(true);
     if (data) {
       setUser(data);
-      console.log(data);
     }
     setLoading(false);
   }, []);

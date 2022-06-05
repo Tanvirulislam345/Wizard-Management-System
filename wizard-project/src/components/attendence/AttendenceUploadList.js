@@ -11,7 +11,6 @@ import Paper from "@mui/material/Paper";
 import { TableHead } from "@mui/material";
 
 export default function AttendenceUploadList({ rows }) {
-  console.log(rows);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -50,7 +49,6 @@ export default function AttendenceUploadList({ rows }) {
       <Table aria-label="custom pagination table">
         <TableHead>
           <TableRow>
-            <StyledTableCell align="center">Date</StyledTableCell>
             <StyledTableCell align="center">Name</StyledTableCell>
             <StyledTableCell align="center">In Time</StyledTableCell>
             <StyledTableCell align="center">Out Time</StyledTableCell>
@@ -62,7 +60,6 @@ export default function AttendenceUploadList({ rows }) {
             : rows
           ).map((row, index) => (
             <TableRow key={index}>
-              <StyledTableCell align="center">{row.Date}</StyledTableCell>
               <StyledTableCell align="center">{row.Name}</StyledTableCell>
               <StyledTableCell align="center">{row.InTime}</StyledTableCell>
               <StyledTableCell align="center">{row.OutTime}</StyledTableCell>

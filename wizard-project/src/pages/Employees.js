@@ -14,13 +14,11 @@ const Employees = () => {
   }, []);
 
   const handleRemove = (id) => {
-    axios
-      .delete(`http://localhost:9000/employee/delete/${id}`)
-      .then((res) => {
-        if (res.status === 200) {
-          setEmployee(employees.filter((emp) => emp.id !== id));
-        }
-      });
+    axios.delete(`http://localhost:9000/employee/delete/${id}`).then((res) => {
+      if (res.status === 200) {
+        setEmployee(employees.filter((emp) => emp.id !== id));
+      }
+    });
   };
 
   return (
@@ -29,11 +27,15 @@ const Employees = () => {
 
       <Grid container spacing={2}>
         {employees?.map((employee, index) => (
-          <EmployeeList key={index} employee={employee} handleRemove={handleRemove}></EmployeeList>
+          <EmployeeList
+            key={index}
+            employee={employee}
+            handleRemove={handleRemove}
+          ></EmployeeList>
         ))}
       </Grid>
     </LayoutContiner>
   );
-};;
+};
 
 export default Employees;

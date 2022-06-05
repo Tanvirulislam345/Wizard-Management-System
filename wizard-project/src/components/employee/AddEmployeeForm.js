@@ -1,4 +1,4 @@
-import { Grid, Stack } from "@mui/material";
+import { Button, Grid, Input, Stack } from "@mui/material";
 import React from "react";
 import {
   ButtonMake,
@@ -9,6 +9,7 @@ import Multiselect from "multiselect-react-dropdown";
 
 const AddEmployeeForm = ({
   gender,
+  Designation,
   bloodGroup,
   Categoris,
   ProjectTools,
@@ -58,6 +59,7 @@ const AddEmployeeForm = ({
           ))}
         </TextFieldMake>
       </Grid>
+
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
@@ -228,12 +230,15 @@ const AddEmployeeForm = ({
           ))}
         </TextFieldMake>
       </Grid>
+
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
+          multiline
+          rows={3}
           variant="outlined"
-          label="Designation"
-          name="Designation"
+          label="About Me"
+          name="AboutMe"
           onChange={(event) =>
             setData({
               ...data,
@@ -243,7 +248,7 @@ const AddEmployeeForm = ({
         />
       </Grid>
 
-      <Grid item xs={12}>
+      <Grid item xs={6}>
         <Multiselect
           options={ProjectTools} // Options to display in the dropdown
           selectedValues={tools} // Preselected value to persist in dropdown
@@ -258,28 +263,35 @@ const AddEmployeeForm = ({
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
-          multiline
-          rows={8}
           variant="outlined"
-          label="About Me"
-          name="AboutMe"
+          label="Designation"
+          name="Designation"
           onChange={(event) =>
             setData({
               ...data,
               [event.target.name]: event.target.value,
             })
           }
-        />
+          required
+          select
+          SelectProps={{ native: true }}
+        >
+          <option>Enter Employee position</option>
+          {Designation.map((option, index) => (
+            <option key={index} value={option.position}>
+              {option.position}
+            </option>
+          ))}
+        </TextFieldMake>
       </Grid>
 
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
-          multiline
-          rows={8}
           variant="outlined"
-          label="Career Summary"
-          name="CareerSummary"
+          label="Basic salary"
+          name="Basicsalary"
+          type="number"
           onChange={(event) =>
             setData({
               ...data,
@@ -288,15 +300,58 @@ const AddEmployeeForm = ({
           }
         />
       </Grid>
-
-      <Grid item xs={12}>
+      <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
-          multiline
-          rows={8}
           variant="outlined"
-          label="Achivement"
-          name="Achivement"
+          label="Food Allowance"
+          name="FoodAllowance"
+          type="number"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
+          label="Mobile Allowance"
+          name="MobileAllowance"
+          type="number"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
+          label="Travel Allowance"
+          name="TravelAllowance"
+          type="number"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
+          label="Festival Allowance"
+          name="FestivalAllowance"
+          type="number"
           onChange={(event) =>
             setData({
               ...data,
@@ -322,32 +377,12 @@ const AddEmployeeForm = ({
           }
         />
       </Grid>
-
-      <Grid item xs={12}>
-        <TextFieldMake
-          fullWidth
-          type="file"
-          focused
-          variant="outlined"
-          label="File"
-          name="File"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.files[0],
-            })
-          }
-        />
-      </Grid>
-
       <Grid item xs={12}>
         <Stack spacing={3} direction="row">
           <ButtonMake size="medium" type="submit" onClick={handleSubmit}>
-            Send
+            Upload
           </ButtonMake>
-          <ButtonMake size="medium" type="reset">
-            Cancel
-          </ButtonMake>
+          <ButtonMake size="medium">Cancel</ButtonMake>
         </Stack>
       </Grid>
     </Grid>

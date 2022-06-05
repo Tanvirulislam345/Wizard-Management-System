@@ -32,7 +32,7 @@ export default function ProfileIcon() {
       </Box>
     );
   }
-  console.log(user);
+
   return (
     <div>
       {user && (

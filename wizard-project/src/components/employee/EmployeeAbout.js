@@ -21,27 +21,45 @@ const EmployeeAbout = ({ values }) => {
         <ProfileSingleInfo title="Full Name" value={values.FullName} />
         <ProfileSingleInfo title="Email" value={values.Email} />
         <ProfileSingleInfo title="Location" value={values.PermanentAddress} />
-      </Grid>
-
-      <Grid container spacing={3}>
-        <Grid xs={12} item>
-          <HeadingFormatPaddingLess title="Career Summary">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut urna,
-            netus lacus arcu duis mus ut dolor eu. Arcu ipsum facilisis sit
-          </HeadingFormatPaddingLess>
-        </Grid>
-        <Grid xs={12} item>
-          <HeadingFormatPaddingLess title="Education" sx={{ p: 0 }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut urna,
-            netus lacus arcu duis mus ut dolor eu. Arcu ipsum facilisis sit
-          </HeadingFormatPaddingLess>
-        </Grid>
-        <Grid xs={12} item>
-          <HeadingFormatPaddingLess title="Achivement" sx={{ p: 0 }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut urna,
-            netus lacus arcu duis mus ut dolor eu. Arcu ipsum facilisis sit
-          </HeadingFormatPaddingLess>
-        </Grid>
+        <ProfileSingleInfo title="Birth Date" value={values.BirthDate} />
+        <ProfileSingleInfo title="Join Date" value={values.JoinDate} />
+        <ProfileSingleInfo title="Department" value={values.Department} />
+        <ProfileSingleInfo
+          title="Basic Salary"
+          value={values?.Basicsalary || 0}
+          taka="Taka"
+        />
+        <ProfileSingleInfo
+          title="Food Allowance"
+          value={values?.FoodAllowance || 0}
+          taka="Taka"
+        />
+        <ProfileSingleInfo
+          title="Mobile Allowance"
+          value={values?.MobileAllowance || 0}
+          taka="Taka"
+        />
+        <ProfileSingleInfo
+          title="Travel Allowance"
+          value={values?.TravelAllowance || 0}
+          taka="Taka"
+        />
+        <ProfileSingleInfo
+          title="Festival Bonus"
+          value={values?.FestivalAllowance || 0}
+          taka="Taka"
+        />
+        <ProfileSingleInfo
+          title="Total Salary"
+          value={
+            values?.Basicsalary +
+              values?.FoodAllowance +
+              values?.MobileAllowance +
+              values?.TravelAllowance +
+              values?.FestivalAllowance || 0
+          }
+          taka="Taka"
+        />
       </Grid>
     </Box>
   );

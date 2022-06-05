@@ -18,7 +18,6 @@ const port = process.env.PORT || 9000;
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public/images");
-    // cb(null, UPLOADS_FOLDER);
   },
   filename: (req, file, cb) => {
     const fileExt = path.extname(file.originalname);
@@ -592,18 +591,46 @@ app.delete("/allexpense/:expenseId", (req, res) => {
 });
 
 app.post("/addattendence", (req, res) => {
+  const today = new Date();
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
+  const date = today.getDate() + " " + monthNames[month] + " " + year;
+
   const datas = req.body;
-  const keys = Object.keys(datas[0]);
+  const newData = datas.map((data) => {
+    return {
+      ...data,
+      Date: date,
+      Month: monthNames[month],
+      Year: year,
+    };
+  });
+
+  const keys = Object.keys(newData[0]);
 
   const sqlquery = `INSERT INTO all_attendence (${keys.map(
     (key) => key
   )}) VALUES (${keys.map((key) => "?")})`;
 
-  datas.map((data, index) => {
+  newData.map((data, index) => {
     const value = keys.map((key) => {
       return data[key];
     });
-    // console.log(value);
+
     connection.query(sqlquery, value, (err, result) => {
       if (err) {
         console.log(err);
@@ -614,16 +641,78 @@ app.post("/addattendence", (req, res) => {
       }
     });
   });
+
+  // res.json(true);
 });
 
 app.get("/allattendence", (req, res) => {
-  connection.query("SELECT * FROM all_attendence WHERE 1", (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(result);
+  const today = new Date();
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const month = today.getMonth() + 1;
+  const Month = monthNames[month];
+  connection.query(
+    `SELECT * FROM all_attendence WHERE Month = "${Month}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result);
+      }
     }
+  );
+});
+
+app.post("/allattendence/search", (req, res) => {
+  const data = req.body;
+  const today = new Date();
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const month = today.getMonth() + 1;
+  const Month = monthNames[month];
+  const keys = Object.keys(data);
+  const value = keys.map((key) => {
+    return `${key} = "${data[key]}"`;
   });
+  // console.log(
+  //   `SELECT * FROM all_attendence WHERE ${value.join(" " + "AND" + " ")}`
+  // );
+  connection.query(
+    `SELECT * FROM all_attendence WHERE ${value.join(" " + "AND" + " ")}`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.json(result);
+      }
+    }
+  );
+  // res.json(true);
 });
 
 app.post("/addleavetype", (req, res) => {

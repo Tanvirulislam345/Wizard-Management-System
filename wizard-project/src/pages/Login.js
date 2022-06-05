@@ -8,11 +8,11 @@ import { LayoutContiner } from "../styles/MetarialStyles";
 
 const Login = () => {
   const [data, setData] = useState({});
+  const { user, setUser } = useAuth();
   const [error, setError] = useState("");
   const navigation = useNavigate();
 
   const saveUser = (user) => {
-    console.log(user);
     sessionStorage.setItem("user", JSON.stringify(user));
   };
 
@@ -23,6 +23,7 @@ const Login = () => {
       const user = res.data[0];
       if (user) {
         saveUser(user);
+        setUser(user);
         setError("");
         if (user.Role === "admin") {
           navigation(`/project`);
@@ -31,7 +32,6 @@ const Login = () => {
         } else if (user.Role === "employee") {
           navigation(`/employee/profile/${user.id}`);
         }
-        window.location.reload();
       } else {
         setError("Email or Password does not match");
       }
@@ -46,7 +46,12 @@ const Login = () => {
         alignItems: "center",
       }}
     >
-      <LoginForm data={data} setData={setData} handleSubmit={handleSubmit} />
+      <LoginForm
+        data={data}
+        setData={setData}
+        error={error}
+        handleSubmit={handleSubmit}
+      />
     </LayoutContiner>
   );
 };

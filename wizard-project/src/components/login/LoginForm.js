@@ -22,7 +22,7 @@ const states = [
   },
 ];
 
-const LoginForm = ({ data, setData, handleSubmit }) => {
+const LoginForm = ({ data, setData, error, handleSubmit }) => {
   return (
     <Grid container spacing={2}>
       <Grid
@@ -91,6 +91,11 @@ const LoginForm = ({ data, setData, handleSubmit }) => {
             }
           />
         </Grid>
+        {error && (
+          <Grid item xs={12} sx={{ my: "auto" }}>
+            <Typography color="red">{error}</Typography>
+          </Grid>
+        )}
 
         <Grid item xs={12}>
           <Stack spacing={3} direction="row" sx={{ mt: 3 }}>

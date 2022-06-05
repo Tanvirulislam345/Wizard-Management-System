@@ -7,6 +7,11 @@ import { LayoutContiner } from "../styles/MetarialStyles";
 
 const AddEmployee = () => {
   const gender = [{ gender: "Male" }, { gender: "Female" }];
+  const Designation = [
+    { position: "Permanent" },
+    { position: "Provition Period" },
+    { position: "Intern" },
+  ];
 
   const Allskill = [
     { name: "Node js" },
@@ -50,6 +55,7 @@ const AddEmployee = () => {
     };
 
     if (data !== null) {
+      // console.log(newData);
       axios.post("http://localhost:9000/addemployee", newData).then((res) => {
         if (res.status === 200) {
           navigate("/employee");
@@ -65,6 +71,7 @@ const AddEmployee = () => {
       <SubNav2 project="Add Employee" />
       <AddEmployeeForm
         gender={gender}
+        Designation={Designation}
         bloodGroup={bloodGroup}
         Categoris={Categoris}
         ProjectTools={Allskill}

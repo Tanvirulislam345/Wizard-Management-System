@@ -11,8 +11,6 @@ import {
   FaMoneyCheck,
 } from "react-icons/fa";
 
-import { useAuth } from "../../Context/ContextProvieder";
-
 const items = [
   {
     href: "/project",
@@ -52,8 +50,6 @@ const items = [
 ];
 
 export default function SideBar({ open, onClose, user }) {
-  // const { user } = useAuth();
-
   const style = useStyle();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"), {
     defaultMatches: true,

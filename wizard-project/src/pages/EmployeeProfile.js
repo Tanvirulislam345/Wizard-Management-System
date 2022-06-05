@@ -42,7 +42,7 @@ const EmployeeProfile = () => {
                   name={values.FullName}
                   designation={values.Designation}
                   id={values.EmployeeId}
-                  description={values.Description}
+                  description={values.AboutMe}
                   contact={values.Email}
                 />
               </Grid>

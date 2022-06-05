@@ -15,9 +15,10 @@ const ProjectIdForm = ({ ProjectId, setId }) => {
         select
         SelectProps={{ native: true }}
       >
+        <option>Enter ProjectId</option>
         {ProjectId.map((project) => (
           <option key={project.ProjectId} value={project.ProjectId}>
-            {project.ProjectId}
+            {project.ProjectTitle}
           </option>
         ))}
       </TextFieldMake>
