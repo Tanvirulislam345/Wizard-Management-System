@@ -1,4 +1,4 @@
-import { Grid, Stack } from "@mui/material";
+import { Button, Grid, Stack } from "@mui/material";
 import React from "react";
 import {
   ButtonMake,
@@ -338,15 +338,12 @@ const EditEmployeeForm = ({
           }
         />
       </Grid>
-
       <Grid item xs={12}>
         <Stack spacing={3} direction="row">
-          <ButtonMake size="medium" type="submit" onClick={handleSubmit}>
-            Send
+          <ButtonMake size="medium" onClick={handleSubmit}>
+            Add
           </ButtonMake>
-          <ButtonMake size="medium" type="reset">
-            Cancel
-          </ButtonMake>
+          <ButtonMake size="medium">Cancel</ButtonMake>
         </Stack>
       </Grid>
     </Grid>

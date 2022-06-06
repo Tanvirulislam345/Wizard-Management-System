@@ -3,13 +3,11 @@ import React from "react";
 
 const Skill = ({ skills }) => {
   const data = JSON.parse(skills);
-  return (
-    <Box sx={{ px: 3 }}>
-      {data.map((value, index) => (
-        <h5 key={index}>{value.name}</h5>
-      ))}
-    </Box>
-  );
+  const value = data.map((value) => {
+    return value.name;
+  });
+
+  return <Box sx={{ px: 3 }}>{value.join(", ")}</Box>;
 };
 
 export default Skill;

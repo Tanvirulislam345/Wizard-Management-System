@@ -28,6 +28,16 @@ const items = [
     title: "Client",
   },
   {
+    href: "/payablesalary",
+    icon: <FaUserSecret fontSize="small" />,
+    title: "Payable Salary",
+  },
+  {
+    href: "/salary",
+    icon: <FaUserSecret fontSize="small" />,
+    title: "Salary",
+  },
+  {
     href: "/payment",
     icon: <FaDollyFlatbed fontSize="small" />,
     title: "Payment",

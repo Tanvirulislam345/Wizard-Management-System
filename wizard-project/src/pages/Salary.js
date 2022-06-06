@@ -3,12 +3,13 @@ import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
 import AttendenceViewList from "../components/attendence/AttendenceViewList";
 import FilterForm from "../components/attendence/FilterForm";
+import SalaryTable from "../components/salary/SalaryTable";
 import { HeadingFormatContainer } from "../components/shared/HeadingFormat/HeadingFormatStyle";
-import SubNav from "../components/subNav/SubNav";
+import SubNav2 from "../components/subNav/SubNav2";
 import { useAuth } from "../Context/ContextProvieder";
 import { LayoutContiner } from "../styles/MetarialStyles";
 
-const Attendence = () => {
+const Salary = () => {
   const { user } = useAuth();
   const [employee, setEmployee] = useState(null);
   const [values, setValues] = useState(null);
@@ -28,7 +29,7 @@ const Attendence = () => {
       });
 
     if (user) {
-      fetch(`http://localhost:9000/allattendence/present`)
+      fetch(`http://localhost:9000/salary/present`)
         .then((res) => res.json())
         .then((data) => {
           if (user?.Role === "employee") {
@@ -47,7 +48,7 @@ const Attendence = () => {
 
   const handleSearch = () => {
     axios
-      .post(`http://localhost:9000/allattendence/search`, filterValue)
+      .post(`http://localhost:9000/salary/search`, filterValue)
       .then((res) => {
         if (res.data.length > 0) {
           if (user.Role === "employee") {
@@ -69,7 +70,7 @@ const Attendence = () => {
 
   return (
     <LayoutContiner>
-      <SubNav project="Attendence" addproject="addattendence"></SubNav>
+      <SubNav2 project="Salary"></SubNav2>
       {employee !== null && values !== null && (
         <>
           <HeadingFormatContainer>
@@ -83,11 +84,11 @@ const Attendence = () => {
               <Typography sx={{ mt: 2, color: "red" }}>{errors}</Typography>
             )}
           </HeadingFormatContainer>
-          <AttendenceViewList rows={values} />
+          <SalaryTable rows={values} />
         </>
       )}
     </LayoutContiner>
   );
 };
 
-export default Attendence;
+export default Salary;

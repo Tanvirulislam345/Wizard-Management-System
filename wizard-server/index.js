@@ -590,6 +590,82 @@ app.delete("/allexpense/:expenseId", (req, res) => {
   // res.json(true);
 });
 
+app.post("/salary", (req, res) => {
+  const data = req.body;
+  const keys = Object.keys(data);
+
+  const sqlquery = `INSERT INTO all_salary(${keys.map(
+    (key) => key
+  )}) VALUES (${keys.map((key) => "?")})`;
+
+  const value = keys.map((key) => {
+    return data[key];
+  });
+
+  connection.query(sqlquery, value, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(result);
+      res.json(result);
+    }
+  });
+});
+
+app.get("/salary/present", (req, res) => {
+  const today = new Date();
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const year = today.getFullYear();
+  const month = today.getMonth() - 1;
+  const Month = monthNames[month];
+
+  connection.query(
+    `SELECT * FROM all_salary WHERE Month = "${Month}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result);
+      }
+    }
+  );
+});
+
+app.post("/salary/search", (req, res) => {
+  const data = req.body;
+
+  const keys = Object.keys(data);
+  const value = keys.map((key) => {
+    return `${key} = "${data[key]}"`;
+  });
+
+  connection.query(
+    `SELECT * FROM all_salary WHERE ${value.join(" " + "AND" + " ")}`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        // res.json(result);
+      }
+    }
+  );
+  res.json(true);
+});
+
 app.post("/addattendence", (req, res) => {
   const today = new Date();
   const monthNames = [
@@ -606,8 +682,8 @@ app.post("/addattendence", (req, res) => {
     "Nov",
     "Dec",
   ];
-  const month = today.getMonth() + 1;
   const year = today.getFullYear();
+  const month = today.getMonth();
   const date = today.getDate() + " " + monthNames[month] + " " + year;
 
   const datas = req.body;
@@ -641,10 +717,38 @@ app.post("/addattendence", (req, res) => {
       }
     });
   });
-
-  // res.json(true);
 });
 
+app.get("/allattendence/present", (req, res) => {
+  const today = new Date();
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const year = today.getFullYear();
+  const month = today.getMonth();
+  const date = today.getDate() + " " + monthNames[month] + " " + year;
+  connection.query(
+    `SELECT * FROM all_attendence WHERE Date = "${date}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result);
+      }
+    }
+  );
+});
 app.get("/allattendence", (req, res) => {
   const today = new Date();
   const monthNames = [
@@ -661,7 +765,7 @@ app.get("/allattendence", (req, res) => {
     "Nov",
     "Dec",
   ];
-  const month = today.getMonth() + 1;
+  const month = today.getMonth() - 1;
   const Month = monthNames[month];
   connection.query(
     `SELECT * FROM all_attendence WHERE Month = "${Month}"`,
@@ -677,30 +781,12 @@ app.get("/allattendence", (req, res) => {
 
 app.post("/allattendence/search", (req, res) => {
   const data = req.body;
-  const today = new Date();
-  const monthNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  const month = today.getMonth() + 1;
-  const Month = monthNames[month];
+  console.log(data);
   const keys = Object.keys(data);
   const value = keys.map((key) => {
     return `${key} = "${data[key]}"`;
   });
-  // console.log(
-  //   `SELECT * FROM all_attendence WHERE ${value.join(" " + "AND" + " ")}`
-  // );
+
   connection.query(
     `SELECT * FROM all_attendence WHERE ${value.join(" " + "AND" + " ")}`,
     (err, result) => {

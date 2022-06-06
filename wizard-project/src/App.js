@@ -34,6 +34,8 @@ import Login from "./pages/Login";
 import ContextProvieder from "./Context/ContextProvieder";
 import LayoutChild from "./components/layout/LayoutChild";
 import ClientInvoice from "./pages/ClientInvoice";
+import PayableSalary from "./pages/PayableSalary";
+import Salary from "./pages/Salary";
 
 function App() {
   return (
@@ -274,6 +276,23 @@ function App() {
               element={
                 <Layout>
                   <EditLeaveType />
+                </Layout>
+              }
+            />
+
+            <Route
+              path="/payablesalary"
+              element={
+                <Layout>
+                  <PayableSalary />
+                </Layout>
+              }
+            />
+            <Route
+              path="/salary"
+              element={
+                <Layout>
+                  <Salary />
                 </Layout>
               }
             />

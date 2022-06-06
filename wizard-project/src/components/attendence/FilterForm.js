@@ -26,7 +26,7 @@ const FilterForm = ({
   handleSearch,
 }) => {
   return (
-    <Grid container spacing={2} sx={{ mt: 2 }}>
+    <Grid container spacing={2}>
       <Grid item xs={4} md={2}>
         <TextFieldMake
           fullWidth
@@ -44,7 +44,7 @@ const FilterForm = ({
           SelectProps={{ native: true }}
         >
           <option>Name</option>
-          {employee.map((option) => (
+          {employee?.map((option) => (
             <option key={option.id} value={option.EmployeeId}>
               {option.FullName}
             </option>
