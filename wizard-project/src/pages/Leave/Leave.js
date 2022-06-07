@@ -1,19 +1,28 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { LayoutContiner } from "../../styles/MetarialStyles";
-import { HeadingFormatContainer } from "../../components/shared/HeadingFormat/HeadingFormatStyle";
+import {
+  HeadingFormatContainer,
+  HeadingFormatTitle,
+} from "../../components/shared/HeadingFormat/HeadingFormatStyle";
 import ProfileNav from "../../components/shared/ProfileNav/ProfileNav";
 import SubNav from "../../components/subNav/SubNav";
 import AllLeave from "../../components/allLeaveDetails/AllLeave";
 import LeaveTypeList from "../../components/allLeaveDetails/LeaveTypeList";
 import { useAuth } from "../../Context/ContextProvieder";
+import { Box } from "@mui/material";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import { Link } from "react-router-dom";
+import { margin } from "@mui/system";
+
 const Leave = () => {
+  const { user } = useAuth();
   const [data, setData] = useState("All Leave");
   const navValue = ["Leave Type", "All Leave"];
   const [leaveType, setLeaveType] = useState(null);
   const [leave, setLeave] = useState(null);
   const [update, setUpdate] = useState(false);
-  const { user } = useAuth();
+
   console.log(user);
 
   const handleChange = (id, type, method) => {
@@ -33,7 +42,6 @@ const Leave = () => {
       }
     } else {
       const data = { Status: type };
-      // console.log(id, type, method, data);
       axios.put(`http://localhost:9000/leave/${id}`, data).then((res) => {
         if (res.status === 200) {
           setUpdate(!update);
@@ -48,7 +56,7 @@ const Leave = () => {
     });
 
     axios.get("http://localhost:9000/leave").then((res) => {
-      if (user.Role === "employee") {
+      if (user?.Role === "employee") {
         const data = res.data;
         const value = data.filter((da) => da.EmployeeId === user.EmployeeId);
         setLeave(value);
@@ -64,16 +72,44 @@ const Leave = () => {
         <ProfileNav navValue={navValue} data={data} setData={setData} />
       </HeadingFormatContainer>
       {leaveType !== null && data === "Leave Type" && (
-        <>
-          <SubNav project="Leave Type" addproject="addleavetype" />
-          <LeaveTypeList rows={leaveType} handleChange={handleChange} />
-        </>
+        <Box sx={{ mt: 2 }}>
+          {user?.Role !== "employee" && (
+            <Link to={`/addleavetype`}>
+              <HeadingFormatTitle
+                style={{
+                  display: "flex",
+                  justifyContent: "end",
+                  marginRight: "10px",
+                }}
+              >
+                <AddBoxIcon color="secondary" />
+              </HeadingFormatTitle>
+            </Link>
+          )}
+
+          {leaveType?.length > 0 && (
+            <LeaveTypeList rows={leaveType} handleChange={handleChange} />
+          )}
+        </Box>
       )}
       {data === "All Leave" && leave !== null && (
-        <>
-          <SubNav project="Leave" addproject="addleave" />
-          <AllLeave rows={leave} handleChange={handleChange} />
-        </>
+        <Box sx={{ mt: 2 }}>
+          <Link to={`/addleave`}>
+            <HeadingFormatTitle
+              style={{
+                display: "flex",
+                justifyContent: "end",
+                marginRight: "10px",
+              }}
+            >
+              <AddBoxIcon color="secondary" />
+            </HeadingFormatTitle>
+          </Link>
+
+          {leave?.length > 0 && (
+            <AllLeave rows={leave} handleChange={handleChange} />
+          )}
+        </Box>
       )}
     </LayoutContiner>
   );

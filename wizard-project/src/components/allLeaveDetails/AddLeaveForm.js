@@ -15,7 +15,7 @@ const AddLeaveForm = ({
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Employee Id"
+          label="Employee"
           name="EmployeeId"
           onChange={(event) =>
             setData({
@@ -27,10 +27,10 @@ const AddLeaveForm = ({
           select
           SelectProps={{ native: true }}
         >
-          <option>Employee Id</option>
+          <option>Employee Name</option>
           {employee.map((option) => (
             <option key={option.id} value={option.EmployeeId}>
-              {option.EmployeeId}
+              {option.FullName}
             </option>
           ))}
         </TextFieldMake>

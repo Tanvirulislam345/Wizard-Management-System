@@ -28,7 +28,7 @@ export const LayoutContiner = styled(Box)(({ theme }) => ({
   height: "100%",
   overflow: "auto",
   margin: "30px",
-  padding: "0px 30px 30px 30px",
+  padding: "30px",
   borderRadius: "15px",
 }));
 
@@ -48,7 +48,7 @@ export const SubNabBar = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  padding: "30px 0px",
+  // padding: "30px 0px",
 }));
 
 export const BoxContainer = styled(Box)(({ theme }) => ({

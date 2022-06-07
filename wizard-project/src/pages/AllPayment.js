@@ -24,7 +24,9 @@ const AllPayment = () => {
   return (
     <LayoutContiner>
       <SubNav project="All Payment" addproject="addpayment" />
-      <PaymentList rows={rows} handleChange={handleChange} />
+      {rows?.length > 0 && (
+        <PaymentList rows={rows} handleChange={handleChange} />
+      )}
     </LayoutContiner>
   );
 };

@@ -1,91 +1,13 @@
-import { Typography } from "@mui/material";
-import axios from "axios";
-import React, { useEffect, useState, useRef } from "react";
-import AttendenceViewList from "../components/attendence/AttendenceViewList";
-import FilterForm from "../components/attendence/FilterForm";
-import { HeadingFormatContainer } from "../components/shared/HeadingFormat/HeadingFormatStyle";
+import React from "react";
+import Attendences from "../components/attendence/Attendences";
 import SubNav from "../components/subNav/SubNav";
-import { useAuth } from "../Context/ContextProvieder";
 import { LayoutContiner } from "../styles/MetarialStyles";
 
 const Attendence = () => {
-  const { user } = useAuth();
-  const [employee, setEmployee] = useState(null);
-  const [values, setValues] = useState(null);
-  const [errors, setErrors] = useState("");
-  const [filterValue, setFilterValue] = useState(null);
-
-  useEffect(() => {
-    fetch("http://localhost:9000/employee")
-      .then((res) => res.json())
-      .then((data) => {
-        if (user?.Role === "employee") {
-          const value = data.filter((da) => da.EmployeeId === user.EmployeeId);
-          setEmployee(value);
-        } else {
-          setEmployee(data);
-        }
-      });
-
-    if (user) {
-      fetch(`http://localhost:9000/allattendence/present`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (user?.Role === "employee") {
-            const value = data.filter(
-              (da) => da.EmployeeId === user.EmployeeId
-            );
-            setErrors("");
-            setValues(value);
-          } else {
-            setErrors("");
-            setValues(data);
-          }
-        });
-    }
-  }, [user]);
-
-  const handleSearch = () => {
-    axios
-      .post(`http://localhost:9000/allattendence/search`, filterValue)
-      .then((res) => {
-        if (res.data.length > 0) {
-          if (user.Role === "employee") {
-            let data = res.data;
-            const value = data.filter(
-              (da) => da.EmployeeId === user.EmployeeId
-            );
-            setErrors("");
-            setValues(value);
-          } else {
-            setErrors("");
-            setValues(res.data);
-          }
-        } else {
-          setErrors("no search found");
-        }
-      });
-  };
-
   return (
     <LayoutContiner>
       <SubNav project="Attendence" addproject="addattendence"></SubNav>
-      {employee !== null && values !== null && (
-        <>
-          <HeadingFormatContainer>
-            <FilterForm
-              employee={employee}
-              filterValue={filterValue}
-              setFilterValue={setFilterValue}
-              handleSearch={handleSearch}
-            />
-            {errors && (
-              <Typography sx={{ mt: 2, color: "red" }}>{errors}</Typography>
-            )}
-          </HeadingFormatContainer>
-          <AttendenceViewList rows={values} />
-        </>
-      )}
+      <Attendences />
     </LayoutContiner>
   );
 };

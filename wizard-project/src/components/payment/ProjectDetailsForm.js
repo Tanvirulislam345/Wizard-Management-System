@@ -22,11 +22,11 @@ const states2 = [
     label: "Add Status type",
   },
   {
-    value: "Clear",
+    value: "clear",
     label: "Clear",
   },
   {
-    value: "Due",
+    value: "due",
     label: "Due",
   },
 ];
@@ -99,16 +99,6 @@ const ProjectDetailsForm = ({
           value={projectDetails.TotalPayment}
         />
       </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          focused
-          variant="outlined"
-          label="Total Due"
-          name="Due"
-          value={projectDetails.Due}
-        />
-      </Grid>
 
       <Grid item xs={12} md={6}>
         <TextFieldMake
@@ -130,8 +120,8 @@ const ProjectDetailsForm = ({
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Add new Payment"
-          name="NewPayment"
+          label="Add Payment"
+          name="Payment"
           type="number"
           onChange={(event) =>
             setData({

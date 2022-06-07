@@ -36,14 +36,6 @@ export default function PaymentListMenu({ id, handleChange }) {
         open={open}
         onClose={handleClose}
       >
-        <Link
-          to={`/expense/update/${id}`}
-          style={{
-            textDecoration: "none",
-          }}
-        >
-          <MenuItemMake>Edit</MenuItemMake>
-        </Link>
         <MenuItemMake onClick={() => handleChange(id)}>Delete</MenuItemMake>
       </Menu>
     </div>

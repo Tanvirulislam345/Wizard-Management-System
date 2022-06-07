@@ -198,9 +198,9 @@ function App() {
             <Route
               path="/payment/invoice/:invoiceId"
               element={
-                <Layout>
+                <LayoutChild>
                   <Invoice />
-                </Layout>
+                </LayoutChild>
               }
             />
             <Route

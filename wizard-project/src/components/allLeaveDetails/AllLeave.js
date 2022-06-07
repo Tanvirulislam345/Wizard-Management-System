@@ -19,7 +19,6 @@ export default function AllLeave({ rows, handleChange }) {
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "#262E41",
       color: theme.palette.primary.main,
       border: "none",
     },
@@ -27,6 +26,7 @@ export default function AllLeave({ rows, handleChange }) {
       fontSize: 14,
       border: "none",
       color: "#A4A6B3",
+      background: "#1A202E",
     },
   }));
 
@@ -40,15 +40,15 @@ export default function AllLeave({ rows, handleChange }) {
   };
 
   return (
-    <TableContainer component={Paper}>
-      <Table
-        sx={{
-          minWidth: 500,
-          background: "#1A202E",
-          color: "white",
-        }}
-        aria-label="custom pagination table"
-      >
+    <TableContainer
+      component={Paper}
+      sx={{
+        borderRadius: "10px",
+        backgroundColor: "#262E41",
+        color: "white",
+      }}
+    >
+      <Table aria-label="custom pagination table">
         <TableHead>
           <TableRow>
             <StyledTableCell align="center">Emloyee Id</StyledTableCell>
@@ -81,10 +81,11 @@ export default function AllLeave({ rows, handleChange }) {
                   sx={{
                     background:
                       (row.Status === "Pendding" && "#FFC300") ||
-                      (row.Status === "Approved" && "#55D32A") ||
+                      (row.Status === "Approved Paid" && "#55D32A") ||
+                      (row.Status === "Approved NonPaid" && "#55D32A") ||
                       (row.Status === "Rejected" && "#FF5733"),
                     color: "white",
-                    width: "100px",
+                    width: "150px",
                   }}
                 />
               </StyledTableCell>

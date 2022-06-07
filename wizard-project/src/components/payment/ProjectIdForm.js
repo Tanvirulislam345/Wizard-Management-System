@@ -8,7 +8,7 @@ const ProjectIdForm = ({ ProjectId, setId }) => {
       <TextFieldMake
         fullWidth
         variant="outlined"
-        label="Project Id"
+        label="Project Name"
         name="ProjectId"
         onChange={(event) => setId(event.target.value)}
         required

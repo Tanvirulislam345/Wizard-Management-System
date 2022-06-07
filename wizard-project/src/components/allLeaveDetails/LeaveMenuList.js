@@ -47,8 +47,15 @@ export default function LeaveMenuList({ id, handleChange }) {
         <MenuItemMake onClick={() => handleChange(id, "leave", "delete")}>
           Delete
         </MenuItemMake>
-        <MenuItemMake onClick={() => handleChange(id, "Approved", "Update")}>
-          Approved
+        <MenuItemMake
+          onClick={() => handleChange(id, "Approved Paid", "Update")}
+        >
+          Approved Paid
+        </MenuItemMake>
+        <MenuItemMake
+          onClick={() => handleChange(id, "Approved NonPaid", "Update")}
+        >
+          Approved Non Paid
         </MenuItemMake>
         <MenuItemMake onClick={() => handleChange(id, "Rejected", "Update")}>
           Rejected

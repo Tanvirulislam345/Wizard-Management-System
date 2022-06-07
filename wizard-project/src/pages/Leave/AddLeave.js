@@ -35,7 +35,9 @@ const AddLeave = () => {
     if (user) {
       axios.get("http://localhost:9000/employee").then((res) => {
         if (user?.Role === "employee") {
-          setEmployee([user]);
+          const data = res.data;
+          const value = data.filter((da) => da.EmployeeId === user?.EmployeeId);
+          setEmployee(value);
         } else {
           setEmployee(res.data);
         }

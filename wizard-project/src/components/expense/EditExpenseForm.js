@@ -160,8 +160,8 @@ const EditExpenseForm = ({ data, setData, handleSubmit, values }) => {
           rows={4}
           variant="outlined"
           name="Description"
-          label="Driscription"
-          defaultValue={values.Driscription}
+          label="Description"
+          defaultValue={values.Description}
           onChange={(event) =>
             setData({
               ...data,
@@ -173,7 +173,7 @@ const EditExpenseForm = ({ data, setData, handleSubmit, values }) => {
       <Grid item xs={12} sx={{ height: "100%", my: "auto" }}>
         <Stack spacing={3} direction="row">
           <ButtonMake size="medium" type="submit" onClick={handleSubmit}>
-            Send
+            Update
           </ButtonMake>
           <ButtonMake size="medium" type="reset">
             Cancel

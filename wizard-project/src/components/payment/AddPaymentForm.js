@@ -13,40 +13,29 @@ const AddPaymentForm = ({ ProjectId }) => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    const Due = projectDetails.Due - parseInt(data.NewPayment);
-    const TotalPayment =
-      projectDetails.TotalPayment + parseInt(data.NewPayment);
-
-    const newData = {
-      ...data,
-      BillNo: `WizB22${Math.random().toString(36).slice(7)}`,
-      ProjectTitle: projectDetails.ProjectTitle,
-      Budget: projectDetails.Budget,
-      Tax: projectDetails.Tax,
-      Discount: projectDetails.Discount,
-      TotalPayable: projectDetails.TotalPayable,
-      LastPayment: projectDetails.TotalPayment,
-      TotalPayment,
-      ProjectId: projectDetails.ProjectId,
-      ClientId: projectDetails.ClientId,
-      Due,
-    };
-
-    const updateData = {
-      TotalPayment,
-      Due,
-    };
-
     if (data !== null) {
+      const TotalPayment = projectDetails.TotalPayment + parseInt(data.Payment);
+      const TotalPayable = projectDetails.TotalPayable - parseInt(data.Payment);
+
+      const newData = {
+        ...data,
+        BillNo: `WizB22${Math.random().toString(36).slice(7)}`,
+        ProjectTitle: projectDetails.ProjectTitle,
+        Budget: projectDetails.Budget,
+        TotalBudget: projectDetails.TotalBudget,
+        Tax: projectDetails.Tax,
+        Discount: projectDetails.Discount,
+        TotalPayable: projectDetails.TotalPayable,
+        ProjectId: projectDetails.ProjectId,
+        ClientId: projectDetails.ClientId,
+        TotalPayment,
+        TotalPayable,
+      };
+
+      console.log(newData);
       axios.post(`http://localhost:9000/addpayment`, newData).then((res) => {
         if (res.status === 200) {
-          axios
-            .put(`http://localhost:9000/updateproject/${id}`, updateData)
-            .then((res) => {
-              if (res.status === 200) {
-                navigate("/payment");
-              }
-            });
+          navigate("/payment");
         }
       });
     } else {
@@ -56,7 +45,7 @@ const AddPaymentForm = ({ ProjectId }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/project/${id}`)
+      .get(`http://localhost:9000/allpayments/${id}`)
       .then((res) => setProjectDetails(res.data));
   }, [id]);
 

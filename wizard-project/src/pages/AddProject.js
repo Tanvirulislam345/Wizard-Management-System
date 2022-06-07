@@ -46,20 +46,46 @@ const AddProject = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    const TotalPayable =
-      data.Budget -
-      (data.Budget * data.Discount) / 100 +
-      (data.Budget * data.Tax) / 100;
+    const discount = (data.Budget * data.Discount) / 100;
+    const tex = ((data.Budget - discount) * data.Tax) / 100;
+    const TotalBudget = data.Budget - discount + tex;
+    const TotalPayable = TotalBudget - data.Payment;
 
     const newData = {
-      ...data,
       ProjectId: `WizP22${Math.random().toString(36).slice(7)}`,
+      ProjectTitle: data.ProjectTitle,
+      ProjectCategori: data.ProjectCategori,
+      ClientId: data.ClientId,
+      TeamLeader: data.TeamLeader,
       TeamMember: JSON.stringify(teamMember),
       ProjectTools: JSON.stringify(tools),
+      ProjectStart: data.ProjectStart,
+      ProjectEnd: data.ProjectEnd,
       Phases: JSON.stringify(inputList),
-      TotalPayable,
-      Due: TotalPayable - data.TotalPayment,
+      Description: data.Description,
+      File: data.File,
+      Budget: data.Budget,
+      Tax: data.Tax,
+      Discount: data.Discount,
+      TotalBudget,
       ProjectStatus: "New Project",
+    };
+
+    const payment = {
+      BillNo: `WizB22${Math.random().toString(36).slice(7)}`,
+      ClientId: data.ClientId,
+      ProjectId: newData.ProjectId,
+      ProjectTitle: data.ProjectTitle,
+      Budget: data.Budget,
+      Tax: data.Tax,
+      Discount: data.Discount,
+      TotalBudget,
+      Payment: data.Payment,
+      TotalPayment: data.Payment,
+      TotalPayable,
+      Date: data.ProjectStart,
+      PaymentMethod: data.PaymentMethod,
+      PaymentStatus: data.PaymentStatus,
     };
 
     const formData = new FormData();
@@ -70,7 +96,13 @@ const AddProject = () => {
     if (data !== null && data.File !== undefined) {
       axios.post("http://localhost:9000/addproject", formData).then((res) => {
         if (res.status === 200) {
-          navigate("/project");
+          axios
+            .post(`http://localhost:9000/addpayment`, payment)
+            .then((res) => {
+              if (res.status === 200) {
+                navigate("/project");
+              }
+            });
         }
       });
     } else {

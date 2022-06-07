@@ -19,13 +19,12 @@ export default function ExpenseList({ rows, handleChange }) {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const navigate = useNavigate();
 
-  const handleView = (id) => {
-    navigate(`/payment/invoice/${id}`);
-  };
+  // const handleView = (id) => {
+  //   navigate(`/payment/invoice/${id}`);
+  // };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "#262E41",
       color: theme.palette.primary.main,
       border: "none",
     },
@@ -33,6 +32,7 @@ export default function ExpenseList({ rows, handleChange }) {
       fontSize: 14,
       border: "none",
       color: "#A4A6B3",
+      background: "#1A202E",
     },
   }));
 
@@ -46,15 +46,15 @@ export default function ExpenseList({ rows, handleChange }) {
   };
 
   return (
-    <TableContainer component={Paper}>
-      <Table
-        sx={{
-          minWidth: 500,
-          background: "#1A202E",
-          color: "white",
-        }}
-        aria-label="custom pagination table"
-      >
+    <TableContainer
+      component={Paper}
+      sx={{
+        borderRadius: "10px",
+        backgroundColor: "#262E41",
+        color: "white",
+      }}
+    >
+      <Table aria-label="custom pagination table">
         <TableHead>
           <TableRow>
             <StyledTableCell align="center">Expense ID</StyledTableCell>
@@ -66,7 +66,7 @@ export default function ExpenseList({ rows, handleChange }) {
             <StyledTableCell align="center">Total Amount</StyledTableCell>
             <StyledTableCell align="center">Payment Method</StyledTableCell>
             <StyledTableCell align="center">Status</StyledTableCell>
-            <StyledTableCell align="center">View</StyledTableCell>
+            {/* <StyledTableCell align="center">View</StyledTableCell> */}
             <StyledTableCell align="center">
               <MoreVertOutlinedIcon />
             </StyledTableCell>
@@ -103,12 +103,12 @@ export default function ExpenseList({ rows, handleChange }) {
                   }}
                 />
               </StyledTableCell>
-              <StyledTableCell
+              {/* <StyledTableCell
                 align="center"
                 onClick={() => handleView(row.id)}
               >
                 <RemoveRedEyeRoundedIcon />
-              </StyledTableCell>
+              </StyledTableCell> */}
               <StyledTableCell align="center">
                 <ExpenseListMenu id={row.id} handleChange={handleChange} />
               </StyledTableCell>

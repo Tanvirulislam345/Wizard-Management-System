@@ -24,7 +24,9 @@ const AllExpense = () => {
   return (
     <LayoutContiner>
       <SubNav project="Expense" addproject="addexpense" />
-      <ExpenseList rows={rows} handleChange={handleChange} />
+      {rows?.length > 0 && (
+        <ExpenseList rows={rows} handleChange={handleChange} />
+      )}
     </LayoutContiner>
   );
 };

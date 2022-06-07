@@ -27,7 +27,6 @@ export default function PaymentList({ rows, handleChange }) {
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "#262E41",
       color: theme.palette.primary.main,
       border: "none",
     },
@@ -35,6 +34,7 @@ export default function PaymentList({ rows, handleChange }) {
       fontSize: 14,
       border: "none",
       color: "#A4A6B3",
+      background: "#1A202E",
     },
   }));
 
@@ -48,30 +48,24 @@ export default function PaymentList({ rows, handleChange }) {
   };
 
   return (
-    <TableContainer component={Paper}>
-      <Table
-        sx={{
-          minWidth: 500,
-          background: "#1A202E",
-          color: "white",
-        }}
-        aria-label="custom pagination table"
-      >
+    <TableContainer
+      component={Paper}
+      sx={{
+        borderRadius: "10px",
+        backgroundColor: "#262E41",
+        color: "white",
+      }}
+    >
+      <Table aria-label="custom pagination table">
         <TableHead>
           <TableRow>
             <StyledTableCell align="center">Bill No</StyledTableCell>
-            <StyledTableCell align="center">Client Id</StyledTableCell>
             <StyledTableCell align="center">Project Id</StyledTableCell>
             <StyledTableCell align="center">Date</StyledTableCell>
-            <StyledTableCell align="center">Budget</StyledTableCell>
-            <StyledTableCell align="center">Tax</StyledTableCell>
-            <StyledTableCell align="center">Discount</StyledTableCell>
-            <StyledTableCell align="center">Last Total Payment</StyledTableCell>
-
-            <StyledTableCell align="center">New Payment</StyledTableCell>
+            <StyledTableCell align="center">Total Budget</StyledTableCell>
+            <StyledTableCell align="center">Payment</StyledTableCell>
             <StyledTableCell align="center">Total Payable</StyledTableCell>
             <StyledTableCell align="center">Total Payment</StyledTableCell>
-            <StyledTableCell align="center">Total Due</StyledTableCell>
             <StyledTableCell align="center">Method</StyledTableCell>
             <StyledTableCell align="center"> Payment Status</StyledTableCell>
             <StyledTableCell align="center"> View</StyledTableCell>
@@ -89,25 +83,18 @@ export default function PaymentList({ rows, handleChange }) {
           ).map((row, index) => (
             <TableRow key={index}>
               <StyledTableCell align="center">{row.BillNo}</StyledTableCell>
-              <StyledTableCell align="center">{row.ClientId}</StyledTableCell>
               <StyledTableCell align="center">{row.ProjectId}</StyledTableCell>
               <StyledTableCell align="center">{row.Date}</StyledTableCell>
-              <StyledTableCell align="center">{row.Budget}</StyledTableCell>
-              <StyledTableCell align="center">{row.Tax}</StyledTableCell>
-              <StyledTableCell align="center">{row.Discount}</StyledTableCell>
               <StyledTableCell align="center">
-                {row.LastPayment}
+                {row.TotalBudget}
               </StyledTableCell>
-
-              <StyledTableCell align="center">{row.NewPayment}</StyledTableCell>
-
+              <StyledTableCell align="center">{row.Payment}</StyledTableCell>
               <StyledTableCell align="center">
                 {row.TotalPayable}
               </StyledTableCell>
               <StyledTableCell align="center">
                 {row.TotalPayment}
               </StyledTableCell>
-              <StyledTableCell align="center">{row.Due}</StyledTableCell>
               <StyledTableCell align="center">
                 {row.PaymentMethod}
               </StyledTableCell>
@@ -116,8 +103,8 @@ export default function PaymentList({ rows, handleChange }) {
                   label={row.PaymentStatus}
                   sx={{
                     background:
-                      (row.PaymentStatus === "Due" && "#E25822") ||
-                      (row.PaymentStatus === "Clear" && "#8CC341"),
+                      (row.PaymentStatus === "due" && "#E25822") ||
+                      (row.PaymentStatus === "clear" && "#8CC341"),
                     width: "100px",
                   }}
                 />

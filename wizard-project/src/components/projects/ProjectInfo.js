@@ -21,11 +21,8 @@ const ProjectInfo = ({ clientDetails, handleUpdate }) => {
     Description,
     Phases,
     Budget,
-    TotalPayable,
-    TotalPayment,
-    Due,
-    Tax,
     Discount,
+    Tax,
   } = clientDetails;
   const { user } = useAuth();
 
@@ -65,18 +62,6 @@ const ProjectInfo = ({ clientDetails, handleUpdate }) => {
         <PlainText>{Budget}</PlainText>
       </PlainTextContainer>
       <PlainTextContainer>
-        <PlainText>Total Payable</PlainText>
-        <PlainText>{TotalPayable}</PlainText>
-      </PlainTextContainer>
-      <PlainTextContainer>
-        <PlainText>Total Payment</PlainText>
-        <PlainText>{TotalPayment}</PlainText>
-      </PlainTextContainer>
-      <PlainTextContainer>
-        <PlainText>Due</PlainText>
-        <PlainText>{Due}</PlainText>
-      </PlainTextContainer>
-      <PlainTextContainer>
         <PlainText>Tax</PlainText>
         <PlainText>{Tax} %</PlainText>
       </PlainTextContainer>
@@ -84,6 +69,7 @@ const ProjectInfo = ({ clientDetails, handleUpdate }) => {
         <PlainText>Discount</PlainText>
         <PlainText>{Discount} %</PlainText>
       </PlainTextContainer>
+
       <HeadingFormatTitle sx={{ mt: 2, mb: 1, p: 0 }}>
         Phases
       </HeadingFormatTitle>

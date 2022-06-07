@@ -14,20 +14,11 @@ const InvoicePage = ({ invoiceData, clientData }) => {
   const todaysDate = new Intl.DateTimeFormat(["ban", "id"]).format(date);
 
   return (
-    // <Box sx={{ width: "500px", mx: "auto" }}>
     <Box
       sx={{
         backgroundColor: "#FFFFFF",
         padding: "50px",
         width: "650px",
-        // backgroundImage: `url(${sidebar})`,
-        // width: "100%",
-        // objectFit: "cover",
-        // paddingTop: "10px",
-        // paddingLeft: " 130px",
-        // paddingRight: " 45px",
-        // backgroundRepeat: "no-repeat",
-        // backgroundPosition: "start",
       }}
     >
       <Box

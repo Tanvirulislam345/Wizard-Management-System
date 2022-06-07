@@ -43,7 +43,7 @@ export default function AttendenceViewList({ rows }) {
         borderRadius: "10px",
         backgroundColor: "#262E41",
         color: "white",
-        my: 3,
+        mt: 3,
       }}
     >
       <Table aria-label="custom pagination table">

@@ -67,7 +67,7 @@ const AddProjectForm = ({
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="ClientId"
+          label="Client Name"
           name="ClientId"
           onChange={(event) =>
             setData({
@@ -79,9 +79,10 @@ const AddProjectForm = ({
           select
           SelectProps={{ native: true }}
         >
+          <option>Client Name</option>
           {ClientId.map((client, index) => (
             <option key={index} value={client.ClientId}>
-              {client.ClientId}
+              {client.FullName}
             </option>
           ))}
         </TextFieldMake>
@@ -107,7 +108,7 @@ const AddProjectForm = ({
           variant="outlined"
           type="number"
           label="Payment"
-          name="TotalPayment"
+          name="Payment"
           onChange={(event) =>
             setData({
               ...data,
@@ -146,6 +147,48 @@ const AddProjectForm = ({
           }
         />
       </Grid>
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
+          label="Payment Method"
+          name="PaymentMethod"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+          required
+          select
+          SelectProps={{ native: true }}
+        >
+          <option>Select PaymentMethod</option>
+          <option value="cash">Cash</option>
+          <option value="card">Card</option>
+        </TextFieldMake>
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
+          label="Payment Status"
+          name="PaymentStatus"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+          required
+          select
+          SelectProps={{ native: true }}
+        >
+          <option>Select Payment Status</option>
+          <option value="clear">Clear</option>
+          <option value="due">Due</option>
+        </TextFieldMake>
+      </Grid>
 
       <Grid item xs={12} md={6}>
         <Multiselect
@@ -175,6 +218,7 @@ const AddProjectForm = ({
           select
           SelectProps={{ native: true }}
         >
+          <option>Select TeamLeader</option>
           {team.map((option, index) => (
             <option key={index} value={option.name}>
               {option.name}

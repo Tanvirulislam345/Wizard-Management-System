@@ -72,7 +72,7 @@ const ClientProfile = () => {
                 {data === "security" && <ProfileSetting />}
               </HeadingFormatContainer>
 
-              {data === "About Me" && (
+              {data === "About Me" && projects?.length > 0 && (
                 <>
                   <HeadingFormatTitle sx={{ mt: 3, px: 1 }}>
                     Project

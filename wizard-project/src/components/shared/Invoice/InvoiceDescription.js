@@ -5,8 +5,9 @@ const InvoiceDescription = ({ invoiceData }) => {
     Budget,
     Discount,
     Tax,
-    Due,
+    Payment,
     TotalPayment,
+    TotalBudget,
     TotalPayable,
     ProjectId,
     ProjectTitle,
@@ -55,8 +56,14 @@ const InvoiceDescription = ({ invoiceData }) => {
           <tr>
             <td style={{ borderBottom: "none" }}></td>
             <td style={{ borderBottom: "none" }}></td>
-            <th>Total Paybale</th>
-            <td style={{ textAlign: "right" }}>{TotalPayable} Taka</td>
+            <th>Payment</th>
+            <td style={{ textAlign: "right" }}>{Payment} Taka</td>
+          </tr>
+          <tr>
+            <td style={{ borderBottom: "none" }}></td>
+            <td style={{ borderBottom: "none" }}></td>
+            <th>Total Budget</th>
+            <td style={{ textAlign: "right" }}>{TotalBudget} Taka</td>
           </tr>
           <tr>
             <td style={{ borderBottom: "none" }}></td>
@@ -67,8 +74,8 @@ const InvoiceDescription = ({ invoiceData }) => {
           <tr>
             <td style={{ borderBottom: "none" }}></td>
             <td style={{ borderBottom: "none" }}></td>
-            <th> Due</th>
-            <td style={{ textAlign: "right" }}>{Due} Taka</td>
+            <th>Total Paybale</th>
+            <td style={{ textAlign: "right" }}>{TotalPayable} Taka</td>
           </tr>
         </tbody>
       </table>

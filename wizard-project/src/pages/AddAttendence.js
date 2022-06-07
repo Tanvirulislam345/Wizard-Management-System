@@ -34,8 +34,6 @@ const AddAttendence = () => {
         setExcelFileError("Please select only excel file types xls");
         setExcelFile(null);
       }
-    } else {
-      console.log("plz select your file");
     }
   };
 

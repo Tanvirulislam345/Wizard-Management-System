@@ -16,6 +16,7 @@ import Leave from "./Leave/Leave";
 import Attendence from "./Attendence";
 import EmployeeSlaray from "../components/employee/EmployeeSlaray";
 import { useAuth } from "../Context/ContextProvieder";
+import Attendences from "../components/attendence/Attendences";
 
 const EmployeeProfile = () => {
   const { profileId } = useParams();
@@ -99,7 +100,11 @@ const EmployeeProfile = () => {
                 <EmployeeSlaray values={values} />
               )}
               {data === "Leave" && <Leave />}
-              {data === "Attendence" && <Attendence />}
+              {data === "Attendence" && (
+                <LayoutContiner>
+                  <Attendences />
+                </LayoutContiner>
+              )}
               {data === "security" && <ProfileSetting />}
             </HeadingFormatContainer>
           </Grid>

@@ -99,7 +99,17 @@ const FilterForm = ({
           ))}
         </TextFieldMake>
       </Grid>
-      <Grid item xs={4} md={2} sx={{ my: "auto" }}>
+      <Grid
+        item
+        xs={4}
+        md={2}
+        sx={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          mt: 1,
+        }}
+      >
         <Button variant="outlined" onClick={handleSearch}>
           Search
         </Button>

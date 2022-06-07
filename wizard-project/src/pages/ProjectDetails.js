@@ -58,11 +58,6 @@ const ProjectDetails = () => {
               </Grid>
 
               <Grid item xs={12}>
-                <HeadingFormat title="Invoice">
-                  <ProjectPayment projectDetailsId={projectDetailsId} />
-                </HeadingFormat>
-              </Grid>
-              <Grid item xs={12}>
                 <HeadingFormat title="Files">
                   <Files files={clientDetails?.File} />
                 </HeadingFormat>
@@ -76,6 +71,10 @@ const ProjectDetails = () => {
                 </Grid>
               )}
             </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            {/* <HeadingFormat title="Invoice"></HeadingFormat> */}
+            <ProjectPayment projectDetailsId={projectDetailsId} />
           </Grid>
         </Grid>
       )}

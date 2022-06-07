@@ -1,18 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import PaymentList from "../payment/PaymentList";
 import ProjectPaymentList from "../payment/ProjectPaymentList";
 
 const ProjectPayment = ({ projectDetailsId }) => {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:9000/allpayment")
+    fetch(`http://localhost:9000/projectpayments/${projectDetailsId}`)
       .then((res) => res.json())
       .then((data) => {
-        const value = data.filter((da) => da.ProjectId === projectDetailsId);
-        setRows(value);
+        console.log(data);
+        setRows(data);
       });
-  }, []);
+  }, [projectDetailsId]);
 
   const handleChange = (id) => {
     axios.delete(`http://localhost:9000/allpayment/${id}`).then((res) => {
@@ -25,7 +26,7 @@ const ProjectPayment = ({ projectDetailsId }) => {
   return (
     <>
       {rows?.length > 0 && (
-        <ProjectPaymentList rows={rows} handleChange={handleChange} />
+        <PaymentList rows={rows} handleChange={handleChange} />
       )}
     </>
   );
