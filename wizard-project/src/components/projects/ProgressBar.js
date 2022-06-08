@@ -17,9 +17,10 @@ const ProgressBar = ({ updateWork }) => {
           percent={updateWork}
           strokeColor="#3F51B5"
           strokeWidth={3}
-          trailWidth={4}
+          trailWidth={1}
           style={{
-            borderRadius: "7px",
+            borderRadius: "15px",
+            border: "3px solid #3F51B5",
           }}
         />
       </Box>

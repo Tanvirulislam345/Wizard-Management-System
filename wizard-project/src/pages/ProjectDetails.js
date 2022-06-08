@@ -63,7 +63,7 @@ const ProjectDetails = () => {
                 </HeadingFormat>
               </Grid>
 
-              {user?.Role === "employee" && (
+              {user?.Role !== "client" && (
                 <Grid item xs={12}>
                   <HeadingFormat title="Final Update">
                     <FinalUpdate />
@@ -73,7 +73,6 @@ const ProjectDetails = () => {
             </Grid>
           </Grid>
           <Grid item xs={12}>
-            {/* <HeadingFormat title="Invoice"></HeadingFormat> */}
             <ProjectPayment projectDetailsId={projectDetailsId} />
           </Grid>
         </Grid>

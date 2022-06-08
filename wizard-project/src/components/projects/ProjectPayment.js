@@ -10,7 +10,6 @@ const ProjectPayment = ({ projectDetailsId }) => {
     fetch(`http://localhost:9000/projectpayments/${projectDetailsId}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setRows(data);
       });
   }, [projectDetailsId]);

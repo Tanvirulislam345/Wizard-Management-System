@@ -13,14 +13,11 @@ import ProfileSetting from "../components/shared/ProfileSetting/ProfileSetting";
 import SubNav2 from "../components/subNav/SubNav2";
 import { LayoutContiner } from "../styles/MetarialStyles";
 import Leave from "./Leave/Leave";
-import Attendence from "./Attendence";
 import EmployeeSlaray from "../components/employee/EmployeeSlaray";
-import { useAuth } from "../Context/ContextProvieder";
 import Attendences from "../components/attendence/Attendences";
 
 const EmployeeProfile = () => {
   const { profileId } = useParams();
-  const { user } = useAuth();
   const [values, setValues] = useState(null);
   const [attendence, setAttendence] = useState(null);
   const [data, setData] = useState("About Me");

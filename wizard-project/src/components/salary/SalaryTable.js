@@ -50,20 +50,14 @@ export default function SalaryTable({ rows }) {
       <Table aria-label="custom pagination table">
         <TableHead>
           <TableRow>
-            <StyledTableCell align="center">Employee Id</StyledTableCell>
             <StyledTableCell align="center">Name</StyledTableCell>
             <StyledTableCell align="center">Month</StyledTableCell>
-            <StyledTableCell align="center">Basicsalary</StyledTableCell>
-            <StyledTableCell align="center">FoodAllowance</StyledTableCell>
-            <StyledTableCell align="center">MobileAllowance</StyledTableCell>
-            <StyledTableCell align="center">TravelAllowance</StyledTableCell>
             <StyledTableCell align="center">TotalAbsent</StyledTableCell>
             <StyledTableCell align="center">TotalLate</StyledTableCell>
             <StyledTableCell align="center">TotalSalary</StyledTableCell>
             <StyledTableCell align="center">PerformanceBonus</StyledTableCell>
-            <StyledTableCell align="center">FestivalAllowance</StyledTableCell>
             <StyledTableCell align="center">Total Diduction</StyledTableCell>
-            <StyledTableCell align="center">Total Payable</StyledTableCell>
+            <StyledTableCell align="center">Total Payment</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -72,21 +66,8 @@ export default function SalaryTable({ rows }) {
             : rows
           ).map((row, index) => (
             <TableRow key={index}>
-              <StyledTableCell align="center">{row.EmployeeId}</StyledTableCell>
               <StyledTableCell align="center">{row.FullName}</StyledTableCell>
               <StyledTableCell align="center">{row.Month}</StyledTableCell>
-              <StyledTableCell align="center">
-                {row.Basicsalary}
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                {row.FoodAllowance}
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                {row.MobileAllowance}
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                {row.TravelAllowance}
-              </StyledTableCell>
               <StyledTableCell align="center">
                 {row.TotalAbsent}
               </StyledTableCell>
@@ -98,13 +79,10 @@ export default function SalaryTable({ rows }) {
                 {row.PerformanceBonus}
               </StyledTableCell>
               <StyledTableCell align="center">
-                {row.FestivalAllowance}
-              </StyledTableCell>
-              <StyledTableCell align="center">
                 {row.TotalDiduction}
               </StyledTableCell>
               <StyledTableCell align="center">
-                {row.TotalPayable}
+                {row.TotalPayment}
               </StyledTableCell>
             </TableRow>
           ))}

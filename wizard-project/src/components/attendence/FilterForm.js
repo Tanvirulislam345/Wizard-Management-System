@@ -24,6 +24,7 @@ const FilterForm = ({
   filterValue,
   setFilterValue,
   handleSearch,
+  handleDownload,
 }) => {
   return (
     <Grid container spacing={2}>
@@ -31,7 +32,7 @@ const FilterForm = ({
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Id"
+          label="Name"
           name="EmployeeId"
           onChange={(event) =>
             setFilterValue({
@@ -112,6 +113,22 @@ const FilterForm = ({
       >
         <Button variant="outlined" onClick={handleSearch}>
           Search
+        </Button>
+      </Grid>
+      <Grid
+        item
+        xs={4}
+        md={2}
+        sx={{
+          ml: "auto",
+          display: "flex",
+          justifyContent: "end",
+          alignItems: "center",
+          mt: 1,
+        }}
+      >
+        <Button variant="outlined" onClick={handleDownload}>
+          Download
         </Button>
       </Grid>
     </Grid>

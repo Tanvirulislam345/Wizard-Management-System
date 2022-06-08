@@ -34,7 +34,8 @@ const Projects = () => {
 
   //using custom hooks
   const { data: projects, setData: setProjects } = useFatch(
-    `http://localhost:9000/allproject/${isCategori}`
+    `http://localhost:9000/allproject/${isCategori}`,
+    changeState
   );
 
   const handleProject = (id, status) => {
@@ -56,6 +57,7 @@ const Projects = () => {
         .then((res) => {
           if (res.status === 200) {
             setProjects(projects.filter((project) => project.id !== id));
+            setChnge(!changeState);
           }
         });
     }

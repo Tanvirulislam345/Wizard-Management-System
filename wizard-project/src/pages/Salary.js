@@ -8,6 +8,7 @@ import { HeadingFormatContainer } from "../components/shared/HeadingFormat/Headi
 import SubNav2 from "../components/subNav/SubNav2";
 import { useAuth } from "../Context/ContextProvieder";
 import { LayoutContiner } from "../styles/MetarialStyles";
+import * as XLSX from "xlsx";
 
 const Salary = () => {
   const { user } = useAuth();
@@ -68,6 +69,13 @@ const Salary = () => {
       });
   };
 
+  const handleDownload = () => {
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(values);
+    XLSX.utils.book_append_sheet(wb, ws, "Mysheet");
+    XLSX.writeFile(wb, "Salary.xlsx");
+  };
+
   return (
     <LayoutContiner>
       <SubNav2 project="Salary"></SubNav2>
@@ -79,6 +87,7 @@ const Salary = () => {
               filterValue={filterValue}
               setFilterValue={setFilterValue}
               handleSearch={handleSearch}
+              handleDownload={handleDownload}
             />
             {errors && (
               <Typography sx={{ mt: 2, color: "red" }}>{errors}</Typography>

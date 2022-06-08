@@ -19,23 +19,32 @@ const Login = () => {
   const handleSubmit = () => {
     const role = data.Role;
     const email = data.Email;
-    axios.get(`http://localhost:9000/${role}match/${email}`).then((res) => {
-      const user = res.data[0];
-      if (user) {
-        saveUser(user);
-        setUser(user);
-        setError("");
-        if (user.Role === "admin") {
-          navigation(`/project`);
-        } else if (user.Role === "client") {
-          navigation(`/client/profile/${user.ClientId}`);
-        } else if (user.Role === "employee") {
-          navigation(`/employee/profile/${user.id}`);
+    const password = data.Password;
+
+    const value = {
+      role,
+      email,
+      password,
+    };
+    axios
+      .post(`http://localhost:9000/${role}match/${email}`, value)
+      .then((res) => {
+        const user = res.data;
+        if (user) {
+          saveUser(user);
+          setUser(user);
+          setError("");
+          if (user.Role === "admin") {
+            navigation(`/project`);
+          } else if (user.Role === "client") {
+            navigation(`/client/profile/${user.ClientId}`);
+          } else if (user.Role === "employee") {
+            navigation(`/employee/profile/${user.id}`);
+          }
+        } else {
+          setError("Email or Password does not match");
         }
-      } else {
-        setError("Email or Password does not match");
-      }
-    });
+      });
   };
 
   return (

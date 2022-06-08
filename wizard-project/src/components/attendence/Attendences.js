@@ -5,6 +5,7 @@ import { HeadingFormatContainer } from "../shared/HeadingFormat/HeadingFormatSty
 import FilterForm from "./FilterForm";
 import AttendenceViewList from "./AttendenceViewList";
 import { useAuth } from "../../Context/ContextProvieder";
+import * as XLSX from "xlsx";
 
 const Attendences = () => {
   const { user } = useAuth();
@@ -65,6 +66,13 @@ const Attendences = () => {
       });
   };
 
+  const handleDownload = () => {
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(values);
+    XLSX.utils.book_append_sheet(wb, ws, "Mysheet");
+    XLSX.writeFile(wb, "Attendence.xlsx");
+  };
+
   return (
     <>
       {employee !== null && values !== null && (
@@ -75,6 +83,7 @@ const Attendences = () => {
               filterValue={filterValue}
               setFilterValue={setFilterValue}
               handleSearch={handleSearch}
+              handleDownload={handleDownload}
             />
             {errors && (
               <Typography sx={{ mt: 2, color: "red" }}>{errors}</Typography>

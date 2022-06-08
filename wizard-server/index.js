@@ -1,4 +1,5 @@
 const express = require("express");
+const nodemailer = require("nodemailer");
 const mysql = require("mysql");
 const cors = require("cors");
 const multer = require("multer");
@@ -53,6 +54,57 @@ connection.connect((err) => {
   } else {
     console.log("connect successfull");
   }
+});
+
+let transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "tanvir.topader345@gmail.com",
+    pass: "elplcshyuaqvmhya",
+  },
+});
+
+app.post("/adminmatch/:email", (req, res) => {
+  const data = req.body;
+  connection.query(
+    `SELECT * FROM all_admin WHERE Role = "${data.role}" AND Email = "${data.email}" AND Password = "${data.password}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.json(result[0]);
+      }
+    }
+  );
+});
+app.post("/employeematch/:email", (req, res) => {
+  const data = req.body;
+
+  connection.query(
+    `SELECT * FROM all_employee WHERE Role = "${data.role}" AND Email = "${data.email}" AND Password = "${data.password}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result[0]);
+      }
+    }
+  );
+});
+
+app.post("/clientmatch/:email", (req, res) => {
+  const data = req.body;
+  connection.query(
+    `SELECT * FROM all_client WHERE Role = "${data.role}" AND Email = "${data.email}" AND Password = "${data.password}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result[0]);
+      }
+    }
+  );
 });
 
 //all routes for project
@@ -190,10 +242,28 @@ app.delete("/allproject/delete/:projectId", (req, res) => {
 });
 
 //all routes for employee
-
-app.post("/addemployee", (req, res) => {
+app.post("/addemployee", async (req, res) => {
   const data = req.body;
-  // console.log(data);
+
+  const info = {
+    from: "tanvir.topader345@gmail.com",
+    to: `${data?.Email}`,
+    subject: "Created Your profile By Wizard Software Ltd",
+    text: `Hello ${data?.FullName}`,
+    html: `<div>
+            <p>Role : ${data?.Role}</p>
+            <p>Email : ${data?.Email}</p>
+            <p>Password : ${data?.Password}</p>
+         </div>`,
+  };
+
+  await transporter.sendMail(info, (err) => {
+    if (err) {
+      console.log("This is an error", err);
+    } else {
+      console.log("email has send");
+    }
+  });
 
   const keys = Object.keys(data);
 
@@ -205,9 +275,7 @@ app.post("/addemployee", (req, res) => {
     return data[key];
   });
 
-  // console.log(sqlquery, value);
-
-  connection.query(sqlquery, value, (err, result) => {
+  await connection.query(sqlquery, value, (err, result) => {
     if (err) {
       console.log(err);
     } else {
@@ -236,35 +304,6 @@ app.get("/employee/:employeeId", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        res.json(result);
-      }
-    }
-  );
-});
-
-app.get("/employeematch/:email", (req, res) => {
-  const email = req.params.email;
-  connection.query(
-    `SELECT * FROM all_employee WHERE Email = '${email}'`,
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(result);
-        res.json(result);
-      }
-    }
-  );
-});
-app.get("/adminmatch/:email", (req, res) => {
-  const email = req.params.email;
-  connection.query(
-    `SELECT * FROM all_admin WHERE Email = '${email}'`,
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(result);
         res.json(result);
       }
     }
@@ -308,11 +347,30 @@ app.delete("/employee/delete/:projectId", (req, res) => {
 
 //all routes for client
 
-app.post("/addclient", (req, res) => {
+app.post("/addclient", async (req, res) => {
   const data = req.body;
 
-  const keys = Object.keys(data);
+  const info = {
+    from: "tanvir.topader345@gmail.com",
+    to: `${data?.Email}`,
+    subject: "Created Your profile By Wizard Software Ltd",
+    text: `Hello ${data?.FullName}`,
+    html: `<div>
+            <p>Role : ${data?.Role}</p>
+            <p>Email : ${data?.Email}</p>
+            <p>Password : ${data?.Password}</p>
+         </div>`,
+  };
 
+  await transporter.sendMail(info, (err) => {
+    if (err) {
+      console.log("This is an error", err);
+    } else {
+      console.log("email has send");
+    }
+  });
+
+  const keys = Object.keys(data);
   const sqlquery = `INSERT INTO all_client (${keys.map(
     (key) => key
   )}) VALUES (${keys.map((key) => "?")})`;
@@ -321,7 +379,7 @@ app.post("/addclient", (req, res) => {
     return data[key];
   });
 
-  connection.query(sqlquery, value, (err, result) => {
+  await connection.query(sqlquery, value, (err, result) => {
     if (err) {
       console.log(err);
     } else {
@@ -352,21 +410,6 @@ app.get("/client/:clientId", (req, res) => {
       }
     }
   );
-});
-app.get("/clientmatch/:email", (req, res) => {
-  const email = req.params.email;
-  connection.query(
-    `SELECT * FROM all_client WHERE Email = '${email}'`,
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(result);
-        res.json(result);
-      }
-    }
-  );
-  // res.json(true);
 });
 
 app.get("/projectclient/:clientId", (req, res) => {
@@ -455,6 +498,38 @@ app.get("/allpayment", (req, res) => {
   });
 });
 
+app.get("/projectpayments/:paymentId", (req, res) => {
+  const id = req.params.paymentId;
+
+  connection.query(
+    `SELECT * FROM all_payment WHERE ProjectId="${id}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // console.log(result);
+        res.json(result);
+      }
+    }
+  );
+  // res.json(true);
+});
+app.get("/allpayments/:paymentId", (req, res) => {
+  const id = req.params.paymentId;
+
+  connection.query(
+    `SELECT * FROM all_payment WHERE ProjectId="${id}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // console.log(result);
+        res.json(result[result.length - 1]);
+      }
+    }
+  );
+  // res.json(true);
+});
 app.get("/allpayment/:paymentId", (req, res) => {
   const id = req.params.paymentId;
 
@@ -628,7 +703,6 @@ app.get("/salary/present", (req, res) => {
     "Nov",
     "Dec",
   ];
-  const year = today.getFullYear();
   const month = today.getMonth() - 1;
   const Month = monthNames[month];
 
@@ -659,11 +733,10 @@ app.post("/salary/search", (req, res) => {
         console.log(err);
       } else {
         console.log(result);
-        // res.json(result);
+        res.json(result);
       }
     }
   );
-  res.json(true);
 });
 
 app.post("/addattendence", (req, res) => {

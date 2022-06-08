@@ -83,6 +83,7 @@ const LoginForm = ({ data, setData, error, handleSubmit }) => {
             variant="outlined"
             name="Password"
             label="Password"
+            type="password"
             onChange={(event) =>
               setData({
                 ...data,

@@ -8,6 +8,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { Grid } from "@mui/material";
 import { TextFieldMake } from "../../styles/MetarialStyles";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -25,6 +26,7 @@ export default function SalaryForm({ values }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const navigate = useNavigate();
 
   const today = new Date();
   const monthNames = [
@@ -47,18 +49,30 @@ export default function SalaryForm({ values }) {
 
   const handleSubmit = () => {
     const newData = {
-      ...data,
+      EmployeeId: values?.EmployeeId,
+      FullName: values?.FullName,
+      Basicsalary: values?.Basicsalary,
+      FoodAllowance: values?.FoodAllowance,
+      MobileAllowance: values?.MobileAllowance,
+      TravelAllowance: values?.TravelAllowance,
+      TotalAbsent: values?.TotalAbsent,
+      TotalLate: values?.TotalLate,
+      TotalSalary: values?.TotalSalary,
+      TotalDiduction: values?.TotalDiduction,
       Month,
       Year: year,
-      TotalPayable:
-        parseInt(data.TotalPayable) +
-        (parseInt(data.FestivalAllowance) || 0) +
-        (parseInt(data.PerformanceBonus) || 0),
+      TotalPayment:
+        parseInt(values.TotalPayable) +
+        (parseInt(data?.FestivalAllowance) || 0) +
+        (parseInt(data?.PerformanceBonus) || 0),
+      ...data,
     };
 
+    console.log(newData);
     axios.post(`http://localhost:9000/salary`, newData).then((res) => {
-      if (res.status === 200) {
-        console.log(res);
+      if (res.data) {
+        handleClose();
+        navigate("/salary");
       }
     });
   };
@@ -89,12 +103,6 @@ export default function SalaryForm({ values }) {
                     name="EmployeeId"
                     label="Employee Id"
                     defaultValue={values?.EmployeeId}
-                    onChange={(event) =>
-                      setData({
-                        ...data,
-                        [event.target.name]: event.target.value,
-                      })
-                    }
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -104,12 +112,6 @@ export default function SalaryForm({ values }) {
                     name="FullName"
                     label="Full Name"
                     defaultValue={values?.FullName}
-                    onChange={(event) =>
-                      setData({
-                        ...data,
-                        [event.target.name]: event.target.value,
-                      })
-                    }
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -120,12 +122,6 @@ export default function SalaryForm({ values }) {
                     label="Basic salary"
                     type="number"
                     defaultValue={values?.Basicsalary}
-                    onChange={(event) =>
-                      setData({
-                        ...data,
-                        [event.target.name]: event.target.value,
-                      })
-                    }
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -136,12 +132,6 @@ export default function SalaryForm({ values }) {
                     label="Food Allowance"
                     type="number"
                     defaultValue={values?.FoodAllowance}
-                    onChange={(event) =>
-                      setData({
-                        ...data,
-                        [event.target.name]: event.target.value,
-                      })
-                    }
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -152,12 +142,6 @@ export default function SalaryForm({ values }) {
                     label="Mobile Allowance"
                     type="number"
                     defaultValue={values?.MobileAllowance}
-                    onChange={(event) =>
-                      setData({
-                        ...data,
-                        [event.target.name]: event.target.value,
-                      })
-                    }
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -168,12 +152,6 @@ export default function SalaryForm({ values }) {
                     label="Travel Allowance"
                     type="number"
                     defaultValue={values?.TravelAllowance}
-                    onChange={(event) =>
-                      setData({
-                        ...data,
-                        [event.target.name]: event.target.value,
-                      })
-                    }
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -184,12 +162,6 @@ export default function SalaryForm({ values }) {
                     label="Total Absent"
                     type="number"
                     defaultValue={values?.TotalAbsent}
-                    onChange={(event) =>
-                      setData({
-                        ...data,
-                        [event.target.name]: event.target.value,
-                      })
-                    }
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -200,12 +172,6 @@ export default function SalaryForm({ values }) {
                     label="Total Late"
                     type="number"
                     defaultValue={values?.TotalLate}
-                    onChange={(event) =>
-                      setData({
-                        ...data,
-                        [event.target.name]: event.target.value,
-                      })
-                    }
                   />
                 </Grid>
 
@@ -217,12 +183,6 @@ export default function SalaryForm({ values }) {
                     label="Total Salary"
                     type="number"
                     defaultValue={values?.TotalSalary}
-                    onChange={(event) =>
-                      setData({
-                        ...data,
-                        [event.target.name]: event.target.value,
-                      })
-                    }
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -233,12 +193,6 @@ export default function SalaryForm({ values }) {
                     label="Total Diduction"
                     type="number"
                     defaultValue={values?.TotalDiduction}
-                    onChange={(event) =>
-                      setData({
-                        ...data,
-                        [event.target.name]: event.target.value,
-                      })
-                    }
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -249,12 +203,6 @@ export default function SalaryForm({ values }) {
                     label="Total Payable"
                     type="number"
                     defaultValue={values?.TotalPayable}
-                    onChange={(event) =>
-                      setData({
-                        ...data,
-                        [event.target.name]: event.target.value,
-                      })
-                    }
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>

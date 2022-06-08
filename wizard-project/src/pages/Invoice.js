@@ -7,7 +7,6 @@ import { LayoutContiner } from "../styles/MetarialStyles";
 
 const Invoice = () => {
   const { invoiceId } = useParams();
-
   const [invoiceData, setInvoiceData] = useState(null);
   const [clientData, setClientData] = useState(null);
 
@@ -25,6 +24,7 @@ const Invoice = () => {
   return (
     <LayoutContiner>
       <SubNav2 project="Invoice" />
+
       {invoiceData !== null && clientData !== null && (
         <InvoicePage invoiceData={invoiceData} clientData={clientData} />
       )}
