@@ -36,6 +36,7 @@ import LayoutChild from "./components/layout/LayoutChild";
 import ClientInvoice from "./pages/ClientInvoice";
 import PayableSalary from "./pages/PayableSalary";
 import Salary from "./pages/Salary";
+import Invoice2 from "./pages/Invoice2";
 
 function App() {
   return (
@@ -200,6 +201,14 @@ function App() {
               element={
                 <LayoutChild>
                   <Invoice />
+                </LayoutChild>
+              }
+            />
+            <Route
+              path="/salary/invoice/:invoice"
+              element={
+                <LayoutChild>
+                  <Invoice2 />
                 </LayoutChild>
               }
             />

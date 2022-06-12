@@ -718,6 +718,22 @@ app.get("/salary/present", (req, res) => {
   );
 });
 
+app.get("/salary/invoice/:invoice", (req, res) => {
+  const id = req.params.invoice;
+  console.log(id);
+
+  connection.query(
+    `SELECT * FROM all_salary WHERE id = ${id}`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result[0]);
+        res.json(result[0]);
+      }
+    }
+  );
+});
 app.post("/salary/search", (req, res) => {
   const data = req.body;
 

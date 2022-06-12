@@ -15,69 +15,59 @@ const InvoiceDescription = ({ invoiceData }) => {
 
   return (
     <>
-      <table style={{ margin: "30px 0px" }}>
-        <thead>
-          <tr>
-            <th>Project Id</th>
-            <th colSpan="2">Description</th>
-            <th colSpan="2" style={{ textAlign: "right" }}>
-              AMOUNT
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{ProjectId}</td>
-            <td colSpan="2">{ProjectTitle}</td>
-            <td colSpan="2" style={{ textAlign: "right" }}></td>
-          </tr>
-          <tr>
-            <td style={{ borderBottom: "none" }}></td>
-            <td style={{ borderBottom: "none" }}></td>
-            <th>Budget</th>
-            <td style={{ textAlign: "right" }}>{Budget} Taka</td>
-          </tr>
-          <tr>
-            <td style={{ borderBottom: "none" }}></td>
-            <td style={{ borderBottom: "none" }}></td>
-            <th>Tax</th>
-            <td style={{ textAlign: "right", paddingRight: "13px" }}>
-              {Tax} %
-            </td>
-          </tr>
-          <tr>
-            <td style={{ borderBottom: "none" }}></td>
-            <td style={{ borderBottom: "none" }}></td>
-            <th>Discount</th>
-            <td style={{ textAlign: "right", paddingRight: "13px" }}>
-              {Discount} %
-            </td>
-          </tr>
-          <tr>
-            <td style={{ borderBottom: "none" }}></td>
-            <td style={{ borderBottom: "none" }}></td>
-            <th>Payment</th>
-            <td style={{ textAlign: "right" }}>{Payment} Taka</td>
-          </tr>
-          <tr>
-            <td style={{ borderBottom: "none" }}></td>
-            <td style={{ borderBottom: "none" }}></td>
-            <th>Total Budget</th>
-            <td style={{ textAlign: "right" }}>{TotalBudget} Taka</td>
-          </tr>
-          <tr>
-            <td style={{ borderBottom: "none" }}></td>
-            <td style={{ borderBottom: "none" }}></td>
-            <th>Total Payment</th>
-            <td style={{ textAlign: "right" }}>{TotalPayment} Taka</td>
-          </tr>
-          <tr>
-            <td style={{ borderBottom: "none" }}></td>
-            <td style={{ borderBottom: "none" }}></td>
-            <th>Total Paybale</th>
-            <td style={{ textAlign: "right" }}>{TotalPayable} Taka</td>
-          </tr>
-        </tbody>
+      <table>
+        <tr>
+          <th colSpan="2">Project Id</th>
+          <th colSpan="2">Projecty Title</th>
+        </tr>
+        <tr>
+          <td colSpan="2">{ProjectId}</td>
+          <td colSpan="2">{ProjectTitle}</td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td colSpan="2" style={{ border: "none" }}></td>
+          <th>Description</th>
+          <td style={{ textAlign: "right" }}>Amount</td>
+        </tr>
+        <tr>
+          <td colSpan="2" style={{ border: "none" }}></td>
+          <th>Budget</th>
+          <td style={{ textAlign: "right" }}>{Budget} Taka</td>
+        </tr>
+        <tr>
+          <td colSpan="2" style={{ border: "none" }}></td>
+          <th>Tax</th>
+          <td style={{ textAlign: "right", paddingRight: "13px" }}>{Tax} %</td>
+        </tr>
+        <tr>
+          <td colSpan="2" style={{ border: "none" }}></td>
+          <th>Discount</th>
+          <td style={{ textAlign: "right", paddingRight: "13px" }}>
+            {Discount} %
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="2" style={{ border: "none" }}></td>
+          <th>Payment</th>
+          <td style={{ textAlign: "right" }}>{Payment} Taka</td>
+        </tr>
+        <tr>
+          <td colSpan="2" style={{ border: "none" }}></td>
+          <th>Total Budget</th>
+          <td style={{ textAlign: "right" }}>{TotalBudget} Taka</td>
+        </tr>
+        <tr>
+          <td colSpan="2" style={{ border: "none" }}></td>
+          <th>Total Payment</th>
+          <td style={{ textAlign: "right" }}>{TotalPayment} Taka</td>
+        </tr>
+        <tr>
+          <td colSpan="2" style={{ border: "none" }}></td>
+          <th>Total Paybale</th>
+          <td style={{ textAlign: "right" }}>{TotalPayable} Taka</td>
+        </tr>
       </table>
     </>
   );

@@ -8,12 +8,19 @@ import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Chip, TableHead } from "@mui/material";
-import SalaryForm from "./SalaryForm";
+import { TableHead } from "@mui/material";
+import RemoveRedEyeRoundedIcon from "@mui/icons-material/RemoveRedEyeRounded";
+import { useNavigate } from "react-router-dom";
 
 export default function SalaryTable({ rows }) {
+  const navigate = useNavigate();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const handleView = (id) => {
+    console.log(id);
+    navigate(`/salary/invoice/${id}`);
+  };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -58,6 +65,7 @@ export default function SalaryTable({ rows }) {
             <StyledTableCell align="center">PerformanceBonus</StyledTableCell>
             <StyledTableCell align="center">Total Diduction</StyledTableCell>
             <StyledTableCell align="center">Total Payment</StyledTableCell>
+            <StyledTableCell align="center">View</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -83,6 +91,12 @@ export default function SalaryTable({ rows }) {
               </StyledTableCell>
               <StyledTableCell align="center">
                 {row.TotalPayment}
+              </StyledTableCell>
+              <StyledTableCell
+                align="center"
+                onClick={() => handleView(row.id)}
+              >
+                <RemoveRedEyeRoundedIcon />
               </StyledTableCell>
             </TableRow>
           ))}

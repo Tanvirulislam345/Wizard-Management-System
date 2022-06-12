@@ -58,17 +58,19 @@ export default function SalaryForm({ values }) {
       TotalAbsent: values?.TotalAbsent,
       TotalLate: values?.TotalLate,
       TotalSalary: values?.TotalSalary,
-      TotalDiduction: values?.TotalDiduction,
+      TotalDiduction:
+        values?.TotalDiduction + parseInt(data?.FoodDeduction) || 0,
       Month,
       Year: year,
       TotalPayment:
         parseInt(values.TotalPayable) +
         (parseInt(data?.FestivalAllowance) || 0) +
-        (parseInt(data?.PerformanceBonus) || 0),
+        (parseInt(data?.PerformanceBonus) || 0) -
+        (data?.FoodDeduction || 0),
       ...data,
     };
 
-    console.log(newData);
+    // console.log(newData);
     axios.post(`http://localhost:9000/salary`, newData).then((res) => {
       if (res.data) {
         handleClose();
@@ -226,6 +228,21 @@ export default function SalaryForm({ values }) {
                     variant="outlined"
                     name="FestivalAllowance"
                     label="Festival Allowance"
+                    type="number"
+                    onChange={(event) =>
+                      setData({
+                        ...data,
+                        [event.target.name]: event.target.value,
+                      })
+                    }
+                  />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <TextFieldMake
+                    fullWidth
+                    variant="outlined"
+                    name="FoodDeduction"
+                    label="FoodDeduction"
                     type="number"
                     onChange={(event) =>
                       setData({
