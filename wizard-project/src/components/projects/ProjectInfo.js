@@ -1,5 +1,6 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import axios from "axios";
 import React from "react";
 import { useAuth } from "../../Context/ContextProvieder";
 import {
@@ -11,9 +12,11 @@ import {
 import { SinglePlainText2 } from "../shared/ProfileSingleInfo/SingleInfoStyle";
 import PhasesListMenu from "./PhasesListMenu";
 import ProgressBar from "./ProgressBar";
+import ProjectChat from "./ProjectChat";
 
 const ProjectInfo = ({ clientDetails, handleUpdate }) => {
   const {
+    ProjectId,
     ProjectStart,
     ProjectEnd,
     TeamLeader,
@@ -87,6 +90,11 @@ const ProjectInfo = ({ clientDetails, handleUpdate }) => {
               handleUpdate={handleUpdate}
             />
           )}
+          <ProjectChat
+            Role={user?.Role}
+            DoneWork={data?.workPersent}
+            ProjectId={ProjectId}
+          />
         </PlainTextContainer2>
       ))}
 

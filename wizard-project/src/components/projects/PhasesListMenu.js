@@ -21,7 +21,10 @@ export default function PhasesListMenu({ data, value, handleUpdate }) {
 
   return (
     <div>
-      <BigButtonMake onClick={handleClick} style={{ width: "100px" }}>
+      <BigButtonMake
+        onClick={handleClick}
+        style={{ width: "100px", marginTop: "0px" }}
+      >
         {data.status}
       </BigButtonMake>
       <Menu

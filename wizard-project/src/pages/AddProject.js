@@ -94,6 +94,7 @@ const AddProject = () => {
       formData.append(key, newData[key]);
     }
 
+    // console.log(newData);
     if (data !== null && data.File !== undefined) {
       axios.post("http://localhost:9000/addproject", formData).then((res) => {
         if (res.status === 200) {

@@ -3,6 +3,12 @@
   font-family: "Lato", sans-serif;
   font-family: "Roboto", sans-serif;
 }
+::-webkit-scrollbar {
+  background: "red";
+}
+::-webkit-scrollbar-thumb {
+  background: "red";
+}
 
 table {
   font-family: arial, sans-serif;

@@ -87,6 +87,7 @@ export const BigButtonMake = styled(Button)(({ theme }) => ({
 export const ButtonMake = styled(Button)(({ theme }) => ({
   padding: "0px 12px",
   background: theme.background.primary,
+  ":hover": { background: theme.background.primary },
 }));
 
 export const MenuItemMake = styled(MenuItem)(({ theme }) => ({

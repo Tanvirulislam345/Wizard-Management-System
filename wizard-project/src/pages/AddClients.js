@@ -23,8 +23,13 @@ const AddClients = () => {
       Password,
     };
 
+    const formData = new FormData();
+    for (const key in newData) {
+      formData.append(key, newData[key]);
+    }
+
     if (data !== null) {
-      axios.post("http://localhost:9000/addclient", newData).then((res) => {
+      axios.post("http://localhost:9000/addclient", formData).then((res) => {
         if (res.status === 200) {
           navigate("/client");
         }
@@ -33,6 +38,7 @@ const AddClients = () => {
       alert("Please Enter all data");
     }
   };
+
   return (
     <LayoutContiner>
       <SubNav2 project="Add Client" />

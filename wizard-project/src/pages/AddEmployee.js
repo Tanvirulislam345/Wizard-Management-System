@@ -54,9 +54,14 @@ const AddEmployee = () => {
       Skills: JSON.stringify(skills),
     };
 
+    const formData = new FormData();
+    for (const key in newData) {
+      formData.append(key, newData[key]);
+    }
+
     if (data !== null) {
       // console.log(newData);
-      axios.post("http://localhost:9000/addemployee", newData).then((res) => {
+      axios.post("http://localhost:9000/addemployee", formData).then((res) => {
         if (res.status === 200) {
           navigate("/employee");
         }

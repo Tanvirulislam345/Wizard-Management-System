@@ -241,9 +241,9 @@ app.delete("/allproject/delete/:projectId", (req, res) => {
   // res.json(true);
 });
 
-//all routes for employee
-app.post("/addemployee", async (req, res) => {
+app.post("/addemployee", upload.single("File"), async (req, res) => {
   const data = req.body;
+  const File = `http://localhost:9000/images/${req.file.filename}`;
 
   const info = {
     from: "tanvir.topader345@gmail.com",
@@ -265,14 +265,18 @@ app.post("/addemployee", async (req, res) => {
     }
   });
 
-  const keys = Object.keys(data);
+  const data2 = {
+    ...data,
+    File,
+  };
+  const keys = Object.keys(data2);
 
   const sqlquery = `INSERT INTO all_employee (${keys.map(
     (key) => key
   )}) VALUES (${keys.map((key) => "?")})`;
 
   const value = keys.map((key) => {
-    return data[key];
+    return data2[key];
   });
 
   await connection.query(sqlquery, value, (err, result) => {
@@ -282,7 +286,6 @@ app.post("/addemployee", async (req, res) => {
       res.json(result);
     }
   });
-  // res.json(true);
 });
 
 app.get("/employee", (req, res) => {
@@ -347,8 +350,9 @@ app.delete("/employee/delete/:projectId", (req, res) => {
 
 //all routes for client
 
-app.post("/addclient", async (req, res) => {
+app.post("/addclient", upload.single("File"), async (req, res) => {
   const data = req.body;
+  const File = `http://localhost:9000/images/${req.file.filename}`;
 
   const info = {
     from: "tanvir.topader345@gmail.com",
@@ -370,13 +374,17 @@ app.post("/addclient", async (req, res) => {
     }
   });
 
-  const keys = Object.keys(data);
+  const data2 = {
+    ...data,
+    File,
+  };
+  const keys = Object.keys(data2);
   const sqlquery = `INSERT INTO all_client (${keys.map(
     (key) => key
   )}) VALUES (${keys.map((key) => "?")})`;
 
   const value = keys.map((key) => {
-    return data[key];
+    return data2[key];
   });
 
   await connection.query(sqlquery, value, (err, result) => {
@@ -1050,6 +1058,68 @@ app.delete("/leave/:leaveId", (req, res) => {
       res.json(result);
     }
   });
+});
+
+app.post("/addcomments", async (req, res) => {
+  const data = req.body;
+
+  const keys = Object.keys(data);
+  const sqlquery = `INSERT INTO all_comments (${keys.map(
+    (key) => key
+  )}) VALUES (${keys.map((key) => "?")})`;
+
+  const value = keys.map((key) => {
+    return data[key];
+  });
+
+  await connection.query(sqlquery, value, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+app.post("/addcommentsFile", upload.single("File"), async (req, res) => {
+  const data = req.body;
+  const File = `http://localhost:9000/images/${req.file.filename}`;
+
+  const data2 = {
+    ...data,
+    File,
+  };
+
+  const keys = Object.keys(data2);
+  const sqlquery = `INSERT INTO all_comments (${keys.map(
+    (key) => key
+  )}) VALUES (${keys.map((key) => "?")})`;
+
+  const value = keys.map((key) => {
+    return data2[key];
+  });
+
+  await connection.query(sqlquery, value, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+app.get("/comments/:ProjectId", (req, res) => {
+  const id = req.params.ProjectId;
+  console.log(id);
+  connection.query(
+    `SELECT * FROM all_comments WHERE ProjectId = "${id}"`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result);
+      }
+    }
+  );
 });
 
 app.get("/", (req, res) => {

@@ -9,6 +9,8 @@ import {
   FaBuffer,
   FaCaretSquareLeft,
   FaMoneyCheck,
+  FaPinterestP,
+  FaStripeS,
 } from "react-icons/fa";
 
 const items = [
@@ -29,12 +31,12 @@ const items = [
   },
   {
     href: "/payablesalary",
-    icon: <FaUserSecret fontSize="small" />,
+    icon: <FaPinterestP fontSize="small" />,
     title: "Payable Salary",
   },
   {
     href: "/salary",
-    icon: <FaUserSecret fontSize="small" />,
+    icon: <FaStripeS fontSize="small" />,
     title: "Salary",
   },
   {

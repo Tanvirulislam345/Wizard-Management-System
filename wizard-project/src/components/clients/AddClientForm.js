@@ -158,29 +158,14 @@ const AddClientForm = ({ gender, payment, data, setData, handleSubmit }) => {
           }
         />
       </Grid>
+
       <Grid item xs={12}>
         <TextFieldMake
           fullWidth
           type="file"
           focused
           variant="outlined"
-          label="Profile"
-          name="profile"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.files[0],
-            })
-          }
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <TextFieldMake
-          fullWidth
-          type="file"
-          focused
-          variant="outlined"
-          label="File"
+          label="Files"
           name="File"
           onChange={(event) =>
             setData({
@@ -190,6 +175,7 @@ const AddClientForm = ({ gender, payment, data, setData, handleSubmit }) => {
           }
         />
       </Grid>
+
       <Grid item xs={12}>
         <Stack spacing={3} direction="row">
           <ButtonMake size="medium" type="submit" onClick={handleSubmit}>

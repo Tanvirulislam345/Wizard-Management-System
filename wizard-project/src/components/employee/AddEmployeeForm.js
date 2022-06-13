@@ -368,7 +368,7 @@ const AddEmployeeForm = ({
           focused
           variant="outlined"
           label="Profile"
-          name="Profile"
+          name="File"
           onChange={(event) =>
             setData({
               ...data,
