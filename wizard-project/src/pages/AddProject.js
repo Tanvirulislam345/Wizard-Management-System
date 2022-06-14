@@ -43,6 +43,7 @@ const AddProject = () => {
   const [data, setData] = useState(null);
   const [teamMember, setTeamMember] = useState([team[0]]);
   const [tools, setTools] = useState([ProjectTools[0]]);
+  const [teamLeader, setTeamLeader] = useState(null);
 
   const navigate = useNavigate();
 
@@ -116,12 +117,15 @@ const AddProject = () => {
     axios
       .get("http://localhost:9000/client")
       .then((res) => setClientId(res.data));
+    axios
+      .get("http://localhost:9000/employee")
+      .then((res) => setTeamLeader(res.data));
   }, []);
 
   return (
     <LayoutContiner>
       <SubNav2 project="Add Project" />
-      {clientId !== null && (
+      {clientId !== null && teamLeader !== null && (
         <AddProjectForm
           ClientId={clientId}
           Categoris={Categoris}
@@ -130,6 +134,7 @@ const AddProject = () => {
           tools={tools}
           team={team}
           teamMember={teamMember}
+          teamLeader={teamLeader}
           setTeamMember={setTeamMember}
           data={data}
           setData={setData}

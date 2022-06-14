@@ -59,6 +59,11 @@ const items = [
     icon: <FaBuffer fontSize="small" />,
     title: "Attendence",
   },
+  {
+    href: "/points",
+    icon: <FaBuffer fontSize="small" />,
+    title: "Points",
+  },
 ];
 
 export default function SideBar({ open, onClose, user }) {

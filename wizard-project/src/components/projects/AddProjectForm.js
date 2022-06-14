@@ -15,6 +15,7 @@ const AddProjectForm = ({
   tools,
   setTools,
   team,
+  teamLeader,
   teamMember,
   setTeamMember,
   data,
@@ -219,9 +220,9 @@ const AddProjectForm = ({
           SelectProps={{ native: true }}
         >
           <option>Select TeamLeader</option>
-          {team.map((option, index) => (
-            <option key={index} value={option.name}>
-              {option.name}
+          {teamLeader.map((option, index) => (
+            <option key={index} value={option.EmployeeId}>
+              {option.FullName}
             </option>
           ))}
         </TextFieldMake>

@@ -1122,6 +1122,59 @@ app.get("/comments/:ProjectId", (req, res) => {
   );
 });
 
+app.post("/points", (req, res) => {
+  const data2 = req.body;
+
+  const keys = Object.keys(data2);
+
+  const sqlquery = `INSERT INTO all_points (${keys.map(
+    (key) => key
+  )}) VALUES (${keys.map((key) => "?")})`;
+
+  const value = keys.map((key) => {
+    return data2[key];
+  });
+
+  connection.query(sqlquery, value, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+app.get("/points", (req, res) => {
+  connection.query(`SELECT * FROM all_points WHERE 1`, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+app.post("/points/view", (req, res) => {
+  const data = req.body;
+  console.log(data);
+  const keys = Object.keys(data);
+  const value = keys.map((key) => {
+    return `${key} = "${data[key]}"`;
+  });
+
+  connection.query(
+    `SELECT * FROM all_points WHERE ${value.join(" " + "AND" + " ")}`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.json(result);
+      }
+    }
+  );
+});
+
 app.get("/", (req, res) => {
   res.send("This is wizard software admin project");
 });

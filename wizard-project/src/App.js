@@ -37,6 +37,8 @@ import ClientInvoice from "./pages/ClientInvoice";
 import PayableSalary from "./pages/PayableSalary";
 import Salary from "./pages/Salary";
 import Invoice2 from "./pages/Invoice2";
+import Points from "./pages/Points";
+import AddPoint from "./pages/AddPoint";
 
 function App() {
   return (
@@ -52,9 +54,24 @@ function App() {
                 </LayoutChild>
               }
             />
-          </Routes>
 
-          <Routes>
+            <Route
+              path="/points"
+              element={
+                <Layout>
+                  <Points />
+                </Layout>
+              }
+            />
+            <Route
+              path="/addpoint"
+              element={
+                <Layout>
+                  <AddPoint />
+                </Layout>
+              }
+            />
+
             <Route
               path="/project"
               element={
