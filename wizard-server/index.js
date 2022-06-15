@@ -188,6 +188,21 @@ app.get("/clientproject/:projectId", (req, res) => {
     }
   );
 });
+app.get("/employeeproject/:profileId", (req, res) => {
+  const id = req.params.profileId;
+  connection.query(
+    `SELECT * FROM all_projects WHERE TeamLeader = '${id}'`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        console.log(id);
+        res.json(result);
+      }
+    }
+  );
+});
 
 app.put("/updateproject/:projectId", (req, res) => {
   const id = req.params.projectId;
@@ -302,7 +317,7 @@ app.get("/employee/:employeeId", (req, res) => {
   const id = req.params.employeeId;
 
   connection.query(
-    `SELECT * FROM all_employee WHERE id=${id}`,
+    `SELECT * FROM all_employee WHERE EmployeeId="${id}"`,
     (err, result) => {
       if (err) {
         console.log(err);
@@ -531,12 +546,10 @@ app.get("/allpayments/:paymentId", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        // console.log(result);
         res.json(result[result.length - 1]);
       }
     }
   );
-  // res.json(true);
 });
 app.get("/allpayment/:paymentId", (req, res) => {
   const id = req.params.paymentId;
@@ -1156,7 +1169,7 @@ app.get("/points", (req, res) => {
 
 app.post("/points/view", (req, res) => {
   const data = req.body;
-  console.log(data);
+
   const keys = Object.keys(data);
   const value = keys.map((key) => {
     return `${key} = "${data[key]}"`;
@@ -1168,13 +1181,47 @@ app.post("/points/view", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(result);
         res.json(result);
       }
     }
   );
 });
 
+app.post("/expensecategori", (req, res) => {
+  const data2 = req.body;
+
+  const keys = Object.keys(data2);
+
+  const sqlquery = `INSERT INTO all_expense_categori (${keys.map(
+    (key) => key
+  )}) VALUES (${keys.map((key) => "?")})`;
+
+  const value = keys.map((key) => {
+    return data2[key];
+  });
+
+  connection.query(sqlquery, value, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+  // res.json(true);
+});
+
+app.get("/expense_categori", (req, res) => {
+  connection.query(
+    `SELECT * FROM all_expense_categori WHERE 1`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result);
+      }
+    }
+  );
+});
 app.get("/", (req, res) => {
   res.send("This is wizard software admin project");
 });

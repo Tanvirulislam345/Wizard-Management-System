@@ -34,7 +34,7 @@ const EmployeeList = ({ employee, handleRemove }) => {
                 {employee.FullName}
               </HeadingFormatTitle>
               <ListMenuEmployee
-                id={employee.id}
+                id={employee.EmployeeId}
                 handleRemove={handleRemove}
               ></ListMenuEmployee>
             </BoxContainer>
@@ -50,7 +50,7 @@ const EmployeeList = ({ employee, handleRemove }) => {
             <Stack spacing={3} direction="row">
               <BigButtonMake>Add Task</BigButtonMake>
               <Link
-                to={`/employee/profile/${employee.id}`}
+                to={`/employee/profile/${employee.EmployeeId}`}
                 style={{ textDecoration: "none" }}
               >
                 <BigButtonMake>Profile</BigButtonMake>

@@ -26,9 +26,15 @@ const PointsView = () => {
         }
       });
 
-    axios
-      .get(`http://localhost:9000/points`)
-      .then((res) => setValues(res.data));
+    axios.get(`http://localhost:9000/points`).then((res) => {
+      const data = res.data;
+      if (user?.Role === "employee") {
+        const value = data.filter((da) => da.EmployeeId === user.EmployeeId);
+        setValues(value);
+      } else {
+        setValues(data);
+      }
+    });
   }, [user]);
 
   const handleSearch = () => {

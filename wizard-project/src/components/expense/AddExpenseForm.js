@@ -23,7 +23,7 @@ const states2 = [
   },
 ];
 
-const AddExpenseForm = ({ data, setData, handleSubmit }) => {
+const AddExpenseForm = ({ data, setData, handleSubmit, categori }) => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
@@ -38,7 +38,17 @@ const AddExpenseForm = ({ data, setData, handleSubmit }) => {
               [event.target.name]: event.target.value,
             })
           }
-        />
+          required
+          select
+          SelectProps={{ native: true }}
+        >
+          <option>Enter Categori</option>
+          {categori?.map((option) => (
+            <option key={option.id} value={option.Item}>
+              {option.Item}
+            </option>
+          ))}
+        </TextFieldMake>
       </Grid>
       <Grid item xs={12} md={6}>
         <TextFieldMake

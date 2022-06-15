@@ -13,7 +13,7 @@ const SubNav2 = ({ project }) => {
       <HeadingFormatTitle>{project}</HeadingFormatTitle>
       <BoxContainer>
         {user?.Role === "admin" && (
-          <Link to="/project">
+          <Link to="/dashboard">
             <HeadingFormatTitle>
               <HomeIcon color="secondary" />
             </HeadingFormatTitle>

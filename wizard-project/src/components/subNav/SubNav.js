@@ -11,7 +11,7 @@ const SubNav = ({ project, addproject }) => {
       <HeadingFormatTitle>{project}</HeadingFormatTitle>
       <BoxContainer>
         <>
-          <Link to="/project">
+          <Link to="/dashboard">
             <HeadingFormatTitle>
               <HomeIcon color="secondary" />
             </HeadingFormatTitle>

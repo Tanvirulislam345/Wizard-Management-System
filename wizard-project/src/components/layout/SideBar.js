@@ -15,6 +15,11 @@ import {
 
 const items = [
   {
+    href: "/dashboard",
+    icon: <FaProjectDiagram fontSize="small" />,
+    title: "Dashboard",
+  },
+  {
     href: "/project",
     icon: <FaProjectDiagram fontSize="small" />,
     title: "Project",

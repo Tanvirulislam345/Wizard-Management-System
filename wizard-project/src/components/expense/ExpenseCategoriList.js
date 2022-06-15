@@ -13,8 +13,9 @@ import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import RemoveRedEyeRoundedIcon from "@mui/icons-material/RemoveRedEyeRounded";
 import ExpenseListMenu from "./ExpenseListMenu";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-export default function ExpenseList({ rows, handleChange }) {
+export default function ExpenseCategoriList({ rows }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const navigate = useNavigate();
@@ -53,63 +54,27 @@ export default function ExpenseList({ rows, handleChange }) {
       <Table aria-label="custom pagination table">
         <TableHead>
           <TableRow>
-            <StyledTableCell align="center">Expense ID</StyledTableCell>
+            <StyledTableCell align="center">ID</StyledTableCell>
             <StyledTableCell align="center">Item</StyledTableCell>
-            <StyledTableCell align="center">Ordered By</StyledTableCell>
-            <StyledTableCell align="center">Date</StyledTableCell>
-            <StyledTableCell align="center">Ordered From</StyledTableCell>
-            <StyledTableCell align="center">Description</StyledTableCell>
-            <StyledTableCell align="center">Total Amount</StyledTableCell>
-            <StyledTableCell align="center">Payment Method</StyledTableCell>
-            <StyledTableCell align="center">Status</StyledTableCell>
-            {/* <StyledTableCell align="center">View</StyledTableCell> */}
-            <StyledTableCell align="center">
-              <MoreVertOutlinedIcon />
-            </StyledTableCell>
+
+            <StyledTableCell align="center"></StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row, index) => (
-            <TableRow key={index}>
-              <StyledTableCell align="center">{row.ExpenseId}</StyledTableCell>
-              <StyledTableCell align="center">{row.Item}</StyledTableCell>
-              <StyledTableCell align="center">{row.OrderBy}</StyledTableCell>
-              <StyledTableCell align="center">{row.OrderDate}</StyledTableCell>
-              <StyledTableCell align="center">{row.OrderFrom}</StyledTableCell>
-              <StyledTableCell align="center">
-                {row.Description}
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                {row.TotalAmount}
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                {row.PaymentMethod}
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                <Chip
-                  label={row.PaymentStatus}
-                  sx={{
-                    background:
-                      (row.PaymentStatus === "Clear" && "#8CC341") ||
-                      (row.PaymentStatus === "Pending" && "#E25822"),
-                    width: "100px",
-                  }}
-                />
-              </StyledTableCell>
-              {/* <StyledTableCell
-                align="center"
-                onClick={() => handleView(row.id)}
-              >
-                <RemoveRedEyeRoundedIcon />
-              </StyledTableCell> */}
-              <StyledTableCell align="center">
-                <ExpenseListMenu id={row.id} handleChange={handleChange} />
-              </StyledTableCell>
-            </TableRow>
-          ))}
+          {rows !== null &&
+            (rowsPerPage > 0
+              ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : rows
+            ).map((row, index) => (
+              <TableRow key={index}>
+                <StyledTableCell align="center">{row.id}</StyledTableCell>
+                <StyledTableCell align="center">{row.Item}</StyledTableCell>
+
+                <StyledTableCell align="center">
+                  <MoreVertOutlinedIcon />
+                </StyledTableCell>
+              </TableRow>
+            ))}
         </TableBody>
         <TableFooter>
           <TableRow>
@@ -122,7 +87,7 @@ export default function ExpenseList({ rows, handleChange }) {
               }}
               rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
               colSpan={12}
-              count={rows.length}
+              count={rows?.length}
               rowsPerPage={rowsPerPage}
               page={page}
               SelectProps={{

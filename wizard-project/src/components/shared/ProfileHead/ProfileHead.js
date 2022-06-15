@@ -2,22 +2,35 @@ import { Avatar, Box, Grid, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import employeeImg from "../../../assets/avater1.png";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
-import { BoxContainerColoum } from "../../../styles/MetarialStyles";
+import {
+  BoxContainer,
+  BoxContainerColoum,
+} from "../../../styles/MetarialStyles";
 import {
   HeadingFormatContainer,
   HeadingFormatSubTitle,
   HeadingFormatTitle,
 } from "../HeadingFormat/HeadingFormatStyle";
 
-const ProfileHead = ({ name, designation, id, description, contact }) => {
+const ProfileHead = ({
+  name,
+  designation,
+  id,
+  description,
+  contact,
+  points,
+}) => {
   const [data, setData] = useState("About");
   return (
     <Grid container spacing={2}>
       <Grid xs={12} item>
         <HeadingFormatContainer>
+          <HeadingFormatTitle
+            sx={{ textAlign: "right", p: 0, color: "#3851B5" }}
+          >
+            {points}
+          </HeadingFormatTitle>
           <BoxContainerColoum>
-            <HeadingFormatTitle sx={{ p: 0 }}>{name}</HeadingFormatTitle>
-            <HeadingFormatSubTitle>{designation}</HeadingFormatSubTitle>
             <Avatar
               src={employeeImg}
               alt=""
@@ -25,6 +38,15 @@ const ProfileHead = ({ name, designation, id, description, contact }) => {
             />
 
             <HeadingFormatSubTitle>{id}</HeadingFormatSubTitle>
+            <BoxContainer>
+              <HeadingFormatTitle sx={{ p: 0, mr: 3 }}>
+                {name}
+              </HeadingFormatTitle>
+              <HeadingFormatSubTitle sx={{ p: 0, mt: 1 }}>
+                ({designation})
+              </HeadingFormatSubTitle>
+            </BoxContainer>
+
             <Typography
               variant="body1"
               sx={{

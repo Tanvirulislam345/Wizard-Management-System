@@ -39,7 +39,7 @@ const Login = () => {
           } else if (user.Role === "client") {
             navigation(`/client/profile/${user.ClientId}`);
           } else if (user.Role === "employee") {
-            navigation(`/employee/profile/${user.id}`);
+            navigation(`/employee/profile/${user.EmployeeId}`);
           }
         } else {
           setError("Email or Password does not match");

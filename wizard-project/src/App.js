@@ -39,6 +39,8 @@ import Salary from "./pages/Salary";
 import Invoice2 from "./pages/Invoice2";
 import Points from "./pages/Points";
 import AddPoint from "./pages/AddPoint";
+import Dashbord from "./pages/Dashbord";
+import CategoriExpenseForm from "./components/expense/CategoriExpenseForm";
 
 function App() {
   return (
@@ -52,6 +54,23 @@ function App() {
                 <LayoutChild>
                   <Login />
                 </LayoutChild>
+              }
+            />
+
+            <Route
+              path="/dashboard"
+              element={
+                <Layout>
+                  <Dashbord />
+                </Layout>
+              }
+            />
+            <Route
+              path="/addCategori"
+              element={
+                <Layout>
+                  <CategoriExpenseForm />
+                </Layout>
               }
             />
 

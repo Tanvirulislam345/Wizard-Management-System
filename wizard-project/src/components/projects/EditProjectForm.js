@@ -233,16 +233,7 @@ const EditProjectForm = ({ values, projectId }) => {
               [event.target.name]: event.target.value,
             })
           }
-          required
-          select
-          SelectProps={{ native: true }}
-        >
-          {team.map((option, index) => (
-            <option key={index} value={option.name}>
-              {option.name}
-            </option>
-          ))}
-        </TextFieldMake>
+        />
       </Grid>
 
       <Grid item xs={12} md={6}>

@@ -23,8 +23,6 @@ const Leave = () => {
   const [leave, setLeave] = useState(null);
   const [update, setUpdate] = useState(false);
 
-  console.log(user);
-
   const handleChange = (id, type, method) => {
     if (method === "delete") {
       if (type === "leave") {

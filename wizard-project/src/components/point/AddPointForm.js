@@ -31,7 +31,7 @@ const AddPointForm = ({ employee }) => {
     "Nov",
     "Dec",
   ];
-  const month = today.getMonth() - 1;
+  const month = today.getMonth();
   const Month = monthNames[month];
   const Year = today.getFullYear();
 
