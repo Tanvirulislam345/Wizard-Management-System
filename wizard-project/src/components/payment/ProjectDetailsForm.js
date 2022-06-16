@@ -4,16 +4,20 @@ import { ButtonMake, TextFieldMake } from "../../styles/MetarialStyles";
 
 const states = [
   {
-    value: "Add payment Type",
-    label: "Add payment Type",
-  },
-  {
-    value: "cash",
+    value: "Cash",
     label: "Cash",
   },
   {
-    value: "card",
+    value: "Card",
     label: "Card",
+  },
+  {
+    value: "City Bank",
+    label: "City Bank",
+  },
+  {
+    value: "Bank Asia",
+    label: "Bank Asia",
   },
 ];
 const states2 = [

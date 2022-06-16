@@ -77,7 +77,7 @@ export default function ExpenseList({ rows, handleChange }) {
               <StyledTableCell align="center">{row.ExpenseId}</StyledTableCell>
               <StyledTableCell align="center">{row.Item}</StyledTableCell>
               <StyledTableCell align="center">{row.OrderBy}</StyledTableCell>
-              <StyledTableCell align="center">{row.OrderDate}</StyledTableCell>
+              <StyledTableCell align="center">{row.Date}</StyledTableCell>
               <StyledTableCell align="center">{row.OrderFrom}</StyledTableCell>
               <StyledTableCell align="center">
                 {row.Description}
@@ -94,17 +94,12 @@ export default function ExpenseList({ rows, handleChange }) {
                   sx={{
                     background:
                       (row.PaymentStatus === "Clear" && "#8CC341") ||
-                      (row.PaymentStatus === "Pending" && "#E25822"),
+                      (row.PaymentStatus === "Due" && "#E25822"),
                     width: "100px",
                   }}
                 />
               </StyledTableCell>
-              {/* <StyledTableCell
-                align="center"
-                onClick={() => handleView(row.id)}
-              >
-                <RemoveRedEyeRoundedIcon />
-              </StyledTableCell> */}
+
               <StyledTableCell align="center">
                 <ExpenseListMenu id={row.id} handleChange={handleChange} />
               </StyledTableCell>

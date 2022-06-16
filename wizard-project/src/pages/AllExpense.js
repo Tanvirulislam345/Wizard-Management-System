@@ -37,16 +37,19 @@ const AllExpense = () => {
         <ProfileNav navValue={navValue} data={data} setData={setData} />
       </HeadingFormatContainer>
 
-      {data === "Expense" && rows?.length > 0 && (
+      {data === "Expense" && (
         <>
           <SubNav project="Expense" addproject="addexpense" />
-          <ExpenseList rows={rows} handleChange={handleChange} />
+          {rows?.length > 0 && (
+            <ExpenseList rows={rows} handleChange={handleChange} />
+          )}
         </>
       )}
-      {data === "Expense Categori" && values !== null && (
+
+      {data === "Expense Categori" && (
         <>
           <SubNav project="Expense Categori Create" addproject="addCategori" />
-          <ExpenseCategoriList rows={values} />
+          {values !== null && <ExpenseCategoriList rows={values} />}
         </>
       )}
     </LayoutContiner>

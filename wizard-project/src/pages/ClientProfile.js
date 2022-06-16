@@ -79,7 +79,7 @@ const ClientProfile = () => {
                   </HeadingFormatTitle>
                   <Grid container spacing={2}>
                     {projects?.map((project, index) => (
-                      <Grid xs={12} item key={index}>
+                      <Grid xs={12} md={4} item key={index}>
                         <SingleProjectItem
                           project={project}
                           projectCategori={projectCategori}

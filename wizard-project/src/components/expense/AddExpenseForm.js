@@ -4,12 +4,16 @@ import { ButtonMake, TextFieldMake } from "../../styles/MetarialStyles";
 
 const states = [
   {
-    value: "cash",
+    value: "Cash",
     label: "Cash",
   },
   {
-    value: "card",
-    label: "Card",
+    value: "City Bank",
+    label: "City Bank",
+  },
+  {
+    value: "Bank Asia",
+    label: "Bank Asia",
   },
 ];
 const states2 = [
@@ -18,8 +22,8 @@ const states2 = [
     label: "Clear",
   },
   {
-    value: "Pending",
-    label: "Pending",
+    value: "Due",
+    label: "Due",
   },
 ];
 
@@ -78,22 +82,7 @@ const AddExpenseForm = ({ data, setData, handleSubmit, categori }) => {
           }
         />
       </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          type="date"
-          focused
-          variant="outlined"
-          name="OrderDate"
-          label="Order Date"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-        />
-      </Grid>
+
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
@@ -125,6 +114,7 @@ const AddExpenseForm = ({ data, setData, handleSubmit, categori }) => {
           select
           SelectProps={{ native: true }}
         >
+          <option>Enter payment Method</option>
           {states.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}

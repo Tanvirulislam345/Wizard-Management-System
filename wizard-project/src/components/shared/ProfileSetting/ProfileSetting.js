@@ -14,11 +14,6 @@ const ProfileSetting = () => {
       }}
     >
       <Grid item xs={12}>
-        <HeadingFormatTitle sx={{ pb: 0 }}>
-          Security settings
-        </HeadingFormatTitle>
-      </Grid>
-      <Grid item xs={12}>
         <TextFieldMake2 fullWidth label="User Name" variant="filled" />
       </Grid>
       <Grid item xs={12}>

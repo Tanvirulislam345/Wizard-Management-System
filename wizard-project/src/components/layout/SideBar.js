@@ -11,12 +11,14 @@ import {
   FaMoneyCheck,
   FaPinterestP,
   FaStripeS,
+  FaHome,
+  FaPoll,
 } from "react-icons/fa";
 
 const items = [
   {
     href: "/dashboard",
-    icon: <FaProjectDiagram fontSize="small" />,
+    icon: <FaHome fontSize="small" />,
     title: "Dashboard",
   },
   {
@@ -66,7 +68,7 @@ const items = [
   },
   {
     href: "/points",
-    icon: <FaBuffer fontSize="small" />,
+    icon: <FaPoll fontSize="small" />,
     title: "Points",
   },
 ];

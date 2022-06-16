@@ -37,7 +37,7 @@ const EditExpense = () => {
 
   return (
     <LayoutContiner>
-      <SubNav2 project="Add Expense" />
+      <SubNav2 project="Edit Expense" />
       {values !== null && (
         <EditExpenseForm
           data={data}

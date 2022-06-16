@@ -4,12 +4,20 @@ import { ButtonMake, TextFieldMake } from "../../styles/MetarialStyles";
 
 const states = [
   {
-    value: "cash",
+    value: "Cash",
     label: "Cash",
   },
   {
-    value: "card",
+    value: "Card",
     label: "Card",
+  },
+  {
+    value: "City Bank",
+    label: "City Bank",
+  },
+  {
+    value: "Bank Asia",
+    label: "Bank Asia",
   },
 ];
 const states2 = [
@@ -18,13 +26,12 @@ const states2 = [
     label: "Clear",
   },
   {
-    value: "Pending",
-    label: "Pending",
+    value: "Due",
+    label: "Due",
   },
 ];
 
 const EditExpenseForm = ({ data, setData, handleSubmit, values }) => {
-  console.log(values);
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
@@ -75,12 +82,11 @@ const EditExpenseForm = ({ data, setData, handleSubmit, values }) => {
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
-          type="date"
           focused
           variant="outlined"
-          name="OrderDate"
+          name="Date"
           label="Order Date"
-          defaultValue={values.OrderDate}
+          defaultValue={values.Date}
           onChange={(event) =>
             setData({
               ...data,
