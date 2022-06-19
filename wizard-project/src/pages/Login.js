@@ -35,7 +35,7 @@ const Login = () => {
           setUser(user);
           setError("");
           if (user.Role === "admin") {
-            navigation(`/project`);
+            navigation(`/dashboard`);
           } else if (user.Role === "client") {
             navigation(`/client/profile/${user.ClientId}`);
           } else if (user.Role === "employee") {

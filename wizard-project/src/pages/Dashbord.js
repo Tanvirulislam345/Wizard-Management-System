@@ -6,6 +6,7 @@ import Categori from "../components/dashboard/Categori";
 import SubNav2 from "../components/subNav/SubNav2";
 import { LayoutContiner } from "../styles/MetarialStyles";
 import * as XLSX from "xlsx";
+import IncomeDash from "../components/dashboard/IncomeDash";
 const Dashbord = () => {
   const [Project, setProject] = useState(null);
   const [income, setIncome] = useState(null);
@@ -20,6 +21,7 @@ const Dashbord = () => {
   const [totalExpense, setTotalExpense] = useState(null);
   const [errors, setErrors] = useState(null);
   const [download, setDownload] = useState(null);
+  const [demo, setDemo] = useState(null);
 
   const Profit = parseInt(income?.Number) - parseInt(expense?.Number);
   const data = {
@@ -39,7 +41,9 @@ const Dashbord = () => {
 
     axios.get(`http://localhost:9000/allproject`).then((res) => {
       const data = res.data;
+      setDemo(data);
       let value = data[0].Budget;
+
       if (data.length > 1) {
         value = data.reduce((pre, post) => {
           return pre.Budget + post.Budget;
@@ -47,7 +51,7 @@ const Dashbord = () => {
       }
 
       const datas = {
-        Name: "Income",
+        Name: "Accepted Income",
         Number: `${value} Taka`,
       };
       setIncome(datas);
@@ -169,6 +173,9 @@ const Dashbord = () => {
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           {income !== null && <Categori data={income} />}
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          {demo !== null && <IncomeDash demo={demo} />}
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           {expense !== null && <Categori data={expense} />}

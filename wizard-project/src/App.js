@@ -41,6 +41,9 @@ import Points from "./pages/Points";
 import AddPoint from "./pages/AddPoint";
 import Dashbord from "./pages/Dashbord";
 import CategoriExpenseForm from "./components/expense/CategoriExpenseForm";
+import MakeInvoice from "./pages/MakeInvoice";
+import MenualInvoiceForm from "./components/menualinvoice/MenualInvoiceForm";
+import MenualInvoiceView from "./components/menualinvoice/MenualInvoiceView";
 
 function App() {
   return (
@@ -65,6 +68,32 @@ function App() {
                 </Layout>
               }
             />
+
+            <Route
+              path="/makeinvoice"
+              element={
+                <Layout>
+                  <MakeInvoice />
+                </Layout>
+              }
+            />
+            <Route
+              path="/addmenualinvoice"
+              element={
+                <Layout>
+                  <MenualInvoiceForm />
+                </Layout>
+              }
+            />
+            <Route
+              path="/menual/invoice/:menualid"
+              element={
+                <Layout>
+                  <MenualInvoiceView />
+                </Layout>
+              }
+            />
+
             <Route
               path="/addCategori"
               element={

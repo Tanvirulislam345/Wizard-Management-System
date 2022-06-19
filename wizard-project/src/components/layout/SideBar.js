@@ -71,6 +71,11 @@ const items = [
     icon: <FaPoll fontSize="small" />,
     title: "Points",
   },
+  {
+    href: "/makeinvoice",
+    icon: <FaPoll fontSize="small" />,
+    title: "Make Invoice",
+  },
 ];
 
 export default function SideBar({ open, onClose, user }) {

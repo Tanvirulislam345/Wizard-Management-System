@@ -78,9 +78,6 @@ const InvoiceDescription = ({ invoiceData }) => {
           </tr>
         </TableBody>
       </table>
-      {/* <table>
-        
-      </table> */}
     </>
   );
 };

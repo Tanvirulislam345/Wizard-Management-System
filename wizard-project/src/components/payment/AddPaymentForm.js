@@ -32,7 +32,6 @@ const AddPaymentForm = ({ ProjectId }) => {
         TotalPayable,
       };
 
-      console.log(newData);
       axios.post(`http://localhost:9000/addpayment`, newData).then((res) => {
         if (res.status === 200) {
           navigate("/payment");
