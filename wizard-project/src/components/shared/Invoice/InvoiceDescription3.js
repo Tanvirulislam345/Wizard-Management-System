@@ -1,66 +1,72 @@
 import { TableBody, TableHead } from "@mui/material";
 import React from "react";
 
-const InvoiceDescription3 = ({ invoice }) => {
-  console.log(invoice);
+const InvoiceDescription3 = ({ invoice, Tax, Discount }) => {
+  const value2 = invoice?.map((valu) => {
+    return valu.Subtotal;
+  });
+
+  const ini = 0;
+  const value = value2.reduce(
+    (pre, pre1) => parseInt(pre) + parseInt(pre1),
+    ini
+  );
+
+  const discount = value - (Discount * value) / 100;
+  const totalvalue = discount + (Tax * discount) / 100;
   return (
     <>
       <table>
         <TableHead>
           <tr>
-            <th colSpan="2">Project Id</th>
-            <th colSpan="2">Project Title</th>
-          </tr>
-          <tr>
-            <td colSpan="2"></td>
-            <td colSpan="2"></td>
-          </tr>
-          <tr>
-            <th colSpan="2">Description</th>
-            <th colSpan="2" style={{ textAlign: "right" }}>
-              Amount
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th style={{ textAlign: "right", paddingRight: "13px" }}>
+              SubTotal
             </th>
           </tr>
-          {/* <tr>
-            <td rowSpan="2" colSpan="2"></td>
-            <td rowSpan="2" colSpan="2" style={{ textAlign: "right" }}>
-              Taka
-            </td>
-          </tr> */}
         </TableHead>
-
-        {invoice?.map((data) => (
-          <TableBody>
+        {invoice?.map((data, index) => (
+          <TableBody key={index}>
             <tr>
-              <td colSpan="2" style={{ border: "none" }}></td>
-              <th>Item Name</th>
+              <td>{data.ItemName}</td>
+              <td>{data.Quantity}</td>
+              <td>{data.Price} Taka</td>
               <td style={{ textAlign: "right", paddingRight: "13px" }}>
-                {data.ItemName}
-              </td>
-            </tr>
-            <tr>
-              <td colSpan="2" style={{ border: "none" }}></td>
-              <th>Quantity</th>
-              <td style={{ textAlign: "right", paddingRight: "13px" }}>
-                {data.Quantity}
-              </td>
-            </tr>
-            <tr>
-              <td colSpan="2" style={{ border: "none" }}></td>
-              <th>Price</th>
-              <td style={{ textAlign: "right", paddingRight: "13px" }}>
-                {data.Price}
-              </td>
-            </tr>
-            <tr>
-              <td colSpan="2" style={{ border: "none" }}></td>
-              <th>Sub Total</th>
-              <td style={{ textAlign: "right", paddingRight: "13px" }}>
-                {data.Subtotal}
+                {data.Subtotal} Taka
               </td>
             </tr>
           </TableBody>
         ))}
+      </table>
+      <table>
+        <TableBody>
+          <tr>
+            <th>Total</th>
+            <td style={{ textAlign: "right", paddingRight: "13px" }}>
+              {Math.ceil(value)} Taka
+            </td>
+          </tr>
+          <tr>
+            <th>Tex</th>
+            <td style={{ textAlign: "right", paddingRight: "13px" }}>
+              {Tax} %
+            </td>
+          </tr>
+          <tr>
+            <th>Discount</th>
+            <td style={{ textAlign: "right", paddingRight: "13px" }}>
+              {Discount} %
+            </td>
+          </tr>
+          <tr>
+            <th>Payable</th>
+            <td style={{ textAlign: "right", paddingRight: "13px" }}>
+              {Math.ceil(totalvalue)} Taka
+            </td>
+          </tr>
+        </TableBody>
       </table>
     </>
   );

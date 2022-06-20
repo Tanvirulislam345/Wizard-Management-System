@@ -165,8 +165,9 @@ const AddProjectForm = ({
           SelectProps={{ native: true }}
         >
           <option>Select PaymentMethod</option>
-          <option value="cash">Cash</option>
-          <option value="card">Card</option>
+          <option value="Cash">Cash</option>
+          <option value="City Bank">City Bank</option>
+          <option value="Bank Asia">Bank Asia</option>
         </TextFieldMake>
       </Grid>
       <Grid item xs={12} md={6}>

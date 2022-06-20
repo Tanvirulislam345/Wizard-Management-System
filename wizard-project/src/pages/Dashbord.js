@@ -6,10 +6,11 @@ import Categori from "../components/dashboard/Categori";
 import SubNav2 from "../components/subNav/SubNav2";
 import { LayoutContiner } from "../styles/MetarialStyles";
 import * as XLSX from "xlsx";
-import IncomeDash from "../components/dashboard/IncomeDash";
+import Bank from "../components/dashboard/Bank";
 const Dashbord = () => {
   const [Project, setProject] = useState(null);
   const [income, setIncome] = useState(null);
+  const [netIncome, setNetIncome] = useState(null);
   const [present, setPresent] = useState(null);
   const [late, setLate] = useState(null);
   const [absent, setAbsent] = useState(null);
@@ -23,73 +24,93 @@ const Dashbord = () => {
   const [download, setDownload] = useState(null);
   const [demo, setDemo] = useState(null);
 
-  const Profit = parseInt(income?.Number) - parseInt(expense?.Number);
+  const Profit = parseInt(netIncome?.Number) - parseInt(expense?.Number);
+
   const data = {
     Name: "Balance",
     Number: `${Profit} Taka`,
   };
+
+  const Due = parseInt(income?.Number) - parseInt(netIncome?.Number);
+
+  const data2 = {
+    Name: "Due",
+    Number: `${Due} Taka`,
+  };
+
   useEffect(() => {
     const running = "Running";
     axios.get(`http://localhost:9000/allproject/${running}`).then((res) => {
       const data = res.data;
-      const datas = {
+      setProject({
         Name: "Project",
         Number: data.length,
-      };
-      setProject(datas);
+      });
     });
 
-    axios.get(`http://localhost:9000/allproject`).then((res) => {
+    axios.get(`http://localhost:9000/allpayment`).then((res) => {
       const data = res.data;
-      setDemo(data);
-      let value = data[0].Budget;
+      const value = data.map((value) => {
+        return value.Payment;
+      });
+      const value2 = data.map((value) => {
+        return value.TotalBudget;
+      });
 
-      if (data.length > 1) {
-        value = data.reduce((pre, post) => {
-          return pre.Budget + post.Budget;
-        });
-      }
+      const ini = 0;
+      const result = value.reduce((pre, post) => pre + post, ini);
+      const result2 = value2.reduce((pre, post) => pre + post, ini);
 
-      const datas = {
+      setNetIncome({
+        Name: "Net Income",
+        Number: result,
+      });
+      setIncome({
         Name: "Accepted Income",
-        Number: `${value} Taka`,
-      };
-      setIncome(datas);
+        Number: result2,
+      });
     });
 
     axios.get(`http://localhost:9000/allexpense`).then((res) => {
       const data = res.data;
-      let value = data[0].TotalAmount;
-      if (data.length > 1) {
-        value = data.reduce((pre, post) => {
-          return pre.TotalAmount + post.TotalAmount;
+
+      if (data.length > 0) {
+        let value = data[0].TotalAmount;
+        if (data.length > 1) {
+          value = data.reduce((pre, post) => {
+            return pre.TotalAmount + post.TotalAmount;
+          });
+        }
+
+        setExpense({
+          Name: "Expense",
+          Number: `${value} Taka`,
+        });
+      } else {
+        setExpense({
+          Name: "Expense",
+          Number: `${0} Taka`,
         });
       }
-      const datas = {
-        Name: "Expense",
-        Number: `${value} Taka`,
-      };
-      setExpense(datas);
-      //   console.log(value);
     });
 
     axios.get(`http://localhost:9000/client`).then((res) => {
       const data = res.data;
-      const datas = {
+
+      setClient({
         Name: "Client",
         Number: data.length,
-      };
-      setClient(datas);
+      });
     });
 
     axios.get(`http://localhost:9000/employee`).then((res) => {
       const data = res.data;
-      const datas = {
+      setEmployee({
         Name: "Employee",
         Number: data.length,
-      };
-      setEmployee(datas);
+      });
     });
+
     axios.get(`http://localhost:9000/expense_categori`).then((res) => {
       setCategori(res.data);
     });
@@ -100,15 +121,15 @@ const Dashbord = () => {
       const late = data.filter((da) => da.Status === "late");
       const absent = data.filter((da) => da.Status === "absent");
       const Present = {
-        Name: "Present",
+        Name: "Todays Present",
         Number: present.length,
       };
       const Late = {
-        Name: "Late",
+        Name: "Todays Late",
         Number: late.length,
       };
       const Absent = {
-        Name: "Absent",
+        Name: "Todays Absent",
         Number: absent.length,
       };
       setPresent(Present);
@@ -175,13 +196,18 @@ const Dashbord = () => {
           {income !== null && <Categori data={income} />}
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
-          {demo !== null && <IncomeDash demo={demo} />}
+          {netIncome !== null && <Categori data={netIncome} />}
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           {expense !== null && <Categori data={expense} />}
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           {data.Number !== NaN && <Categori data={data} />}
+        </Grid>
+
+        <Bank />
+        <Grid item xs={12} sm={6} md={4}>
+          {data2.Number !== NaN && <Categori data={data2} />}
         </Grid>
         <Grid item xs={12}>
           {categori !== null && (

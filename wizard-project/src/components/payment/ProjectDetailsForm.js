@@ -8,10 +8,6 @@ const states = [
     label: "Cash",
   },
   {
-    value: "Card",
-    label: "Card",
-  },
-  {
     value: "City Bank",
     label: "City Bank",
   },

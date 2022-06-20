@@ -61,7 +61,6 @@ const MenualInvoiceForm = () => {
     const { name, value } = e.target;
     const list = [...inputList];
     list[index][name] = value;
-
     setInputList(list);
   };
 
@@ -77,11 +76,10 @@ const MenualInvoiceForm = () => {
     setInputList([
       ...inputList,
       {
-        id: "",
         ItemName: "",
-        Quantity: "",
-        Price: "",
-        Subtotal: "",
+        Quantity: 0,
+        Price: 0,
+        Subtotal: 0,
       },
     ]);
   };

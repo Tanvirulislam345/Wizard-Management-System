@@ -10,7 +10,6 @@ import {
 } from "../../../styles/InvoiceStyle";
 import InvoiceDicsription3 from "./InvoiceDescription3";
 import AccoutInvoiceDetails from "./AccoutInvoiceDetails";
-import ClientDetailsInvoice from "./ClientDetailsInvoice";
 import ReactToPrint from "react-to-print";
 
 const InvoicePage3 = ({ invoiceData }) => {
@@ -21,7 +20,7 @@ const InvoicePage3 = ({ invoiceData }) => {
     <>
       <ReactToPrint
         trigger={() => (
-          <Box sx={{ display: "flex", justifyContent: "end" }}>
+          <Box sx={{ display: "flex", justifyContent: "end", mb: 3 }}>
             <Button variant="outlined">Download</Button>
           </Box>
         )}
@@ -88,7 +87,11 @@ const InvoicePage3 = ({ invoiceData }) => {
           </Box>
           <Box></Box>
         </Box>
-        <InvoiceDicsription3 invoice={valuedata} />
+        <InvoiceDicsription3
+          invoice={valuedata}
+          Tax={invoiceData?.Tax}
+          Discount={invoiceData?.Discount}
+        />
         <AccoutInvoiceDetails />
 
         <Box sx={{ my: 5 }}>
