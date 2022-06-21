@@ -9,6 +9,7 @@ export const LayoutRoot = styled(Box)(({ theme }) => ({
   minHeight: "calc(100vh - 64px)",
   height: "100%",
   paddingTop: "64px",
+  paddingBottom: "30px",
   background: theme.background.primary,
   [theme.breakpoints.up("lg")]: {
     paddingLeft: 280,

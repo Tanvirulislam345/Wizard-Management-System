@@ -27,3 +27,7 @@ th {
 td {
   color: black;
 }
+
+.css-zd70pw-MuiFormControlLabel-root .MuiFormControlLabel-label {
+  color: white;
+}

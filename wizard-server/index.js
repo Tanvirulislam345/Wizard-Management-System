@@ -1222,6 +1222,80 @@ app.get("/expense_categori", (req, res) => {
     }
   );
 });
+
+
+
+app.post("/addnotice", async (req, res) => {
+  const data = req.body;
+  const data2 = data?.Email2 === "Not Email" ? [data.Email] : [data.Email, ...data.Email2];
+
+  const info = {
+    from: "tanvir.topader345@gmail.com",
+    to: `${data2.join()}`,
+    subject: `Notice, Wizard Software Ltd`,
+    html: `<div>
+            <h4>Subject : ${data?.Subject}</h4>
+            <p>${data?.Notice}</p>
+         </div>`,
+  };
+
+  await transporter.sendMail(info, (err) => {
+    if (err) {
+      console.log("This is an error", err);
+    } else {
+      console.log("email has send");
+    }
+  });
+
+
+  const keys = Object.keys(data);
+  const sqlquery = `INSERT INTO all_notice (${keys.map(
+    (key) => key
+  )}) VALUES (${keys.map((key) => "?")})`;
+
+  const value = keys.map((key) => {
+    return data[key];
+  });
+
+  await connection.query(sqlquery, value, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+  ;
+});
+
+app.get("/notice", (req, res) => {
+  connection.query(
+    `SELECT * FROM all_notice WHERE 1`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result);
+      }
+    }
+  );
+});
+
+app.delete("/notice/delete/:noticeId", (req, res) => {
+  const id = req.params.noticeId;
+  // console.log(id);
+
+  connection.query(
+    `DELETE FROM all_notice WHERE id=${id}`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result);
+      }
+    }
+  );
+  // res.json(true);
+});
 app.get("/", (req, res) => {
   res.send("This is wizard software admin project");
 });

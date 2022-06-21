@@ -10,14 +10,13 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Chip, TableHead } from "@mui/material";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
-import RemoveRedEyeRoundedIcon from "@mui/icons-material/RemoveRedEyeRounded";
 import ExpenseListMenu from "./ExpenseListMenu";
-import { useNavigate } from "react-router-dom";
+
 
 export default function ExpenseList({ rows, handleChange }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const navigate = useNavigate();
+
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -62,7 +61,7 @@ export default function ExpenseList({ rows, handleChange }) {
             <StyledTableCell align="center">Total Amount</StyledTableCell>
             <StyledTableCell align="center">Payment Method</StyledTableCell>
             <StyledTableCell align="center">Status</StyledTableCell>
-            {/* <StyledTableCell align="center">View</StyledTableCell> */}
+
             <StyledTableCell align="center">
               <MoreVertOutlinedIcon />
             </StyledTableCell>

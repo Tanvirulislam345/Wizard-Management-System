@@ -44,6 +44,8 @@ import CategoriExpenseForm from "./components/expense/CategoriExpenseForm";
 import MakeInvoice from "./pages/MakeInvoice";
 import MenualInvoiceForm from "./components/menualinvoice/MenualInvoiceForm";
 import MenualInvoiceView from "./components/menualinvoice/MenualInvoiceView";
+import Notice from "./pages/Notice";
+import AddNotice from "./pages/AddNotice";
 
 function App() {
   return (
@@ -65,6 +67,22 @@ function App() {
               element={
                 <Layout>
                   <Dashbord />
+                </Layout>
+              }
+            />
+            <Route
+              path="/notice"
+              element={
+                <Layout>
+                  <Notice />
+                </Layout>
+              }
+            />
+            <Route
+              path="/addNotice"
+              element={
+                <Layout>
+                  <AddNotice />
                 </Layout>
               }
             />
