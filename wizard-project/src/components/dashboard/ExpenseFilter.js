@@ -19,7 +19,7 @@ const monthNames = [
 
 const yearName = [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030];
 
-const FilterForm2 = ({
+const ExpenseFilter = ({
   employee,
   filterValue,
   setFilterValue,
@@ -135,4 +135,4 @@ const FilterForm2 = ({
   );
 };
 
-export default FilterForm2;
+export default ExpenseFilter;

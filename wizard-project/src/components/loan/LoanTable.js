@@ -8,11 +8,11 @@ import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { TableHead } from "@mui/material";
+import { Chip, TableHead } from "@mui/material";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
-import NoticeListMenu from "./NoticeListMenu";
+// import ExpenseListMenu from "./ExpenseListMenu";
 
-export default function NoticeTable({ rows, handleChange }) {
+export default function LoanTable({ rows, handleChange }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -50,8 +50,11 @@ export default function NoticeTable({ rows, handleChange }) {
       <Table aria-label="custom pagination table">
         <TableHead>
           <TableRow>
-            <StyledTableCell align="center">Subject</StyledTableCell>
-            <StyledTableCell align="center">Notice</StyledTableCell>
+            <StyledTableCell align="center">Name</StyledTableCell>
+            <StyledTableCell align="center">Discription</StyledTableCell>
+            <StyledTableCell align="center">Amount</StyledTableCell>
+            <StyledTableCell align="center">Payment Method</StyledTableCell>
+            <StyledTableCell align="center">Date</StyledTableCell>
             <StyledTableCell align="center">
               <MoreVertOutlinedIcon />
             </StyledTableCell>
@@ -63,12 +66,17 @@ export default function NoticeTable({ rows, handleChange }) {
             : rows
           ).map((row, index) => (
             <TableRow key={index}>
-              <StyledTableCell align="justify">{row.Subject}</StyledTableCell>
-              <StyledTableCell align="justify">
-                {row.Notice.slice(0, 150)}
-              </StyledTableCell>
+              <StyledTableCell align="center">{row.FullName}</StyledTableCell>
               <StyledTableCell align="center">
-                <NoticeListMenu id={row.id} handleChange={handleChange} />
+                {row.Discription}
+              </StyledTableCell>
+              <StyledTableCell align="center">{row.Amount}</StyledTableCell>
+              <StyledTableCell align="center">
+                {row.PaymentMethod}
+              </StyledTableCell>
+              <StyledTableCell align="center">{row.Date}</StyledTableCell>
+              <StyledTableCell align="center">
+                {/* <ExpenseListMenu id={row.id} handleChange={handleChange} /> */}
               </StyledTableCell>
             </TableRow>
           ))}

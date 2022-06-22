@@ -6,14 +6,12 @@ import {
   HeadingFormatTitle,
 } from "../../components/shared/HeadingFormat/HeadingFormatStyle";
 import ProfileNav from "../../components/shared/ProfileNav/ProfileNav";
-import SubNav from "../../components/subNav/SubNav";
 import AllLeave from "../../components/allLeaveDetails/AllLeave";
 import LeaveTypeList from "../../components/allLeaveDetails/LeaveTypeList";
 import { useAuth } from "../../Context/ContextProvieder";
 import { Box } from "@mui/material";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import { Link } from "react-router-dom";
-import { margin } from "@mui/system";
 
 const Leave = () => {
   const { user } = useAuth();

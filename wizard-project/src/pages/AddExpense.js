@@ -21,6 +21,7 @@ const AddExpense = () => {
       ...data,
       ExpenseId: `WizEx22${Math.random().toString(36).slice(7)}`,
     };
+    // console.log(newData);
     if (data !== null) {
       axios.post(`http://localhost:9000/addexpense`, newData).then((res) => {
         if (res.status === 200) {

@@ -47,6 +47,11 @@ const items = [
     title: "Salary",
   },
   {
+    href: "/loan",
+    icon: <FaStripeS fontSize="small" />,
+    title: "Loan",
+  },
+  {
     href: "/payment",
     icon: <FaDollyFlatbed fontSize="small" />,
     title: "Payment",

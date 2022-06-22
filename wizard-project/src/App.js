@@ -46,6 +46,8 @@ import MenualInvoiceForm from "./components/menualinvoice/MenualInvoiceForm";
 import MenualInvoiceView from "./components/menualinvoice/MenualInvoiceView";
 import Notice from "./pages/Notice";
 import AddNotice from "./pages/AddNotice";
+import Loan from "./pages/Loan";
+import AddLoan from "./components/loan/AddLoan";
 
 function App() {
   return (
@@ -75,6 +77,22 @@ function App() {
               element={
                 <Layout>
                   <Notice />
+                </Layout>
+              }
+            />
+            <Route
+              path="/loan"
+              element={
+                <Layout>
+                  <Loan />
+                </Layout>
+              }
+            />
+            <Route
+              path="/addloan"
+              element={
+                <Layout>
+                  <AddLoan />
                 </Layout>
               }
             />
