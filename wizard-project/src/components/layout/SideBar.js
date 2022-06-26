@@ -9,10 +9,13 @@ import {
   FaBuffer,
   FaCaretSquareLeft,
   FaMoneyCheck,
-  FaPinterestP,
+  FaMoneyBill,
   FaStripeS,
   FaHome,
   FaPoll,
+  FaIntercom,
+  FaMicrosoft,
+  FaMedal,
 } from "react-icons/fa";
 
 const items = [
@@ -36,11 +39,7 @@ const items = [
     icon: <FaUserSecret fontSize="small" />,
     title: "Client",
   },
-  {
-    href: "/payablesalary",
-    icon: <FaPinterestP fontSize="small" />,
-    title: "Payable Salary",
-  },
+
   {
     href: "/salary",
     icon: <FaStripeS fontSize="small" />,
@@ -48,8 +47,8 @@ const items = [
   },
   {
     href: "/loan",
-    icon: <FaStripeS fontSize="small" />,
-    title: "Loan",
+    icon: <FaMoneyBill fontSize="small" />,
+    title: "Loan Management",
   },
   {
     href: "/payment",
@@ -78,13 +77,18 @@ const items = [
   },
   {
     href: "/makeinvoice",
-    icon: <FaPoll fontSize="small" />,
+    icon: <FaIntercom fontSize="small" />,
     title: "Make Invoice",
   },
   {
     href: "/notice",
-    icon: <FaPoll fontSize="small" />,
+    icon: <FaMicrosoft fontSize="small" />,
     title: "Notice",
+  },
+  {
+    href: "/lead",
+    icon: <FaMedal fontSize="small" />,
+    title: "Lead",
   },
 ];
 

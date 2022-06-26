@@ -56,6 +56,7 @@ const AddProjectForm = ({
           select
           SelectProps={{ native: true }}
         >
+          <option>Enter Categori</option>
           {Categoris.map((option, index) => (
             <option key={index} value={option.name}>
               {option.name}

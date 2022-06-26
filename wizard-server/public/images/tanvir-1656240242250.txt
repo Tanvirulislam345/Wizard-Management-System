@@ -1,0 +1,35 @@
+Lead:
+
+*Name
+Phone No
+Mail Address
+*Type of project
+*Source
+Fb Id link
+Birthday
+Remarks
+*Status-1. Message/Mail Send
+	2. Conversation Running
+	3. Meeting Done
+	4. Quotation Send
+	5. Re-Quotation Required
+	6. Re-Quotation Send
+	7. Over Budget 
+	8. Will get back to us
+	9. Need Time
+	10. Project Approved 
+
+
+
+Evolution Form:
+
+Client:
+Name
+Phone 
+Mail
+DOB
+Project Type
+Project Name
+Project Start Date
+Project End Date
+

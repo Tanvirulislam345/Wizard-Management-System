@@ -8,6 +8,7 @@ import { LayoutContiner } from "../styles/MetarialStyles";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import { Link } from "react-router-dom";
 import LoanView from "../components/loan/LoanView";
+import AdjustmentView from "../components/loan/AdjustmentView";
 
 const Loan = () => {
   const [data, setData] = useState("Add Loan");
@@ -37,15 +38,18 @@ const Loan = () => {
 
       {data === "Adjustment" && (
         <>
-          <HeadingFormatTitle
-            style={{
-              display: "flex",
-              justifyContent: "end",
-              marginRight: "10px",
-            }}
-          >
-            <AddBoxIcon color="secondary" />
-          </HeadingFormatTitle>
+          <Link to={`/addadjustment`}>
+            <HeadingFormatTitle
+              style={{
+                display: "flex",
+                justifyContent: "end",
+                marginRight: "10px",
+              }}
+            >
+              <AddBoxIcon color="secondary" />
+            </HeadingFormatTitle>
+          </Link>
+          <AdjustmentView />
         </>
       )}
     </LayoutContiner>

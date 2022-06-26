@@ -12,7 +12,7 @@ const states = [
     value: "Bank Asia",
   },
 ];
-const LoanForm = ({ employee, data, setData, handleSubmit }) => {
+const LoanAdjustmentForm = ({ employee, data, setData, handleSubmit }) => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
@@ -100,7 +100,7 @@ const LoanForm = ({ employee, data, setData, handleSubmit }) => {
       <Grid item xs={12} sx={{ height: "100%", my: "auto" }}>
         <Stack spacing={3} direction="row">
           <ButtonMake size="medium" type="submit" onClick={handleSubmit}>
-            Sbumit
+            Submit
           </ButtonMake>
           <ButtonMake size="medium" type="reset">
             Cancel
@@ -111,4 +111,4 @@ const LoanForm = ({ employee, data, setData, handleSubmit }) => {
   );
 };
 
-export default LoanForm;
+export default LoanAdjustmentForm;

@@ -305,7 +305,7 @@ const EditProjectForm = ({ values, projectId }) => {
       <Grid item xs={12}>
         <Stack spacing={3} direction="row">
           <ButtonMake size="medium" type="submit" onClick={handleSubmit}>
-            Send
+            Update
           </ButtonMake>
           <ButtonMake size="medium" type="reset">
             Cancel

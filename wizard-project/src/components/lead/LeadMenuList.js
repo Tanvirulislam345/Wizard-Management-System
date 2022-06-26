@@ -2,10 +2,21 @@ import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Link } from "react-router-dom";
 import { MenuItemMake } from "../../styles/MetarialStyles";
 
-export default function NoticeListMenu({ id, handleChange }) {
+const MenuData = [
+  { name: "Message/Mail Send" },
+  { name: "Conversation Running" },
+  { name: "Meeting Done" },
+  { name: "Quotation Send" },
+  { name: "Re-Quotation Required" },
+  { name: "Re-Quotation Send" },
+  { name: "Over Budget" },
+  { name: "Will get back to us" },
+  { name: "Need Time" },
+  { name: "Project Approved" },
+];
+export default function LeadMenuList({ id, handleChange }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -36,10 +47,11 @@ export default function NoticeListMenu({ id, handleChange }) {
         open={open}
         onClose={handleClose}
       >
-        <MenuItemMake onClick={() => handleChange(id)}>Delete</MenuItemMake>
-        <Link to={`/notice/view/${id}`} style={{ textDecoration: "none" }}>
-          <MenuItemMake>View</MenuItemMake>
-        </Link>
+        {MenuData.map((data, index) => (
+          <MenuItemMake onClick={() => handleChange(id, data.name)} key={index}>
+            {data.name}
+          </MenuItemMake>
+        ))}
       </Menu>
     </div>
   );

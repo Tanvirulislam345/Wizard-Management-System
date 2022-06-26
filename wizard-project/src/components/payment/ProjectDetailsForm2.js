@@ -16,6 +16,7 @@ const states = [
     label: "Bank Asia",
   },
 ];
+
 const states2 = [
   {
     value: "Add Status type",
@@ -31,32 +32,23 @@ const states2 = [
   },
 ];
 
-const ProjectDetailsForm = ({
-  projectDetails,
-  data,
-  setData,
-  handleSubmit,
-}) => {
+const ProjectDetailsForm2 = ({ data, setData, handleSubmit }) => {
   return (
     <>
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           focused
-          variant="outlined"
-          label="Client Id"
-          name="ClientId"
-          value={projectDetails.ClientId}
-        />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          focused
+          type="number"
           variant="outlined"
           label="Budget"
           name="Budget"
-          value={projectDetails.Budget}
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
         />
       </Grid>
       <Grid item xs={12} md={6}>
@@ -66,7 +58,13 @@ const ProjectDetailsForm = ({
           variant="outlined"
           label="Tax"
           name="Tax"
-          value={projectDetails.Tax + " % "}
+          type="number"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
         />
       </Grid>
       <Grid item xs={12} md={6}>
@@ -76,27 +74,39 @@ const ProjectDetailsForm = ({
           variant="outlined"
           label="Discount"
           name="Discount"
-          value={projectDetails.Discount + " % "}
+          type="number"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
         />
       </Grid>
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           focused
+          type="number"
           variant="outlined"
           label="Total payable"
           name="TotalPayable"
-          value={projectDetails.TotalPayable + "Taka"}
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
         />
       </Grid>
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
           focused
+          type="number"
           variant="outlined"
           label="Total Payment"
           name="TotalPayment"
-          value={projectDetails.TotalPayment}
         />
       </Grid>
 
@@ -193,4 +203,4 @@ const ProjectDetailsForm = ({
   );
 };
 
-export default ProjectDetailsForm;
+export default ProjectDetailsForm2;

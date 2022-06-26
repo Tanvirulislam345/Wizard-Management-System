@@ -9,7 +9,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Chip, TableHead } from "@mui/material";
-import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
+// import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 // import ExpenseListMenu from "./ExpenseListMenu";
 
 export default function LoanTable({ rows, handleChange }) {
@@ -55,9 +55,9 @@ export default function LoanTable({ rows, handleChange }) {
             <StyledTableCell align="center">Amount</StyledTableCell>
             <StyledTableCell align="center">Payment Method</StyledTableCell>
             <StyledTableCell align="center">Date</StyledTableCell>
-            <StyledTableCell align="center">
+            {/* <StyledTableCell align="center">
               <MoreVertOutlinedIcon />
-            </StyledTableCell>
+            </StyledTableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>

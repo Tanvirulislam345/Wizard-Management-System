@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LayoutContiner } from "../../styles/MetarialStyles";
 import SubNav2 from "../subNav/SubNav2";
-import LoanForm from "./LoanForm";
+import LoanAdjustmentForm from "./LoanAdjustmentForm";
 
-const AddLoan = () => {
+const AddAdjustment = () => {
   const navigate = useNavigate();
   const [data, setData] = useState(null);
   const [employee, setEmployee] = useState(null);
@@ -17,16 +17,17 @@ const AddLoan = () => {
   }, []);
 
   const handleSubmit = () => {
-    axios.post("http://localhost:9000/addloan", data).then((res) => {
+    axios.post("http://localhost:9000/addadjustment", data).then((res) => {
       navigate("/loan");
     });
   };
+
   return (
     <LayoutContiner>
       {employee !== null && (
         <>
-          <SubNav2 project="Add Loan" />
-          <LoanForm
+          <SubNav2 project="Add Adjustment" />
+          <LoanAdjustmentForm
             employee={employee}
             data={data}
             setData={setData}
@@ -38,4 +39,4 @@ const AddLoan = () => {
   );
 };
 
-export default AddLoan;
+export default AddAdjustment;

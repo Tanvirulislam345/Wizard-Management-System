@@ -12,16 +12,20 @@ const IncomeDashBoard = () => {
     { id: 3, Item: "Bank Asia" },
   ];
   const [income, setTotalIncome] = useState(0);
+  const [adjustment, setAdjustment] = useState(0);
   const [expense, setTotalExpense] = useState(0);
   const [loan, setLoan] = useState(0);
-  const [errors, setErrors] = useState(null);
   const [download, setDownload] = useState([]);
   const [filterValue, setFilterValue] = useState(null);
 
   const Income = { Name: "Income", Number: income };
   const Expense = { Name: "Expense", Number: expense };
   const Loan = { Name: "Loan", Number: loan };
-  const Balance = { Name: "Balance", Number: income - expense - loan };
+  const Adjustment = { Name: "Adjustment", Number: adjustment };
+  const Balance = {
+    Name: "Balance",
+    Number: income + adjustment - expense - loan,
+  };
 
   const handleSearch = () => {
     if (filterValue !== null) {
@@ -39,11 +43,11 @@ const IncomeDashBoard = () => {
             } else {
               totalAmount = data[0].Payment;
             }
-            setErrors(null);
+
             setTotalIncome(totalAmount);
             setDownload(data);
           } else {
-            setErrors("No Income found");
+            setTotalIncome(0);
           }
         });
 
@@ -61,11 +65,11 @@ const IncomeDashBoard = () => {
             } else {
               totalAmount = data[0].TotalAmount;
             }
-            setErrors(null);
+
             setTotalExpense(totalAmount);
             setDownload(data);
           } else {
-            setErrors("No Expense found");
+            setTotalExpense(0);
           }
         });
 
@@ -83,11 +87,32 @@ const IncomeDashBoard = () => {
             } else {
               totalAmount = data[0].Amount;
             }
-            setErrors(null);
+
             setLoan(totalAmount);
             // setDownload(data);
           } else {
-            setErrors("No Loan found");
+            setLoan(0);
+          }
+        });
+
+      axios
+        .post(`http://localhost:9000/adjustment_search`, filterValue)
+        .then((res) => {
+          if (res.data.length > 0) {
+            const data = res.data;
+            let totalAmount;
+            if (data.length > 1) {
+              const newData = data.map((value) => {
+                return value.Amount;
+              });
+              totalAmount = newData.reduce((pre, post) => pre + post);
+            } else {
+              totalAmount = data[0].Amount;
+            }
+            setAdjustment(totalAmount);
+            // setDownload(data);
+          } else {
+            setAdjustment(0);
           }
         });
     }
@@ -107,29 +132,22 @@ const IncomeDashBoard = () => {
         handleSearch={handleSearch}
         handleDownload={handleDownload}
       />
-
-      <Grid container spacing={2} sx={{ my: 2 }}>
-        {errors !== null && (
-          <Grid item xs={12}>
-            <p style={{ color: "red" }}>{errors}</p>
-          </Grid>
-        )}
-        {errors === null && (
-          <>
-            <Grid item xs={12} sm={6} md={4}>
-              <Categori data={Income} />
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <Categori data={Expense} />
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <Categori data={Loan} />
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <Categori data={Balance} />
-            </Grid>
-          </>
-        )}
+      <Grid container spacing={2} sx={{ mt: 2 }}>
+        <Grid item xs={12} sm={6} md={4}>
+          <Categori data={Income} />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <Categori data={Expense} />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <Categori data={Loan} />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <Categori data={Adjustment} />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <Categori data={Balance} />
+        </Grid>
       </Grid>
     </>
   );

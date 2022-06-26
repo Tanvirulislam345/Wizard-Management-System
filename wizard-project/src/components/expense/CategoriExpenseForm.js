@@ -40,7 +40,7 @@ const CategoriExpenseForm = () => {
         <Grid item xs={12} sx={{ height: "100%", my: "auto" }}>
           <Stack spacing={3} direction="row">
             <ButtonMake size="medium" type="submit" onClick={handleSubmit}>
-              Send
+              Submit
             </ButtonMake>
             <ButtonMake size="medium" type="reset">
               Cancel

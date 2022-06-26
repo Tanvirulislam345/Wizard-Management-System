@@ -6,17 +6,17 @@ import LoanFilter from "./LoanFilter";
 import LoanTable from "./LoanTable";
 import * as XLSX from "xlsx";
 
-const LoanView = () => {
+const AdjustmentView = () => {
   const [rows, setRows] = useState(null);
   const [employee, setEmployee] = useState(null);
-  const [loan, setLoan] = useState(0);
-  const [adjustment, setAdjustment] = useState(0);
+  const [loan, setLoan] = useState(null);
   const [errors, setErrors] = useState(null);
   const [filterValue, setFilterValue] = useState(null);
-  const LoanValue = { Name: "Present Loan", Number: loan - adjustment };
 
   useEffect(() => {
-    axios.get("http://localhost:9000/loan").then((res) => setRows(res.data));
+    axios
+      .get("http://localhost:9000/adjustment")
+      .then((res) => setRows(res.data));
 
     axios
       .get("http://localhost:9000/employee")
@@ -26,34 +26,12 @@ const LoanView = () => {
   const handleChange = () => {};
 
   const handleSearch = () => {
-    axios.post(`http://localhost:9000/loan_search`, filterValue).then((res) => {
-      if (res.data.length > 0) {
-        const data = res.data;
-        setRows(data);
-        let totalAmount;
-        if (data.length > 1) {
-          const newData = data.map((value) => {
-            return value.Amount;
-          });
-          totalAmount = newData.reduce((pre, post) => pre + post);
-        } else {
-          totalAmount = data[0].Amount;
-        }
-        setErrors(null);
-
-        setLoan(totalAmount);
-        // setDownload(data);
-      } else {
-        setLoan(0);
-        setErrors("No  Loan found");
-      }
-    });
-
     axios
       .post(`http://localhost:9000/adjustment_search`, filterValue)
       .then((res) => {
         if (res.data.length > 0) {
           const data = res.data;
+          setRows(data);
           let totalAmount;
           if (data.length > 1) {
             const newData = data.map((value) => {
@@ -64,10 +42,10 @@ const LoanView = () => {
             totalAmount = data[0].Amount;
           }
           setErrors(null);
-          setAdjustment(totalAmount);
+          const Loan = { Name: "Adjustment", Number: totalAmount };
+          setLoan(Loan);
           // setDownload(data);
         } else {
-          setAdjustment(0);
           setErrors("No Adjustment found");
         }
       });
@@ -75,8 +53,8 @@ const LoanView = () => {
   const handleDownload = () => {
     const wb = XLSX.utils.book_new();
     const ws = XLSX.utils.json_to_sheet(rows);
-    XLSX.utils.book_append_sheet(wb, ws, "My Loan");
-    XLSX.writeFile(wb, "Loan.xlsx");
+    XLSX.utils.book_append_sheet(wb, ws, "My Adjustment");
+    XLSX.writeFile(wb, "Adjustment.xlsx");
   };
 
   return (
@@ -96,10 +74,10 @@ const LoanView = () => {
         </Grid>
       )}
 
-      {(loan !== 0 || adjustment !== 0) && (
+      {loan !== null && (
         <Grid container spacing={2} sx={{ mb: 2 }}>
           <Grid item xs={12} sm={6} md={4}>
-            <Categori data={LoanValue} />
+            <Categori data={loan} />
           </Grid>
         </Grid>
       )}
@@ -110,4 +88,4 @@ const LoanView = () => {
   );
 };
 
-export default LoanView;
+export default AdjustmentView;

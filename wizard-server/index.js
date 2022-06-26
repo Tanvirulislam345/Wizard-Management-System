@@ -1365,6 +1365,17 @@ app.get("/notice", (req, res) => {
   });
 });
 
+app.get("/notice/view/:Id", (req, res) => {
+  const id = req.params.Id;
+  console.log(id);
+  connection.query(`SELECT * FROM all_notice WHERE id=${id}`, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result[0]);
+    }
+  });
+});
 app.delete("/notice/delete/:noticeId", (req, res) => {
   const id = req.params.noticeId;
   connection.query(`DELETE FROM all_notice WHERE id=${id}`, (err, result) => {
@@ -1394,12 +1405,13 @@ app.post("/addloan", (req, res) => {
   ];
   const year = today.getFullYear();
   const month = today.getMonth();
-  const date = today.getDate() + " " + monthNames[month] + " " + year;
+  const Month = monthNames[month];
+  const date = today.getDate() + " " + Month + " " + year;
   const data1 = req.body;
   const data = {
     ...data1,
     Date: date,
-    Month: month,
+    Month,
     Year: year,
   };
   const keys = Object.keys(data);
@@ -1449,6 +1461,167 @@ app.post("/loan_search", (req, res) => {
       }
     }
   );
+});
+
+app.post("/addadjustment", (req, res) => {
+  const today = new Date();
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const year = today.getFullYear();
+  const month = today.getMonth();
+  const Month = monthNames[month];
+  const date = today.getDate() + " " + Month + " " + year;
+  const data1 = req.body;
+  const data = {
+    ...data1,
+    Date: date,
+    Month,
+    Year: year,
+  };
+  const keys = Object.keys(data);
+  const sqlquery = `INSERT INTO all_adjustment (${keys.map(
+    (key) => key
+  )}) VALUES (${keys.map((key) => "?")})`;
+
+  const value = keys.map((key) => {
+    return data[key];
+  });
+
+  connection.query(sqlquery, value, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+app.get("/adjustment", (req, res) => {
+  connection.query(`SELECT * FROM all_adjustment WHERE 1`, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+app.post("/adjustment_search", (req, res) => {
+  const data = req.body;
+  const keys = Object.keys(data);
+  const value = keys.map((key) => {
+    return `${key} = "${data[key]}"`;
+  });
+
+  connection.query(
+    `SELECT * FROM all_adjustment WHERE ${value.join(" " + "AND" + " ")}`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.json(result);
+      }
+    }
+  );
+});
+app.post("/menualinvoice", (req, res) => {
+  const data = req.body;
+  const keys = Object.keys(data);
+  const sqlquery = `INSERT INTO all_menualinvoice (${keys.map(
+    (key) => key
+  )}) VALUES (${keys.map((key) => "?")})`;
+
+  const value = keys.map((key) => {
+    return data[key];
+  });
+
+  connection.query(sqlquery, value, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+app.get("/menualinvoice", (req, res) => {
+  connection.query(`SELECT * FROM all_menualinvoice WHERE 1`, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+app.get("/menualinvoice/:menualid", (req, res) => {
+  const id = req.params.menualid;
+  connection.query(
+    `SELECT * FROM all_menualinvoice WHERE id = ${id}`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result[0]);
+      }
+    }
+  );
+});
+
+app.post("/lead", (req, res) => {
+  const data = req.body;
+  const keys = Object.keys(data);
+  const sqlquery = `INSERT INTO all_lead (${keys.map(
+    (key) => key
+  )}) VALUES (${keys.map((key) => "?")})`;
+
+  const value = keys.map((key) => {
+    return data[key];
+  });
+
+  connection.query(sqlquery, value, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+app.get("/lead", (req, res) => {
+  connection.query(`SELECT * FROM all_lead WHERE 1`, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+app.put("/lead/:leadId", (req, res) => {
+  const id = req.params.leadId;
+  const data = req.body;
+  const sqlquery = `UPDATE all_lead SET  Status = "${data.Status}" WHERE id = ${id}`;
+  connection.query(sqlquery, data, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
 });
 app.get("/", (req, res) => {
   res.send("This is wizard software admin project");

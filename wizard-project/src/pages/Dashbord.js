@@ -66,7 +66,6 @@ const Dashbord = () => {
   return (
     <LayoutContiner>
       <SubNav2 project="Dashboard" />
-
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} md={4}>
           {Project !== null && <Categori data={Project} />}

@@ -9,10 +9,9 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Chip, TableHead } from "@mui/material";
-import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
-import ExpenseListMenu from "./ExpenseListMenu";
+import LeadMenuList from "./LeadMenuList";
 
-export default function ExpenseList({ rows, handleChange }) {
+export default function LeadList({ rows, handleChange }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -45,61 +44,52 @@ export default function ExpenseList({ rows, handleChange }) {
         borderRadius: "10px",
         backgroundColor: "#262E41",
         color: "white",
-        mt: 2,
+        mt: 3,
       }}
     >
       <Table aria-label="custom pagination table">
         <TableHead>
           <TableRow>
-            <StyledTableCell align="center">Expense ID</StyledTableCell>
-            <StyledTableCell align="center">Item</StyledTableCell>
-            <StyledTableCell align="center">Ordered By</StyledTableCell>
-            <StyledTableCell align="center">Date</StyledTableCell>
-            <StyledTableCell align="center">Ordered From</StyledTableCell>
-            <StyledTableCell align="center">Description</StyledTableCell>
-            <StyledTableCell align="center">Total Amount</StyledTableCell>
-            <StyledTableCell align="center">Payment Method</StyledTableCell>
+            <StyledTableCell align="center">Name</StyledTableCell>
+            <StyledTableCell align="center">Phone</StyledTableCell>
+            <StyledTableCell align="center">Email</StyledTableCell>
+            <StyledTableCell align="center">Project Type</StyledTableCell>
+            <StyledTableCell align="center">Birthday</StyledTableCell>
+            <StyledTableCell align="center">Facebook Link</StyledTableCell>
+            <StyledTableCell align="center">Reference</StyledTableCell>
             <StyledTableCell align="center">Status</StyledTableCell>
-
-            <StyledTableCell align="center">
-              <MoreVertOutlinedIcon />
-            </StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            ? rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row, index) => (
             <TableRow key={index}>
-              <StyledTableCell align="center">{row.ExpenseId}</StyledTableCell>
-              <StyledTableCell align="center">{row.Item}</StyledTableCell>
-              <StyledTableCell align="center">{row.OrderBy}</StyledTableCell>
-              <StyledTableCell align="center">{row.Date}</StyledTableCell>
-              <StyledTableCell align="center">{row.OrderFrom}</StyledTableCell>
+              <StyledTableCell align="center">{row.FullName}</StyledTableCell>
+              <StyledTableCell align="center">{row.Phone}</StyledTableCell>
+              <StyledTableCell align="center">{row.Email}</StyledTableCell>
               <StyledTableCell align="center">
-                {row.Description}
+                {row.ProjectType}
               </StyledTableCell>
+              <StyledTableCell align="center">{row.Birthday}</StyledTableCell>
               <StyledTableCell align="center">
-                {row.TotalAmount}
+                {row.FacebookLink}
               </StyledTableCell>
-              <StyledTableCell align="center">
-                {row.PaymentMethod}
-              </StyledTableCell>
+              <StyledTableCell align="center">{row.Reference}</StyledTableCell>
               <StyledTableCell align="center">
                 <Chip
-                  label={row.PaymentStatus}
+                  label={row.Status}
+                  title={row.Status}
                   sx={{
-                    background:
-                      (row.PaymentStatus === "Clear" && "#8CC341") ||
-                      (row.PaymentStatus === "Due" && "#E25822"),
+                    color: "white",
                     width: "100px",
+                    background: "#55D32A",
                   }}
                 />
               </StyledTableCell>
-
               <StyledTableCell align="center">
-                <ExpenseListMenu id={row.id} handleChange={handleChange} />
+                <LeadMenuList id={row.id} handleChange={handleChange} />
               </StyledTableCell>
             </TableRow>
           ))}

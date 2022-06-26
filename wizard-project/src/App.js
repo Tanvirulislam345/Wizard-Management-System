@@ -34,7 +34,6 @@ import Login from "./pages/Login";
 import ContextProvieder from "./Context/ContextProvieder";
 import LayoutChild from "./components/layout/LayoutChild";
 import ClientInvoice from "./pages/ClientInvoice";
-import PayableSalary from "./pages/PayableSalary";
 import Salary from "./pages/Salary";
 import Invoice2 from "./pages/Invoice2";
 import Points from "./pages/Points";
@@ -48,6 +47,11 @@ import Notice from "./pages/Notice";
 import AddNotice from "./pages/AddNotice";
 import Loan from "./pages/Loan";
 import AddLoan from "./components/loan/AddLoan";
+import AddAdjustment from "./components/loan/AddAdjustment";
+import Lead from "./pages/Lead";
+import AddLead from "./components/lead/AddLead";
+import AddMenualPayment from "./components/payment/AddMenualPayment";
+import NoticeView from "./components/notice/NoticeView";
 
 function App() {
   return (
@@ -81,6 +85,14 @@ function App() {
               }
             />
             <Route
+              path="/notice/view/:noticeId"
+              element={
+                <Layout>
+                  <NoticeView />
+                </Layout>
+              }
+            />
+            <Route
               path="/loan"
               element={
                 <Layout>
@@ -93,6 +105,22 @@ function App() {
               element={
                 <Layout>
                   <AddLoan />
+                </Layout>
+              }
+            />
+            <Route
+              path="/menualpayment"
+              element={
+                <Layout>
+                  <AddMenualPayment />
+                </Layout>
+              }
+            />
+            <Route
+              path="/addadjustment"
+              element={
+                <Layout>
+                  <AddAdjustment />
                 </Layout>
               }
             />
@@ -126,6 +154,22 @@ function App() {
               element={
                 <Layout>
                   <MenualInvoiceView />
+                </Layout>
+              }
+            />
+            <Route
+              path="/lead"
+              element={
+                <Layout>
+                  <Lead />
+                </Layout>
+              }
+            />
+            <Route
+              path="/addlead"
+              element={
+                <Layout>
+                  <AddLead />
                 </Layout>
               }
             />
@@ -164,6 +208,7 @@ function App() {
                 </Layout>
               }
             />
+
             <Route
               path="/project/view/:projectDetailsId"
               element={
@@ -172,6 +217,7 @@ function App() {
                 </LayoutChild>
               }
             />
+
             <Route
               path="/projectinvoice/:projectId"
               element={
@@ -180,6 +226,7 @@ function App() {
                 </LayoutChild>
               }
             />
+
             <Route
               path="/addproject"
               element={
@@ -390,14 +437,6 @@ function App() {
               }
             />
 
-            <Route
-              path="/payablesalary"
-              element={
-                <Layout>
-                  <PayableSalary />
-                </Layout>
-              }
-            />
             <Route
               path="/salary"
               element={

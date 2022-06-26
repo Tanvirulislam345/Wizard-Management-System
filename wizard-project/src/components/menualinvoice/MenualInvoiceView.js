@@ -7,7 +7,6 @@ import SubNav2 from "../subNav/SubNav2";
 
 const MenualInvoiceView = () => {
   const { menualid } = useParams();
-  console.log(menualid);
   const [invoiceData, setInvoiceData] = useState(null);
   useEffect(() => {
     axios

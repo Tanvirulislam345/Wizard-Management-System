@@ -1,8 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import PayableSalarayTable from "../components/salary/PayableSalarayTable";
-import SubNav2 from "../components/subNav/SubNav2";
-import { LayoutContiner } from "../styles/MetarialStyles";
+import SubNav2 from "../subNav/SubNav2";
+import PayableSalarayTable from "./PayableSalarayTable";
 
 const PayableSalary = () => {
   const [employee, setEmployee] = useState(null);
@@ -48,10 +47,10 @@ const PayableSalary = () => {
     // console.log(data);
   });
   return (
-    <LayoutContiner>
+    <div style={{ marginTop: "20px" }}>
       <SubNav2 project="Employee Payable Salary" />
       {data && data.length > 0 && <PayableSalarayTable rows={data} />}
-    </LayoutContiner>
+    </div>
   );
 };
 

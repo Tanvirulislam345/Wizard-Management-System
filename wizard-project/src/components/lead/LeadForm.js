@@ -2,37 +2,20 @@ import { Grid, Stack } from "@mui/material";
 import React from "react";
 import { ButtonMake, TextFieldMake } from "../../styles/MetarialStyles";
 
-const PointDetailsForm = ({ NoLeave, Late, data, setData, handleSubmit }) => {
+const Categoris = [
+  { name: "Software Development" },
+  { name: "Web Development" },
+  { name: "App Development" },
+];
+const LeadForm = ({ data, setData, handleSubmit }) => {
   return (
-    <>
+    <Grid container spacing={3}>
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
-          focused
           variant="outlined"
-          label="No Leave"
-          name="Leave"
-          defaultValue={NoLeave}
-        />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          focused
-          variant="outlined"
-          label="No Late Entry"
-          name="Late"
-          defaultValue={Late}
-        />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          focused
-          variant="outlined"
-          type="number"
-          label="Complete Project on Time"
-          name="CompleteProject"
+          label="Full Name"
+          name="FullName"
           onChange={(event) =>
             setData({
               ...data,
@@ -44,11 +27,10 @@ const PointDetailsForm = ({ NoLeave, Late, data, setData, handleSubmit }) => {
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
-          focused
-          type="number"
           variant="outlined"
-          label="Complete Project before Time"
-          name="BeforeTime"
+          label="Phone Number"
+          name="Phone"
+          type="tel"
           onChange={(event) =>
             setData({
               ...data,
@@ -60,27 +42,10 @@ const PointDetailsForm = ({ NoLeave, Late, data, setData, handleSubmit }) => {
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
-          focused
-          type="number"
           variant="outlined"
-          label="Project Reference"
-          name="ProjectReference"
-          onChange={(event) =>
-            setData({
-              ...data,
-              [event.target.name]: event.target.value,
-            })
-          }
-        />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <TextFieldMake
-          fullWidth
-          focused
-          type="number"
-          variant="outlined"
-          label="Extra bonus"
-          name="Extrabonus"
+          label="Email"
+          name="Email"
+          type="email"
           onChange={(event) =>
             setData({
               ...data,
@@ -90,7 +55,68 @@ const PointDetailsForm = ({ NoLeave, Late, data, setData, handleSubmit }) => {
         />
       </Grid>
 
-      <Grid item xs={12} sx={{ height: "100%", my: "auto" }}>
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
+          label="Project Type"
+          name="ProjectType"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          focused
+          variant="outlined"
+          label="Birthday"
+          name="Birthday"
+          type="date"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
+          label="Facebook Link"
+          name="FacebookLink"
+          type="url"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
+          label="Project Reference"
+          name="Reference"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+      <Grid item xs={12}>
         <Stack spacing={3} direction="row">
           <ButtonMake size="medium" type="submit" onClick={handleSubmit}>
             Submit
@@ -100,8 +126,8 @@ const PointDetailsForm = ({ NoLeave, Late, data, setData, handleSubmit }) => {
           </ButtonMake>
         </Stack>
       </Grid>
-    </>
+    </Grid>
   );
 };
 
-export default PointDetailsForm;
+export default LeadForm;

@@ -25,7 +25,7 @@ const FinalUpdate = () => {
       <Grid item xs={12}>
         <Stack spacing={3} direction="row">
           <ButtonMake size="medium" style={{ background: "#1A202E" }}>
-            Send
+            Upload
           </ButtonMake>
           <ButtonMake size="medium" style={{ background: "#1A202E" }}>
             Cancel

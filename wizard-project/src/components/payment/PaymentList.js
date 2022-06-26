@@ -54,6 +54,7 @@ export default function PaymentList({ rows, handleChange }) {
         borderRadius: "10px",
         backgroundColor: "#262E41",
         color: "white",
+        mt: 2,
       }}
     >
       <Table aria-label="custom pagination table">
