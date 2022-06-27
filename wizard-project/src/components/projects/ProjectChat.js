@@ -92,8 +92,8 @@ export default function ProjectChat({ Role, DoneWork, ProjectId }) {
           <Grid container>
             <Grid item xs={12}>
               <Box style={{ maxHeight: "370px", overflow: "auto" }}>
-                {values?.map((value) => (
-                  <>
+                {values?.map((value, index) => (
+                  <div key={index}>
                     {value.Comment && (
                       <p
                         style={{
@@ -118,7 +118,7 @@ export default function ProjectChat({ Role, DoneWork, ProjectId }) {
                         </a>
                       </BigButtonMake>
                     )}
-                  </>
+                  </div>
                 ))}
               </Box>
             </Grid>

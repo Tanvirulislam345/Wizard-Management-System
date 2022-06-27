@@ -16,6 +16,7 @@ import {
   FaIntercom,
   FaMicrosoft,
   FaMedal,
+  FaTradeFederation,
 } from "react-icons/fa";
 
 const items = [
@@ -49,6 +50,11 @@ const items = [
     href: "/loan",
     icon: <FaMoneyBill fontSize="small" />,
     title: "Loan Management",
+  },
+  {
+    href: "/transfer",
+    icon: <FaTradeFederation fontSize="small" />,
+    title: "Balance Transfer",
   },
   {
     href: "/payment",

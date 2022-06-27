@@ -52,6 +52,8 @@ import Lead from "./pages/Lead";
 import AddLead from "./components/lead/AddLead";
 import AddMenualPayment from "./components/payment/AddMenualPayment";
 import NoticeView from "./components/notice/NoticeView";
+import AddMenualAttendence from "./components/attendence/AddMenualAttendence";
+import BalanceTranfer from "./pages/BalanceTranfer";
 
 function App() {
   return (
@@ -299,6 +301,22 @@ function App() {
               element={
                 <Layout>
                   <AddAttendence />
+                </Layout>
+              }
+            />
+            <Route
+              path="/addmenualattendence"
+              element={
+                <Layout>
+                  <AddMenualAttendence />
+                </Layout>
+              }
+            />
+            <Route
+              path="/transfer"
+              element={
+                <Layout>
+                  <BalanceTranfer />
                 </Layout>
               }
             />

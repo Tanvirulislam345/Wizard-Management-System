@@ -1623,6 +1623,54 @@ app.put("/lead/:leadId", (req, res) => {
     }
   });
 });
+
+app.post("/transfer_balance", (req, res) => {
+  const today = new Date();
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const year = today.getFullYear();
+  const month = today.getMonth();
+  const month1 = monthNames[month];
+
+  const data1 = req.body;
+  const data = {
+    ...data1,
+    Month: month1,
+    Year: year,
+  };
+
+  const keys = Object.keys(data);
+
+  const sqlquery = `INSERT INTO all_transfer (${keys.map(
+    (key) => key
+  )}) VALUES (${keys.map((key) => "?")})`;
+
+  const value = keys.map((key) => {
+    return data[key];
+  });
+
+  connection.query(sqlquery, value, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(result);
+      res.json(result);
+    }
+  });
+});
 app.get("/", (req, res) => {
   res.send("This is wizard software admin project");
 });
