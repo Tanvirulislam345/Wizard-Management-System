@@ -12,13 +12,19 @@ const IncomeDashBoard = () => {
     { id: 3, Item: "Bank Asia" },
   ];
   const [income, setTotalIncome] = useState(0);
+  const [menualIncome, setMenualIncome] = useState(0);
   const [adjustment, setAdjustment] = useState(0);
   const [expense, setTotalExpense] = useState(0);
   const [loan, setLoan] = useState(0);
-  const [download, setDownload] = useState([]);
   const [filterValue, setFilterValue] = useState(null);
 
-  const Income = { Name: "Income", Number: income };
+  const [download1, setDownload1] = useState([]);
+  const [download2, setDownload2] = useState([]);
+  const [download3, setDownload3] = useState([]);
+  const [download4, setDownload4] = useState([]);
+  const [download5, setDownload5] = useState([]);
+
+  const Income = { Name: "Income", Number: income + menualIncome };
   const Expense = { Name: "Expense", Number: expense };
   const Loan = { Name: "Loan", Number: loan };
   const Adjustment = { Name: "Adjustment", Number: adjustment };
@@ -45,9 +51,30 @@ const IncomeDashBoard = () => {
             }
 
             setTotalIncome(totalAmount);
-            setDownload(data);
+            setDownload1(data);
           } else {
             setTotalIncome(0);
+          }
+        });
+      axios
+        .post(`http://localhost:9000/menualinvoice_search`, filterValue)
+        .then((res) => {
+          if (res.data.length > 0) {
+            const data = res.data;
+            let totalAmount;
+            if (data.length > 1) {
+              const newData = data.map((value) => {
+                return value.Payment;
+              });
+              totalAmount = newData.reduce((pre, post) => pre + post);
+            } else {
+              totalAmount = data[0].Payment;
+            }
+
+            setMenualIncome(totalAmount);
+            setDownload2(data);
+          } else {
+            setMenualIncome(0);
           }
         });
 
@@ -67,7 +94,7 @@ const IncomeDashBoard = () => {
             }
 
             setTotalExpense(totalAmount);
-            setDownload(data);
+            setDownload3(data);
           } else {
             setTotalExpense(0);
           }
@@ -89,7 +116,7 @@ const IncomeDashBoard = () => {
             }
 
             setLoan(totalAmount);
-            // setDownload(data);
+            setDownload4(data);
           } else {
             setLoan(0);
           }
@@ -110,7 +137,7 @@ const IncomeDashBoard = () => {
               totalAmount = data[0].Amount;
             }
             setAdjustment(totalAmount);
-            // setDownload(data);
+            setDownload5(data);
           } else {
             setAdjustment(0);
           }
@@ -119,7 +146,14 @@ const IncomeDashBoard = () => {
   };
   const handleDownload = () => {
     const wb = XLSX.utils.book_new();
-    const ws = XLSX.utils.json_to_sheet(download);
+    const ws = XLSX.utils.json_to_sheet([
+      ...download1,
+      ...download2,
+      ...download3,
+      ...download3,
+      ...download4,
+      ...download5,
+    ]);
     XLSX.utils.book_append_sheet(wb, ws, "MyExpense");
     XLSX.writeFile(wb, "incomeExpense.xlsx");
   };

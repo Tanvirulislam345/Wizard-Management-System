@@ -15,9 +15,9 @@ const MenualInvoiceForm = () => {
   const [inputList, setInputList] = useState([
     {
       ItemName: "",
-      Quantity: "",
-      Price: "",
-      Subtotal: "",
+      Quantity: 0,
+      Price: 0,
+      Subtotal: 0,
     },
   ]);
 
@@ -41,13 +41,22 @@ const MenualInvoiceForm = () => {
   const date = today.getDate() + " " + monthNames[month] + " " + year;
 
   const handleSubmit = () => {
+    const total = inputList.map((value) => parseInt(value.Subtotal));
+    const payment = total.reduce((pre, post) => pre + post, 0);
+    const discount = (payment * parseInt(data.Discount)) / 100;
+    const discountWithPayment = payment - discount;
+    const tax = (discountWithPayment * parseInt(data.Tax)) / 100;
+    const Payment = discountWithPayment + tax;
+
     const newData = {
       ...data,
       Date: date,
+      Month: monthNames[month],
+      Year: year,
+      Payment,
       BillNO: `WizB22${Math.random().toString(36).slice(7)}`,
       Value: JSON.stringify(inputList),
     };
-    // console.log(newData);
 
     axios.post(`http://localhost:9000/menualinvoice`, newData).then((res) => {
       if (res.status == 200) {
@@ -95,7 +104,6 @@ const MenualInvoiceForm = () => {
                 <Grid item xs={6} md={2}>
                   <TextFieldMake
                     fullWidth
-                    focused
                     variant="outlined"
                     label="Item Name"
                     name="ItemName"
@@ -106,7 +114,6 @@ const MenualInvoiceForm = () => {
                 <Grid item xs={6} md={1}>
                   <TextFieldMake
                     fullWidth
-                    focused
                     variant="outlined"
                     type="number"
                     label="Quantity/Hr"
@@ -167,7 +174,29 @@ const MenualInvoiceForm = () => {
             );
           })}
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
+          <TextFieldMake
+            fullWidth
+            variant="outlined"
+            label="Payment Method"
+            name="PaymentMethod"
+            onChange={(event) =>
+              setData({
+                ...data,
+                [event.target.name]: event.target.value,
+              })
+            }
+            required
+            select
+            SelectProps={{ native: true }}
+          >
+            <option>Select PaymentMethod</option>
+            <option value="Cash">Cash</option>
+            <option value="City Bank">City Bank</option>
+            <option value="Bank Asia">Bank Asia</option>
+          </TextFieldMake>
+        </Grid>
+        <Grid item xs={6} md={3}>
           <TextFieldMake
             fullWidth
             variant="outlined"
@@ -182,7 +211,7 @@ const MenualInvoiceForm = () => {
             }
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={6} md={3}>
           <TextFieldMake
             fullWidth
             variant="outlined"

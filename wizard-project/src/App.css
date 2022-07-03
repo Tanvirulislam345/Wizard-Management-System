@@ -31,3 +31,7 @@ td {
 .css-zd70pw-MuiFormControlLabel-root .MuiFormControlLabel-label {
   color: white;
 }
+
+.example::-webkit-scrollbar {
+  display: none;
+}

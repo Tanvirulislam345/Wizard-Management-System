@@ -6,9 +6,13 @@ export const LayoutRoot = styled(Box)(({ theme }) => ({
   width: {
     lg: "calc(100% - 280px)",
   },
-  minHeight: "calc(100vh - 64px)",
   height: "100%",
+  minHeight: "calc(100vh - 64px)",
   paddingTop: "64px",
+  overflow: "auto",
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
   paddingBottom: "30px",
   background: theme.background.primary,
   [theme.breakpoints.up("lg")]: {
@@ -19,15 +23,23 @@ export const LayoutRoot2 = styled(Box)(({ theme }) => ({
   width: "100%",
   minHeight: "calc(100vh - 64px)",
   height: "100%",
+  overflow: "auto",
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
   paddingTop: "64px",
   background: theme.background.primary,
 }));
 
 export const LayoutContiner = styled(Box)(({ theme }) => ({
   backgroundColor: theme.background.secondary,
-  maxHeight: "83vh",
   height: "100%",
+  maxHeight: "83vh",
   overflow: "auto",
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
+
   margin: "30px",
   padding: "30px",
   borderRadius: "15px",

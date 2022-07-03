@@ -25,7 +25,7 @@ const Employees = () => {
     <LayoutContiner>
       <SubNav project="Employees" addproject="addemployee"></SubNav>
 
-      <Grid container spacing={2}>
+      <Grid container spacing={2} className="example">
         {employees?.map((employee, index) => (
           <EmployeeList
             key={index}

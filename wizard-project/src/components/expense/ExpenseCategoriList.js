@@ -8,14 +8,10 @@ import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Chip, TableHead } from "@mui/material";
-import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
-import RemoveRedEyeRoundedIcon from "@mui/icons-material/RemoveRedEyeRounded";
-import ExpenseListMenu from "./ExpenseListMenu";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { Button, TableHead } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function ExpenseCategoriList({ rows }) {
+export default function ExpenseCategoriList({ rows, handleEdit }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const navigate = useNavigate();
@@ -71,7 +67,12 @@ export default function ExpenseCategoriList({ rows }) {
                 <StyledTableCell align="center">{row.Item}</StyledTableCell>
 
                 <StyledTableCell align="center">
-                  <MoreVertOutlinedIcon />
+                  <Link
+                    to={`/editCategori/${row.id}`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Button>Edit</Button>
+                  </Link>
                 </StyledTableCell>
               </TableRow>
             ))}

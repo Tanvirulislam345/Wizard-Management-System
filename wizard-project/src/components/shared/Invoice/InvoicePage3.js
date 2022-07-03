@@ -91,6 +91,7 @@ const InvoicePage3 = ({ invoiceData }) => {
           invoice={valuedata}
           Tax={invoiceData?.Tax}
           Discount={invoiceData?.Discount}
+          TotalPayment={invoiceData.Payment}
         />
         <AccoutInvoiceDetails />
 

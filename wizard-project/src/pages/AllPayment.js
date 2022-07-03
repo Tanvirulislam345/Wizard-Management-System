@@ -17,7 +17,7 @@ const AllPayment = () => {
 
   const [filterValue, setFilterValue] = useState(null);
   const [data, setData] = useState("All Payment");
-  const navValue = ["All Payment", "Menual Payment"];
+  const navValue = ["All Payment"];
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
@@ -25,14 +25,6 @@ const AllPayment = () => {
       .then((res) => res.json())
       .then((data) => setRows(data));
   }, []);
-
-  // const handleChange = (id) => {
-  //   axios.delete(`http://localhost:9000/allpayment/${id}`).then((res) => {
-  //     if (res.status === 200) {
-  //       setRows(rows.filter((row) => row.id !== id));
-  //     }
-  //   });
-  // };
 
   const handleSearch = (id) => {
     axios.delete(`http://localhost:9000/allpayment/${id}`).then((res) => {
@@ -75,11 +67,6 @@ const AllPayment = () => {
             handleDownload={handleDownload}
           />
           <PaymentList rows={rows} handleChange={handleSearch} />
-        </div>
-      )}
-      {data === "Menual Payment" && rows?.length > 0 && (
-        <div style={{ marginTop: "20px" }}>
-          <SubNav project="Menual Payment" addproject="menualpayment" />
         </div>
       )}
     </LayoutContiner>

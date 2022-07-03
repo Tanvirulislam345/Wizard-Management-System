@@ -77,7 +77,7 @@ const SalaryView = () => {
   return (
     <div style={{ marginTop: "20px" }}>
       <SubNav2 project="Salary"></SubNav2>
-      {employee !== null && values !== null && (
+      {employee !== null && (
         <>
           <HeadingFormatContainer>
             <FilterForm
@@ -91,7 +91,7 @@ const SalaryView = () => {
               <Typography sx={{ mt: 2, color: "red" }}>{errors}</Typography>
             )}
           </HeadingFormatContainer>
-          <SalaryTable rows={values} />
+          {values.length > 0 && <SalaryTable rows={values} />}
         </>
       )}
     </div>

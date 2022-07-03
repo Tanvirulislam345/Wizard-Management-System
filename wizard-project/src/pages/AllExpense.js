@@ -17,7 +17,7 @@ const AllExpense = () => {
     { id: 3, Item: "Bank Asia" },
   ];
   const [filterValue, setFilterValue] = useState(null);
-  const [rows, setRows] = useState([]);
+  const [rows, setRows] = useState(null);
   const [values, setValues] = useState(null);
   const [data, setData] = useState("Expense");
   const navValue = ["Expense", "Expense Categori"];
@@ -31,14 +31,6 @@ const AllExpense = () => {
       .get(`http://localhost:9000/expense_categori`)
       .then((res) => setValues(res.data));
   }, []);
-
-  // const handleChange = (id) => {
-  //   axios.delete(`http://localhost:9000/allexpense/${id}`).then((res) => {
-  //     if (res.status === 200) {
-  //       setRows(rows.filter((row) => row.id !== id));
-  //     }
-  //   });
-  // };
 
   const handleSearch = (id) => {
     axios.delete(`http://localhost:9000/allexpense/${id}`).then((res) => {

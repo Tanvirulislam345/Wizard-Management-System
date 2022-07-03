@@ -1272,6 +1272,33 @@ app.get("/expense_categori", (req, res) => {
     }
   );
 });
+app.get("/expense_categori/:expenseid", (req, res) => {
+  const id = req.params.expenseid;
+  connection.query(
+    `SELECT * FROM all_expense_categori WHERE id = ${id}`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(result[0]);
+      }
+    }
+  );
+});
+
+app.put("/expense_categori/:expenseid", (req, res) => {
+  const id = req.params.expenseid;
+  const data = req.body;
+
+  const sqlquery = `UPDATE all_expense_categori SET  Item = "${data.Item}" WHERE id = ${id}`;
+  connection.query(sqlquery, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
 
 app.post("/expense_categori_search", (req, res) => {
   const data = req.body;
@@ -1557,6 +1584,27 @@ app.post("/menualinvoice", (req, res) => {
   });
 });
 
+app.post("/menualinvoice_search", (req, res) => {
+  const data = req.body;
+
+  const keys = Object.keys(data);
+  const value = keys.map((key) => {
+    return `${key} = "${data[key]}"`;
+  });
+
+  connection.query(
+    `SELECT * FROM all_menualinvoice WHERE ${value.join(" " + "AND" + " ")}`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.json(result);
+      }
+    }
+  );
+});
+
 app.get("/menualinvoice", (req, res) => {
   connection.query(`SELECT * FROM all_menualinvoice WHERE 1`, (err, result) => {
     if (err) {
@@ -1671,6 +1719,7 @@ app.post("/transfer_balance", (req, res) => {
     }
   });
 });
+
 app.get("/", (req, res) => {
   res.send("This is wizard software admin project");
 });

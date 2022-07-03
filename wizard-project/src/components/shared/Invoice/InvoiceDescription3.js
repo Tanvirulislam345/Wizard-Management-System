@@ -1,7 +1,7 @@
 import { TableBody, TableHead } from "@mui/material";
 import React from "react";
 
-const InvoiceDescription3 = ({ invoice, Tax, Discount }) => {
+const InvoiceDescription3 = ({ invoice, Tax, Discount, TotalPayment }) => {
   const value2 = invoice?.map((valu) => {
     return valu.Subtotal;
   });
@@ -12,8 +12,6 @@ const InvoiceDescription3 = ({ invoice, Tax, Discount }) => {
     ini
   );
 
-  const discount = value - (Discount * value) / 100;
-  const totalvalue = discount + (Tax * discount) / 100;
   return (
     <>
       <table>
@@ -61,9 +59,9 @@ const InvoiceDescription3 = ({ invoice, Tax, Discount }) => {
             </td>
           </tr>
           <tr>
-            <th>Payable</th>
+            <th>TotalPayment</th>
             <td style={{ textAlign: "right", paddingRight: "13px" }}>
-              {Math.ceil(totalvalue)} Taka
+              {TotalPayment} Taka
             </td>
           </tr>
         </TableBody>

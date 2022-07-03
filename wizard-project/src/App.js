@@ -25,11 +25,8 @@ import AddLeaveType from "./pages/Leave/AddLeaveType";
 import EditLeave from "./pages/Leave/EditLeave";
 import EditLeaveType from "./pages/Leave/EditLeaveType";
 import Leave from "./pages/Leave/Leave";
-
 import ProjectDetails from "./pages/ProjectDetails";
 import Projects from "./pages/Projects";
-import { theme } from "./theme";
-import "./App.css";
 import Login from "./pages/Login";
 import ContextProvieder from "./Context/ContextProvieder";
 import LayoutChild from "./components/layout/LayoutChild";
@@ -50,10 +47,13 @@ import AddLoan from "./components/loan/AddLoan";
 import AddAdjustment from "./components/loan/AddAdjustment";
 import Lead from "./pages/Lead";
 import AddLead from "./components/lead/AddLead";
-import AddMenualPayment from "./components/payment/AddMenualPayment";
+
 import NoticeView from "./components/notice/NoticeView";
 import AddMenualAttendence from "./components/attendence/AddMenualAttendence";
 import BalanceTranfer from "./pages/BalanceTranfer";
+import "./App.css";
+import { theme } from "./theme";
+import CategoriEditForm from "./components/expense/CategoriEditForm";
 
 function App() {
   return (
@@ -78,6 +78,7 @@ function App() {
                 </Layout>
               }
             />
+
             <Route
               path="/notice"
               element={
@@ -110,14 +111,7 @@ function App() {
                 </Layout>
               }
             />
-            <Route
-              path="/menualpayment"
-              element={
-                <Layout>
-                  <AddMenualPayment />
-                </Layout>
-              }
-            />
+
             <Route
               path="/addadjustment"
               element={
@@ -181,6 +175,14 @@ function App() {
               element={
                 <Layout>
                   <CategoriExpenseForm />
+                </Layout>
+              }
+            />
+            <Route
+              path="/editCategori/:expenseId"
+              element={
+                <Layout>
+                  <CategoriEditForm />
                 </Layout>
               }
             />
