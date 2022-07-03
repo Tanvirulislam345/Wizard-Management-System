@@ -1,19 +1,21 @@
 import { Grid, Stack } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   ButtonMake,
   LayoutContiner,
   TextFieldMake,
-} from "../styles/MetarialStyles";
+} from "../../styles/MetarialStyles";
 
-const BalanceTranfer = () => {
+const AddTransfer = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState(null);
   const handleSubmit = () => {
     console.log(data);
     axios.post(`http://localhost:9000/transfer_balance`, data).then((res) => {
       if (res.status === 200) {
-        // navigate("/project");
+        navigate("/transfer");
       }
     });
   };
@@ -113,4 +115,4 @@ const BalanceTranfer = () => {
   );
 };
 
-export default BalanceTranfer;
+export default AddTransfer;

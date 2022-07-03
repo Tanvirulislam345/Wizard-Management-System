@@ -50,10 +50,11 @@ import AddLead from "./components/lead/AddLead";
 
 import NoticeView from "./components/notice/NoticeView";
 import AddMenualAttendence from "./components/attendence/AddMenualAttendence";
-import BalanceTranfer from "./pages/BalanceTranfer";
+
 import "./App.css";
 import { theme } from "./theme";
 import CategoriEditForm from "./components/expense/CategoriEditForm";
+import Transfer from "./pages/Transfer";
 
 function App() {
   return (
@@ -318,7 +319,7 @@ function App() {
               path="/transfer"
               element={
                 <Layout>
-                  <BalanceTranfer />
+                  <Transfer />
                 </Layout>
               }
             />
