@@ -45,6 +45,7 @@ const PayableSalary = () => {
       TotalPayable,
     };
   });
+
   return (
     <div style={{ marginTop: "20px" }}>
       <SubNav2 project="Employee Payable Salary" />
