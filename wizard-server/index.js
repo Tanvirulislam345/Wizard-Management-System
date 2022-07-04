@@ -1672,6 +1672,16 @@ app.put("/lead/:leadId", (req, res) => {
   });
 });
 
+app.get("/transfer_balance", (req, res) => {
+  connection.query(`SELECT * FROM all_transfer WHERE 1`, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
 app.post("/transfer_balance", (req, res) => {
   const today = new Date();
   const monthNames = [

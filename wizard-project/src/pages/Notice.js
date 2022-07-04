@@ -19,7 +19,7 @@ const Notice = () => {
   return (
     <LayoutContiner>
       <SubNav project="Make Notice" addproject="addNotice" />
-      {rows.length > 0 && (
+      {rows?.length > 0 && (
         <NoticeTable rows={rows} handleChange={handleChange} />
       )}
     </LayoutContiner>

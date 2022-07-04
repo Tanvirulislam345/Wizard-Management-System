@@ -44,12 +44,11 @@ const PayableSalary = () => {
       TotalDiduction,
       TotalPayable,
     };
-    // console.log(data);
   });
   return (
     <div style={{ marginTop: "20px" }}>
       <SubNav2 project="Employee Payable Salary" />
-      {data && data.length > 0 && <PayableSalarayTable rows={data} />}
+      {data && data?.length > 0 && <PayableSalarayTable rows={data} />}
     </div>
   );
 };

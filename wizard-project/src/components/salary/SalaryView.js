@@ -91,7 +91,7 @@ const SalaryView = () => {
               <Typography sx={{ mt: 2, color: "red" }}>{errors}</Typography>
             )}
           </HeadingFormatContainer>
-          {values.length > 0 && <SalaryTable rows={values} />}
+          {values?.length > 0 && <SalaryTable rows={values} />}
         </>
       )}
     </div>
