@@ -13,11 +13,16 @@ const CategoriExpenseForm = () => {
   const [data, setData] = useState(null);
   const handleSubmit = () => {
     console.log(data);
-    axios.post(`http://localhost:9000/expensecategori`, data).then((res) => {
-      if (res.status === 200) {
-        navigate("/expense");
-      }
-    });
+    axios
+      .post(
+        `https://wizard-software-technology.rpi.gov.bd/expensecategori`,
+        data
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          navigate("/expense");
+        }
+      });
   };
   return (
     <LayoutContiner>

@@ -27,7 +27,10 @@ const Login = () => {
       password,
     };
     axios
-      .post(`http://localhost:9000/${role}match/${email}`, value)
+      .post(
+        `https://wizard-software-technology.rpi.gov.bd/${role}match/${email}`,
+        value
+      )
       .then((res) => {
         const user = res.data;
         if (user) {

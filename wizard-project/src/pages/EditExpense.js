@@ -15,7 +15,10 @@ const EditExpense = () => {
   const handleSubmit = () => {
     if (data !== null) {
       axios
-        .put(`http://localhost:9000/allexpense/${expenseId}`, data)
+        .put(
+          `https://wizard-software-technology.rpi.gov.bd/allexpense/${expenseId}`,
+          data
+        )
         .then((res) => {
           if (res.status === 200) {
             navigate("/expense");
@@ -29,11 +32,15 @@ const EditExpense = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/allexpense/${expenseId}`)
+      .get(
+        `https://wizard-software-technology.rpi.gov.bd/allexpense/${expenseId}`
+      )
       .then((res) => setValues(res.data));
   }, [expenseId]);
 
-  console.log(`http://localhost:9000/allexpense/${expenseId}`);
+  console.log(
+    `https://wizard-software-technology.rpi.gov.bd/allexpense/${expenseId}`
+  );
 
   return (
     <LayoutContiner>

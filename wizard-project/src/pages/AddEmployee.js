@@ -61,11 +61,16 @@ const AddEmployee = () => {
 
     if (data !== null) {
       // console.log(newData);
-      axios.post("http://localhost:9000/addemployee", formData).then((res) => {
-        if (res.status === 200) {
-          navigate("/employee");
-        }
-      });
+      axios
+        .post(
+          "https://wizard-software-technology.rpi.gov.bd/addemployee",
+          formData
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            navigate("/employee");
+          }
+        });
     } else {
       alert("Please Enter all data");
     }

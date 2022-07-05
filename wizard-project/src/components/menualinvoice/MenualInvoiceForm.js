@@ -58,11 +58,16 @@ const MenualInvoiceForm = () => {
       Value: JSON.stringify(inputList),
     };
 
-    axios.post(`http://localhost:9000/menualinvoice`, newData).then((res) => {
-      if (res.status == 200) {
-        navigate("/makeinvoice");
-      }
-    });
+    axios
+      .post(
+        `https://wizard-software-technology.rpi.gov.bd/menualinvoice`,
+        newData
+      )
+      .then((res) => {
+        if (res.status == 200) {
+          navigate("/makeinvoice");
+        }
+      });
   };
 
   // handle input change

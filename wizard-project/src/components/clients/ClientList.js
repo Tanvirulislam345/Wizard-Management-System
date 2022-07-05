@@ -5,7 +5,6 @@ import {
   BoxContainer,
   BoxContainerColoum,
 } from "../../styles/MetarialStyles";
-import profile from "../../assets/avater1.png";
 import ListMenuClient from "./ListMenuClient";
 import { Link } from "react-router-dom";
 import {
@@ -21,7 +20,10 @@ const ClientList = ({ client, handleRemove }) => {
         <Grid container spacing={2}>
           <Grid item xs={12} md={4}>
             <BoxContainerColoum>
-              <Avatar src={profile} sx={{ width: "130px", height: "130px" }} />
+              <Avatar
+                src={client.File}
+                sx={{ width: "130px", height: "130px" }}
+              />
               <HeadingFormatSubTitle sx={{ my: 2 }}>
                 {client.ClientId}
               </HeadingFormatSubTitle>

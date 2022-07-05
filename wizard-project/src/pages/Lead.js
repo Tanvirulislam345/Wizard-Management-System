@@ -8,7 +8,9 @@ const Lead = () => {
   const [rows, setRows] = useState(null);
   const [status, setStatus] = useState(false);
   useEffect(() => {
-    axios.get("http://localhost:9000/lead").then((res) => setRows(res.data));
+    axios
+      .get("https://wizard-software-technology.rpi.gov.bd/lead")
+      .then((res) => setRows(res.data));
   }, [status]);
 
   const handleChange = (id, value) => {
@@ -16,11 +18,13 @@ const Lead = () => {
       Status: value,
     };
 
-    axios.put(`http://localhost:9000/lead/${id}`, data).then((res) => {
-      if (res.status === 200) {
-        setStatus(!status);
-      }
-    });
+    axios
+      .put(`https://wizard-software-technology.rpi.gov.bd/lead/${id}`, data)
+      .then((res) => {
+        if (res.status === 200) {
+          setStatus(!status);
+        }
+      });
   };
   return (
     <LayoutContiner>

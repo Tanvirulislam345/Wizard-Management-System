@@ -12,16 +12,21 @@ const EditLeave = () => {
   const { leaveId } = useParams();
 
   const handleSubmit = () => {
-    axios.put(`http://localhost:9000/leave/${leaveId}`, data).then((res) => {
-      if (res.status === 200) {
-        navigation("/leave");
-      }
-    });
+    axios
+      .put(
+        `https://wizard-software-technology.rpi.gov.bd/leave/${leaveId}`,
+        data
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          navigation("/leave");
+        }
+      });
   };
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/leave/${leaveId}`)
+      .get(`https://wizard-software-technology.rpi.gov.bd/leave/${leaveId}`)
       .then((res) => setValues(res.data));
   }, []);
 

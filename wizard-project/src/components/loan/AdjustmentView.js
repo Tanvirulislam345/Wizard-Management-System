@@ -15,11 +15,11 @@ const AdjustmentView = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:9000/adjustment")
+      .get("https://wizard-software-technology.rpi.gov.bd/adjustment")
       .then((res) => setRows(res.data));
 
     axios
-      .get("http://localhost:9000/employee")
+      .get("https://wizard-software-technology.rpi.gov.bd/employee")
       .then((res) => setEmployee(res.data));
   }, []);
 
@@ -27,7 +27,10 @@ const AdjustmentView = () => {
 
   const handleSearch = () => {
     axios
-      .post(`http://localhost:9000/adjustment_search`, filterValue)
+      .post(
+        `https://wizard-software-technology.rpi.gov.bd/adjustment_search`,
+        filterValue
+      )
       .then((res) => {
         if (res.data.length > 0) {
           const data = res.data;

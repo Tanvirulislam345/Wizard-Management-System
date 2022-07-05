@@ -32,11 +32,16 @@ const AddPaymentForm = ({ ProjectId }) => {
         TotalPayable,
       };
 
-      axios.post(`http://localhost:9000/addpayment`, newData).then((res) => {
-        if (res.status === 200) {
-          navigate("/payment");
-        }
-      });
+      axios
+        .post(
+          `https://wizard-software-technology.rpi.gov.bd/addpayment`,
+          newData
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            navigate("/payment");
+          }
+        });
     } else {
       alert("please fillup all input");
     }
@@ -44,7 +49,7 @@ const AddPaymentForm = ({ ProjectId }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/allpayments/${id}`)
+      .get(`https://wizard-software-technology.rpi.gov.bd/allpayments/${id}`)
       .then((res) => setProjectDetails(res.data));
   }, [id]);
 

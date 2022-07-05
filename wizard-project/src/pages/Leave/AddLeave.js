@@ -20,32 +20,38 @@ const AddLeave = () => {
       Status: "Pendding",
     };
 
-    axios.post("http://localhost:9000/addleave", newData).then((res) => {
-      if (res.status === 200) {
-        if (user?.Role === "employee") {
-          navigation(`/employee/profile/${user?.id}`);
-        } else {
-          navigation("/leave");
+    axios
+      .post("https://wizard-software-technology.rpi.gov.bd/addleave", newData)
+      .then((res) => {
+        if (res.status === 200) {
+          if (user?.Role === "employee") {
+            navigation(`/employee/profile/${user?.id}`);
+          } else {
+            navigation("/leave");
+          }
         }
-      }
-    });
+      });
   };
 
   useEffect(() => {
     if (user) {
-      axios.get("http://localhost:9000/employee").then((res) => {
-        if (user?.Role === "employee") {
-          const data = res.data;
-          const value = data.filter((da) => da.EmployeeId === user?.EmployeeId);
-          setEmployee(value);
-        } else {
-          setEmployee(res.data);
-        }
-      });
+      axios
+        .get("https://wizard-software-technology.rpi.gov.bd/employee")
+        .then((res) => {
+          if (user?.Role === "employee") {
+            const data = res.data;
+            const value = data.filter(
+              (da) => da.EmployeeId === user?.EmployeeId
+            );
+            setEmployee(value);
+          } else {
+            setEmployee(res.data);
+          }
+        });
     }
 
     axios
-      .get("http://localhost:9000/leavetype")
+      .get("https://wizard-software-technology.rpi.gov.bd/leavetype")
       .then((res) => setLeaveType(res.data));
   }, [user]);
 

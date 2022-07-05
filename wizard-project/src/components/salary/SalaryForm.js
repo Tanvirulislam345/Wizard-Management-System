@@ -71,12 +71,14 @@ export default function SalaryForm({ values }) {
     };
 
     // console.log(newData);
-    axios.post(`http://localhost:9000/salary`, newData).then((res) => {
-      if (res.data) {
-        handleClose();
-        navigate("/salary");
-      }
-    });
+    axios
+      .post(`https://wizard-software-technology.rpi.gov.bd/salary`, newData)
+      .then((res) => {
+        if (res.data) {
+          handleClose();
+          navigate("/salary");
+        }
+      });
   };
 
   return (

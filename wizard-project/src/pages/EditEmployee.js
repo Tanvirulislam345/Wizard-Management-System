@@ -44,14 +44,19 @@ const EditEmployee = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/employee/${employeetId}`)
+      .get(
+        `https://wizard-software-technology.rpi.gov.bd/employee/${employeetId}`
+      )
       .then((res) => setValues(res.data[0]));
   }, [employeetId]);
 
   const handleSubmit = () => {
     if (data !== null) {
       axios
-        .put(`http://localhost:9000/employee/${employeetId}`, data)
+        .put(
+          `https://wizard-software-technology.rpi.gov.bd/employee/${employeetId}`,
+          data
+        )
         .then((res) => {
           if (res.status === 200) {
             navigate("/employee");

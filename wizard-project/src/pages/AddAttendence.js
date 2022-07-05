@@ -61,11 +61,16 @@ const AddAttendence = () => {
     });
 
     if (value !== undefined) {
-      axios.post("http://localhost:9000/addattendence", value).then((res) => {
-        if (res.status === 200) {
-          navigate("/attendence");
-        }
-      });
+      axios
+        .post(
+          "https://wizard-software-technology.rpi.gov.bd/addattendence",
+          value
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            navigate("/attendence");
+          }
+        });
     }
   };
 

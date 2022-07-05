@@ -13,11 +13,16 @@ const AddTransfer = () => {
   const [data, setData] = useState(null);
   const handleSubmit = () => {
     console.log(data);
-    axios.post(`http://localhost:9000/transfer_balance`, data).then((res) => {
-      if (res.status === 200) {
-        navigate("/transfer");
-      }
-    });
+    axios
+      .post(
+        `https://wizard-software-technology.rpi.gov.bd/transfer_balance`,
+        data
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          navigate("/transfer");
+        }
+      });
   };
 
   return (

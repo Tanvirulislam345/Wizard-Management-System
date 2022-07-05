@@ -6,7 +6,6 @@ import {
   BoxContainerColoum,
 } from "../../styles/MetarialStyles";
 import profile from "../../assets/avater1.png";
-import { Box } from "@mui/system";
 import ListMenuEmployee from "./ListMenuEmployee";
 import { Link } from "react-router-dom";
 import {
@@ -22,7 +21,10 @@ const EmployeeList = ({ employee, handleRemove }) => {
         <Grid container spacing={2}>
           <Grid item xs={12} md={4}>
             <BoxContainerColoum>
-              <Avatar src={profile} sx={{ width: "130px", height: "130px" }} />
+              <Avatar
+                src={employee?.File}
+                sx={{ width: "130px", height: "130px" }}
+              />
               <HeadingFormatSubTitle sx={{ py: 2 }}>
                 {employee.EmployeeId}
               </HeadingFormatSubTitle>

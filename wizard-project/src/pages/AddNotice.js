@@ -18,21 +18,25 @@ const AddNotice = () => {
   const [value1, setvalue1] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:9000/employee").then((res) => {
-      const data = res.data;
-      const value1 = data.map((da) => {
-        return da.Email;
+    axios
+      .get("https://wizard-software-technology.rpi.gov.bd/employee")
+      .then((res) => {
+        const data = res.data;
+        const value1 = data.map((da) => {
+          return da.Email;
+        });
+        setEmail1(value1);
       });
-      setEmail1(value1);
-    });
 
-    axios.get("http://localhost:9000/client").then((res) => {
-      const data = res.data;
-      const value1 = data.map((da) => {
-        return da.Email;
+    axios
+      .get("https://wizard-software-technology.rpi.gov.bd/client")
+      .then((res) => {
+        const data = res.data;
+        const value1 = data.map((da) => {
+          return da.Email;
+        });
+        setEmail2(value1);
       });
-      setEmail2(value1);
-    });
     if (checked[1] && checked[0] && email1 !== null && email2 !== null) {
       setvalue1([...email1, ...email2]);
     } else if (checked[0] && email1 !== null) {
@@ -58,9 +62,11 @@ const AddNotice = () => {
       Email2: value1 === null ? "Not Email" : value1,
     };
 
-    axios.post("http://localhost:9000/addnotice", newData).then((res) => {
-      navigate("/notice");
-    });
+    axios
+      .post("https://wizard-software-technology.rpi.gov.bd/addnotice", newData)
+      .then((res) => {
+        navigate("/notice");
+      });
   };
 
   return (

@@ -11,15 +11,17 @@ const AddAdjustment = () => {
   const [employee, setEmployee] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:9000/employee")
+    fetch("https://wizard-software-technology.rpi.gov.bd/employee")
       .then((res) => res.json())
       .then((data) => setEmployee(data));
   }, []);
 
   const handleSubmit = () => {
-    axios.post("http://localhost:9000/addadjustment", data).then((res) => {
-      navigate("/loan");
-    });
+    axios
+      .post("https://wizard-software-technology.rpi.gov.bd/addadjustment", data)
+      .then((res) => {
+        navigate("/loan");
+      });
   };
 
   return (

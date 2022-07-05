@@ -15,7 +15,7 @@ const PointsView = () => {
   const [filterValue, setFilterValue] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:9000/employee")
+    fetch("https://wizard-software-technology.rpi.gov.bd/employee")
       .then((res) => res.json())
       .then((data) => {
         if (user?.Role === "employee") {
@@ -26,33 +26,42 @@ const PointsView = () => {
         }
       });
 
-    axios.get(`http://localhost:9000/points`).then((res) => {
-      const data = res.data;
-      if (user?.Role === "employee") {
-        const value = data.filter((da) => da.EmployeeId === user.EmployeeId);
-        setValues(value);
-      } else {
-        setValues(data);
-      }
-    });
+    axios
+      .get(`https://wizard-software-technology.rpi.gov.bd/points`)
+      .then((res) => {
+        const data = res.data;
+        if (user?.Role === "employee") {
+          const value = data.filter((da) => da.EmployeeId === user.EmployeeId);
+          setValues(value);
+        } else {
+          setValues(data);
+        }
+      });
   }, [user]);
 
   const handleSearch = () => {
-    axios.post(`http://localhost:9000/points/view`, filterValue).then((res) => {
-      if (res.data.length > 0) {
-        if (user.Role === "employee") {
-          let data = res.data;
-          const value = data.filter((da) => da.EmployeeId === user.EmployeeId);
-          setErrors("");
-          setValues(value);
+    axios
+      .post(
+        `https://wizard-software-technology.rpi.gov.bd/points/view`,
+        filterValue
+      )
+      .then((res) => {
+        if (res.data.length > 0) {
+          if (user.Role === "employee") {
+            let data = res.data;
+            const value = data.filter(
+              (da) => da.EmployeeId === user.EmployeeId
+            );
+            setErrors("");
+            setValues(value);
+          } else {
+            setErrors("");
+            setValues(res.data);
+          }
         } else {
-          setErrors("");
-          setValues(res.data);
+          setErrors("no search found");
         }
-      } else {
-        setErrors("no search found");
-      }
-    });
+      });
   };
 
   const handleDownload = () => {

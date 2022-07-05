@@ -7,7 +7,9 @@ const ClientDetailsPage = ({ clientId }) => {
   const [clientDetails, setClientDetails] = useState(null);
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/projectclient/${clientId}`)
+      .get(
+        `https://wizard-software-technology.rpi.gov.bd/projectclient/${clientId}`
+      )
       .then((res) => setClientDetails(res.data[0]));
   }, [clientId]);
 

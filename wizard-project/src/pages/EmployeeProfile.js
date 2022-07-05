@@ -68,25 +68,37 @@ const EmployeeProfile = () => {
       EmployeeId: profileId,
     };
     axios
-      .get(`http://localhost:9000/employee/${profileId}`)
+      .get(
+        `https://wizard-software-technology.rpi.gov.bd/employee/${profileId}`
+      )
       .then((res) => setValues(res.data[0]));
 
     axios
-      .post(`http://localhost:9000/allattendence/search`, data2)
+      .post(
+        `https://wizard-software-technology.rpi.gov.bd/allattendence/search`,
+        data2
+      )
       .then((res) => setAttendence(res.data));
 
     axios
-      .get(`http://localhost:9000/employeeproject/${profileId}`)
+      .get(
+        `https://wizard-software-technology.rpi.gov.bd/employeeproject/${profileId}`
+      )
       .then((res) => setProjects(res.data));
 
-    axios.post(`http://localhost:9000/points/view`, EmployeeId).then((res) => {
-      const data = res.data;
-      const point =
-        data?.reduce((previous, present) => {
-          return previous.TotalPoint + present.TotalPoint;
-        }) || 0;
-      setPoint(point);
-    });
+    axios
+      .post(
+        `https://wizard-software-technology.rpi.gov.bd/points/view`,
+        EmployeeId
+      )
+      .then((res) => {
+        const data = res.data;
+        const point =
+          data?.reduce((previous, present) => {
+            return previous.TotalPoint + present.TotalPoint;
+          }) || 0;
+        setPoint(point);
+      });
   }, [profileId]);
 
   const files = useState([1, 2, 3]);
@@ -103,6 +115,7 @@ const EmployeeProfile = () => {
                 <ProfileHead
                   name={values.FullName}
                   designation={values.Designation}
+                  file={values.File}
                   id={values.EmployeeId}
                   description={values.AboutMe}
                   contact={values.Email}
@@ -117,7 +130,7 @@ const EmployeeProfile = () => {
               </Grid>
               <Grid xs={12} item>
                 <HeadingFormat title="Files">
-                  <Files files={files} />
+                  <Files files={values?.File} />
                 </HeadingFormat>
               </Grid>
             </Grid>

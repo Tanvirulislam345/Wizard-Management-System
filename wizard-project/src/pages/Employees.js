@@ -8,17 +8,21 @@ import { LayoutContiner } from "../styles/MetarialStyles";
 const Employees = () => {
   const [employees, setEmployee] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:9000/employee")
+    fetch("https://wizard-software-technology.rpi.gov.bd/employee")
       .then((res) => res.json())
       .then((data) => setEmployee(data));
   }, []);
 
   const handleRemove = (id) => {
-    axios.delete(`http://localhost:9000/employee/delete/${id}`).then((res) => {
-      if (res.status === 200) {
-        setEmployee(employees.filter((emp) => emp.id !== id));
-      }
-    });
+    axios
+      .delete(
+        `https://wizard-software-technology.rpi.gov.bd/employee/delete/${id}`
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          setEmployee(employees.filter((emp) => emp.id !== id));
+        }
+      });
   };
 
   return (

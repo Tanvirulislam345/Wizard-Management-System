@@ -16,41 +16,51 @@ const LoanView = () => {
   const LoanValue = { Name: "Present Loan", Number: loan - adjustment };
 
   useEffect(() => {
-    axios.get("http://localhost:9000/loan").then((res) => setRows(res.data));
+    axios
+      .get("https://wizard-software-technology.rpi.gov.bd/loan")
+      .then((res) => setRows(res.data));
 
     axios
-      .get("http://localhost:9000/employee")
+      .get("https://wizard-software-technology.rpi.gov.bd/employee")
       .then((res) => setEmployee(res.data));
   }, []);
 
   const handleChange = () => {};
 
   const handleSearch = () => {
-    axios.post(`http://localhost:9000/loan_search`, filterValue).then((res) => {
-      if (res.data.length > 0) {
-        const data = res.data;
-        setRows(data);
-        let totalAmount;
-        if (data.length > 1) {
-          const newData = data.map((value) => {
-            return value.Amount;
-          });
-          totalAmount = newData.reduce((pre, post) => pre + post);
-        } else {
-          totalAmount = data[0].Amount;
-        }
-        setErrors(null);
+    axios
+      .post(
+        `https://wizard-software-technology.rpi.gov.bd/loan_search`,
+        filterValue
+      )
+      .then((res) => {
+        if (res.data.length > 0) {
+          const data = res.data;
+          setRows(data);
+          let totalAmount;
+          if (data.length > 1) {
+            const newData = data.map((value) => {
+              return value.Amount;
+            });
+            totalAmount = newData.reduce((pre, post) => pre + post);
+          } else {
+            totalAmount = data[0].Amount;
+          }
+          setErrors(null);
 
-        setLoan(totalAmount);
-        // setDownload(data);
-      } else {
-        setLoan(0);
-        setErrors("No  Loan found");
-      }
-    });
+          setLoan(totalAmount);
+          // setDownload(data);
+        } else {
+          setLoan(0);
+          setErrors("No  Loan found");
+        }
+      });
 
     axios
-      .post(`http://localhost:9000/adjustment_search`, filterValue)
+      .post(
+        `https://wizard-software-technology.rpi.gov.bd/adjustment_search`,
+        filterValue
+      )
       .then((res) => {
         if (res.data.length > 0) {
           const data = res.data;

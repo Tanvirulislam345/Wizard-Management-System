@@ -12,7 +12,7 @@ const AddExpense = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/expense_categori`)
+      .get(`https://wizard-software-technology.rpi.gov.bd/expense_categori`)
       .then((res) => setCategori(res.data));
   }, []);
 
@@ -23,11 +23,16 @@ const AddExpense = () => {
     };
     // console.log(newData);
     if (data !== null) {
-      axios.post(`http://localhost:9000/addexpense`, newData).then((res) => {
-        if (res.status === 200) {
-          navigate("/expense");
-        }
-      });
+      axios
+        .post(
+          `https://wizard-software-technology.rpi.gov.bd/addexpense`,
+          newData
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            navigate("/expense");
+          }
+        });
     } else {
       alert("please fillup all input");
     }

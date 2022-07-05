@@ -24,42 +24,54 @@ const Leave = () => {
   const handleChange = (id, type, method) => {
     if (method === "delete") {
       if (type === "leave") {
-        axios.delete(`http://localhost:9000/leave/${id}`).then((res) => {
-          if (res.status === 200) {
-            setLeave(leave?.filter((le) => le.id !== id));
-          }
-        });
+        axios
+          .delete(`https://wizard-software-technology.rpi.gov.bd/leave/${id}`)
+          .then((res) => {
+            if (res.status === 200) {
+              setLeave(leave?.filter((le) => le.id !== id));
+            }
+          });
       } else {
-        axios.delete(`http://localhost:9000/leavetype/${id}`).then((res) => {
-          if (res.status === 200) {
-            setLeaveType(leaveType?.filter((le) => le.id !== id));
-          }
-        });
+        axios
+          .delete(
+            `https://wizard-software-technology.rpi.gov.bd/leavetype/${id}`
+          )
+          .then((res) => {
+            if (res.status === 200) {
+              setLeaveType(leaveType?.filter((le) => le.id !== id));
+            }
+          });
       }
     } else {
       const data = { Status: type };
-      axios.put(`http://localhost:9000/leave/${id}`, data).then((res) => {
-        if (res.status === 200) {
-          setUpdate(!update);
-        }
-      });
+      axios
+        .put(`https://wizard-software-technology.rpi.gov.bd/leave/${id}`, data)
+        .then((res) => {
+          if (res.status === 200) {
+            setUpdate(!update);
+          }
+        });
     }
   };
 
   useEffect(() => {
-    axios.get("http://localhost:9000/leavetype").then((res) => {
-      setLeaveType(res.data);
-    });
+    axios
+      .get("https://wizard-software-technology.rpi.gov.bd/leavetype")
+      .then((res) => {
+        setLeaveType(res.data);
+      });
 
-    axios.get("http://localhost:9000/leave").then((res) => {
-      if (user?.Role === "employee") {
-        const data = res.data;
-        const value = data.filter((da) => da.EmployeeId === user.EmployeeId);
-        setLeave(value);
-      } else {
-        setLeave(res.data);
-      }
-    });
+    axios
+      .get("https://wizard-software-technology.rpi.gov.bd/leave")
+      .then((res) => {
+        if (user?.Role === "employee") {
+          const data = res.data;
+          const value = data.filter((da) => da.EmployeeId === user.EmployeeId);
+          setLeave(value);
+        } else {
+          setLeave(res.data);
+        }
+      });
   }, [update]);
 
   return (

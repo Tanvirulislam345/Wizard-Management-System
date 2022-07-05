@@ -7,7 +7,9 @@ const ProjectPayment = ({ projectDetailsId }) => {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:9000/projectpayments/${projectDetailsId}`)
+    fetch(
+      `https://wizard-software-technology.rpi.gov.bd/projectpayments/${projectDetailsId}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setRows(data);
@@ -15,11 +17,13 @@ const ProjectPayment = ({ projectDetailsId }) => {
   }, [projectDetailsId]);
 
   const handleChange = (id) => {
-    axios.delete(`http://localhost:9000/allpayment/${id}`).then((res) => {
-      if (res.status === 200) {
-        setRows(rows.filter((row) => row.id !== id));
-      }
-    });
+    axios
+      .delete(`https://wizard-software-technology.rpi.gov.bd/allpayment/${id}`)
+      .then((res) => {
+        if (res.status === 200) {
+          setRows(rows.filter((row) => row.id !== id));
+        }
+      });
   };
 
   return (

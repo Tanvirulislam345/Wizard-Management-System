@@ -13,14 +13,19 @@ const EditClients = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/client/${editclientId}`)
+      .get(
+        `https://wizard-software-technology.rpi.gov.bd/client/${editclientId}`
+      )
       .then((res) => setValues(res.data));
   }, [editclientId]);
 
   const handleSubmit = () => {
     if (data !== null) {
       axios
-        .put(`http://localhost:9000/client/${editclientId}`, data)
+        .put(
+          `https://wizard-software-technology.rpi.gov.bd/client/${editclientId}`,
+          data
+        )
         .then((res) => {
           if (res.status === 200) {
             navigate("/client");

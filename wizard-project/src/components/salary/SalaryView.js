@@ -16,7 +16,7 @@ const SalaryView = () => {
   const [filterValue, setFilterValue] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:9000/employee")
+    fetch("https://wizard-software-technology.rpi.gov.bd/employee")
       .then((res) => res.json())
       .then((data) => {
         if (user?.Role === "employee") {
@@ -28,7 +28,7 @@ const SalaryView = () => {
       });
 
     if (user) {
-      fetch(`http://localhost:9000/salary/present`)
+      fetch(`https://wizard-software-technology.rpi.gov.bd/salary/present`)
         .then((res) => res.json())
         .then((data) => {
           if (user?.Role === "employee") {
@@ -47,7 +47,10 @@ const SalaryView = () => {
 
   const handleSearch = () => {
     axios
-      .post(`http://localhost:9000/salary/search`, filterValue)
+      .post(
+        `https://wizard-software-technology.rpi.gov.bd/salary/search`,
+        filterValue
+      )
       .then((res) => {
         if (res.data.length > 0) {
           if (user.Role === "employee") {

@@ -13,7 +13,7 @@ const Transfer = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:9000/transfer_balance")
+      .get("https://wizard-software-technology.rpi.gov.bd/transfer_balance")
       .then((res) => setRows(res.data));
   }, []);
   return (

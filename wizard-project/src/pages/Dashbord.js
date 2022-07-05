@@ -15,52 +15,64 @@ const Dashbord = () => {
 
   useEffect(() => {
     const running = "Running";
-    axios.get(`http://localhost:9000/allproject/${running}`).then((res) => {
-      const data = res.data;
-      setProject({
-        Name: "Project",
-        Number: data.length,
+    axios
+      .get(
+        `https://wizard-software-technology.rpi.gov.bd/allproject/${running}`
+      )
+      .then((res) => {
+        const data = res.data;
+        setProject({
+          Name: "Project",
+          Number: data.length,
+        });
       });
-    });
 
-    axios.get(`http://localhost:9000/client`).then((res) => {
-      const data = res.data;
+    axios
+      .get(`https://wizard-software-technology.rpi.gov.bd/client`)
+      .then((res) => {
+        const data = res.data;
 
-      setClient({
-        Name: "Client",
-        Number: data.length,
+        setClient({
+          Name: "Client",
+          Number: data.length,
+        });
       });
-    });
 
-    axios.get(`http://localhost:9000/employee`).then((res) => {
-      const data = res.data;
-      setEmployee({
-        Name: "Employee",
-        Number: data.length,
+    axios
+      .get(`https://wizard-software-technology.rpi.gov.bd/employee`)
+      .then((res) => {
+        const data = res.data;
+        setEmployee({
+          Name: "Employee",
+          Number: data.length,
+        });
       });
-    });
 
-    axios.get(`http://localhost:9000/allattendence/present`).then((res) => {
-      const data = res.data;
-      const present = data.filter((da) => da.Status === "present");
-      const late = data.filter((da) => da.Status === "late");
-      const absent = data.filter((da) => da.Status === "absent");
-      const Present = {
-        Name: "Todays Present",
-        Number: present.length,
-      };
-      const Late = {
-        Name: "Todays Late",
-        Number: late.length,
-      };
-      const Absent = {
-        Name: "Todays Absent",
-        Number: absent.length,
-      };
-      setPresent(Present);
-      setLate(Late);
-      setAbsent(Absent);
-    });
+    axios
+      .get(
+        `https://wizard-software-technology.rpi.gov.bd/allattendence/present`
+      )
+      .then((res) => {
+        const data = res.data;
+        const present = data.filter((da) => da.Status === "present");
+        const late = data.filter((da) => da.Status === "late");
+        const absent = data.filter((da) => da.Status === "absent");
+        const Present = {
+          Name: "Todays Present",
+          Number: present.length,
+        };
+        const Late = {
+          Name: "Todays Late",
+          Number: late.length,
+        };
+        const Absent = {
+          Name: "Todays Absent",
+          Number: absent.length,
+        };
+        setPresent(Present);
+        setLate(Late);
+        setAbsent(Absent);
+      });
   }, []);
 
   return (

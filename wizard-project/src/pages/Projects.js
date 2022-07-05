@@ -34,7 +34,7 @@ const Projects = () => {
 
   //using custom hooks
   const { data: projects, setData: setProjects } = useFatch(
-    `http://localhost:9000/allproject/${isCategori}`,
+    `https://wizard-software-technology.rpi.gov.bd/allproject/${isCategori}`,
     changeState
   );
 
@@ -45,7 +45,9 @@ const Projects = () => {
 
     if (status === "delete") {
       axios
-        .delete(`http://localhost:9000/allproject/delete/${id}`)
+        .delete(
+          `https://wizard-software-technology.rpi.gov.bd/allproject/delete/${id}`
+        )
         .then((res) => {
           if (res.status === 200) {
             setProjects(projects.filter((project) => project.ProjectId !== id));
@@ -53,7 +55,10 @@ const Projects = () => {
         });
     } else {
       axios
-        .put(`http://localhost:9000/updateproject/${id}`, values)
+        .put(
+          `https://wizard-software-technology.rpi.gov.bd/updateproject/${id}`,
+          values
+        )
         .then((res) => {
           if (res.status === 200) {
             setProjects(projects.filter((project) => project.id !== id));

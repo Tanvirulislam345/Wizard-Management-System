@@ -29,11 +29,16 @@ const AddClients = () => {
     }
 
     if (data !== null) {
-      axios.post("http://localhost:9000/addclient", formData).then((res) => {
-        if (res.status === 200) {
-          navigate("/client");
-        }
-      });
+      axios
+        .post(
+          "https://wizard-software-technology.rpi.gov.bd/addclient",
+          formData
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            navigate("/client");
+          }
+        });
     } else {
       alert("Please Enter all data");
     }

@@ -9,11 +9,11 @@ const PayableSalary = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/employee`)
+      .get(`https://wizard-software-technology.rpi.gov.bd/employee`)
       .then((res) => setEmployee(res.data));
 
     axios
-      .get(`http://localhost:9000/allattendence`)
+      .get(`https://wizard-software-technology.rpi.gov.bd/allattendence`)
       .then((res) => setAttendence(res.data));
   }, []);
 

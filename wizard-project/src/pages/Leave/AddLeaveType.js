@@ -10,11 +10,13 @@ const AddLeaveType = () => {
   const navigation = useNavigate();
 
   const handleSubmit = () => {
-    axios.post("http://localhost:9000/addleavetype", data).then((res) => {
-      if (res.status === 200) {
-        navigation("/leave");
-      }
-    });
+    axios
+      .post("https://wizard-software-technology.rpi.gov.bd/addleavetype", data)
+      .then((res) => {
+        if (res.status === 200) {
+          navigation("/leave");
+        }
+      });
   };
 
   return (

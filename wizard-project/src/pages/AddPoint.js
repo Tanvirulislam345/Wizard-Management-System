@@ -10,7 +10,7 @@ const AddPoint = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:9000/employee")
+      .get("https://wizard-software-technology.rpi.gov.bd/employee")
       .then((res) => setEmployee(res.data));
   }, []);
 

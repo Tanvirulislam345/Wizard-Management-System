@@ -1,7 +1,6 @@
-import { Avatar, Box, Grid, Stack, Typography } from "@mui/material";
+import { Avatar, Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
-import employeeImg from "../../../assets/avater1.png";
-import FileCopyIcon from "@mui/icons-material/FileCopy";
+
 import {
   BoxContainer,
   BoxContainerColoum,
@@ -15,6 +14,7 @@ import {
 const ProfileHead = ({
   name,
   designation,
+  file,
   id,
   description,
   contact,
@@ -32,7 +32,7 @@ const ProfileHead = ({
           </HeadingFormatTitle>
           <BoxContainerColoum>
             <Avatar
-              src={employeeImg}
+              src={file}
               alt=""
               sx={{ height: "130px", width: "130px", my: 2 }}
             />

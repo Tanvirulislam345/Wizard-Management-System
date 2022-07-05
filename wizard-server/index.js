@@ -110,7 +110,7 @@ app.post("/clientmatch/:email", (req, res) => {
 //all routes for project
 app.post("/addproject", upload.single("File"), (req, res) => {
   const newData = req.body;
-  const File = `http://localhost:9000/images/${req.file.filename}`;
+  const File = `https://wizard-software-technology.rpi.gov.bd/images/${req.file.filename}`;
 
   const data = {
     ...newData,
@@ -258,7 +258,7 @@ app.delete("/allproject/delete/:projectId", (req, res) => {
 
 app.post("/addemployee", upload.single("File"), async (req, res) => {
   const data = req.body;
-  const File = `http://localhost:9000/images/${req.file.filename}`;
+  const File = `https://wizard-software-technology.rpi.gov.bd/images/${req.file.filename}`;
 
   const info = {
     from: "tanvir.topader345@gmail.com",
@@ -367,7 +367,7 @@ app.delete("/employee/delete/:projectId", (req, res) => {
 
 app.post("/addclient", upload.single("File"), async (req, res) => {
   const data = req.body;
-  const File = `http://localhost:9000/images/${req.file.filename}`;
+  const File = `https://wizard-software-technology.rpi.gov.bd/images/${req.file.filename}`;
 
   const info = {
     from: "tanvir.topader345@gmail.com",
@@ -1146,7 +1146,7 @@ app.post("/addcomments", async (req, res) => {
 });
 app.post("/addcommentsFile", upload.single("File"), async (req, res) => {
   const data = req.body;
-  const File = `http://localhost:9000/images/${req.file.filename}`;
+  const File = `https://wizard-software-technology.rpi.gov.bd/images/${req.file.filename}`;
 
   const data2 = {
     ...data,
