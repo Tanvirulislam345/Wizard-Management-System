@@ -2,7 +2,6 @@ import { Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import { ButtonMake, TextFieldMake } from "../../styles/MetarialStyles";
 import image from "../../assets/loginpage.png";
-import { Link } from "react-router-dom";
 
 const states = [
   {
@@ -23,7 +22,7 @@ const states = [
   },
 ];
 
-const LoginForm = ({ data, setData, error, handleSubmit }) => {
+const ForgottenPage = ({ data, setData, error, handleSubmit }) => {
   return (
     <Grid container spacing={2}>
       <Grid
@@ -93,25 +92,31 @@ const LoginForm = ({ data, setData, error, handleSubmit }) => {
             }
           />
         </Grid>
+        <Grid item xs={12}>
+          <TextFieldMake
+            fullWidth
+            variant="outlined"
+            name="RePassword"
+            label="Re-Password"
+            type="password"
+            onChange={(event) =>
+              setData({
+                ...data,
+                [event.target.name]: event.target.value,
+              })
+            }
+          />
+        </Grid>
         {error && (
           <Grid item xs={12} sx={{ my: "auto" }}>
             <Typography color="red">{error}</Typography>
           </Grid>
         )}
-        <Grid
-          item
-          xs={12}
-          sx={{ mt: 1, display: "flex", justifyContent: "end" }}
-        >
-          <Link to="/forget" style={{ textDecoration: "none" }}>
-            <Typography color="#33E3FF ">Forget Password</Typography>
-          </Link>
-        </Grid>
 
         <Grid item xs={12}>
           <Stack spacing={3} direction="row" sx={{ mt: 3 }}>
             <ButtonMake size="medium" type="submit" onClick={handleSubmit}>
-              Login
+              save
             </ButtonMake>
           </Stack>
         </Grid>
@@ -120,4 +125,4 @@ const LoginForm = ({ data, setData, error, handleSubmit }) => {
   );
 };
 
-export default LoginForm;
+export default ForgottenPage;

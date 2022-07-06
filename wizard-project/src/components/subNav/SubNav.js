@@ -10,18 +10,17 @@ const SubNav = ({ project, addproject }) => {
     <SubNabBar>
       <HeadingFormatTitle>{project}</HeadingFormatTitle>
       <BoxContainer>
-        <>
+        <HeadingFormatTitle>
           <Link to="/dashboard">
-            <HeadingFormatTitle>
-              <HomeIcon color="secondary" />
-            </HeadingFormatTitle>
+            <HomeIcon color="secondary" />
           </Link>
+        </HeadingFormatTitle>
+
+        <HeadingFormatTitle>
           <Link to={`/${addproject}`}>
-            <HeadingFormatTitle>
-              <AddBoxIcon color="secondary" sx={{ ml: 2 }} />
-            </HeadingFormatTitle>
+            <AddBoxIcon color="secondary" />
           </Link>
-        </>
+        </HeadingFormatTitle>
       </BoxContainer>
     </SubNabBar>
   );

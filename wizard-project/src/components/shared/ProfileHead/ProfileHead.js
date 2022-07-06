@@ -57,8 +57,6 @@ const ProfileHead = ({
               }}
             >
               {description}
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut urna,
-              netus lacus arcu duis mus ut dolor eu. Arcu ipsum facilisis sit
             </Typography>
             <HeadingFormatTitle>{contact}</HeadingFormatTitle>
           </BoxContainerColoum>

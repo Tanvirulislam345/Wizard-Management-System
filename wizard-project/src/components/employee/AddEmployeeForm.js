@@ -380,7 +380,7 @@ const AddEmployeeForm = ({
       <Grid item xs={12}>
         <Stack spacing={3} direction="row">
           <ButtonMake size="medium" type="submit" onClick={handleSubmit}>
-            Upload
+            Create Employee
           </ButtonMake>
           <ButtonMake size="medium">Cancel</ButtonMake>
         </Stack>

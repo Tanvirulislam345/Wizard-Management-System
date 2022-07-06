@@ -2,7 +2,7 @@ import { Grid, Stack } from "@mui/material";
 import React, { useState } from "react";
 import { ButtonMake, TextFieldMake } from "../../styles/MetarialStyles";
 
-const AddClientForm = ({ gender, payment, data, setData, handleSubmit }) => {
+const AddClientForm = ({ gender, bloodgroup, data, setData, handleSubmit }) => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} md={6}>
@@ -79,8 +79,8 @@ const AddClientForm = ({ gender, payment, data, setData, handleSubmit }) => {
         <TextFieldMake
           fullWidth
           variant="outlined"
-          label="Billing Method"
-          name="BillingMethod"
+          label="Blood Group"
+          name="BloodGroup"
           onChange={(event) =>
             setData({
               ...data,
@@ -91,9 +91,10 @@ const AddClientForm = ({ gender, payment, data, setData, handleSubmit }) => {
           select
           SelectProps={{ native: true }}
         >
-          {payment.map((option, index) => (
-            <option key={index} value={option.method}>
-              {option.method}
+          <option>Enter your Blood Group</option>
+          {bloodgroup.map((option, index) => (
+            <option key={index} value={option.blood}>
+              {option.blood}
             </option>
           ))}
         </TextFieldMake>
@@ -165,7 +166,7 @@ const AddClientForm = ({ gender, payment, data, setData, handleSubmit }) => {
           type="file"
           focused
           variant="outlined"
-          label="Files"
+          label="Profle"
           name="File"
           onChange={(event) =>
             setData({
@@ -179,7 +180,7 @@ const AddClientForm = ({ gender, payment, data, setData, handleSubmit }) => {
       <Grid item xs={12}>
         <Stack spacing={3} direction="row">
           <ButtonMake size="medium" type="submit" onClick={handleSubmit}>
-            Upload
+            Create Client
           </ButtonMake>
           <ButtonMake size="medium" type="reset">
             Cancel

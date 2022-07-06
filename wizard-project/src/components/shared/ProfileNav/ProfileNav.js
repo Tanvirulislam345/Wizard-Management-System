@@ -14,6 +14,7 @@ const ProfileNav = ({ navValue, data, setData }) => {
             borderBottom: data === value && "1px solid #3F51B5",
             fontWeight: "bold",
             px: 2,
+            cursor: "pointer",
           }}
         >
           {value}

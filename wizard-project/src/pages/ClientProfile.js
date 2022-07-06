@@ -37,8 +37,6 @@ const ClientProfile = () => {
       .then((data) => setProjects(data));
   }, [clientId]);
 
-  const files = useState([1, 2, 3]);
-
   const handleProject = () => {};
 
   return (
@@ -56,12 +54,13 @@ const ClientProfile = () => {
                     id={values.ClientId}
                     description={values.Description}
                     contact={values.Contact}
+                    file={values.File}
                   />
                 </Grid>
 
                 <Grid xs={12} item>
                   <HeadingFormat title="Files">
-                    <Files files={files} />
+                    <Files files={values.File} />
                   </HeadingFormat>
                 </Grid>
               </Grid>

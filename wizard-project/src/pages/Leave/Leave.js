@@ -77,7 +77,11 @@ const Leave = () => {
   return (
     <LayoutContiner style={{ paddingTop: "30px" }}>
       <HeadingFormatContainer>
-        <ProfileNav navValue={navValue} data={data} setData={setData} />
+        {user?.Role === "admin" ? (
+          <ProfileNav navValue={navValue} data={data} setData={setData} />
+        ) : (
+          <ProfileNav navValue={["All Leave"]} data={data} setData={setData} />
+        )}
       </HeadingFormatContainer>
       {leaveType !== null && data === "Leave Type" && (
         <Box sx={{ mt: 2 }}>

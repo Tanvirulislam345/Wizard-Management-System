@@ -19,13 +19,10 @@ const ClientAbout = ({ values }) => {
       >
         <ProfileSingleInfo title="Full Name" value={values.FullName} />
         <ProfileSingleInfo title="Email" value={values.Email} />
-        <ProfileSingleInfo title="Location" value={values.Address} />
+        <ProfileSingleInfo title="Address" value={values.Address} />
         <ProfileSingleInfo title="Company Name" value={values.CompanyName} />
-        <ProfileSingleInfo title="Currency" value={values.Address} />
-        <ProfileSingleInfo
-          title="Billing Method"
-          value={values.BillingMethod}
-        />
+        <ProfileSingleInfo title="Blood Group" value={values.BloodGroup} />
+        <ProfileSingleInfo title="Profile Created" value={values.Date} />
       </Grid>
     </>
   );

@@ -42,7 +42,7 @@ export default function ProfileIcon() {
             <Avatar
               alt="Travis Howard"
               src="/static/images/avatar/2.jpg"
-              sx={{ mx: 3 }}
+              sx={{ mr: 5 }}
               onClick={handleClick}
             />
           </div>

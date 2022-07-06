@@ -7,7 +7,16 @@ import { LayoutContiner } from "../styles/MetarialStyles";
 
 const AddClients = () => {
   const gender = [{ gender: "Male" }, { gender: "Female" }];
-  const payment = [{ method: "Cash" }, { method: "Card" }];
+  const BloodGroup = [
+    { blood: "A+" },
+    { blood: "B+" },
+    { blood: "O+" },
+    { blood: "AB+" },
+    { blood: "A-" },
+    { blood: "O-" },
+    { blood: "B-" },
+    { blood: "AB-" },
+  ];
 
   const [data, setData] = useState(null);
   const navigate = useNavigate();
@@ -49,7 +58,7 @@ const AddClients = () => {
       <SubNav2 project="Add Client" />
       <AddClientForm
         gender={gender}
-        payment={payment}
+        bloodgroup={BloodGroup}
         data={data}
         setData={setData}
         handleSubmit={handleSubmit}

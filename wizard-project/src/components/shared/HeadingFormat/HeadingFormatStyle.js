@@ -11,6 +11,7 @@ export const HeadingFormatTitle = styled(Typography)(({ theme }) => ({
   fontSize: "24px",
   fontWeight: 700,
   paddingBottom: "15px",
+  marginRight: "10px",
   color: theme.palette.secondary.main,
 }));
 export const HeadingFormatSubTitle = styled(Typography)(({ theme }) => ({

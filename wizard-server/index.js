@@ -64,6 +64,28 @@ let transporter = nodemailer.createTransport({
   },
 });
 
+app.post("/passwordReset/:role", (req, res) => {
+  const data = req.body;
+  const role = req.params.role;
+  let uri;
+  if (role === "admin") {
+    uri = `UPDATE all_admin  SET Password = "${data.password}" WHERE Role = "${data.role}" AND Email = "${data.email}"`;
+  } else if (role === "employee") {
+    uri = `UPDATE all_employee  SET Password = "${data.password}" WHERE Role = "${data.role}" AND Email = "${data.email}"`;
+  } else if (role === "client") {
+    uri = `UPDATE all_client  SET Password = "${data.password}" WHERE Role = "${data.role}" AND Email = "${data.email}"`;
+  }
+  connection.query(uri, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(result);
+      res.json(result);
+    }
+  });
+  // console.log(uri, role, data);
+  // res.json(true);
+});
 app.post("/adminmatch/:email", (req, res) => {
   const data = req.body;
   connection.query(

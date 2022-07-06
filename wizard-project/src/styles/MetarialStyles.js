@@ -1,6 +1,6 @@
 import { makeStyles } from "@mui/styles";
 import { styled } from "@mui/material/styles";
-import { AppBar, Box, Button, Grid, MenuItem, TextField } from "@mui/material";
+import { AppBar, Box, Button, MenuItem, TextField } from "@mui/material";
 
 export const LayoutRoot = styled(Box)(({ theme }) => ({
   width: {
@@ -39,7 +39,6 @@ export const LayoutContiner = styled(Box)(({ theme }) => ({
   "&::-webkit-scrollbar": {
     display: "none",
   },
-
   margin: "30px",
   padding: "30px",
   borderRadius: "15px",
@@ -169,9 +168,13 @@ export const useStyle = makeStyles((theme) => {
     sidebar: {
       display: "flex",
       flexDirection: "column",
-      height: "100%",
+      height: "100vh",
+      overflow: "auto",
       paddingTop: "64px",
       backgroundColor: theme.background.secondary,
+      "&::-webkit-scrollbar": {
+        display: "none",
+      },
     },
   };
 });

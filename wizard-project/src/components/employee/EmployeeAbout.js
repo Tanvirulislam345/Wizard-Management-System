@@ -21,7 +21,7 @@ const EmployeeAbout = ({ values }) => {
       >
         <ProfileSingleInfo title="Full Name" value={FullName} />
         <ProfileSingleInfo title="Email" value={Email} />
-        <ProfileSingleInfo title="Location" value={PermanentAddress} />
+        <ProfileSingleInfo title="Address" value={PermanentAddress} />
         <ProfileSingleInfo title="Birth Date" value={BirthDate} />
         <ProfileSingleInfo title="Join Date" value={JoinDate} />
         <ProfileSingleInfo title="Department" value={Department} />

@@ -55,6 +55,7 @@ import "./App.css";
 import { theme } from "./theme";
 import CategoriEditForm from "./components/expense/CategoriEditForm";
 import Transfer from "./pages/Transfer";
+import ForgottenPassword from "./pages/ForgottenPassword";
 
 function App() {
   return (
@@ -67,6 +68,14 @@ function App() {
               element={
                 <LayoutChild>
                   <Login />
+                </LayoutChild>
+              }
+            />
+            <Route
+              path="/forget"
+              element={
+                <LayoutChild>
+                  <ForgottenPassword />
                 </LayoutChild>
               }
             />
@@ -104,6 +113,7 @@ function App() {
                 </Layout>
               }
             />
+
             <Route
               path="/addloan"
               element={
