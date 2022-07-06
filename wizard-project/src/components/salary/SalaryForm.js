@@ -16,9 +16,14 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 600,
+  height: "60vh",
+  overflow: "auto",
   bgcolor: "#262E41",
   p: 2,
   borderRadius: "10px",
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
 };
 
 export default function SalaryForm({ values }) {

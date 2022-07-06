@@ -83,9 +83,8 @@ app.post("/passwordReset/:role", (req, res) => {
       res.json(result);
     }
   });
-  // console.log(uri, role, data);
-  // res.json(true);
 });
+
 app.post("/adminmatch/:email", (req, res) => {
   const data = req.body;
   connection.query(
