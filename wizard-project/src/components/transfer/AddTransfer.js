@@ -12,17 +12,30 @@ const AddTransfer = () => {
   const navigate = useNavigate();
   const [data, setData] = useState(null);
   const handleSubmit = () => {
-    console.log(data);
-    axios
-      .post(
-        `https://wizard-software-technology.rpi.gov.bd/transfer_balance`,
-        data
-      )
-      .then((res) => {
-        if (res.status === 200) {
-          navigate("/transfer");
-        }
-      });
+    if (data !== null) {
+      const data1 = data.TransferFrom;
+      const data2 = data.TransferTo;
+      if (data.TransferFrom === data1 && data.TransferFrom === data2) {
+        alert(`
+    Transfer Error 
+    Transfer From and To are same
+     `);
+      } else {
+        axios
+          .post(
+            `https://wizard-software-technology.rpi.gov.bd/transfer_balance`,
+            data
+          )
+          .then((res) => {
+            if (res.status === 200) {
+              alert("Tranfer are successfull");
+              navigate("/dashboard");
+            }
+          });
+      }
+    } else {
+      alert(`please fillup all field`);
+    }
   };
 
   return (
