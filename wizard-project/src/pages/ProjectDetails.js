@@ -20,7 +20,7 @@ const ProjectDetails = () => {
   useEffect(() => {
     axios
       .get(
-        `https://wizard-software-technology.rpi.gov.bd/project/${projectDetailsId}`
+        `http://localhost:9000/project/${projectDetailsId}`
       )
       .then((res) => setClientDetails(res.data));
   }, [projectDetailsId, status]);
@@ -30,7 +30,7 @@ const ProjectDetails = () => {
     data[id].status = value;
     axios
       .put(
-        `https://wizard-software-technology.rpi.gov.bd/updateprojectstatus/${projectDetailsId}`,
+        `http://localhost:9000/updateprojectstatus/${projectDetailsId}`,
         data
       )
       .then((res) => {

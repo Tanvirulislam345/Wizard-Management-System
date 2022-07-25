@@ -11,7 +11,7 @@ const MenualInvoiceView = () => {
   useEffect(() => {
     axios
       .get(
-        `https://wizard-software-technology.rpi.gov.bd/menualinvoice/${menualid}`
+        `http://localhost:9000/menualinvoice/${menualid}`
       )
       .then((res) => setInvoiceData(res.data));
   }, [menualid]);

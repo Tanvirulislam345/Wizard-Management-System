@@ -17,7 +17,7 @@ const EditPayment = () => {
   const handleSubmit = () => {
     axios
       .put(
-        `https://wizard-software-technology.rpi.gov.bd/allpayment/${paymentId}`,
+        `http://localhost:9000/allpayment/${paymentId}`,
         data
       )
       .then((res) => {
@@ -31,16 +31,16 @@ const EditPayment = () => {
   useEffect(() => {
     axios
       .get(
-        `https://wizard-software-technology.rpi.gov.bd/allpayment/${paymentId}`
+        `http://localhost:9000/allpayment/${paymentId}`
       )
       .then((res) => setValues(res.data));
 
     axios
-      .get("https://wizard-software-technology.rpi.gov.bd/client")
+      .get("http://localhost:9000/client")
       .then((res) => setClientId(res.data));
 
     axios
-      .get("https://wizard-software-technology.rpi.gov.bd/allproject")
+      .get("http://localhost:9000/allproject")
       .then((res) => setProjectId(res.data));
   }, [paymentId]);
 

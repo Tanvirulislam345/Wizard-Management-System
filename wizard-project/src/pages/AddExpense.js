@@ -12,7 +12,7 @@ const AddExpense = () => {
 
   useEffect(() => {
     axios
-      .get(`https://wizard-software-technology.rpi.gov.bd/expense_categori`)
+      .get(`http://localhost:9000/expense_categori`)
       .then((res) => setCategori(res.data));
   }, []);
 
@@ -25,7 +25,7 @@ const AddExpense = () => {
     if (data !== null) {
       axios
         .post(
-          `https://wizard-software-technology.rpi.gov.bd/addexpense`,
+          `http://localhost:9000/addexpense`,
           newData
         )
         .then((res) => {

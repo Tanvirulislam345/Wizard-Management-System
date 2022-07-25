@@ -14,7 +14,7 @@ const Invoice2 = () => {
   useEffect(() => {
     axios
       .get(
-        `https://wizard-software-technology.rpi.gov.bd/salary/invoice/${invoice}`
+        `http://localhost:9000/salary/invoice/${invoice}`
       )
       .then((res) => setInvoiceData(res.data));
   }, []);

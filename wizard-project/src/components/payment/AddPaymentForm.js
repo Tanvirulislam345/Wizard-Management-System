@@ -34,7 +34,7 @@ const AddPaymentForm = ({ ProjectId }) => {
 
       axios
         .post(
-          `https://wizard-software-technology.rpi.gov.bd/addpayment`,
+          `http://localhost:9000/addpayment`,
           newData
         )
         .then((res) => {
@@ -49,7 +49,7 @@ const AddPaymentForm = ({ ProjectId }) => {
 
   useEffect(() => {
     axios
-      .get(`https://wizard-software-technology.rpi.gov.bd/allpayments/${id}`)
+      .get(`http://localhost:9000/allpayments/${id}`)
       .then((res) => setProjectDetails(res.data));
   }, [id]);
 

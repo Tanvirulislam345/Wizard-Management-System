@@ -9,7 +9,7 @@ const AddPayment = () => {
 
   useEffect(() => {
     axios
-      .get("https://wizard-software-technology.rpi.gov.bd/allproject")
+      .get("http://localhost:9000/allproject")
       .then((res) => setProjectId(res.data));
   }, []);
 

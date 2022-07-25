@@ -15,7 +15,7 @@ const CategoriExpenseForm = () => {
     console.log(data);
     axios
       .post(
-        `https://wizard-software-technology.rpi.gov.bd/expensecategori`,
+        `http://localhost:9000/expensecategori`,
         data
       )
       .then((res) => {

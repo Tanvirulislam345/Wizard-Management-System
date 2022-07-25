@@ -99,14 +99,14 @@ const AddProject = () => {
     if (data !== null && data.File !== undefined) {
       axios
         .post(
-          "https://wizard-software-technology.rpi.gov.bd/addproject",
+          "http://localhost:9000/addproject",
           formData
         )
         .then((res) => {
           if (res.status === 200) {
             axios
               .post(
-                `https://wizard-software-technology.rpi.gov.bd/addpayment`,
+                `http://localhost:9000/addpayment`,
                 payment
               )
               .then((res) => {
@@ -123,10 +123,10 @@ const AddProject = () => {
 
   useEffect(() => {
     axios
-      .get("https://wizard-software-technology.rpi.gov.bd/client")
+      .get("http://localhost:9000/client")
       .then((res) => setClientId(res.data));
     axios
-      .get("https://wizard-software-technology.rpi.gov.bd/employee")
+      .get("http://localhost:9000/employee")
       .then((res) => setTeamLeader(res.data));
   }, []);
 

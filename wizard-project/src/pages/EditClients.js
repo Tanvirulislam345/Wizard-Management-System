@@ -14,7 +14,7 @@ const EditClients = () => {
   useEffect(() => {
     axios
       .get(
-        `https://wizard-software-technology.rpi.gov.bd/client/${editclientId}`
+        `http://localhost:9000/client/${editclientId}`
       )
       .then((res) => setValues(res.data));
   }, [editclientId]);
@@ -23,7 +23,7 @@ const EditClients = () => {
     if (data !== null) {
       axios
         .put(
-          `https://wizard-software-technology.rpi.gov.bd/client/${editclientId}`,
+          `http://localhost:9000/client/${editclientId}`,
           data
         )
         .then((res) => {

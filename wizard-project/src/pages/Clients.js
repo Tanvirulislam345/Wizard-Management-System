@@ -8,7 +8,7 @@ import { LayoutContiner } from "../styles/MetarialStyles";
 const Clients = () => {
   const [clients, setClient] = useState([]);
   useEffect(() => {
-    fetch("https://wizard-software-technology.rpi.gov.bd/client")
+    fetch("http://localhost:9000/client")
       .then((res) => res.json())
       .then((data) => setClient(data));
   }, []);
@@ -16,7 +16,7 @@ const Clients = () => {
   const handleRemove = (id) => {
     axios
       .delete(
-        `https://wizard-software-technology.rpi.gov.bd/client/delete/${id}`
+        `http://localhost:9000/client/delete/${id}`
       )
       .then((res) => {
         if (res.status === 200) {

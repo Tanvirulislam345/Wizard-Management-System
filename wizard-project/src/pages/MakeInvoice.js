@@ -8,7 +8,7 @@ const MakeInvoice = () => {
   const [rows, setRows] = useState(null);
   useEffect(() => {
     axios
-      .get("https://wizard-software-technology.rpi.gov.bd/menualinvoice")
+      .get("http://localhost:9000/menualinvoice")
       .then((res) => setRows(res.data));
   }, []);
 

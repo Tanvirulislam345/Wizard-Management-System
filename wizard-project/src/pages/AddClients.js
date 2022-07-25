@@ -40,7 +40,7 @@ const AddClients = () => {
     if (data !== null) {
       axios
         .post(
-          "https://wizard-software-technology.rpi.gov.bd/addclient",
+          "http://localhost:9000/addclient",
           formData
         )
         .then((res) => {

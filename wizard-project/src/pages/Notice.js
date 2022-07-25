@@ -8,14 +8,14 @@ const Notice = () => {
 
   useEffect(() => {
     axios
-      .get("https://wizard-software-technology.rpi.gov.bd/notice")
+      .get("http://localhost:9000/notice")
       .then((res) => setRows(res.data));
   }, []);
 
   const handleChange = (id) => {
     axios
       .delete(
-        `https://wizard-software-technology.rpi.gov.bd/notice/delete/${id}`
+        `http://localhost:9000/notice/delete/${id}`
       )
       .then((res) => setRows(rows.filter((row) => row.id !== id)));
   };

@@ -23,7 +23,7 @@ const AddTransfer = () => {
       } else {
         axios
           .post(
-            `https://wizard-software-technology.rpi.gov.bd/transfer_balance`,
+            `http://localhost:9000/transfer_balance`,
             data
           )
           .then((res) => {

@@ -15,7 +15,7 @@ const EditLeaveType = () => {
   const handleSubmit = () => {
     axios
       .put(
-        `https://wizard-software-technology.rpi.gov.bd/leavetype/${leavetypeId}`,
+        `http://localhost:9000/leavetype/${leavetypeId}`,
         data
       )
       .then((res) => {
@@ -28,7 +28,7 @@ const EditLeaveType = () => {
   useEffect(() => {
     axios
       .get(
-        `https://wizard-software-technology.rpi.gov.bd/leavetype/${leavetypeId}`
+        `http://localhost:9000/leavetype/${leavetypeId}`
       )
       .then((res) => setValues(res.data));
   }, []);

@@ -25,7 +25,7 @@ const Leave = () => {
     if (method === "delete") {
       if (type === "leave") {
         axios
-          .delete(`https://wizard-software-technology.rpi.gov.bd/leave/${id}`)
+          .delete(`http://localhost:9000/leave/${id}`)
           .then((res) => {
             if (res.status === 200) {
               setLeave(leave?.filter((le) => le.id !== id));
@@ -34,7 +34,7 @@ const Leave = () => {
       } else {
         axios
           .delete(
-            `https://wizard-software-technology.rpi.gov.bd/leavetype/${id}`
+            `http://localhost:9000/leavetype/${id}`
           )
           .then((res) => {
             if (res.status === 200) {
@@ -45,7 +45,7 @@ const Leave = () => {
     } else {
       const data = { Status: type };
       axios
-        .put(`https://wizard-software-technology.rpi.gov.bd/leave/${id}`, data)
+        .put(`http://localhost:9000/leave/${id}`, data)
         .then((res) => {
           if (res.status === 200) {
             setUpdate(!update);
@@ -56,13 +56,13 @@ const Leave = () => {
 
   useEffect(() => {
     axios
-      .get("https://wizard-software-technology.rpi.gov.bd/leavetype")
+      .get("http://localhost:9000/leavetype")
       .then((res) => {
         setLeaveType(res.data);
       });
 
     axios
-      .get("https://wizard-software-technology.rpi.gov.bd/leave")
+      .get("http://localhost:9000/leave")
       .then((res) => {
         if (user?.Role === "employee") {
           const data = res.data;

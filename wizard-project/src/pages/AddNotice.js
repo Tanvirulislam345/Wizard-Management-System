@@ -19,7 +19,7 @@ const AddNotice = () => {
 
   useEffect(() => {
     axios
-      .get("https://wizard-software-technology.rpi.gov.bd/employee")
+      .get("http://localhost:9000/employee")
       .then((res) => {
         const data = res.data;
         const value1 = data.map((da) => {
@@ -29,7 +29,7 @@ const AddNotice = () => {
       });
 
     axios
-      .get("https://wizard-software-technology.rpi.gov.bd/client")
+      .get("http://localhost:9000/client")
       .then((res) => {
         const data = res.data;
         const value1 = data.map((da) => {
@@ -63,7 +63,7 @@ const AddNotice = () => {
     };
 
     axios
-      .post("https://wizard-software-technology.rpi.gov.bd/addnotice", newData)
+      .post("http://localhost:9000/addnotice", newData)
       .then((res) => {
         navigate("/notice");
       });

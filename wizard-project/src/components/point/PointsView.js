@@ -15,7 +15,7 @@ const PointsView = () => {
   const [filterValue, setFilterValue] = useState(null);
 
   useEffect(() => {
-    fetch("https://wizard-software-technology.rpi.gov.bd/employee")
+    fetch("http://localhost:9000/employee")
       .then((res) => res.json())
       .then((data) => {
         if (user?.Role === "employee") {
@@ -27,7 +27,7 @@ const PointsView = () => {
       });
 
     axios
-      .get(`https://wizard-software-technology.rpi.gov.bd/points`)
+      .get(`http://localhost:9000/points`)
       .then((res) => {
         const data = res.data;
         if (user?.Role === "employee") {
@@ -42,7 +42,7 @@ const PointsView = () => {
   const handleSearch = () => {
     axios
       .post(
-        `https://wizard-software-technology.rpi.gov.bd/points/view`,
+        `http://localhost:9000/points/view`,
         filterValue
       )
       .then((res) => {

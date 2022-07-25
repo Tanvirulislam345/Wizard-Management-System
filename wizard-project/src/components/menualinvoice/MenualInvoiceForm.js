@@ -60,7 +60,7 @@ const MenualInvoiceForm = () => {
 
     axios
       .post(
-        `https://wizard-software-technology.rpi.gov.bd/menualinvoice`,
+        `http://localhost:9000/menualinvoice`,
         newData
       )
       .then((res) => {

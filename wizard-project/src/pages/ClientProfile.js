@@ -27,17 +27,17 @@ const ClientProfile = () => {
 
   useEffect(() => {
     axios
-      .get(`https://wizard-software-technology.rpi.gov.bd/client/${clientId}`)
+      .get(`http://localhost:9000/client/${clientId}`)
       .then((res) => setValues(res.data));
 
     fetch(
-      `https://wizard-software-technology.rpi.gov.bd/clientproject/${clientId}`
+      `http://localhost:9000/clientproject/${clientId}`
     )
       .then((res) => res.json())
       .then((data) => setProjects(data));
   }, [clientId]);
 
-  const handleProject = () => {};
+  const handleProject = () => { };
 
   return (
     <LayoutContiner>

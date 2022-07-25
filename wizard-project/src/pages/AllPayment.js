@@ -21,14 +21,14 @@ const AllPayment = () => {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    fetch("https://wizard-software-technology.rpi.gov.bd/allpayment")
+    fetch("http://localhost:9000/allpayment")
       .then((res) => res.json())
       .then((data) => setRows(data));
   }, []);
 
   const handleSearch = (id) => {
     axios
-      .delete(`https://wizard-software-technology.rpi.gov.bd/allpayment/${id}`)
+      .delete(`http://localhost:9000/allpayment/${id}`)
       .then((res) => {
         if (res.status === 200) {
           setRows(rows.filter((row) => row.id !== id));
@@ -37,7 +37,7 @@ const AllPayment = () => {
     if (filterValue !== null) {
       axios
         .post(
-          `https://wizard-software-technology.rpi.gov.bd/income_categori_search`,
+          `http://localhost:9000/income_categori_search`,
           filterValue
         )
         .then((res) => {
