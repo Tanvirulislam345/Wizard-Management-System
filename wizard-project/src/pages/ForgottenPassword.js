@@ -27,7 +27,7 @@ const ForgottenPassword = () => {
       };
       axios
         .post(
-          `http://localhost:9000/passwordReset/${role}`,
+          `https://wizard-software-technology.rpi.gov.bd/passwordReset/${role}`,
           value
         )
         .then((res) => {

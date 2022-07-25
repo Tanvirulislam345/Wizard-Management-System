@@ -29,7 +29,7 @@ const EmployeeProfile = () => {
   const [data, setData] = useState("About Me");
   const [points, setPoint] = useState(0);
   const [projectCategori, setProjectCategori] = useState(null);
-  const handleProject = () => { };
+  const handleProject = () => {};
   const navValue = [
     "About Me",
     "Salary",
@@ -69,26 +69,26 @@ const EmployeeProfile = () => {
     };
     axios
       .get(
-        `http://localhost:9000/employee/${profileId}`
+        `https://wizard-software-technology.rpi.gov.bd/employee/${profileId}`
       )
       .then((res) => setValues(res.data[0]));
 
     axios
       .post(
-        `http://localhost:9000/allattendence/search`,
+        `https://wizard-software-technology.rpi.gov.bd/allattendence/search`,
         data2
       )
       .then((res) => setAttendence(res.data));
 
     axios
       .get(
-        `http://localhost:9000/employeeproject/${profileId}`
+        `https://wizard-software-technology.rpi.gov.bd/employeeproject/${profileId}`
       )
       .then((res) => setProjects(res.data));
 
     axios
       .post(
-        `http://localhost:9000/points/view`,
+        `https://wizard-software-technology.rpi.gov.bd/points/view`,
         EmployeeId
       )
       .then((res) => {

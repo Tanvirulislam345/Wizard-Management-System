@@ -14,7 +14,7 @@ const AddLead = () => {
       Status: "Pendding",
     };
     axios
-      .post("http://localhost:9000/lead", newData)
+      .post("https://wizard-software-technology.rpi.gov.bd/lead", newData)
       .then((res) => {
         if (res.status === 200) {
           navigate("/lead");

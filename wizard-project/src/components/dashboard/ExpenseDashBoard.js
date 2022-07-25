@@ -14,7 +14,7 @@ const ExpenseDashBoard = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/expense_categori`)
+      .get(`https://wizard-software-technology.rpi.gov.bd/expense_categori`)
       .then((res) => {
         setCategori(res.data);
       });
@@ -24,7 +24,7 @@ const ExpenseDashBoard = () => {
     if (filterValue !== null) {
       axios
         .post(
-          `http://localhost:9000/expense_categori_search`,
+          `https://wizard-software-technology.rpi.gov.bd/expense_categori_search`,
           filterValue
         )
         .then((res) => {

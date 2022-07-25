@@ -63,7 +63,7 @@ const AddEmployee = () => {
       // console.log(newData);
       axios
         .post(
-          "http://localhost:9000/addemployee",
+          "https://wizard-software-technology.rpi.gov.bd/addemployee",
           formData
         )
         .then((res) => {

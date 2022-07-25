@@ -13,14 +13,14 @@ const Invoice = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:9000/allpayment/${invoiceId}`
+        `https://wizard-software-technology.rpi.gov.bd/allpayment/${invoiceId}`
       )
       .then((res) => setInvoiceData(res.data));
 
     if (invoiceData !== null) {
       axios
         .get(
-          `http://localhost:9000/client/${invoiceData?.ClientId}`
+          `https://wizard-software-technology.rpi.gov.bd/client/${invoiceData?.ClientId}`
         )
         .then((res) => setClientData(res.data));
     }

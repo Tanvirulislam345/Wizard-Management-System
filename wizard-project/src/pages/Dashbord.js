@@ -17,7 +17,7 @@ const Dashbord = () => {
     const running = "Running";
     axios
       .get(
-        `http://localhost:9000/allproject/${running}`
+        `https://wizard-software-technology.rpi.gov.bd/allproject/${running}`
       )
       .then((res) => {
         const data = res.data;
@@ -28,7 +28,7 @@ const Dashbord = () => {
       });
 
     axios
-      .get(`http://localhost:9000/client`)
+      .get(`https://wizard-software-technology.rpi.gov.bd/client`)
       .then((res) => {
         const data = res.data;
 
@@ -39,7 +39,7 @@ const Dashbord = () => {
       });
 
     axios
-      .get(`http://localhost:9000/employee`)
+      .get(`https://wizard-software-technology.rpi.gov.bd/employee`)
       .then((res) => {
         const data = res.data;
         setEmployee({
@@ -50,7 +50,7 @@ const Dashbord = () => {
 
     axios
       .get(
-        `http://localhost:9000/allattendence/present`
+        `https://wizard-software-technology.rpi.gov.bd/allattendence/present`
       )
       .then((res) => {
         const data = res.data;

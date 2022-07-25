@@ -63,7 +63,7 @@ const AddAttendence = () => {
     if (value !== undefined) {
       axios
         .post(
-          "http://localhost:9000/addattendence",
+          "https://wizard-software-technology.rpi.gov.bd/addattendence",
           value
         )
         .then((res) => {

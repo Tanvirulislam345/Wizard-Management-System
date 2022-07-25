@@ -53,7 +53,7 @@ export default function ProjectChat({ Role, DoneWork, ProjectId }) {
       if (data.File == "nothig") {
         axios
           .post(
-            "http://localhost:9000/addcomments",
+            "https://wizard-software-technology.rpi.gov.bd/addcomments",
             newData
           )
           .then((res) => {
@@ -64,7 +64,7 @@ export default function ProjectChat({ Role, DoneWork, ProjectId }) {
       } else {
         axios
           .post(
-            "http://localhost:9000/addcommentsFile",
+            "https://wizard-software-technology.rpi.gov.bd/addcommentsFile",
             formData
           )
           .then((res) => {
@@ -81,7 +81,7 @@ export default function ProjectChat({ Role, DoneWork, ProjectId }) {
   React.useEffect(() => {
     axios
       .get(
-        `http://localhost:9000/comments/${ProjectId}`
+        `https://wizard-software-technology.rpi.gov.bd/comments/${ProjectId}`
       )
       .then((res) => {
         const data = res.data;

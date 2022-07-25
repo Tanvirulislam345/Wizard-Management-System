@@ -23,18 +23,18 @@ const AllExpense = () => {
   const navValue = ["Expense", "Expense Categori"];
 
   useEffect(() => {
-    fetch("http://localhost:9000/allexpense")
+    fetch("https://wizard-software-technology.rpi.gov.bd/allexpense")
       .then((res) => res.json())
       .then((data) => setRows(data));
 
     axios
-      .get(`http://localhost:9000/expense_categori`)
+      .get(`https://wizard-software-technology.rpi.gov.bd/expense_categori`)
       .then((res) => setValues(res.data));
   }, []);
 
   const handleSearch = (id) => {
     axios
-      .delete(`http://localhost:9000/allexpense/${id}`)
+      .delete(`https://wizard-software-technology.rpi.gov.bd/allexpense/${id}`)
       .then((res) => {
         if (res.status === 200) {
           setRows(rows.filter((row) => row.id !== id));
@@ -44,7 +44,7 @@ const AllExpense = () => {
     if (filterValue !== null) {
       axios
         .post(
-          `http://localhost:9000/expense_categori_search`,
+          `https://wizard-software-technology.rpi.gov.bd/expense_categori_search`,
           filterValue
         )
         .then((res) => {

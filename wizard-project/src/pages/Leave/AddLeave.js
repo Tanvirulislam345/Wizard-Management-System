@@ -21,7 +21,7 @@ const AddLeave = () => {
     };
 
     axios
-      .post("http://localhost:9000/addleave", newData)
+      .post("https://wizard-software-technology.rpi.gov.bd/addleave", newData)
       .then((res) => {
         if (res.status === 200) {
           if (user?.Role === "employee") {
@@ -36,7 +36,7 @@ const AddLeave = () => {
   useEffect(() => {
     if (user) {
       axios
-        .get("http://localhost:9000/employee")
+        .get("https://wizard-software-technology.rpi.gov.bd/employee")
         .then((res) => {
           if (user?.Role === "employee") {
             const data = res.data;
@@ -51,7 +51,7 @@ const AddLeave = () => {
     }
 
     axios
-      .get("http://localhost:9000/leavetype")
+      .get("https://wizard-software-technology.rpi.gov.bd/leavetype")
       .then((res) => setLeaveType(res.data));
   }, [user]);
 

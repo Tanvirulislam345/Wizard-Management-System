@@ -55,7 +55,7 @@ const AddPointForm = ({ employee }) => {
     console.log(newData);
 
     axios
-      .post(`http://localhost:9000/points`, newData)
+      .post(`https://wizard-software-technology.rpi.gov.bd/points`, newData)
       .then((res) => console.log(res));
   };
 
@@ -63,7 +63,7 @@ const AddPointForm = ({ employee }) => {
     const data = { EmployeeId: id, Month };
     axios
       .post(
-        `http://localhost:9000/allattendence/search`,
+        `https://wizard-software-technology.rpi.gov.bd/allattendence/search`,
         data
       )
       .then((res) => setProjectDetails(res.data));

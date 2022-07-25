@@ -62,7 +62,7 @@ const EditProjectForm = ({ values, projectId }) => {
 
     axios
       .put(
-        `http://localhost:9000/updateproject/${projectId}`,
+        `https://wizard-software-technology.rpi.gov.bd/updateproject/${projectId}`,
         newData
       )
       .then((res) => {

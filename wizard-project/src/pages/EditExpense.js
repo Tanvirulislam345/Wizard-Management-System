@@ -16,7 +16,7 @@ const EditExpense = () => {
     if (data !== null) {
       axios
         .put(
-          `http://localhost:9000/allexpense/${expenseId}`,
+          `https://wizard-software-technology.rpi.gov.bd/allexpense/${expenseId}`,
           data
         )
         .then((res) => {
@@ -33,13 +33,13 @@ const EditExpense = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:9000/allexpense/${expenseId}`
+        `https://wizard-software-technology.rpi.gov.bd/allexpense/${expenseId}`
       )
       .then((res) => setValues(res.data));
   }, [expenseId]);
 
   console.log(
-    `http://localhost:9000/allexpense/${expenseId}`
+    `https://wizard-software-technology.rpi.gov.bd/allexpense/${expenseId}`
   );
 
   return (

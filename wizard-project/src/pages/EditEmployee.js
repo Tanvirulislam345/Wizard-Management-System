@@ -45,7 +45,7 @@ const EditEmployee = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:9000/employee/${employeetId}`
+        `https://wizard-software-technology.rpi.gov.bd/employee/${employeetId}`
       )
       .then((res) => setValues(res.data[0]));
   }, [employeetId]);
@@ -54,7 +54,7 @@ const EditEmployee = () => {
     if (data !== null) {
       axios
         .put(
-          `http://localhost:9000/employee/${employeetId}`,
+          `https://wizard-software-technology.rpi.gov.bd/employee/${employeetId}`,
           data
         )
         .then((res) => {

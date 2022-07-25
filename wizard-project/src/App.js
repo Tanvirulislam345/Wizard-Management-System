@@ -56,6 +56,7 @@ import { theme } from "./theme";
 import CategoriEditForm from "./components/expense/CategoriEditForm";
 import Transfer from "./pages/Transfer";
 import ForgottenPassword from "./pages/ForgottenPassword";
+import PrivateRoute from "./components/login/PrivateRoute";
 
 function App() {
   return (
@@ -74,406 +75,502 @@ function App() {
             <Route
               path="/forget"
               element={
-                <LayoutChild>
-                  <ForgottenPassword />
-                </LayoutChild>
+                <PrivateRoute>
+                  <LayoutChild>
+                    <ForgottenPassword />
+                  </LayoutChild>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/dashboard"
               element={
-                <Layout>
-                  <Dashbord />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <Dashbord />
+                  </Layout>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/notice"
               element={
-                <Layout>
-                  <Notice />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <Notice />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/notice/view/:noticeId"
               element={
-                <Layout>
-                  <NoticeView />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <NoticeView />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/loan"
               element={
-                <Layout>
-                  <Loan />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <Loan />
+                  </Layout>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/addloan"
               element={
-                <Layout>
-                  <AddLoan />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <AddLoan />
+                  </Layout>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/addadjustment"
               element={
-                <Layout>
-                  <AddAdjustment />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <AddAdjustment />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/addNotice"
               element={
-                <Layout>
-                  <AddNotice />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <AddNotice />
+                  </Layout>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/makeinvoice"
               element={
-                <Layout>
-                  <MakeInvoice />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <MakeInvoice />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/addmenualinvoice"
               element={
-                <Layout>
-                  <MenualInvoiceForm />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <MenualInvoiceForm />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/menual/invoice/:menualid"
               element={
-                <Layout>
-                  <MenualInvoiceView />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <MenualInvoiceView />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/lead"
               element={
-                <Layout>
-                  <Lead />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <Lead />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/addlead"
               element={
-                <Layout>
-                  <AddLead />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <AddLead />
+                  </Layout>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/addCategori"
               element={
-                <Layout>
-                  <CategoriExpenseForm />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <CategoriExpenseForm />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/editCategori/:expenseId"
               element={
-                <Layout>
-                  <CategoriEditForm />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <CategoriEditForm />
+                  </Layout>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/points"
               element={
-                <Layout>
-                  <Points />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <Points />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/addpoint"
               element={
-                <Layout>
-                  <AddPoint />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <AddPoint />
+                  </Layout>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/project"
               element={
-                <Layout>
-                  <Projects />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <Projects />
+                  </Layout>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/project/view/:projectDetailsId"
               element={
-                <LayoutChild>
-                  <ProjectDetails />
-                </LayoutChild>
+                <PrivateRoute>
+                  <LayoutChild>
+                    <ProjectDetails />
+                  </LayoutChild>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/projectinvoice/:projectId"
               element={
-                <LayoutChild>
-                  <ClientInvoice />
-                </LayoutChild>
+                <PrivateRoute>
+                  <LayoutChild>
+                    <ClientInvoice />
+                  </LayoutChild>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/addproject"
               element={
-                <Layout>
-                  <AddProject />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <AddProject />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/editproject/:projectId"
               element={
-                <Layout>
-                  <EditProject />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <EditProject />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/employee"
               element={
-                <Layout>
-                  <Employees />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <Employees />
+                  </Layout>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/employee/profile/:profileId"
               element={
-                <LayoutChild>
-                  <EmployeeProfile />
-                </LayoutChild>
+                <PrivateRoute>
+                  <LayoutChild>
+                    <EmployeeProfile />
+                  </LayoutChild>
+                </PrivateRoute>
               }
             />
             <Route
               path="/addemployee"
               element={
-                <Layout>
-                  <AddEmployee />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <AddEmployee />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/editemployee/:employeetId"
               element={
-                <Layout>
-                  <EditEmployee />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <EditEmployee />
+                  </Layout>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/client"
               element={
-                <Layout>
-                  <Clients />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <Clients />
+                  </Layout>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/attendence"
               element={
-                <Layout>
-                  <Attendence />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <Attendence />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/addattendence"
               element={
-                <Layout>
-                  <AddAttendence />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <AddAttendence />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/addmenualattendence"
               element={
-                <Layout>
-                  <AddMenualAttendence />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <AddMenualAttendence />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/transfer"
               element={
-                <Layout>
-                  <Transfer />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <Transfer />
+                  </Layout>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/client/profile/:clientId"
               element={
-                <LayoutChild>
-                  <ClientProfile />
-                </LayoutChild>
+                <PrivateRoute>
+                  <LayoutChild>
+                    <ClientProfile />
+                  </LayoutChild>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/addclient"
               element={
-                <Layout>
-                  <AddClients />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <AddClients />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/editclient/:editclientId"
               element={
-                <Layout>
-                  <EditClients />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <EditClients />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/payment"
               element={
-                <Layout>
-                  <AllPayment />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <AllPayment />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/payment/update/:paymentId"
               element={
-                <Layout>
-                  <EditPayment />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <EditPayment />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/payment/invoice/:invoiceId"
               element={
-                <LayoutChild>
-                  <Invoice />
-                </LayoutChild>
+                <PrivateRoute>
+                  <LayoutChild>
+                    <Invoice />
+                  </LayoutChild>
+                </PrivateRoute>
               }
             />
             <Route
               path="/salary/invoice/:invoice"
               element={
-                <LayoutChild>
-                  <Invoice2 />
-                </LayoutChild>
+                <PrivateRoute>
+                  <LayoutChild>
+                    <Invoice2 />
+                  </LayoutChild>
+                </PrivateRoute>
               }
             />
             <Route
               path="/addpayment"
               element={
-                <Layout>
-                  <AddPayment />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <AddPayment />
+                  </Layout>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/expense"
               element={
-                <Layout>
-                  <AllExpense />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <AllExpense />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/addexpense"
               element={
-                <Layout>
-                  <AddExpense />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <AddExpense />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/expense/update/:expenseId"
               element={
-                <Layout>
-                  <EditExpense />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <EditExpense />
+                  </Layout>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/leave"
               element={
-                <Layout>
-                  <Leave />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <Leave />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/addleavetype"
               element={
-                <Layout>
-                  <AddLeaveType />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <AddLeaveType />
+                  </Layout>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/addleave"
               element={
-                <LayoutChild>
-                  <AddLeave />
-                </LayoutChild>
+                <PrivateRoute>
+                  <LayoutChild>
+                    <AddLeave />
+                  </LayoutChild>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/leave/update/:leaveId"
               element={
-                <Layout>
-                  <EditLeave />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <EditLeave />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route
               path="/leavetype/update/:leavetypeId"
               element={
-                <Layout>
-                  <EditLeaveType />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <EditLeaveType />
+                  </Layout>
+                </PrivateRoute>
               }
             />
 
             <Route
               path="/salary"
               element={
-                <Layout>
-                  <Salary />
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <Salary />
+                  </Layout>
+                </PrivateRoute>
               }
             />
             <Route

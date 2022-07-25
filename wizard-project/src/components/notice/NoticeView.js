@@ -16,7 +16,7 @@ const NoticeView = () => {
   useState(() => {
     axios
       .get(
-        `http://localhost:9000/notice/view/${noticeId}`
+        `https://wizard-software-technology.rpi.gov.bd/notice/view/${noticeId}`
       )
       .then((res) => setData(res.data));
   }, [noticeId]);

@@ -11,12 +11,12 @@ const ClientInvoice = () => {
   const [clientData, setClientData] = useState(null);
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/project/${projectId}`)
+      .get(`https://wizard-software-technology.rpi.gov.bd/project/${projectId}`)
       .then((res) => setClientDetails(res.data));
     if (invoiceData !== null) {
       axios
         .get(
-          `http://localhost:9000/client/${invoiceData?.ClientId}`
+          `https://wizard-software-technology.rpi.gov.bd/client/${invoiceData?.ClientId}`
         )
         .then((res) => setClientData(res.data));
     }

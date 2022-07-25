@@ -9,7 +9,7 @@ const Lead = () => {
   const [status, setStatus] = useState(false);
   useEffect(() => {
     axios
-      .get("http://localhost:9000/lead")
+      .get("https://wizard-software-technology.rpi.gov.bd/lead")
       .then((res) => setRows(res.data));
   }, [status]);
 
@@ -19,7 +19,7 @@ const Lead = () => {
     };
 
     axios
-      .put(`http://localhost:9000/lead/${id}`, data)
+      .put(`https://wizard-software-technology.rpi.gov.bd/lead/${id}`, data)
       .then((res) => {
         if (res.status === 200) {
           setStatus(!status);

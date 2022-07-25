@@ -17,20 +17,20 @@ const LoanView = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:9000/loan")
+      .get("https://wizard-software-technology.rpi.gov.bd/loan")
       .then((res) => setRows(res.data));
 
     axios
-      .get("http://localhost:9000/employee")
+      .get("https://wizard-software-technology.rpi.gov.bd/employee")
       .then((res) => setEmployee(res.data));
   }, []);
 
-  const handleChange = () => { };
+  const handleChange = () => {};
 
   const handleSearch = () => {
     axios
       .post(
-        `http://localhost:9000/loan_search`,
+        `https://wizard-software-technology.rpi.gov.bd/loan_search`,
         filterValue
       )
       .then((res) => {
@@ -58,7 +58,7 @@ const LoanView = () => {
 
     axios
       .post(
-        `http://localhost:9000/adjustment_search`,
+        `https://wizard-software-technology.rpi.gov.bd/adjustment_search`,
         filterValue
       )
       .then((res) => {

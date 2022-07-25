@@ -13,7 +13,7 @@ const AddMenualAttendence = () => {
   const [inputList, setInputList] = useState(null);
   useEffect(() => {
     axios
-      .get("http://localhost:9000/employee")
+      .get("https://wizard-software-technology.rpi.gov.bd/employee")
       .then((res) => {
         const data = res.data;
         const value = data.map((da) => {
@@ -48,7 +48,7 @@ const AddMenualAttendence = () => {
     });
 
     axios
-      .post("http://localhost:9000/addattendence", data)
+      .post("https://wizard-software-technology.rpi.gov.bd/addattendence", data)
       .then((res) => {
         if (res.status === 200) {
           navigate("/attendence");
