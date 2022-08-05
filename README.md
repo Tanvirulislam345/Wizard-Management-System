@@ -1,6 +1,7 @@
 # Wizard-Management-System
 
 ##login with 
+* role : admin
 * user name : admin@admin.com 
 * password : 12345678
 
