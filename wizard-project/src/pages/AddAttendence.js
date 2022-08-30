@@ -62,10 +62,7 @@ const AddAttendence = () => {
 
     if (value !== undefined) {
       axios
-        .post(
-          "https://wizard-software-technology.rpi.gov.bd/addattendence",
-          value
-        )
+        .post("https://wiztecbd.online/api/addattendence", value)
         .then((res) => {
           if (res.status === 200) {
             navigate("/attendence");

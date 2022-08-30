@@ -16,7 +16,7 @@ const SalaryView = () => {
   const [filterValue, setFilterValue] = useState(null);
 
   useEffect(() => {
-    fetch("https://wizard-software-technology.rpi.gov.bd/employee")
+    fetch("https://wiztecbd.online/api/employee")
       .then((res) => res.json())
       .then((data) => {
         if (user?.Role === "employee") {
@@ -28,7 +28,7 @@ const SalaryView = () => {
       });
 
     if (user) {
-      fetch(`https://wizard-software-technology.rpi.gov.bd/salary/present`)
+      fetch(`https://wiztecbd.online/api/salary/present`)
         .then((res) => res.json())
         .then((data) => {
           if (user?.Role === "employee") {
@@ -47,10 +47,7 @@ const SalaryView = () => {
 
   const handleSearch = () => {
     axios
-      .post(
-        `https://wizard-software-technology.rpi.gov.bd/salary/search`,
-        filterValue
-      )
+      .post(`https://wiztecbd.online/api/salary/search`, filterValue)
       .then((res) => {
         if (res.data.length > 0) {
           if (user.Role === "employee") {

@@ -21,25 +21,20 @@ const AllPayment = () => {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    fetch("https://wizard-software-technology.rpi.gov.bd/allpayment")
+    fetch("https://wiztecbd.online/api/allpayment")
       .then((res) => res.json())
       .then((data) => setRows(data));
   }, []);
 
   const handleSearch = (id) => {
-    axios
-      .delete(`https://wizard-software-technology.rpi.gov.bd/allpayment/${id}`)
-      .then((res) => {
-        if (res.status === 200) {
-          setRows(rows.filter((row) => row.id !== id));
-        }
-      });
+    axios.delete(`https://wiztecbd.online/api/allpayment/${id}`).then((res) => {
+      if (res.status === 200) {
+        setRows(rows.filter((row) => row.id !== id));
+      }
+    });
     if (filterValue !== null) {
       axios
-        .post(
-          `https://wizard-software-technology.rpi.gov.bd/income_categori_search`,
-          filterValue
-        )
+        .post(`https://wiztecbd.online/api/income_categori_search`, filterValue)
         .then((res) => {
           if (res.data.length > 0) {
             const data = res.data;

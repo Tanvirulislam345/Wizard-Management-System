@@ -12,7 +12,7 @@ const AddExpense = () => {
 
   useEffect(() => {
     axios
-      .get(`https://wizard-software-technology.rpi.gov.bd/expense_categori`)
+      .get(`https://wiztecbd.online/api/expense_categori`)
       .then((res) => setCategori(res.data));
   }, []);
 
@@ -24,10 +24,7 @@ const AddExpense = () => {
     // console.log(newData);
     if (data !== null) {
       axios
-        .post(
-          `https://wizard-software-technology.rpi.gov.bd/addexpense`,
-          newData
-        )
+        .post(`https://wiztecbd.online/api/addexpense`, newData)
         .then((res) => {
           if (res.status === 200) {
             navigate("/expense");

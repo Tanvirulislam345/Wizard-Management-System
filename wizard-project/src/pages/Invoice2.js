@@ -13,9 +13,7 @@ const Invoice2 = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://wizard-software-technology.rpi.gov.bd/salary/invoice/${invoice}`
-      )
+      .get(`https://wiztecbd.online/api/salary/invoice/${invoice}`)
       .then((res) => setInvoiceData(res.data));
   }, []);
   return (

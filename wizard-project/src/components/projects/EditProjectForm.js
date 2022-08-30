@@ -61,10 +61,7 @@ const EditProjectForm = ({ values, projectId }) => {
     };
 
     axios
-      .put(
-        `https://wizard-software-technology.rpi.gov.bd/updateproject/${projectId}`,
-        newData
-      )
+      .put(`https://wiztecbd.online/api/updateproject/${projectId}`, newData)
       .then((res) => {
         if (res.status === 200) {
           navigation("/project");

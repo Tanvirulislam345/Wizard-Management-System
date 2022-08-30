@@ -15,7 +15,7 @@ const PointsView = () => {
   const [filterValue, setFilterValue] = useState(null);
 
   useEffect(() => {
-    fetch("https://wizard-software-technology.rpi.gov.bd/employee")
+    fetch("https://wiztecbd.online/api/employee")
       .then((res) => res.json())
       .then((data) => {
         if (user?.Role === "employee") {
@@ -26,25 +26,20 @@ const PointsView = () => {
         }
       });
 
-    axios
-      .get(`https://wizard-software-technology.rpi.gov.bd/points`)
-      .then((res) => {
-        const data = res.data;
-        if (user?.Role === "employee") {
-          const value = data.filter((da) => da.EmployeeId === user.EmployeeId);
-          setValues(value);
-        } else {
-          setValues(data);
-        }
-      });
+    axios.get(`https://wiztecbd.online/api/points`).then((res) => {
+      const data = res.data;
+      if (user?.Role === "employee") {
+        const value = data.filter((da) => da.EmployeeId === user.EmployeeId);
+        setValues(value);
+      } else {
+        setValues(data);
+      }
+    });
   }, [user]);
 
   const handleSearch = () => {
     axios
-      .post(
-        `https://wizard-software-technology.rpi.gov.bd/points/view`,
-        filterValue
-      )
+      .post(`https://wiztecbd.online/api/points/view`, filterValue)
       .then((res) => {
         if (res.data.length > 0) {
           if (user.Role === "employee") {

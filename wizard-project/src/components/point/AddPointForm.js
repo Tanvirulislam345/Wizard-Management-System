@@ -55,17 +55,14 @@ const AddPointForm = ({ employee }) => {
     console.log(newData);
 
     axios
-      .post(`https://wizard-software-technology.rpi.gov.bd/points`, newData)
+      .post(`https://wiztecbd.online/api/points`, newData)
       .then((res) => console.log(res));
   };
 
   useEffect(() => {
     const data = { EmployeeId: id, Month };
     axios
-      .post(
-        `https://wizard-software-technology.rpi.gov.bd/allattendence/search`,
-        data
-      )
+      .post(`https://wiztecbd.online/api/allattendence/search`, data)
       .then((res) => setProjectDetails(res.data));
   }, [id]);
 

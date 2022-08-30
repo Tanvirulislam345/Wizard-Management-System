@@ -10,9 +10,7 @@ const MenualInvoiceView = () => {
   const [invoiceData, setInvoiceData] = useState(null);
   useEffect(() => {
     axios
-      .get(
-        `https://wizard-software-technology.rpi.gov.bd/menualinvoice/${menualid}`
-      )
+      .get(`https://wiztecbd.online/api/menualinvoice/${menualid}`)
       .then((res) => setInvoiceData(res.data));
   }, [menualid]);
   return (

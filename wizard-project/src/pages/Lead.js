@@ -9,7 +9,7 @@ const Lead = () => {
   const [status, setStatus] = useState(false);
   useEffect(() => {
     axios
-      .get("https://wizard-software-technology.rpi.gov.bd/lead")
+      .get("https://wiztecbd.online/api/lead")
       .then((res) => setRows(res.data));
   }, [status]);
 
@@ -18,13 +18,11 @@ const Lead = () => {
       Status: value,
     };
 
-    axios
-      .put(`https://wizard-software-technology.rpi.gov.bd/lead/${id}`, data)
-      .then((res) => {
-        if (res.status === 200) {
-          setStatus(!status);
-        }
-      });
+    axios.put(`https://wiztecbd.online/api/lead/${id}`, data).then((res) => {
+      if (res.status === 200) {
+        setStatus(!status);
+      }
+    });
   };
   return (
     <LayoutContiner>

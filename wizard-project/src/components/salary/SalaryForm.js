@@ -76,14 +76,12 @@ export default function SalaryForm({ values }) {
     };
 
     // console.log(newData);
-    axios
-      .post(`https://wizard-software-technology.rpi.gov.bd/salary`, newData)
-      .then((res) => {
-        if (res.data) {
-          handleClose();
-          navigate("/salary");
-        }
-      });
+    axios.post(`https://wiztecbd.online/api/salary`, newData).then((res) => {
+      if (res.data) {
+        handleClose();
+        navigate("/salary");
+      }
+    });
   };
 
   return (

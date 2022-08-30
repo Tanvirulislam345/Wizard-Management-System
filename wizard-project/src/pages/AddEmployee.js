@@ -62,10 +62,7 @@ const AddEmployee = () => {
     if (data !== null) {
       // console.log(newData);
       axios
-        .post(
-          "https://wizard-software-technology.rpi.gov.bd/addemployee",
-          formData
-        )
+        .post("https://wiztecbd.online/api/addemployee", formData)
         .then((res) => {
           if (res.status === 200) {
             navigate("/employee");

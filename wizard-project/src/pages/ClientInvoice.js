@@ -11,13 +11,11 @@ const ClientInvoice = () => {
   const [clientData, setClientData] = useState(null);
   useEffect(() => {
     axios
-      .get(`https://wizard-software-technology.rpi.gov.bd/project/${projectId}`)
+      .get(`https://wiztecbd.online/api/project/${projectId}`)
       .then((res) => setClientDetails(res.data));
     if (invoiceData !== null) {
       axios
-        .get(
-          `https://wizard-software-technology.rpi.gov.bd/client/${invoiceData?.ClientId}`
-        )
+        .get(`https://wiztecbd.online/api/client/${invoiceData?.ClientId}`)
         .then((res) => setClientData(res.data));
     }
   }, [projectId, invoiceData?.ClientId]);

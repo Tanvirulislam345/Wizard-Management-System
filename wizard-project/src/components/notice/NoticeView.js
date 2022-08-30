@@ -15,9 +15,7 @@ const NoticeView = () => {
   const [data, setData] = useState(null);
   useState(() => {
     axios
-      .get(
-        `https://wizard-software-technology.rpi.gov.bd/notice/view/${noticeId}`
-      )
+      .get(`https://wiztecbd.online/api/notice/view/${noticeId}`)
       .then((res) => setData(res.data));
   }, [noticeId]);
   return (

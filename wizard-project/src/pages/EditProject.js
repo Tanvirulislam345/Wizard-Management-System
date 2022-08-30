@@ -11,7 +11,7 @@ const EditProject = () => {
 
   useEffect(() => {
     axios
-      .get(`https://wizard-software-technology.rpi.gov.bd/project/${projectId}`)
+      .get(`https://wiztecbd.online/api/project/${projectId}`)
       .then((res) => setValues(res.data));
   }, [projectId]);
 

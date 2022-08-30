@@ -16,10 +16,7 @@ const CategoriEditForm = () => {
 
   useState(() => {
     axios
-      .get(
-        `https://wizard-software-technology.rpi.gov.bd/expense_categori/${expenseId}`,
-        data
-      )
+      .get(`https://wiztecbd.online/api/expense_categori/${expenseId}`, data)
       .then((res) => {
         setValue(res.data);
       });
@@ -27,10 +24,7 @@ const CategoriEditForm = () => {
 
   const handleSubmit = () => {
     axios
-      .put(
-        `https://wizard-software-technology.rpi.gov.bd/expense_categori/${expenseId}`,
-        data
-      )
+      .put(`https://wiztecbd.online/api/expense_categori/${expenseId}`, data)
       .then((res) => {
         if (res.status === 200) {
           navigate("/expense");

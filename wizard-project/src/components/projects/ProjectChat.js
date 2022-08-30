@@ -52,10 +52,7 @@ export default function ProjectChat({ Role, DoneWork, ProjectId }) {
     if (data !== null) {
       if (data.File == "nothig") {
         axios
-          .post(
-            "https://wizard-software-technology.rpi.gov.bd/addcomments",
-            newData
-          )
+          .post("https://wiztecbd.online/api/addcomments", newData)
           .then((res) => {
             if (res.status === 200) {
               setStatus(!status);
@@ -63,10 +60,7 @@ export default function ProjectChat({ Role, DoneWork, ProjectId }) {
           });
       } else {
         axios
-          .post(
-            "https://wizard-software-technology.rpi.gov.bd/addcommentsFile",
-            formData
-          )
+          .post("https://wiztecbd.online/api/addcommentsFile", formData)
           .then((res) => {
             if (res.status === 200) {
               setStatus(!status);
@@ -80,9 +74,7 @@ export default function ProjectChat({ Role, DoneWork, ProjectId }) {
 
   React.useEffect(() => {
     axios
-      .get(
-        `https://wizard-software-technology.rpi.gov.bd/comments/${ProjectId}`
-      )
+      .get(`https://wiztecbd.online/api/comments/${ProjectId}`)
       .then((res) => {
         const data = res.data;
         setValues(data.filter((value) => value.DoneWork === DoneWork));

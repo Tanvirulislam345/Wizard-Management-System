@@ -44,19 +44,14 @@ const EditEmployee = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://wizard-software-technology.rpi.gov.bd/employee/${employeetId}`
-      )
+      .get(`https://wiztecbd.online/api/employee/${employeetId}`)
       .then((res) => setValues(res.data[0]));
   }, [employeetId]);
 
   const handleSubmit = () => {
     if (data !== null) {
       axios
-        .put(
-          `https://wizard-software-technology.rpi.gov.bd/employee/${employeetId}`,
-          data
-        )
+        .put(`https://wiztecbd.online/api/employee/${employeetId}`, data)
         .then((res) => {
           if (res.status === 200) {
             navigate("/employee");

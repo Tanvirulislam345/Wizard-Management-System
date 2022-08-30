@@ -36,10 +36,7 @@ const IncomeDashBoard = () => {
   const handleSearch = () => {
     if (filterValue !== null) {
       axios
-        .post(
-          `https://wizard-software-technology.rpi.gov.bd/income_categori_search`,
-          filterValue
-        )
+        .post(`https://wiztecbd.online/api/income_categori_search`, filterValue)
         .then((res) => {
           if (res.data.length > 0) {
             const data = res.data;
@@ -60,10 +57,7 @@ const IncomeDashBoard = () => {
           }
         });
       axios
-        .post(
-          `https://wizard-software-technology.rpi.gov.bd/menualinvoice_search`,
-          filterValue
-        )
+        .post(`https://wiztecbd.online/api/menualinvoice_search`, filterValue)
         .then((res) => {
           if (res.data.length > 0) {
             const data = res.data;
@@ -86,7 +80,7 @@ const IncomeDashBoard = () => {
 
       axios
         .post(
-          `https://wizard-software-technology.rpi.gov.bd/expense_categori_search`,
+          `https://wiztecbd.online/api/expense_categori_search`,
           filterValue
         )
         .then((res) => {
@@ -110,10 +104,7 @@ const IncomeDashBoard = () => {
         });
 
       axios
-        .post(
-          `https://wizard-software-technology.rpi.gov.bd/loan_search`,
-          filterValue
-        )
+        .post(`https://wiztecbd.online/api/loan_search`, filterValue)
         .then((res) => {
           if (res.data.length > 0) {
             const data = res.data;
@@ -135,10 +126,7 @@ const IncomeDashBoard = () => {
         });
 
       axios
-        .post(
-          `https://wizard-software-technology.rpi.gov.bd/adjustment_search`,
-          filterValue
-        )
+        .post(`https://wiztecbd.online/api/adjustment_search`, filterValue)
         .then((res) => {
           if (res.data.length > 0) {
             const data = res.data;

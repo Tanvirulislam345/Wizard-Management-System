@@ -26,10 +26,7 @@ const ForgottenPassword = () => {
         password,
       };
       axios
-        .post(
-          `https://wizard-software-technology.rpi.gov.bd/passwordReset/${role}`,
-          value
-        )
+        .post(`https://wiztecbd.online/api/passwordReset/${role}`, value)
         .then((res) => {
           if (res.status === 200) {
             navigation("/");

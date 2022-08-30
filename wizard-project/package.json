@@ -23,7 +23,7 @@
     "react-to-print": "^2.14.7",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5",
-    "homepage": "https://wizard-software-admin.rpi.gov.bd/"
+    "homepage": "https://wiztecbd.online/"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -24,18 +24,14 @@ const Leave = () => {
   const handleChange = (id, type, method) => {
     if (method === "delete") {
       if (type === "leave") {
-        axios
-          .delete(`https://wizard-software-technology.rpi.gov.bd/leave/${id}`)
-          .then((res) => {
-            if (res.status === 200) {
-              setLeave(leave?.filter((le) => le.id !== id));
-            }
-          });
+        axios.delete(`https://wiztecbd.online/api/leave/${id}`).then((res) => {
+          if (res.status === 200) {
+            setLeave(leave?.filter((le) => le.id !== id));
+          }
+        });
       } else {
         axios
-          .delete(
-            `https://wizard-software-technology.rpi.gov.bd/leavetype/${id}`
-          )
+          .delete(`https://wiztecbd.online/api/leavetype/${id}`)
           .then((res) => {
             if (res.status === 200) {
               setLeaveType(leaveType?.filter((le) => le.id !== id));
@@ -44,34 +40,28 @@ const Leave = () => {
       }
     } else {
       const data = { Status: type };
-      axios
-        .put(`https://wizard-software-technology.rpi.gov.bd/leave/${id}`, data)
-        .then((res) => {
-          if (res.status === 200) {
-            setUpdate(!update);
-          }
-        });
+      axios.put(`https://wiztecbd.online/api/leave/${id}`, data).then((res) => {
+        if (res.status === 200) {
+          setUpdate(!update);
+        }
+      });
     }
   };
 
   useEffect(() => {
-    axios
-      .get("https://wizard-software-technology.rpi.gov.bd/leavetype")
-      .then((res) => {
-        setLeaveType(res.data);
-      });
+    axios.get("https://wiztecbd.online/api/leavetype").then((res) => {
+      setLeaveType(res.data);
+    });
 
-    axios
-      .get("https://wizard-software-technology.rpi.gov.bd/leave")
-      .then((res) => {
-        if (user?.Role === "employee") {
-          const data = res.data;
-          const value = data.filter((da) => da.EmployeeId === user.EmployeeId);
-          setLeave(value);
-        } else {
-          setLeave(res.data);
-        }
-      });
+    axios.get("https://wiztecbd.online/api/leave").then((res) => {
+      if (user?.Role === "employee") {
+        const data = res.data;
+        const value = data.filter((da) => da.EmployeeId === user.EmployeeId);
+        setLeave(value);
+      } else {
+        setLeave(res.data);
+      }
+    });
   }, [update]);
 
   return (

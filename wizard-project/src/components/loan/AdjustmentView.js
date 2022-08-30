@@ -15,11 +15,11 @@ const AdjustmentView = () => {
 
   useEffect(() => {
     axios
-      .get("https://wizard-software-technology.rpi.gov.bd/adjustment")
+      .get("https://wiztecbd.online/api/adjustment")
       .then((res) => setRows(res.data));
 
     axios
-      .get("https://wizard-software-technology.rpi.gov.bd/employee")
+      .get("https://wiztecbd.online/api/employee")
       .then((res) => setEmployee(res.data));
   }, []);
 
@@ -27,10 +27,7 @@ const AdjustmentView = () => {
 
   const handleSearch = () => {
     axios
-      .post(
-        `https://wizard-software-technology.rpi.gov.bd/adjustment_search`,
-        filterValue
-      )
+      .post(`https://wiztecbd.online/api/adjustment_search`, filterValue)
       .then((res) => {
         if (res.data.length > 0) {
           const data = res.data;

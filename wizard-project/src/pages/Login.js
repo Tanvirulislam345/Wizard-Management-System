@@ -26,10 +26,7 @@ const Login = () => {
       password,
     };
     axios
-      .post(
-        `https://wizard-software-technology.rpi.gov.bd/${role}match/${email}`,
-        value
-      )
+      .post(`https://wiztecbd.online/api/${role}match/${email}`, value)
       .then((res) => {
         const user = res.data;
         if (user) {

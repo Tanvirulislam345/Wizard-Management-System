@@ -15,7 +15,7 @@ const Attendences = () => {
   const [filterValue, setFilterValue] = useState(null);
 
   useEffect(() => {
-    fetch("https://wizard-software-technology.rpi.gov.bd/employee")
+    fetch("https://wiztecbd.online/api/employee")
       .then((res) => res.json())
       .then((data) => {
         if (user?.Role === "employee") {
@@ -27,9 +27,7 @@ const Attendences = () => {
       });
 
     if (user) {
-      fetch(
-        `https://wizard-software-technology.rpi.gov.bd/allattendence/present`
-      )
+      fetch(`https://wiztecbd.online/api/allattendence/present`)
         .then((res) => res.json())
         .then((data) => {
           if (user?.Role === "employee") {
@@ -48,10 +46,7 @@ const Attendences = () => {
 
   const handleSearch = () => {
     axios
-      .post(
-        `https://wizard-software-technology.rpi.gov.bd/allattendence/search`,
-        filterValue
-      )
+      .post(`https://wiztecbd.online/api/allattendence/search`, filterValue)
       .then((res) => {
         if (res.data.length > 0) {
           if (user.Role === "employee") {

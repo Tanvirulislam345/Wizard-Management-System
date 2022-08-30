@@ -33,10 +33,7 @@ const AddPaymentForm = ({ ProjectId }) => {
       };
 
       axios
-        .post(
-          `https://wizard-software-technology.rpi.gov.bd/addpayment`,
-          newData
-        )
+        .post(`https://wiztecbd.online/api/addpayment`, newData)
         .then((res) => {
           if (res.status === 200) {
             navigate("/payment");
@@ -49,7 +46,7 @@ const AddPaymentForm = ({ ProjectId }) => {
 
   useEffect(() => {
     axios
-      .get(`https://wizard-software-technology.rpi.gov.bd/allpayments/${id}`)
+      .get(`https://wiztecbd.online/api/allpayments/${id}`)
       .then((res) => setProjectDetails(res.data));
   }, [id]);
 

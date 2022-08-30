@@ -16,9 +16,7 @@ const Dashbord = () => {
   useEffect(() => {
     const running = "Running";
     axios
-      .get(
-        `https://wizard-software-technology.rpi.gov.bd/allproject/${running}`
-      )
+      .get(`https://wiztecbd.online/api/allproject/${running}`)
       .then((res) => {
         const data = res.data;
         setProject({
@@ -27,31 +25,25 @@ const Dashbord = () => {
         });
       });
 
-    axios
-      .get(`https://wizard-software-technology.rpi.gov.bd/client`)
-      .then((res) => {
-        const data = res.data;
+    axios.get(`https://wiztecbd.online/api/client`).then((res) => {
+      const data = res.data;
 
-        setClient({
-          Name: "Client",
-          Number: data.length,
-        });
+      setClient({
+        Name: "Client",
+        Number: data.length,
       });
+    });
 
-    axios
-      .get(`https://wizard-software-technology.rpi.gov.bd/employee`)
-      .then((res) => {
-        const data = res.data;
-        setEmployee({
-          Name: "Employee",
-          Number: data.length,
-        });
+    axios.get(`https://wiztecbd.online/api/employee`).then((res) => {
+      const data = res.data;
+      setEmployee({
+        Name: "Employee",
+        Number: data.length,
       });
+    });
 
     axios
-      .get(
-        `https://wizard-software-technology.rpi.gov.bd/allattendence/present`
-      )
+      .get(`https://wiztecbd.online/api/allattendence/present`)
       .then((res) => {
         const data = res.data;
         const present = data.filter((da) => da.Status === "present");

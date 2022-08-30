@@ -59,10 +59,7 @@ const MenualInvoiceForm = () => {
     };
 
     axios
-      .post(
-        `https://wizard-software-technology.rpi.gov.bd/menualinvoice`,
-        newData
-      )
+      .post(`https://wiztecbd.online/api/menualinvoice`, newData)
       .then((res) => {
         if (res.status == 200) {
           navigate("/makeinvoice");

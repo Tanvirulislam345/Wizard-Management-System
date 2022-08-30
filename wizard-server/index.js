@@ -42,11 +42,17 @@ const upload = multer({
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "wizard_software",
+  host: `localhost`,
+  user: `root`,
+  password: ``,
+  database: `wizard_software`,
 });
+// const connection = mysql.createConnection({
+//   host: "localhost",
+//   user: "wiztievc_wizard_software_ltd",
+//   password: "t-3gWuVrJj%6",
+//   database: "wiztievc_wizard_software_ltd",
+// });
 
 connection.connect((err) => {
   if (err) {
@@ -324,7 +330,7 @@ app.post("/addemployee", upload.single("File"), async (req, res) => {
   });
 });
 
-app.get("/employee", (req, res) => {
+app.get("/api/employee", (req, res) => {
   connection.query("SELECT * FROM all_employee WHERE 1", (err, result) => {
     if (err) {
       console.log(err);
@@ -1703,7 +1709,7 @@ app.get("/transfer_balance", (req, res) => {
   });
 });
 
-app.post("/transfer_balance", (req, res) => {
+app.post("/api/transfer_balance", (req, res) => {
   const today = new Date();
   const monthNames = [
     "Jan",

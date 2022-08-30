@@ -68,29 +68,19 @@ const EmployeeProfile = () => {
       EmployeeId: profileId,
     };
     axios
-      .get(
-        `https://wizard-software-technology.rpi.gov.bd/employee/${profileId}`
-      )
+      .get(`https://wiztecbd.online/api/employee/${profileId}`)
       .then((res) => setValues(res.data[0]));
 
     axios
-      .post(
-        `https://wizard-software-technology.rpi.gov.bd/allattendence/search`,
-        data2
-      )
+      .post(`https://wiztecbd.online/api/allattendence/search`, data2)
       .then((res) => setAttendence(res.data));
 
     axios
-      .get(
-        `https://wizard-software-technology.rpi.gov.bd/employeeproject/${profileId}`
-      )
+      .get(`https://wiztecbd.online/api/employeeproject/${profileId}`)
       .then((res) => setProjects(res.data));
 
     axios
-      .post(
-        `https://wizard-software-technology.rpi.gov.bd/points/view`,
-        EmployeeId
-      )
+      .post(`https://wiztecbd.online/api/points/view`, EmployeeId)
       .then((res) => {
         const data = res.data;
         const point =

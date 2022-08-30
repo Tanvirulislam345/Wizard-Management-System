@@ -39,10 +39,7 @@ const AddClients = () => {
 
     if (data !== null) {
       axios
-        .post(
-          "https://wizard-software-technology.rpi.gov.bd/addclient",
-          formData
-        )
+        .post("https://wiztecbd.online/api/addclient", formData)
         .then((res) => {
           if (res.status === 200) {
             navigate("/client");

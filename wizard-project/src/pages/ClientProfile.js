@@ -27,12 +27,10 @@ const ClientProfile = () => {
 
   useEffect(() => {
     axios
-      .get(`https://wizard-software-technology.rpi.gov.bd/client/${clientId}`)
+      .get(`https://wiztecbd.online/api/client/${clientId}`)
       .then((res) => setValues(res.data));
 
-    fetch(
-      `https://wizard-software-technology.rpi.gov.bd/clientproject/${clientId}`
-    )
+    fetch(`https://wiztecbd.online/api/clientproject/${clientId}`)
       .then((res) => res.json())
       .then((data) => setProjects(data));
   }, [clientId]);

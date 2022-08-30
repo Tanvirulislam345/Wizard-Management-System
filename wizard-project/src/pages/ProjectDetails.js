@@ -19,9 +19,7 @@ const ProjectDetails = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://wizard-software-technology.rpi.gov.bd/project/${projectDetailsId}`
-      )
+      .get(`https://wiztecbd.online/api/project/${projectDetailsId}`)
       .then((res) => setClientDetails(res.data));
   }, [projectDetailsId, status]);
 
@@ -30,7 +28,7 @@ const ProjectDetails = () => {
     data[id].status = value;
     axios
       .put(
-        `https://wizard-software-technology.rpi.gov.bd/updateprojectstatus/${projectDetailsId}`,
+        `https://wiztecbd.online/api/updateprojectstatus/${projectDetailsId}`,
         data
       )
       .then((res) => {

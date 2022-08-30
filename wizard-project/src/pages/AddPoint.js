@@ -10,7 +10,7 @@ const AddPoint = () => {
 
   useEffect(() => {
     axios
-      .get("https://wizard-software-technology.rpi.gov.bd/employee")
+      .get("https://wiztecbd.online/api/employee")
       .then((res) => setEmployee(res.data));
   }, []);
 

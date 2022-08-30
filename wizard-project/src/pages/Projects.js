@@ -34,7 +34,7 @@ const Projects = () => {
 
   //using custom hooks
   const { data: projects, setData: setProjects } = useFatch(
-    `https://wizard-software-technology.rpi.gov.bd/allproject/${isCategori}`,
+    `https://wiztecbd.online/api/allproject/${isCategori}`,
     changeState
   );
 
@@ -45,9 +45,7 @@ const Projects = () => {
 
     if (status === "delete") {
       axios
-        .delete(
-          `https://wizard-software-technology.rpi.gov.bd/allproject/delete/${id}`
-        )
+        .delete(`https://wiztecbd.online/api/allproject/delete/${id}`)
         .then((res) => {
           if (res.status === 200) {
             setProjects(projects.filter((project) => project.ProjectId !== id));
@@ -55,10 +53,7 @@ const Projects = () => {
         });
     } else {
       axios
-        .put(
-          `https://wizard-software-technology.rpi.gov.bd/updateproject/${id}`,
-          values
-        )
+        .put(`https://wiztecbd.online/api/updateproject/${id}`, values)
         .then((res) => {
           if (res.status === 200) {
             setProjects(projects.filter((project) => project.id !== id));

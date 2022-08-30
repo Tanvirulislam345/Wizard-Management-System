@@ -7,9 +7,7 @@ const ClientDetailsPage = ({ clientId }) => {
   const [clientDetails, setClientDetails] = useState(null);
   useEffect(() => {
     axios
-      .get(
-        `https://wizard-software-technology.rpi.gov.bd/projectclient/${clientId}`
-      )
+      .get(`https://wiztecbd.online/api/projectclient/${clientId}`)
       .then((res) => setClientDetails(res.data[0]));
   }, [clientId]);
 

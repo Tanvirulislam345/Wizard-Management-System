@@ -13,18 +13,16 @@ const ExpenseDashBoard = () => {
   const [download, setDownload] = useState(null);
 
   useEffect(() => {
-    axios
-      .get(`https://wizard-software-technology.rpi.gov.bd/expense_categori`)
-      .then((res) => {
-        setCategori(res.data);
-      });
+    axios.get(`https://wiztecbd.online/api/expense_categori`).then((res) => {
+      setCategori(res.data);
+    });
   }, []);
 
   const handleSearch = () => {
     if (filterValue !== null) {
       axios
         .post(
-          `https://wizard-software-technology.rpi.gov.bd/expense_categori_search`,
+          `https://wiztecbd.online/api/expense_categori_search`,
           filterValue
         )
         .then((res) => {

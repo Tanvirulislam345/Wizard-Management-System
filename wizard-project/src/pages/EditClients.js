@@ -13,19 +13,14 @@ const EditClients = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://wizard-software-technology.rpi.gov.bd/client/${editclientId}`
-      )
+      .get(`https://wiztecbd.online/api/client/${editclientId}`)
       .then((res) => setValues(res.data));
   }, [editclientId]);
 
   const handleSubmit = () => {
     if (data !== null) {
       axios
-        .put(
-          `https://wizard-software-technology.rpi.gov.bd/client/${editclientId}`,
-          data
-        )
+        .put(`https://wiztecbd.online/api/client/${editclientId}`, data)
         .then((res) => {
           if (res.status === 200) {
             navigate("/client");

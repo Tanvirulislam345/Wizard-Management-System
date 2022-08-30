@@ -14,10 +14,7 @@ const CategoriExpenseForm = () => {
   const handleSubmit = () => {
     console.log(data);
     axios
-      .post(
-        `https://wizard-software-technology.rpi.gov.bd/expensecategori`,
-        data
-      )
+      .post(`https://wiztecbd.online/api/expensecategori`, data)
       .then((res) => {
         if (res.status === 200) {
           navigate("/expense");

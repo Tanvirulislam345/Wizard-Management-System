@@ -23,28 +23,26 @@ const AllExpense = () => {
   const navValue = ["Expense", "Expense Categori"];
 
   useEffect(() => {
-    fetch("https://wizard-software-technology.rpi.gov.bd/allexpense")
+    fetch("https://wiztecbd.online/api/allexpense")
       .then((res) => res.json())
       .then((data) => setRows(data));
 
     axios
-      .get(`https://wizard-software-technology.rpi.gov.bd/expense_categori`)
+      .get(`https://wiztecbd.online/api/expense_categori`)
       .then((res) => setValues(res.data));
   }, []);
 
   const handleSearch = (id) => {
-    axios
-      .delete(`https://wizard-software-technology.rpi.gov.bd/allexpense/${id}`)
-      .then((res) => {
-        if (res.status === 200) {
-          setRows(rows.filter((row) => row.id !== id));
-        }
-      });
+    axios.delete(`https://wiztecbd.online/api/allexpense/${id}`).then((res) => {
+      if (res.status === 200) {
+        setRows(rows.filter((row) => row.id !== id));
+      }
+    });
 
     if (filterValue !== null) {
       axios
         .post(
-          `https://wizard-software-technology.rpi.gov.bd/expense_categori_search`,
+          `https://wiztecbd.online/api/expense_categori_search`,
           filterValue
         )
         .then((res) => {

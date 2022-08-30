@@ -13,10 +13,7 @@ const EditLeave = () => {
 
   const handleSubmit = () => {
     axios
-      .put(
-        `https://wizard-software-technology.rpi.gov.bd/leave/${leaveId}`,
-        data
-      )
+      .put(`https://wiztecbd.online/api/leave/${leaveId}`, data)
       .then((res) => {
         if (res.status === 200) {
           navigation("/leave");
@@ -26,7 +23,7 @@ const EditLeave = () => {
 
   useEffect(() => {
     axios
-      .get(`https://wizard-software-technology.rpi.gov.bd/leave/${leaveId}`)
+      .get(`https://wiztecbd.online/api/leave/${leaveId}`)
       .then((res) => setValues(res.data));
   }, []);
 

@@ -12,21 +12,19 @@ const AddMenualAttendence = () => {
   const navigate = useNavigate();
   const [inputList, setInputList] = useState(null);
   useEffect(() => {
-    axios
-      .get("https://wizard-software-technology.rpi.gov.bd/employee")
-      .then((res) => {
-        const data = res.data;
-        const value = data.map((da) => {
-          return {
-            Name: da.FullName,
-            EmployeeId: da.EmployeeId,
-            InTime: 0,
-            OutTime: 0,
-          };
-        });
-
-        setInputList(value);
+    axios.get("https://wiztecbd.online/api/employee").then((res) => {
+      const data = res.data;
+      const value = data.map((da) => {
+        return {
+          Name: da.FullName,
+          EmployeeId: da.EmployeeId,
+          InTime: 0,
+          OutTime: 0,
+        };
       });
+
+      setInputList(value);
+    });
   }, []);
 
   const handleInputChange = (e, index) => {
@@ -48,7 +46,7 @@ const AddMenualAttendence = () => {
     });
 
     axios
-      .post("https://wizard-software-technology.rpi.gov.bd/addattendence", data)
+      .post("https://wiztecbd.online/api/addattendence", data)
       .then((res) => {
         if (res.status === 200) {
           navigate("/attendence");

@@ -22,10 +22,7 @@ const AddTransfer = () => {
      `);
       } else {
         axios
-          .post(
-            `https://wizard-software-technology.rpi.gov.bd/transfer_balance`,
-            data
-          )
+          .post(`https://wiztecbd.online/api/transfer_balance`, data)
           .then((res) => {
             if (res.status === 200) {
               alert("Tranfer are successfull");

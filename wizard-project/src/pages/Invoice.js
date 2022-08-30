@@ -12,16 +12,12 @@ const Invoice = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://wizard-software-technology.rpi.gov.bd/allpayment/${invoiceId}`
-      )
+      .get(`https://wiztecbd.online/api/allpayment/${invoiceId}`)
       .then((res) => setInvoiceData(res.data));
 
     if (invoiceData !== null) {
       axios
-        .get(
-          `https://wizard-software-technology.rpi.gov.bd/client/${invoiceData?.ClientId}`
-        )
+        .get(`https://wiztecbd.online/api/client/${invoiceData?.ClientId}`)
         .then((res) => setClientData(res.data));
     }
   }, [invoiceId, invoiceData?.ClientId]);

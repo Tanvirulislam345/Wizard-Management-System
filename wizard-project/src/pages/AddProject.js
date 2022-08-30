@@ -98,17 +98,11 @@ const AddProject = () => {
     // console.log(newData);
     if (data !== null && data.File !== undefined) {
       axios
-        .post(
-          "https://wizard-software-technology.rpi.gov.bd/addproject",
-          formData
-        )
+        .post("https://wiztecbd.online/api/addproject", formData)
         .then((res) => {
           if (res.status === 200) {
             axios
-              .post(
-                `https://wizard-software-technology.rpi.gov.bd/addpayment`,
-                payment
-              )
+              .post(`https://wiztecbd.online/api/addpayment`, payment)
               .then((res) => {
                 if (res.status === 200) {
                   navigate("/project");
@@ -123,10 +117,10 @@ const AddProject = () => {
 
   useEffect(() => {
     axios
-      .get("https://wizard-software-technology.rpi.gov.bd/client")
+      .get("https://wiztecbd.online/api/client")
       .then((res) => setClientId(res.data));
     axios
-      .get("https://wizard-software-technology.rpi.gov.bd/employee")
+      .get("https://wiztecbd.online/api/employee")
       .then((res) => setTeamLeader(res.data));
   }, []);
 
