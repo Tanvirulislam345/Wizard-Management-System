@@ -51,12 +51,14 @@ export default function LeadList({ rows, handleChange }) {
         <TableHead>
           <TableRow>
             <StyledTableCell align="center">Name</StyledTableCell>
+            <StyledTableCell align="center">Company Name</StyledTableCell>
             <StyledTableCell align="center">Phone</StyledTableCell>
             <StyledTableCell align="center">Email</StyledTableCell>
             <StyledTableCell align="center">Project Type</StyledTableCell>
             <StyledTableCell align="center">Birthday</StyledTableCell>
             <StyledTableCell align="center">Facebook Link</StyledTableCell>
             <StyledTableCell align="center">Reference</StyledTableCell>
+            <StyledTableCell align="center">Short Note</StyledTableCell>
             <StyledTableCell align="center">Status</StyledTableCell>
           </TableRow>
         </TableHead>
@@ -67,6 +69,9 @@ export default function LeadList({ rows, handleChange }) {
           ).map((row, index) => (
             <TableRow key={index}>
               <StyledTableCell align="center">{row.FullName}</StyledTableCell>
+              <StyledTableCell align="center">
+                {row.CompanyName}
+              </StyledTableCell>
               <StyledTableCell align="center">{row.Phone}</StyledTableCell>
               <StyledTableCell align="center">{row.Email}</StyledTableCell>
               <StyledTableCell align="center">
@@ -77,6 +82,7 @@ export default function LeadList({ rows, handleChange }) {
                 {row.FacebookLink}
               </StyledTableCell>
               <StyledTableCell align="center">{row.Reference}</StyledTableCell>
+              <StyledTableCell align="center">{row.ShortNote}</StyledTableCell>
               <StyledTableCell align="center">
                 <Chip
                   label={row.Status}

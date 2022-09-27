@@ -8,6 +8,7 @@ import { LayoutContiner } from "../styles/MetarialStyles";
 
 const Transfer = () => {
   const [data, setData] = useState("Transfer List");
+  console.log(data);
   const navValue = ["Transfer List", "Add Transfer"];
   const [rows, setRows] = useState(null);
 
@@ -22,7 +23,7 @@ const Transfer = () => {
         <ProfileNav navValue={navValue} data={data} setData={setData} />
       </HeadingFormatContainer>
 
-      {data === "Add Transfer" && <AddTransfer />}
+      {data === "Add Transfer" && <AddTransfer ChangeNav={setData} />}
       {data === "Transfer List" && rows?.length > 0 && (
         <TransferTable rows={rows} />
       )}

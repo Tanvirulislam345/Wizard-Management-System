@@ -8,11 +8,10 @@ import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Chip, TableHead } from "@mui/material";
-import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
+import { TableHead } from "@mui/material";
+
 import RemoveRedEyeRoundedIcon from "@mui/icons-material/RemoveRedEyeRounded";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../Context/ContextProvieder";
 
 export default function InvoiceListMenual({ rows }) {
   const [page, setPage] = React.useState(0);

@@ -51,6 +51,7 @@ export default function TransferTable({ rows }) {
           <TableRow>
             <StyledTableCell align="justify">Transfer From</StyledTableCell>
             <StyledTableCell align="justify">Transfer To</StyledTableCell>
+            <StyledTableCell align="justify">Note</StyledTableCell>
             <StyledTableCell align="justify">Date</StyledTableCell>
             <StyledTableCell align="justify">Amount</StyledTableCell>
           </TableRow>
@@ -67,6 +68,7 @@ export default function TransferTable({ rows }) {
               <StyledTableCell align="justify">
                 {row.TransferTo}
               </StyledTableCell>
+              <StyledTableCell align="justify">{row.Note}</StyledTableCell>
               <StyledTableCell align="justify">{row.Date}</StyledTableCell>
               <StyledTableCell align="justify">{row.Amount}</StyledTableCell>
             </TableRow>

@@ -14,6 +14,20 @@ const LeadForm = ({ data, setData, handleSubmit }) => {
         <TextFieldMake
           fullWidth
           variant="outlined"
+          label="Company Name"
+          name="CompanyName"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
           label="Full Name"
           name="FullName"
           onChange={(event) =>
@@ -24,6 +38,7 @@ const LeadForm = ({ data, setData, handleSubmit }) => {
           }
         />
       </Grid>
+
       <Grid item xs={12} md={6}>
         <TextFieldMake
           fullWidth
@@ -108,6 +123,20 @@ const LeadForm = ({ data, setData, handleSubmit }) => {
           variant="outlined"
           label="Project Reference"
           name="Reference"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
+          label="Short Note"
+          name="ShortNote"
           onChange={(event) =>
             setData({
               ...data,

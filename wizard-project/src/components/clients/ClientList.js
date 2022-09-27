@@ -14,6 +14,7 @@ import {
 } from "../shared/HeadingFormat/HeadingFormatStyle";
 
 const ClientList = ({ client, handleRemove }) => {
+  console.log(client.File);
   return (
     <Grid item xs={12} sm={6} md={6} lg={6} xl={4}>
       <HeadingFormatContainer>

@@ -41,18 +41,18 @@ const upload = multer({
 
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 
-const connection = mysql.createConnection({
-  host: `localhost`,
-  user: `root`,
-  password: ``,
-  database: `wizard_software`,
-});
 // const connection = mysql.createConnection({
-//   host: "localhost",
-//   user: "wiztievc_wizard_software_ltd",
-//   password: "t-3gWuVrJj%6",
-//   database: "wiztievc_wizard_software_ltd",
+//   host: `localhost`,
+//   user: `root`,
+//   password: ``,
+//   database: `wizard_software`,
 // });
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "wiztievc_wizard_software_ltd",
+  password: "t-3gWuVrJj%6",
+  database: "wiztievc_wizard_software_ltd",
+});
 
 connection.connect((err) => {
   if (err) {
@@ -394,7 +394,7 @@ app.delete("/employee/delete/:projectId", (req, res) => {
 
 app.post("/addclient", upload.single("File"), async (req, res) => {
   const data = req.body;
-  const File = `https://wizard-software-technology.rpi.gov.bd/images/${req.file.filename}`;
+  const File = `https://wiztecbd.online/api/images/${req.file.filename}`;
 
   const info = {
     from: "tanvir.topader345@gmail.com",

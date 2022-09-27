@@ -8,7 +8,7 @@ import {
   TextFieldMake,
 } from "../../styles/MetarialStyles";
 
-const AddTransfer = () => {
+const AddTransfer = ({ ChangeNav }) => {
   const navigate = useNavigate();
   const [data, setData] = useState(null);
   const handleSubmit = () => {
@@ -26,7 +26,7 @@ const AddTransfer = () => {
           .then((res) => {
             if (res.status === 200) {
               alert("Tranfer are successfull");
-              navigate("/dashboard");
+              ChangeNav("Transfer List");
             }
           });
       }
@@ -107,6 +107,21 @@ const AddTransfer = () => {
             type="number"
             label="Amount"
             name="Amount"
+            onChange={(event) =>
+              setData({
+                ...data,
+                [event.target.name]: event.target.value,
+              })
+            }
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextFieldMake
+            fullWidth
+            variant="outlined"
+            type="text"
+            label="Note"
+            name="Note"
             onChange={(event) =>
               setData({
                 ...data,

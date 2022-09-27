@@ -17,7 +17,6 @@ const MenualInvoiceForm = () => {
       ItemName: "",
       Quantity: 0,
       Price: 0,
-      Subtotal: 0,
     },
   ]);
 
@@ -39,33 +38,6 @@ const MenualInvoiceForm = () => {
   const year = today.getFullYear();
   const month = today.getMonth();
   const date = today.getDate() + " " + monthNames[month] + " " + year;
-
-  const handleSubmit = () => {
-    const total = inputList.map((value) => parseInt(value.Subtotal));
-    const payment = total.reduce((pre, post) => pre + post, 0);
-    const discount = (payment * parseInt(data.Discount)) / 100;
-    const discountWithPayment = payment - discount;
-    const tax = (discountWithPayment * parseInt(data.Tax)) / 100;
-    const Payment = discountWithPayment + tax;
-
-    const newData = {
-      ...data,
-      Date: date,
-      Month: monthNames[month],
-      Year: year,
-      Payment,
-      BillNO: `WizB22${Math.random().toString(36).slice(7)}`,
-      Value: JSON.stringify(inputList),
-    };
-
-    axios
-      .post(`https://wiztecbd.online/api/menualinvoice`, newData)
-      .then((res) => {
-        if (res.status == 200) {
-          navigate("/makeinvoice");
-        }
-      });
-  };
 
   // handle input change
   const handleInputChange = (e, index) => {
@@ -90,9 +62,53 @@ const MenualInvoiceForm = () => {
         ItemName: "",
         Quantity: 0,
         Price: 0,
-        Subtotal: 0,
       },
     ]);
+  };
+
+  const handleSubmit = () => {
+    let discount;
+    let tax;
+    const total = inputList.map((value) =>
+      parseInt(value.Quantity * value.Price)
+    );
+
+    const payment = total.reduce((pre, post) => pre + post, 0);
+
+    if (parseInt(data.Discount) > 0) {
+      discount = (payment * parseInt(data.Discount)) / 100;
+    } else {
+      discount = 0;
+    }
+
+    const discountWithPayment = payment - discount;
+
+    if (parseInt(data.Tax)) {
+      tax = (discountWithPayment * parseInt(data.Tax)) / 100;
+    } else {
+      tax = 0;
+    }
+
+    const TotalPayment = discountWithPayment + tax;
+
+    const newData = {
+      ...data,
+      Date: date,
+      Month: monthNames[month],
+      Year: year,
+      TotalSubTotalPayment: payment,
+      TotalPayment,
+      BillNO: `WizB22${Math.random().toString(36).slice(7)}`,
+      Value: JSON.stringify(inputList),
+    };
+
+    axios
+      .post(`https://wiztecbd.online/api/menualinvoice`, newData)
+      .then((res) => {
+        if (res.status == 200) {
+          navigate("/makeinvoice");
+        }
+      });
   };
 
   return (
@@ -142,7 +158,7 @@ const MenualInvoiceForm = () => {
                     type="number"
                     label="Subtotal"
                     name="Subtotal"
-                    value={x.Subtotal}
+                    value={x.Quantity * x.Price}
                     onChange={(e) => handleInputChange(e, i)}
                   />
                 </Grid>
