@@ -13,6 +13,7 @@ import {
 
 const ProfileHead = ({
   name,
+  companyName,
   designation,
   file,
   id,
@@ -39,13 +40,14 @@ const ProfileHead = ({
 
             <HeadingFormatSubTitle>{id}</HeadingFormatSubTitle>
             <BoxContainer>
-              <HeadingFormatTitle sx={{ p: 0, mr: 3 }}>
+              <HeadingFormatTitle sx={{ p: 0, mr: 1 }}>
                 {name}
               </HeadingFormatTitle>
               <HeadingFormatSubTitle sx={{ p: 0, mt: 1 }}>
                 ({designation})
               </HeadingFormatSubTitle>
             </BoxContainer>
+            <HeadingFormatSubTitle>{companyName}</HeadingFormatSubTitle>
 
             <Typography
               variant="body1"

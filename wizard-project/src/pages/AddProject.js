@@ -7,26 +7,41 @@ import { LayoutContiner } from "../styles/MetarialStyles";
 
 const AddProject = () => {
   const Categoris = [
-    { name: "Software Development" },
+    { name: "Training" },
+    { name: "S/W Development" },
     { name: "Web Development" },
     { name: "App Development" },
+    { name: "HRM Management" },
+    { name: "Digital marketing" },
+    { name: "Business Development" },
   ];
 
   const ProjectTools = [
-    { name: "Node js" },
+    { name: "HTML, CSS, Bootstrap" },
+    { name: "Other CSS Framwork" },
     { name: "React js" },
     { name: "Next js" },
+    { name: "Node js" },
+    { name: "UI/Ux" },
+    { name: "MS Office" },
     { name: "Laravel" },
     { name: "Php" },
     { name: "Mysql" },
     { name: "Mongodb" },
+    { name: "Flutter" },
+    { name: "Android" },
+    { name: "React Native" },
   ];
 
   const team = [
-    { name: "Himel", id: 1 },
-    { name: "Mahedi", id: 3 },
-    { name: "Tanim", id: 4 },
-    { name: "Tanvir", id: 5 },
+    { name: "Tanvir", id: 1 },
+    { name: "Mortaza", id: 2 },
+    { name: "Anik", id: 3 },
+    { name: "Sohan", id: 4 },
+    { name: "Fahim", id: 5 },
+    { name: "Mehedi 1", id: 6 },
+    { name: "Mahedi 2", id: 7 },
+    { name: "Jubayer", id: 8 },
   ];
 
   const [clientId, setClientId] = useState(null);

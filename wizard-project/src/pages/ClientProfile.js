@@ -48,7 +48,8 @@ const ClientProfile = () => {
                 <Grid xs={12} item>
                   <ProfileHead
                     name={values.FullName}
-                    designation={values.CompanyName}
+                    companyName={values.CompanyName}
+                    designation={values.Designation}
                     id={values.ClientId}
                     description={values.Description}
                     contact={values.Contact}

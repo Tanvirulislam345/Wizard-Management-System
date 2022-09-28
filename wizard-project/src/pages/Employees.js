@@ -17,6 +17,7 @@ const Employees = () => {
     axios
       .delete(`https://wiztecbd.online/api/employee/delete/${id}`)
       .then((res) => {
+        console.log(res);
         if (res.status === 200) {
           setEmployee(employees.filter((emp) => emp.id !== id));
         }

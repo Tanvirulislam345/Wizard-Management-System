@@ -5,7 +5,6 @@ import {
   BoxContainer,
   BoxContainerColoum,
 } from "../../styles/MetarialStyles";
-import profile from "../../assets/avater1.png";
 import ListMenuEmployee from "./ListMenuEmployee";
 import { Link } from "react-router-dom";
 import {
@@ -50,7 +49,7 @@ const EmployeeList = ({ employee, handleRemove }) => {
               {employee.AboutMe}
             </Typography>
             <Stack spacing={3} direction="row">
-              <BigButtonMake>Add Task</BigButtonMake>
+              {/* <BigButtonMake>Add Task</BigButtonMake> */}
               <Link
                 to={`/employee/profile/${employee.EmployeeId}`}
                 style={{ textDecoration: "none" }}

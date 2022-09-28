@@ -33,6 +33,20 @@ const AddClientForm = ({ gender, bloodgroup, data, setData, handleSubmit }) => {
           }
         />
       </Grid>
+      <Grid item xs={12} md={6}>
+        <TextFieldMake
+          fullWidth
+          variant="outlined"
+          name="Designation"
+          label="Designation"
+          onChange={(event) =>
+            setData({
+              ...data,
+              [event.target.name]: event.target.value,
+            })
+          }
+        />
+      </Grid>
 
       <Grid item xs={12} md={6}>
         <TextFieldMake

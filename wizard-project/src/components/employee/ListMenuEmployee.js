@@ -40,7 +40,7 @@ export default function ListMenuEmployee({ id, handleRemove }) {
         <Link to={`/editemployee/${id}`} style={{ textDecoration: "none" }}>
           <MenuItemMake onClick={handleClose}>Edit</MenuItemMake>
         </Link>
-        <MenuItemMake onClick={() => handleRemove(id) && handleClose}>
+        <MenuItemMake onClick={() => handleRemove(id) & handleClose()}>
           Delete
         </MenuItemMake>
       </Menu>

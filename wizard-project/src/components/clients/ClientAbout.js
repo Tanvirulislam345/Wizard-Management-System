@@ -18,6 +18,7 @@ const ClientAbout = ({ values }) => {
         }}
       >
         <ProfileSingleInfo title="Full Name" value={values.FullName} />
+        <ProfileSingleInfo title="Designation" value={values.Designation} />
         <ProfileSingleInfo title="Email" value={values.Email} />
         <ProfileSingleInfo title="Address" value={values.Address} />
         <ProfileSingleInfo title="Company Name" value={values.CompanyName} />
