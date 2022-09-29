@@ -73,6 +73,7 @@ const AddEmployee = () => {
     if (data !== null) {
       // console.log(newData);
       axios
+        // .post("http://localhost:9000/addemployee", formData)
         .post("https://wiztecbd.online/api/addemployee", formData)
         .then((res) => {
           if (res.status === 200) {

@@ -8,13 +8,15 @@ import { LayoutContiner } from "../styles/MetarialStyles";
 const Employees = () => {
   const [employees, setEmployee] = useState([]);
   useEffect(() => {
+    // fetch("http://localhost:9000/employee/")
     fetch("https://wiztecbd.online/api/employee")
       .then((res) => res.json())
       .then((data) => setEmployee(data));
-  }, []);
+  }, [employees]);
 
   const handleRemove = (id) => {
     axios
+      // .delete(`http://localhost:9000/employee/delete/${id}`)
       .delete(`https://wiztecbd.online/api/employee/delete/${id}`)
       .then((res) => {
         console.log(res);

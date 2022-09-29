@@ -41,18 +41,18 @@ const upload = multer({
 
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 
-// const connection = mysql.createConnection({
-//   host: `localhost`,
-//   user: `root`,
-//   password: ``,
-//   database: `wizard_software`,
-// });
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "wiztievc_wizard_software_ltd",
-  password: "t-3gWuVrJj%6",
-  database: "wiztievc_wizard_software_ltd",
+  host: `localhost`,
+  user: `root`,
+  password: ``,
+  database: `wizard_software`,
 });
+// const connection = mysql.createConnection({
+//   host: "localhost",
+//   user: "wiztievc_wizard_software_ltd",
+//   password: "t-3gWuVrJj%6",
+//   database: "wiztievc_wizard_software_ltd",
+// });
 
 connection.connect((err) => {
   if (err) {
@@ -330,7 +330,7 @@ app.post("/addemployee", upload.single("File"), async (req, res) => {
   });
 });
 
-app.get("/api/employee", (req, res) => {
+app.get("/employee", (req, res) => {
   connection.query("SELECT * FROM all_employee WHERE 1", (err, result) => {
     if (err) {
       console.log(err);
@@ -349,6 +349,7 @@ app.get("/employee/:employeeId", (req, res) => {
       if (err) {
         console.log(err);
       } else {
+        console.log(result);
         res.json(result);
       }
     }
@@ -358,12 +359,14 @@ app.get("/employee/:employeeId", (req, res) => {
 app.put("/employee/:employeeId", (req, res) => {
   const id = req.params.employeeId;
   const data = req.body;
+  console.log(id);
+  console.log(data);
 
   const keys = Object.keys(data);
 
   const sqlquery = `UPDATE all_employee SET ${keys.map(
     (key) => key + " = ?"
-  )} WHERE id = ${id}`;
+  )} WHERE EmployeeId="${id}"`;
 
   const value = keys.map((key) => {
     return data[key];
@@ -381,7 +384,7 @@ app.put("/employee/:employeeId", (req, res) => {
 app.delete("/employee/delete/:projectId", (req, res) => {
   const id = req.params.projectId;
   connection.query(
-    `DELETE FROM all_employee WHERE EmployeeId=${id}`,
+    `DELETE FROM all_employee WHERE EmployeeId="${id}"`,
     (err, result) => {
       if (err) {
         console.log(err);

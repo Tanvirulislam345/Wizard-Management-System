@@ -49,20 +49,20 @@ const EditEmployee = () => {
   const navigate = useNavigate();
   const [values, setValues] = useState(null);
   const [data, setData] = useState(null);
-  const { employeetId } = useParams();
+  const { employeeId } = useParams();
 
   const [skills, setSkill] = useState([Allskill[0]]);
 
   useEffect(() => {
     axios
-      .get(`https://wiztecbd.online/api/employee/${employeetId}`)
+      .get(`https://wiztecbd.online/api/employee/${employeeId}`)
       .then((res) => setValues(res.data[0]));
-  }, [employeetId]);
+  }, [employeeId]);
 
   const handleSubmit = () => {
     if (data !== null) {
       axios
-        .put(`https://wiztecbd.online/api/employee/${employeetId}`, data)
+        .put(`https://wiztecbd.online/api/employee/${employeeId}`, data)
         .then((res) => {
           if (res.status === 200) {
             navigate("/employee");

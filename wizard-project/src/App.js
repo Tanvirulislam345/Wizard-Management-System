@@ -335,7 +335,7 @@ function App() {
               }
             />
             <Route
-              path="/editemployee/:employeetId"
+              path="/editemployee/:employeeId"
               element={
                 <PrivateRoute>
                   <Layout>

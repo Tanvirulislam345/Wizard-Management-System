@@ -68,6 +68,7 @@ const EmployeeProfile = () => {
       EmployeeId: profileId,
     };
     axios
+
       .get(`https://wiztecbd.online/api/employee/${profileId}`)
       .then((res) => setValues(res.data[0]));
 
