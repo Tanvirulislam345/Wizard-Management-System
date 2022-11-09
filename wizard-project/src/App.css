@@ -36,3 +36,7 @@ td {
 .example::-webkit-scrollbar {
   display: none;
 }
+
+.MuiTableCell-root:hover {
+  cursor: pointer;
+}

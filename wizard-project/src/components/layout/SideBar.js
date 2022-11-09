@@ -96,6 +96,11 @@ const items = [
     icon: <FaMedal fontSize="small" />,
     title: "Lead",
   },
+  {
+    href: "/settings",
+    icon: <FaMedal fontSize="small" />,
+    title: "Settings",
+  },
 ];
 
 export default function SideBar({ open, onClose, user }) {

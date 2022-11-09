@@ -7,7 +7,7 @@ import { LayoutContiner } from "../styles/MetarialStyles";
 
 const Login = () => {
   const [data, setData] = useState({});
-  const { user, setUser } = useAuth();
+  const { setUser } = useAuth();
   const [error, setError] = useState("");
   const navigation = useNavigate();
 

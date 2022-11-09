@@ -57,6 +57,7 @@ import CategoriEditForm from "./components/expense/CategoriEditForm";
 import Transfer from "./pages/Transfer";
 import ForgottenPassword from "./pages/ForgottenPassword";
 import PrivateRoute from "./components/login/PrivateRoute";
+import Settings from "./pages/Settings";
 
 function App() {
   return (
@@ -569,6 +570,16 @@ function App() {
                 <PrivateRoute>
                   <Layout>
                     <Salary />
+                  </Layout>
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                <PrivateRoute>
+                  <Layout>
+                    <Settings />
                   </Layout>
                 </PrivateRoute>
               }
